@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 
-
 export default class Login extends Component {
 
     constructor(props) {
@@ -14,7 +13,7 @@ export default class Login extends Component {
     }
 add=()=>{
 
-
+    
     fetch('http://reqres.in/api/users')
     .then(res=>console.log(res))
       
@@ -38,7 +37,7 @@ add=()=>{
     render() {
         return (
             <form>
-                <h2>Admin Interface</h2>
+                <h2>zzzzzzzzzzzzzzzz</h2>
                 <h3>Sign In</h3>
 
                 <div className="form-group">
