@@ -1,65 +1,34 @@
 import React, { Component } from "react";
 
-export default class Login extends Component {
+//import User from '../Classes/User';
+import {Route, Link} from 'react-router-dom';
 
-    constructor(props) {
-        super(props);
+import Details from './Details/details';
+import Tables from './Tables/table';
 
-        this.state = {
-            Email: "",
-            Password: "",
-            
-        };
-    }
-add=()=>{
+ class Dashboard extends Component {
 
-    
-    fetch('http://reqres.in/api/users')
-    .then(res=>console.log(res))
-      
-    //getUserData = (data) => {
-     //   this.setState({
-      //      userName: data
-     //   }, () => { console.log(this.state.userName) })
-
-  //  }
-
-  //  componentDidMount() {
-   //     this.apiUrl = "http://proj.ruppin.ac.il/igroup17/Mobile/project/api/spazioUser/";
-
-  //  }
+   
 
 
 
-
-}
-
-    render() {
+      render() {
         return (
-            <form>
-                <h2>zzzzzzzzzzzzzzzz</h2>
-                <h3>Sign In</h3>
 
-                <div className="form-group">
-                    <label>Email address</label>
-                    <input type="email" className="form-control" placeholder="Enter email" />
-                </div>
-
-                <div className="form-group">
-                    <label>Password</label>
-                    <input type="password" className="form-control" placeholder="Enter password" />
-                </div>
-
-                <div className="form-group">
-                    <div className="custom-control custom-checkbox">
-                        <input type="checkbox" className="custom-control-input" id="customCheck1" />
-                        <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
-                    </div>
-                </div>
-
-                <button type="submit" className="btn btn-primary btn-block" >Login</button>
-                
-            </form>
+        
+          <div className="App">
+        <div className="container" >
+          <Link to="/" >Home</Link> | 
+          <Link to="./details" >Details</Link> |
+          <Link to="/table" >Table</Link>  <br /><br />
+        </div>
+        <div>
+          <Route exact path="/" component={Dashboard} />
+          <Route path="/details" component={Details} />
+          <Route path="/table" component={Tables} />
+       </div>
+          </div>
         );
     }
 }
+export default Dashboard;

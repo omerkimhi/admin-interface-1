@@ -1,9 +1,13 @@
 import React, { Component } from "react";
+//import {Link} from 'react-router-dom';
 import User from '../Classes/User';
+import { withRouter} from "react-router-dom";
 
 
-export default class Login extends Component {
+ class Login extends Component {
 
+  
+    
     componentDidMount() {
         this.UsersApiUrl =
           "http://proj.ruppin.ac.il/igroup17/Mobile/project/api/User/";
@@ -67,31 +71,17 @@ export default class Login extends Component {
         if (userExsists === false)
           console.log("Invalid user")
       }
+//בדיקה
+btnLogin = () => {
     
-
-add=()=>{
-
-
-    fetch('http://reqres.in/api/users')
-    .then(res=>console.log(res))
-      
-    //getUserData = (data) => {
-     //   this.setState({
-      //      userName: data
-     //   }, () => { console.log(this.state.userName) })
-
-  //  }
-
-  //  componentDidMount() {
-   //     this.apiUrl = "http://proj.ruppin.ac.il/igroup17/Mobile/project/api/spazioUser/";
-
-  //  }
-
-
-
-
+    
+    this.props.history.push({
+        pathname: '/dashboard/' ,
+       
+    });
 }
-
+//סוף
+    
     render() {
         return (
             <form>
@@ -116,8 +106,10 @@ add=()=>{
                 </div>
 
                 <button type="submit" onClick={this.checkUser} className="btn btn-primary btn-block" >Login</button>
+                <button onClick={this.btnLogin}>to dashboard</button>
                 
             </form>
         );
     }
 }
+export default withRouter(Login);
