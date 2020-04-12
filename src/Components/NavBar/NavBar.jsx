@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { Navbar, Nav,Form,FormControl,Button } from 'react-bootstrap';
+import React from 'react';
+import { Navbar, Nav} from 'react-bootstrap';
 
 function navBar  () {
     

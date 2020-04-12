@@ -13,12 +13,15 @@ import Details from "./Components/Details/details"
 import Tables from "./Components/Tables/table"
 import Charts from './Components/Charts/Charts'
 
+
+
+
 function App() {
   return (
 
     //<Tables></Tables>
     //<Details></Details>
-<Charts></Charts>
+<Charts> </Charts>
 
 
 
