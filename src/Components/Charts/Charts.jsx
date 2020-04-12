@@ -4,17 +4,18 @@ import NavBar from '../NavBar/NavBar.jsx';
 import Bar from './Bar'
 import Pie from './Pie';
 
+
+
 export default class Charts extends Component {
 
 
     constructor(props) {
         super(props);
-        this.state = {
-         Pchart: new Pie(),
-        }
+       
+        
      }
 
-
+    
 
     render() {
         return (
@@ -25,7 +26,7 @@ export default class Charts extends Component {
        <Bar/>
        <br/>
            <br/>
-           <Pie Pchart={this.state.Pchart}></Pie>
+           <Pie/>
            </div>
 
         );
