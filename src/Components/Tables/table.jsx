@@ -9,8 +9,7 @@ import { Table, Container,Card } from 'react-bootstrap';
       render() {
         return (
             <div>
-           <NavBar>
-          </NavBar>
+          
            <br/>
            <br/>
            <br/>
