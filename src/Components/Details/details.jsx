@@ -9,7 +9,7 @@ import NavBar from '../NavBar/NavBar.jsx'
       render() {
         return (
           
-          <NavBar></NavBar>
+         <div></div>
         );
     }
 }
