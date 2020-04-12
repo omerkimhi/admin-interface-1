@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 //
 import './App.css';
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Login from "./Components/login";
 import Dashboard from "./Components/dashboard";
@@ -18,8 +18,7 @@ import NavBar from './Components/NavBar/NavBar'
 
 function App() {
   return (
-
-    <Dashboard></Dashboard>
+<NavBar></NavBar>
     //<Tables></Tables>
     //<Details></Details>
 //<Charts> </Charts>
