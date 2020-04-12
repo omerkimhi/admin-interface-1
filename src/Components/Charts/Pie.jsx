@@ -1,48 +1,66 @@
 import React, { Component } from 'react'
-import ReactApexChart from 'apexcharts'
+import {Pie, Doughnut} from 'react-chartjs-2';
 
-class Pie extends React.Component {
-  constructor(props) {
-    super(props);
+const state = {
+  labels: ['January', 'February', 'March',
+           'April', 'May'],
+  datasets: [
+    {
+      label: 'Rainfall',
+      backgroundColor: [
+        '#B21F00',
+        '#C9DE00',
+        '#2FDE00',
+        '#00A6B4',
+        '#6800B4'
+      ],
+      hoverBackgroundColor: [
+      '#501800',
+      '#4B5000',
+      '#175000',
+      '#003350',
+      '#35014F'
+      ],
+      data: [65, 59, 80, 81, 56]
+    }
+  ]
+}
 
-    this.state = {
-    
-      series: [44, 55, 13, 43, 22],
-      options: {
-        chart: {
-          width: 380,
-          type: 'pie',
-        },
-        labels: ['Team A', 'Team B', 'Team C', 'Team D', 'Team E'],
-        responsive: [{
-          breakpoint: 480,
-          options: {
-            chart: {
-              width: 200
-            },
-            legend: {
-              position: 'bottom'
-            }
-          }
-        }]
-      },
-    
-    
-    };
-  }
-
-
+export default class PieChart extends Component {
 
   render() {
     return (
-      
+      <div>
+        <Pie
+          data={state}
+          options={{
+            title:{
+              display:true,
+              text:'Average Rainfall per month',
+              fontSize:20
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
+        />
 
-<div id="chart">
-<ReactApexChart options={this.state.options} series={this.state.series} type="pie" width={380} />
-</div>
-
-
+        <Doughnut
+          data={state}
+          options={{
+            title:{
+              display:true,
+              text:'Average Rainfall per month',
+              fontSize:20
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
+        />
+      </div>
     );
   }
 }
-export default Pie()
