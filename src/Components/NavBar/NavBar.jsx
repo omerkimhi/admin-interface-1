@@ -8,7 +8,7 @@ import Tables from '../Tables/table';
 import Login from "../../Components/login";
 import Charts from '../Charts/Charts';
 import PieChart from '../Charts/Pie';
-import { Col } from "react-bootstrap";
+//import { Col } from "react-bootstrap";
 
 
 
