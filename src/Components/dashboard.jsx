@@ -9,17 +9,12 @@ import Charts from './Charts/Charts';
 import NavBar from './NavBar/NavBar';
 
  class Dashboard extends Component {
-
-   
-
-
-
+  
       render() {
         return (
-          <div>
+          
             <NavBar></NavBar>
-            <div>Main dashboard</div>
-            </div>
+           
         );
     }
 }

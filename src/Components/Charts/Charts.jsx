@@ -25,8 +25,7 @@ export default class Charts extends Component {
            <br/>
        <Bar/>
        <br/>
-           <br/>
-           <PieChart/>
+          
            </div>
 
         );

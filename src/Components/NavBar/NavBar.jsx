@@ -17,26 +17,25 @@ import { Col } from "react-bootstrap";
 function navBar  () {
     
       return (
-        <Col md={{ span: 6, offset: 3 }}>
+        //<Col md={{ span: 6, offset: 3 }}>
         <Router>
-<Navbar bg="dark" variant="dark">
-    <Navbar.Brand href="/">Spazio</Navbar.Brand>
-    <Nav className="mr-auto">
-      <Nav.Link href="/Tables">Tables</Nav.Link>
-      <Nav.Link href="/Charts">Charts</Nav.Link>
-      <Nav.Link href="/Pie">Pie</Nav.Link>
-    </Nav>
-  </Navbar>
-  <Switch>
-            <Route exact path="/">
-              <Login />
-            </Route>
-            <Route path="/Tables">
-            <Tables />          </Route>
-            <Route path="/Pie">
-            <PieChart/>
-                      </Route>
-          </Switch>
+               <Navbar bg="dark" variant="dark">
+               <Navbar.Brand >Spazio Admin</Navbar.Brand>
+               <Nav className="mr-auto">
+               <Nav.Link href="/details">Details</Nav.Link>
+               <Nav.Link href="/Tables">Tables</Nav.Link>
+               <Nav.Link href="/Charts">Charts</Nav.Link>
+               <Nav.Link href="/Pie">Pie</Nav.Link>
+               <Nav.Link className="justify-content-end" href="/">Sign Out</Nav.Link>
+               </Nav>
+               </Navbar>
+                <Switch>
+                <Route path="/details"><Details/></Route>
+                 <Route path="/Tables"><Tables /></Route>
+                 <Route path="/Charts"><Charts/></Route>
+                 <Route path="/Pie"><PieChart/></Route>
+                 <Route exact path="/"><Login/></Route>
+                </Switch>
         
         
   
@@ -50,7 +49,7 @@ function navBar  () {
           
         
       </Router>
-      </Col>
+     // </Col>
         );
     }
 

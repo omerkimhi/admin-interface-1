@@ -18,7 +18,8 @@ import NavBar from './Components/NavBar/NavBar'
 
 function App() {
   return (
-<NavBar></NavBar>
+    <Dashboard></Dashboard>
+//<NavBar></NavBar>
     //<Tables></Tables>
     //<Details></Details>
 //<Charts> </Charts>
