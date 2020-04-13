@@ -8,6 +8,9 @@ h1 {
   }
   .app-container {
     padding: 25px;
+    background-color:white;
+    
+    
   }
   
   .percentage-number {
@@ -28,3 +31,5 @@ h1 {
   .container .row div {
     outline: solid 1px black;
   }
+
+  
