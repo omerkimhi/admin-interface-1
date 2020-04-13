@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 //import {Link} from 'react-router-dom';
-import User from '../Classes/User';
+
 import { withRouter} from "react-router-dom";
 
 
@@ -8,69 +8,7 @@ import { withRouter} from "react-router-dom";
 
   
     
-    componentDidMount() {
-        this.UsersApiUrl =
-          "http://proj.ruppin.ac.il/igroup17/Mobile/project/api/User/";
-        
-        this.FetchGetUsers();
-        
-    
-      }
-    
-      FetchGetUsers = () => {
-        fetch(this.UsersApiUrl, {
-          method: "GET"
-        })
-          .then(res => {
-            return res.json();
-          })
-          .then(
-            result => {
-              this.setState({
-                Users: result.map(
-                  item =>
-                    new User(
-                      item.Id,
-                      item.Email,
-                      item.Password,
-                      item.UserName,
-                      item.PhoneNumber,
-                      item.Photo
-                    )
-                )
-              });
-            },
-            error => { }
-          );
-      };
-
-      checkUser = () => {
-        let tempArr = this.state.Users;
-        console.log(this.state.Users);
-        console.log(this.state.Email);
-        console.log(this.state.Password);
-    
-        let userExsists = false;
-    
-        for (var i = 0; i < this.state.Users.length; i++) {
-    
-          if (this.state.Email === this.state.Users[i].email) {
-            console.log(this.state.Email);
-            console.log(this.state.Users[i].name);
-            userExsists = true;
-            if (this.state.Password === this.state.Users[i].password) {
-              console.log("You Are logged in");
-              alert("You Are logged in");
-            }
-            else {
-              console.log("The password is incorrect")
-              alert("The password is incorrect");
-            }
-          }
-        }
-        if (userExsists === false)
-          console.log("Invalid user")
-      }
+   
 //בדיקה
 btnLogin = () => {
     

@@ -9,16 +9,19 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Login from "./Components/login";
 import Dashboard from "./Components/dashboard";
-import Details from "./Components/Details/details"
-import Tables from "./Components/Tables/table"
-import Charts from './Components/Charts/Charts'
-
-import NavBar from './Components/NavBar/NavBar'
+import Details from "./Components/Details/details";
+import Tables from "./Components/Tables/table";
+import Charts from './Components/Charts/Charts';
+import NavBar from './Components/NavBar/NavBar';
+import AppData from './Components/data/appData';
 
 
 function App() {
   return (
-    <Dashboard></Dashboard>
+   <div>
+     <AppData/>
+   </div>
+    //<Dashboard></Dashboard>
 //<NavBar></NavBar>
     //<Tables></Tables>
     //<Details></Details>
