@@ -139,32 +139,32 @@ avgRankSpace:null,
        spaceAvg.push(space.price);    
     }); 
     let sumSpace = spaceAvg.reduce((previous, current) => current += previous);
-    let avgSpace = sumSpace / spaceAvg.length;
+    let avgSpace = Number(sumSpace / spaceAvg.length).toFixed(2);
     //sport avg min max
     this.state.Spaces.map((space)=>{
       if (space.field === "Sport") sportAvg.push(space.price);
       
     });  
     let sumSport = sportAvg.reduce((previous, current) => current += previous);
-    let avgSport = sumSport / sportAvg.length;
-    let maxSport = Math.max.apply(null, sportAvg);
-    let minSport = Math.min.apply(null, sportAvg);
+    let avgSport = Number(sumSport / sportAvg.length).toFixed(2);
+    let maxSport = Number(Math.max.apply(null, sportAvg)).toFixed(2);
+    let minSport = Number(Math.min.apply(null, sportAvg)).toFixed(2);
 //art avg min max
     this.state.Spaces.map((space)=>{
       if (space.field === "Art") artAvg.push(space.price);
     });
     let sumArt = artAvg.reduce((previous, current) => current += previous);
-    let avgArt = sumArt / artAvg.length;
-    let maxArt = Math.max.apply(null, artAvg);
-    let minArt = Math.min.apply(null, artAvg);
+    let avgArt = Number(sumArt / artAvg.length).toFixed(2);
+    let maxArt = Number(Math.max.apply(null, artAvg)).toFixed(2);
+    let minArt = Number(Math.min.apply(null, artAvg)).toFixed(2);
     //beauty avg min max
     this.state.Spaces.map((space)=>{
       if (space.field === "Art") beautyAvg.push(space.price); 
     });
     let sumBeauty = beautyAvg.reduce((previous, current) => current += previous);
-    let avgBeauty = sumBeauty / beautyAvg.length;
-    let maxBeauty = Math.max.apply(null, beautyAvg);
-      let minBeauty = Math.min.apply(null, beautyAvg);
+    let avgBeauty = Number(sumBeauty / beautyAvg.length).toFixed(2);
+    let maxBeauty = Number(Math.max.apply(null, beautyAvg)).toFixed(2);
+      let minBeauty = Number(Math.min.apply(null, beautyAvg)).toFixed(2);
 
 //finish
     this.setState({ sportPrice:avgSport, sportMax:maxSport,sportMin:minSport, spacesPrice:avgSpace, artPrice:avgArt,
@@ -186,18 +186,18 @@ getRank=()=>{
     if (space.field === "Beauty") beautyAvg.push(space.rank);
   });
   let sumB = beautyAvg.reduce((previous, current) => current += previous);
-  let avgB = sumB / beautyAvg.length;
+  let avgB = Number(sumB / beautyAvg.length).toFixed(2);
   let sumA = artAvg.reduce((previous, current) => current += previous);
-  let avgA = sumA / artAvg.length;
+  let avgA = Number(sumA / artAvg.length).toFixed(2);
   let sumS = sportAvg.reduce((previous, current) => current += previous);
-  let avgS = sumS / artAvg.length;
+  let avgS = Number(sumS / artAvg.length).toFixed(2);
 
   //Average space rank
   this.state.Spaces.map((space)=>{
     if (space.rank !== 0 || space.rank!==null) spaceAvg.push(space.rank); 
   });
   let sumSpace = spaceAvg.reduce((previous, current) => current += previous);
-  let avgSpace = sumSpace / spaceAvg.length;
+  let avgSpace = Number(sumSpace / spaceAvg.length).toFixed(2);
  //finish
   this.setState({avgRankBeauty:avgB,avgRankSport:avgS,avgRankArt:avgA, avgRankSpace:avgSpace})
 }
