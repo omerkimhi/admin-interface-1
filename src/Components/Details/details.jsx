@@ -31,7 +31,7 @@ import Space from '../Classes/Space';
     showDialog: false,
     isLoading:true,
     Spaces:[],
-   
+   counts:[],
 
   }
   }
@@ -41,6 +41,24 @@ import Space from '../Classes/Space';
     "http://proj.ruppin.ac.il/igroup17/prod/api/space";
 
     this.FetchGetSpaces();
+
+// const fieldNum=[];
+
+// this.state.Spaces.forEach(item=>{
+
+//   fieldNum.push
+//  })
+
+//  const fieldTypes = this.state.Spaces
+//  .map(dataItem => dataItem.field) // get all media types
+//  .filter((fieldType, index, array) => array.indexOf(fieldType) === index), // filter out duplicates
+
+// this.setState({counts : fieldTypes.map(fieldType => ({
+
+//    type: fieldType,
+//    count: this.state.Spaces.filter(item => item.field === fieldType).length
+//  }))});
+// console.log(this.state.counts)
   }
 
   FetchGetSpaces = () => {
@@ -79,11 +97,14 @@ import Space from '../Classes/Space';
         },
         error => { }
       )
+   
      
 
       
       
   };
+
+  
 
   showData = () => {
     console.log(this.state.Spaces);
@@ -133,11 +154,14 @@ import Space from '../Classes/Space';
               <div className="row">
                 <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
                <h4>Fields</h4>
-               {this.state.Spaces.filter(Spaces => Spaces.price < 90).map(filteredSpace => (
+               {/* {this.state.Spaces.filter(Spaces => Spaces.price < 90).map(filteredSpace => (
     <li>
       {filteredSpace.price}
     </li>
-  ))}
+  ))} */}
+ 
+
+
                 </div>
                 <div className="col-xs-6 col-sm-6 col-md-2 col-lg-2 col-xl-2">
                   <div className="percentage-container">
@@ -153,13 +177,21 @@ import Space from '../Classes/Space';
                 </div>
                 <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                   <div>
-                    <h3>My Rank</h3>
+                    <h4>AVERAGE TOTAL RANK</h4>
                     <span/>
-                    <h4>Average Rank in my field</h4>
+                    <h5>Average rank in beauty field</h5>
                     <span/>
-                    <h3>My Equipment Rank</h3>
+                    <h5>Average rank in sport field</h5>
                     <span/>
-                    <h4>Average  Equipment Rank in my field</h4>
+                    <h5>Average rank in art field</h5>
+                    <span/>
+                    <h4>AVERAGE EQUIPMENT RANK</h4>
+                    <span/>
+                    <h5>Average rank in beauty field</h5>
+                    <span/>
+                    <h5>Average rank in sport field</h5>
+                    <span/>
+                    <h5>Average rank in art field</h5>
                     <span/>
                     
 
@@ -192,3 +224,4 @@ import Space from '../Classes/Space';
   }
 }
 export default Details;
+
