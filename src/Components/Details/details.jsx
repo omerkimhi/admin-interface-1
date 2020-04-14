@@ -39,17 +39,12 @@ import Space from '../Classes/Space';
     sportSpaces:[],
     beautySpaces:[],
     artSpaces:[],
-    
-    //array of sport spaces prices (for check)
-    sportAverage:[],
    
-    //Average by field
-   sportMemutza:null,
-   artMemutza:null,
-   beautyNemutza:null,
-
-   //
-   spacesMemutza:null,
+    //Average prices by field
+   sportPrice:null,
+   artPrice:null,
+   beautyPrice:null,
+   spacesPrice:null,
    
    //Prices By field MIN/MAX
     artMax:null,
@@ -64,6 +59,10 @@ topRankSport:null,
 topRankArt:null,
 topRankBeauty:null,
 topRankSpace:null,
+avgRankSport:null,
+avgRankArt:null,
+avgRankBeauty:null,
+avgRankSpace:null,
   }
   }
 
@@ -128,99 +127,90 @@ topRankSpace:null,
         error => { }
       );
   };
-  //ספורט ממוצע, מינ ומקס
-  hiSport=()=>{ 
+//Prices: Avg, Min, Max
+  getPrices=()=>{ 
+    //init
+    let spaceAvg=[];
     let sportAvg=[];
-    
+    let artAvg=[];
+    let beautyAvg=[];
+    //total avg
+    this.state.Spaces.map((space)=>{
+       spaceAvg.push(space.price);    
+    }); 
+    let sumSpace = spaceAvg.reduce((previous, current) => current += previous);
+    let avgSpace = sumSpace / spaceAvg.length;
+    //sport avg min max
     this.state.Spaces.map((space)=>{
       if (space.field === "Sport") sportAvg.push(space.price);
       
     });  
-    let sum = sportAvg.reduce((previous, current) => current += previous);
-    let avg = sum / sportAvg.length;
-    let max = Math.max.apply(null, sportAvg);
-    let min = Math.min.apply(null, sportAvg);
-    this.setState({sportAverage:sportAvg, sportMemutza:avg, sportMax:max,sportMin:min})
-   console.log('hi'+ this.state.sportAverage +'avg='+this.state.sportMemutza)
-  //אומנות ממוצע, מינ ומקס
-  }
-  hiArt=()=>{ 
-    let artAvg=[];
+    let sumSport = sportAvg.reduce((previous, current) => current += previous);
+    let avgSport = sumSport / sportAvg.length;
+    let maxSport = Math.max.apply(null, sportAvg);
+    let minSport = Math.min.apply(null, sportAvg);
+//art avg min max
     this.state.Spaces.map((space)=>{
       if (space.field === "Art") artAvg.push(space.price);
     });
-    let sum = artAvg.reduce((previous, current) => current += previous);
-    let avg = sum / artAvg.length;
-    let max = Math.max.apply(null, artAvg);
-    let min = Math.min.apply(null, artAvg);
-    this.setState({artMemutza:avg, artMax:max, artMin:min})
-    
-   console.log('avg='+this.state.artMemutza+'max= '+ this.state.artMax+ 'min= '+this.state.artMin)
-    
-  }
-  // יופי ממוצע, מינ ומקס
-hibeauty=()=>{ 
-  let beautyAvg=[];
-  this.state.Spaces.map((space)=>{
-    if (space.field === "Art") beautyAvg.push(space.price); 
-  });
-  let sum = beautyAvg.reduce((previous, current) => current += previous);
-  let avg = sum / beautyAvg.length;
-  let max = Math.max.apply(null, beautyAvg);
-    let min = Math.min.apply(null, beautyAvg);
-  this.setState({beautyNemutza:avg, beautyMax:max, beautyMin:min})
- console.log('avg='+this.state.beautyNemutza)
-  
-}
-//דירוג ממוצע לכל תחום בנפרד
-hirank=()=>{ 
+    let sumArt = artAvg.reduce((previous, current) => current += previous);
+    let avgArt = sumArt / artAvg.length;
+    let maxArt = Math.max.apply(null, artAvg);
+    let minArt = Math.min.apply(null, artAvg);
+    //beauty avg min max
+    this.state.Spaces.map((space)=>{
+      if (space.field === "Art") beautyAvg.push(space.price); 
+    });
+    let sumBeauty = beautyAvg.reduce((previous, current) => current += previous);
+    let avgBeauty = sumBeauty / beautyAvg.length;
+    let maxBeauty = Math.max.apply(null, beautyAvg);
+      let minBeauty = Math.min.apply(null, beautyAvg);
+
+//finish
+    this.setState({ sportPrice:avgSport, sportMax:maxSport,sportMin:minSport, spacesPrice:avgSpace, artPrice:avgArt,
+       artMax:maxArt, artMin:minArt, beautyPrice:avgBeauty, beautyMax:maxBeauty, beautyMin:minBeauty})
+   
+    }
+//Rank 
+getRank=()=>{ 
+  //init
+  let spaceAvg=[]
   let beautyAvg=[];
   let artAvg=[];
   let sportAvg=[];
   
-  
+  //Average Rank per field
   this.state.Spaces.map((space)=>{
     if (space.field === "Sport") sportAvg.push(space.rank);
     if (space.field === "Art") artAvg.push(space.rank);
     if (space.field === "Beauty") beautyAvg.push(space.rank);
-
-
   });
-
   let sumB = beautyAvg.reduce((previous, current) => current += previous);
   let avgB = sumB / beautyAvg.length;
   let sumA = artAvg.reduce((previous, current) => current += previous);
   let avgA = sumA / artAvg.length;
   let sumS = sportAvg.reduce((previous, current) => current += previous);
   let avgS = sumS / artAvg.length;
- 
- 
-  this.setState({beautyNemutza:avgB,sportMemutza:avgS,artMemutza:avgA})
- console.log('avg rank beauty='+this.state.beautyNemutza+ 'avg rank sport= '+this.state.sportMemutza+'avg rank art= '+this.state.artMemutza)
 
-}
-//דירוג ממוצע לכלל החללים
-hiTotalrank=()=>{ 
-  let spaceAvg=[]
-  
-  
+  //Average space rank
   this.state.Spaces.map((space)=>{
     if (space.rank !== 0 || space.rank!==null) spaceAvg.push(space.rank); 
   });
-
   let sumSpace = spaceAvg.reduce((previous, current) => current += previous);
   let avgSpace = sumSpace / spaceAvg.length;
-
-  this.setState({spacesMemutza:avgSpace})
- console.log('avg rank spaces='+this.state.spacesMemutza)
-
+ //finish
+  this.setState({avgRankBeauty:avgB,avgRankSport:avgS,avgRankArt:avgA, avgRankSpace:avgSpace})
 }
-//מציאת החלל בעל הדירוג הגבוה ביותר לכל תחום
-hiField=()=>{
+
+// top ranked space for every field
+getHighRank=()=>{
+  //init
 let topSport="";
 let topBeauty="";
 let topArt="";
 let help=null;
+
+//get top rank
   this.state.sportSpaces.map((space)=>{
        help=space.rank
        if(help=== Math.max(...this.state.sportSpaces.map(s => s.rank)))
@@ -236,22 +226,11 @@ this.state.artSpaces.map((space)=>{
   if(help=== Math.max(...this.state.artSpaces.map(s => s.rank)))
      {topArt= space.name; }                   
 })
-
-
-
+//finish
 this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt})
-  console.log('sport= '+this.state.topRankSport+' beauty= '+this.state.topRankBeauty+ ' art= '+this.state.topRankArt)
 }
 
-
-
-
-
-
-
-
-
-
+//shows data from DB
   showData = () => {
     console.log(this.state.Spaces);
   }
@@ -272,7 +251,15 @@ this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt
       <Ripple>
           <br/>
       <br/>
-         <button onClick={this.showData}>check</button>
+      <button onClick={this.showData}>show data</button>
+
+      <button onClick={this.getHighRank}>TOP RANKED SPACE</button>        
+        
+         <button onClick={this.getPrices}>GET PRICES</button>
+      
+         <button onClick={this.getRank}>GET RANK</button>
+         
+         
          <br/>
       <br/>
       <div className="bootstrap-wrapper">
@@ -288,20 +275,31 @@ this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt
                  </div>
           <div className="row">
             <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+              <br/>
+            <h4>AVERAGE TOTAL RANK: {this.state.avgRankSpace}</h4> 
+            <br/>
               <h4>TOP RATED SPACE BY FIELD</h4>
-              <h5>SPORT</h5><button onClick={this.hiField}>fieldush</button>
-              <h5>ART</h5>
-              <h5>BEAUTY</h5>
+              <br/>
+              <h5>SPORT: {this.state.topRankSport} </h5>
+              <br/>
+              <h5>ART: {this.state.topRankArt}     </h5>
+              <br/>
+              <h5>BEAUTY: {this.state.topRankBeauty}</h5>
+              <br/>
             </div>
             <div className="col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
               <div className="row">
                 <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
                <h4>Fields</h4>
+               <br/>
                <h5>SPORT</h5>
+               <br/>
               <p>Number of spaces: {this.state.sportSpaces.length}</p>
               <h5>ART</h5>
+              <br/>
               <p>Number of spaces: {this.state.artSpaces.length}</p>
               <h5>Beauty</h5>
+              <br/>
               <p>Number of spaces: {this.state.beautySpaces.length}</p>
  
 
@@ -321,22 +319,27 @@ this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt
                 </div>
                 <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                   <div>
-                    <h4>AVERAGE TOTAL RANK</h4><button onClick={this.hiTotalrank}>total</button>
+    <h4>AVERAGE TOTAL PRICE: {this.state.spacesPrice}</h4> 
                     <span/>
-                    <h5>Average rank in beauty field: </h5><button onClick={this.hirank}>rank</button>
+                    <h5>Average price in beauty field: {this.state.beautyPrice}</h5>
                     <span/>
-                    <h5>Average rank in sport field</h5>
+                    <h5>Max price in beauty field: {this.state.beautyMax}</h5>
                     <span/>
-                    <h5>Average rank in art field</h5>
+                    <h5>Min price in beauty field: {this.state.beautyMin}</h5>
                     <span/>
-                    <h4>AVERAGE EQUIPMENT RANK</h4>
+                    <h5>Average price in sport field: {this.state.sportPrice}</h5>
                     <span/>
-                    <h5>Average rank in beauty field</h5><button onClick={this.hibeauty}>hi</button>
+                    <h5>Max price in sport field: {this.state.sportMax}</h5>
                     <span/>
-                    <h5>Average price in sport field:</h5><button onClick={this.hiSport}>hi</button>
+                    <h5>Min price in sport field: {this.state.sportMin}</h5>
                     <span/>
-                    <h5>Average rank in art field</h5><button onClick={this.hiArt}>hi</button>
+                    <h5>Average price in art field: {this.state.artPrice}</h5>
                     <span/>
+                    <h5>Max price in art field: {this.state.artMax}</h5>
+                    <span/>
+                    <h5>Min price in art field: {this.state.artMin}</h5>
+                    <span/>
+                   
                     
 
                   </div>
