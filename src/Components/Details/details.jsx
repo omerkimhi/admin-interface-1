@@ -58,6 +58,12 @@ import Space from '../Classes/Space';
 beautyMin:null,
 sportMax:null,
 sportMin:null,
+
+//top rated spaces
+topRankSport:null,
+topRankArt:null,
+topRankBeauty:null,
+topRankSpace:null,
   }
   }
 
@@ -125,9 +131,11 @@ sportMin:null,
   //ספורט ממוצע, מינ ומקס
   hiSport=()=>{ 
     let sportAvg=[];
+    
     this.state.Spaces.map((space)=>{
       if (space.field === "Sport") sportAvg.push(space.price);
-    });
+      
+    });  
     let sum = sportAvg.reduce((previous, current) => current += previous);
     let avg = sum / sportAvg.length;
     let max = Math.max.apply(null, sportAvg);
@@ -208,7 +216,32 @@ hiTotalrank=()=>{
 
 }
 //מציאת החלל בעל הדירוג הגבוה ביותר לכל תחום
+hiField=()=>{
+let topSport="";
+let topBeauty="";
+let topArt="";
+let help=null;
+  this.state.sportSpaces.map((space)=>{
+       help=space.rank
+       if(help=== Math.max(...this.state.sportSpaces.map(s => s.rank)))
+          {topSport= space.name; }                   
+  })
+  this.state.beautySpaces.map((space)=>{
+    help=space.rank
+    if(help=== Math.max(...this.state.beautySpaces.map(s => s.rank)))
+       {topBeauty= space.name; }                   
+})
+this.state.artSpaces.map((space)=>{
+  help=space.rank
+  if(help=== Math.max(...this.state.artSpaces.map(s => s.rank)))
+     {topArt= space.name; }                   
+})
 
+
+
+this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt})
+  console.log('sport= '+this.state.topRankSport+' beauty= '+this.state.topRankBeauty+ ' art= '+this.state.topRankArt)
+}
 
 
 
@@ -256,7 +289,7 @@ hiTotalrank=()=>{
           <div className="row">
             <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
               <h4>TOP RATED SPACE BY FIELD</h4>
-              <h5>SPORT</h5>
+              <h5>SPORT</h5><button onClick={this.hiField}>fieldush</button>
               <h5>ART</h5>
               <h5>BEAUTY</h5>
             </div>
