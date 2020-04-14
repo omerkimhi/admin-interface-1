@@ -13,15 +13,18 @@ import Charts from './Components/Charts/Charts';
 import NavBar from './Components/NavBar/NavBar';
 //import AppData from './Components/data/appData';
 
+//import Average from "./Components/Details/Average";
 
 function App() {
   return (
      //<Dashboard></Dashboard>
        //<Tables></Tables>
-       //<Charts> </Charts> 
+       //<Charts> </Charts>
+       
+       <//Average/> 
   <div>
-   <NavBar></NavBar>
-      
+  <NavBar></NavBar> 
+    
 </div>
  // <Router>
     

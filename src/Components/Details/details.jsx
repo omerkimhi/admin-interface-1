@@ -11,9 +11,9 @@ import { savePDF } from '@progress/kendo-react-pdf';
 import { Ripple } from '@progress/kendo-react-ripple';
 import '@progress/kendo-theme-material/dist/all.css'; 
 
-import { DonutChartContainer } from '../Charts/DonutChartContainer';
-import { BarChartContainer } from '../Charts/BarChartContainer';
-import { GridContainer } from '../Grid/GridContainer';
+//import { DonutChartContainer } from '../Charts/DonutChartContainer';
+//import { BarChartContainer } from '../Charts/BarChartContainer';
+//import { GridContainer } from '../Grid/GridContainer';
 
 import Space from '../Classes/Space';
 
