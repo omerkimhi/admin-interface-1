@@ -52,15 +52,20 @@ this.state={
                       item.UserEmail
                     )
                 )
-              });
+              }, () => {
+                let sArray = [];
+                let aArray = [];
+                let bArray = [];
+                this.state.Spaces.map((space) => {
+                  if (space.field === "Sport") sArray.push(space);
+                  if (space.field === "Art") aArray.push(space);
+                  if (space.field === "Beauty") bArray.push(space);
+                });
+                this.setState({ sportSpaces: sArray, beautySpaces: bArray,artSpaces:aArray  })
+              })
             },
             error => { }
-          )
-       
-        
-    
-          
-          
+          );
       };
     
       showData = () => {

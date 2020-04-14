@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import NavBar from '../NavBar/NavBar.jsx'
+//import NavBar from '../NavBar/NavBar.jsx'
 
 import { Table, Container,Card } from 'react-bootstrap';
 

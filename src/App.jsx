@@ -3,14 +3,14 @@ import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+//import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-import Login from "./Components/login";
-import Dashboard from "./Components/dashboard";
-import Details from "./Components/Details/details";
-import Tables from "./Components/Tables/table";
-import Charts from './Components/Charts/Charts';
-import NavBar from './Components/NavBar/NavBar';
+// import Login from "./Components/login";
+// import Dashboard from "./Components/dashboard";
+// import Details from "./Components/Details/details";
+// import Tables from "./Components/Tables/table";
+// import Charts from './Components/Charts/Charts';
+ import NavBar from './Components/NavBar/NavBar';
 //import AppData from './Components/data/appData';
 
 //import Average from "./Components/Details/Average";
@@ -21,7 +21,7 @@ function App() {
        //<Tables></Tables>
        //<Charts> </Charts>
        
-       <//Average/> 
+      // <Average/> 
   <div>
   <NavBar></NavBar> 
     

@@ -2,7 +2,7 @@ import React from 'react';
 import { Navbar, Nav} from 'react-bootstrap';
 
 
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Details from '../Details/details';
 import Tables from '../Tables/table';
 import Login from "../../Components/login";

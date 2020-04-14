@@ -26,13 +26,38 @@ import Space from '../Classes/Space';
 
   constructor(props) {
     super(props);
+   
     this.appContainer = React.createRef();
-     this.state = {
+    
+    this.state = {
     showDialog: false,
     isLoading:true,
+    
     Spaces:[],
-   counts:[],
+    
+    //array by field
+    sportSpaces:[],
+    beautySpaces:[],
+    artSpaces:[],
+    
+    //array of sport spaces prices (for check)
+    sportAverage:[],
+   
+    //Average by field
+   sportMemutza:null,
+   artMemutza:null,
+   beautyNemutza:null,
 
+   //
+   spacesMemutza:null,
+   
+   //Prices By field MIN/MAX
+    artMax:null,
+    artMin:null,
+    beautyMax:null,
+beautyMin:null,
+sportMax:null,
+sportMin:null,
   }
   }
 
@@ -42,25 +67,10 @@ import Space from '../Classes/Space';
 
     this.FetchGetSpaces();
 
-// const fieldNum=[];
+    
 
-// this.state.Spaces.forEach(item=>{
-
-//   fieldNum.push
-//  })
-
-//  const fieldTypes = this.state.Spaces
-//  .map(dataItem => dataItem.field) // get all media types
-//  .filter((fieldType, index, array) => array.indexOf(fieldType) === index), // filter out duplicates
-
-// this.setState({counts : fieldTypes.map(fieldType => ({
-
-//    type: fieldType,
-//    count: this.state.Spaces.filter(item => item.field === fieldType).length
-//  }))});
-// console.log(this.state.counts)
   }
-
+//fetch ובדיקה כמה חללים מכל סוג
   FetchGetSpaces = () => {
     fetch(this.SpacesApiUrl, {
       method: "GET"
@@ -90,21 +100,124 @@ import Space from '../Classes/Space';
                   item.Imageurl4,
                   item.Imageurl5,
                   item.AccountNumber,
-                  item.UserEmail
+                  item.UserEmail,
+                  item.Description,
+                  item.TermsOfUse,
+                  item.Rank,
+                  item.Uploadtime
                 )
             )
-          });
-        },
+          }, () => {
+            let sArray = [];
+            let aArray = [];
+            let bArray = [];
+            this.state.Spaces.map((space) => {
+              if (space.field === "Sport") sArray.push(space);
+              if (space.field === "Art") aArray.push(space);
+              if (space.field === "Beauty") bArray.push(space);
+            });
+            this.setState({ sportSpaces: sArray, beautySpaces: bArray,artSpaces:aArray  })
+          },
+          )},
         error => { }
-      )
-   
-     
-
-      
-      
+      );
   };
-
+  //ספורט ממוצע, מינ ומקס
+  hiSport=()=>{ 
+    let sportAvg=[];
+    this.state.Spaces.map((space)=>{
+      if (space.field === "Sport") sportAvg.push(space.price);
+    });
+    let sum = sportAvg.reduce((previous, current) => current += previous);
+    let avg = sum / sportAvg.length;
+    let max = Math.max.apply(null, sportAvg);
+    let min = Math.min.apply(null, sportAvg);
+    this.setState({sportAverage:sportAvg, sportMemutza:avg, sportMax:max,sportMin:min})
+   console.log('hi'+ this.state.sportAverage +'avg='+this.state.sportMemutza)
+  //אומנות ממוצע, מינ ומקס
+  }
+  hiArt=()=>{ 
+    let artAvg=[];
+    this.state.Spaces.map((space)=>{
+      if (space.field === "Art") artAvg.push(space.price);
+    });
+    let sum = artAvg.reduce((previous, current) => current += previous);
+    let avg = sum / artAvg.length;
+    let max = Math.max.apply(null, artAvg);
+    let min = Math.min.apply(null, artAvg);
+    this.setState({artMemutza:avg, artMax:max, artMin:min})
+    
+   console.log('avg='+this.state.artMemutza+'max= '+ this.state.artMax+ 'min= '+this.state.artMin)
+    
+  }
+  // יופי ממוצע, מינ ומקס
+hibeauty=()=>{ 
+  let beautyAvg=[];
+  this.state.Spaces.map((space)=>{
+    if (space.field === "Art") beautyAvg.push(space.price); 
+  });
+  let sum = beautyAvg.reduce((previous, current) => current += previous);
+  let avg = sum / beautyAvg.length;
+  let max = Math.max.apply(null, beautyAvg);
+    let min = Math.min.apply(null, beautyAvg);
+  this.setState({beautyNemutza:avg, beautyMax:max, beautyMin:min})
+ console.log('avg='+this.state.beautyNemutza)
   
+}
+//דירוג ממוצע לכל תחום בנפרד
+hirank=()=>{ 
+  let beautyAvg=[];
+  let artAvg=[];
+  let sportAvg=[];
+  
+  
+  this.state.Spaces.map((space)=>{
+    if (space.field === "Sport") sportAvg.push(space.rank);
+    if (space.field === "Art") artAvg.push(space.rank);
+    if (space.field === "Beauty") beautyAvg.push(space.rank);
+
+
+  });
+
+  let sumB = beautyAvg.reduce((previous, current) => current += previous);
+  let avgB = sumB / beautyAvg.length;
+  let sumA = artAvg.reduce((previous, current) => current += previous);
+  let avgA = sumA / artAvg.length;
+  let sumS = sportAvg.reduce((previous, current) => current += previous);
+  let avgS = sumS / artAvg.length;
+ 
+ 
+  this.setState({beautyNemutza:avgB,sportMemutza:avgS,artMemutza:avgA})
+ console.log('avg rank beauty='+this.state.beautyNemutza+ 'avg rank sport= '+this.state.sportMemutza+'avg rank art= '+this.state.artMemutza)
+
+}
+//דירוג ממוצע לכלל החללים
+hiTotalrank=()=>{ 
+  let spaceAvg=[]
+  
+  
+  this.state.Spaces.map((space)=>{
+    if (space.rank !== 0 || space.rank!==null) spaceAvg.push(space.rank); 
+  });
+
+  let sumSpace = spaceAvg.reduce((previous, current) => current += previous);
+  let avgSpace = sumSpace / spaceAvg.length;
+
+  this.setState({spacesMemutza:avgSpace})
+ console.log('avg rank spaces='+this.state.spacesMemutza)
+
+}
+//מציאת החלל בעל הדירוג הגבוה ביותר לכל תחום
+
+
+
+
+
+
+
+
+
+
 
   showData = () => {
     console.log(this.state.Spaces);
@@ -133,7 +246,7 @@ import Space from '../Classes/Space';
         <div className="app-container container" ref={(el) => this.appContainer = el}>
           <div className="row">
             <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-              <h1>SPACES</h1>
+              <h1>SPACES STATS</h1>
                  </div>
                  <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 buttons-right">
                  <Button primary={true} onClick={this.handleShare}>Share</Button>
@@ -142,23 +255,21 @@ import Space from '../Classes/Space';
                  </div>
           <div className="row">
             <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-              <h4>Space List</h4>
-              <ul>{
-              this.state.Spaces.map(function(Spaces, i){
-  
-              return <li key={i}>{Spaces.name}</li>
-})
-  }</ul>
+              <h4>TOP RATED SPACE BY FIELD</h4>
+              <h5>SPORT</h5>
+              <h5>ART</h5>
+              <h5>BEAUTY</h5>
             </div>
             <div className="col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
               <div className="row">
                 <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
                <h4>Fields</h4>
-               {/* {this.state.Spaces.filter(Spaces => Spaces.price < 90).map(filteredSpace => (
-    <li>
-      {filteredSpace.price}
-    </li>
-  ))} */}
+               <h5>SPORT</h5>
+              <p>Number of spaces: {this.state.sportSpaces.length}</p>
+              <h5>ART</h5>
+              <p>Number of spaces: {this.state.artSpaces.length}</p>
+              <h5>Beauty</h5>
+              <p>Number of spaces: {this.state.beautySpaces.length}</p>
  
 
 
@@ -177,9 +288,9 @@ import Space from '../Classes/Space';
                 </div>
                 <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                   <div>
-                    <h4>AVERAGE TOTAL RANK</h4>
+                    <h4>AVERAGE TOTAL RANK</h4><button onClick={this.hiTotalrank}>total</button>
                     <span/>
-                    <h5>Average rank in beauty field</h5>
+                    <h5>Average rank in beauty field: </h5><button onClick={this.hirank}>rank</button>
                     <span/>
                     <h5>Average rank in sport field</h5>
                     <span/>
@@ -187,11 +298,11 @@ import Space from '../Classes/Space';
                     <span/>
                     <h4>AVERAGE EQUIPMENT RANK</h4>
                     <span/>
-                    <h5>Average rank in beauty field</h5>
+                    <h5>Average rank in beauty field</h5><button onClick={this.hibeauty}>hi</button>
                     <span/>
-                    <h5>Average rank in sport field</h5>
+                    <h5>Average price in sport field:</h5><button onClick={this.hiSport}>hi</button>
                     <span/>
-                    <h5>Average rank in art field</h5>
+                    <h5>Average rank in art field</h5><button onClick={this.hiArt}>hi</button>
                     <span/>
                     
 
@@ -200,9 +311,10 @@ import Space from '../Classes/Space';
               </div>
               <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                <h4>Number of rents last week</h4>
-                <h4>Number of rents last month</h4>
-                <h4>Number of Future Orders</h4>
+                  <h4>Number of spaces in DB: {this.state.Spaces.length}</h4>
+                <h4>Number of spaces added last week: </h4>
+                <h4>Number of spaces added last month: </h4>
+                
                 </div>
               </div>
             </div>
