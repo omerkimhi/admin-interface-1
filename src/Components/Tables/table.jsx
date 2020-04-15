@@ -27,6 +27,8 @@ export default class Table extends Component {
   constructor(props){
     super(props);
     this.state={
+      Spaces:[],
+      SpaceDel:[],
       columns: [
         { title: 'SpaceId', field: 'spaceId', type: 'numeric' },
         { title: 'Name', field: 'name' },
@@ -71,7 +73,7 @@ export default class Table extends Component {
             Spaces: result.map(
               item =>
                 new Space(
-                  item.SpaceId,
+                  item.Id,
                   item.Name,
                   item.Field,
                   item.Price,
@@ -108,7 +110,7 @@ export default class Table extends Component {
     
     this.state.Spaces.map((space) => {Array.push(space);});
     this.setState({ data: Array  }) 
-    console.log('this data'+ this.state.data)
+    //console.log('this data'+ this.state.data)
   }
 
 
@@ -116,19 +118,22 @@ export default class Table extends Component {
 
 console.log(item)
 
-let spaceDel=[];
-this.state.Spaces.map((space) => {
-  if (space.name === item) {spaceDel.push(space)};
-console.log(this.state.space)
+let del1=[];
 
-  
+this.state.Spaces.map((space) => {
+  if (space.name === item) del1.push(space); 
+
+  console.log('check: '+ space.name+'==='+item)
 });
-console.log('spaceDel    '+this.state.spaceDel)
-    //return fetch(this.SpacesApiUrl + '/' + item, {
-    //  method: 'delete'
-   // })
-   // .then(response => response.json());
-  }
+
+this.setState({SpaceDel: del1});
+console.log(this.state.SpaceDel)
+
+   return fetch(this.SpacesApiUrl + '/' + this.state.SpaceDel.spaceId, {
+      method: 'delete'
+   })
+    .then(response => response.json());
+   }
 
   showData = () => {
     console.log(this.state.Spaces);
@@ -164,7 +169,7 @@ console.log('spaceDel    '+this.state.spaceDel)
     <br/>
     <br/> 
     <MaterialTable  icons={tableIcons}
-      title="Editable Example"
+      title="SPACES IN SYSTEM"
       columns={this.state.columns}
       data={this.state.data}
       editable={{
