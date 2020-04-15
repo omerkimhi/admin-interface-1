@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
-
+//import axios from 'axios';
 import './details.css';
 import 'bootstrap-4-grid/css/grid.min.css';
 
@@ -11,12 +11,13 @@ import { savePDF } from '@progress/kendo-react-pdf';
 import { Ripple } from '@progress/kendo-react-ripple';
 import '@progress/kendo-theme-material/dist/all.css'; 
 
+//import { Form,Col } from 'react-bootstrap';
+
 //import { DonutChartContainer } from '../Charts/DonutChartContainer';
 //import { BarChartContainer } from '../Charts/BarChartContainer';
 //import { GridContainer } from '../Grid/GridContainer';
 
 import Space from '../Classes/Space';
-
 //import { Card, Container,Row,Col } from 'react-bootstrap';
 //import NavBar from '../NavBar/NavBar.jsx'
 
@@ -75,6 +76,10 @@ avgRankSpace:null,
     
 
   }
+ 
+
+
+
 //fetch ובדיקה כמה חללים מכל סוג
   FetchGetSpaces = () => {
     fetch(this.SpacesApiUrl, {
@@ -229,6 +234,21 @@ this.state.artSpaces.map((space)=>{
 //finish
 this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt})
 }
+ //using Axios to add spaces to DB
+//  handlesubmit=  event=>{
+// event.preventDefault();
+
+// const newSpace={
+
+ 
+// }
+// axios.post(this.SpacesApiUrl,{newSpace})
+// .then(res=>{
+//   console.log(res)
+// }
+
+// )
+//  }
 
 //shows data from DB
   showData = () => {
@@ -338,10 +358,7 @@ this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt
                     <h5>Max price in art field: {this.state.artMax}</h5>
                     <span/>
                     <h5>Min price in art field: {this.state.artMin}</h5>
-                    <span/>
-                   
-                    
-
+                    <span/>                 
                   </div>
                 </div>
               </div>
@@ -349,8 +366,7 @@ this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
                   <h4>Number of spaces in DB: {this.state.Spaces.length}</h4>
                 <h4>Number of spaces added last week: </h4>
-                <h4>Number of spaces added last month: </h4>
-                
+                <h4>Number of spaces added last month: </h4>  
                 </div>
               </div>
             </div>
@@ -367,7 +383,17 @@ this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt
 }
         </div>
       </div>
+
+
+      <br/>
+      <br/>
+      <br/>
+     
+
+      
+     
       </Ripple>
+     
     );
   }
 }

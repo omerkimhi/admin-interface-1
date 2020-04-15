@@ -1,16 +1,19 @@
-import React, { Component } from "react";
+import React, { Component} from "react";
+
+
+import {Container, Card, Table} from 'react-bootstrap'
 
 //import NavBar from '../NavBar/NavBar.jsx'
 
-import { Table, Container,Card } from 'react-bootstrap';
-
  class Tables extends Component {
 
-      render() {
+  
+ 
+
+      render() {      
         return (
-            <div>
-          
-           <br/>
+          <div>
+          <br/>
            <br/>
            <br/>
            <Container>
@@ -51,10 +54,16 @@ import { Table, Container,Card } from 'react-bootstrap';
   </tbody>
 </Table>
         </Container>
-        </div>
-           
-            
+      
+         </div>
+
+
+
+
+
         );
     }
 }
 export default Tables;
+
+
