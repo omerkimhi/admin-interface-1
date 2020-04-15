@@ -73,7 +73,7 @@ avgRankSpace:null,
 
     this.FetchGetSpaces();
 
-    
+   
 
   }
  
@@ -117,21 +117,29 @@ avgRankSpace:null,
                   item.Uploadtime
                 )
             )
-          }, () => {
-            let sArray = [];
-            let aArray = [];
-            let bArray = [];
-            this.state.Spaces.map((space) => {
-              if (space.field === "Sport") sArray.push(space);
-              if (space.field === "Art") aArray.push(space);
-              if (space.field === "Beauty") bArray.push(space);
-            });
-            this.setState({ sportSpaces: sArray, beautySpaces: bArray,artSpaces:aArray  })
+          }, () => {  this.getPrices();
+            this.getRank();
+            this.getHighRank();
+            this.getNumberOfEachField();
+            
           },
           )},
         error => { }
       );
   };
+  //gets number of spaces in each field
+  getNumberOfEachField=()=>{
+    let sArray = [];
+    let aArray = [];
+    let bArray = [];
+    this.state.Spaces.map((space) => {
+      if (space.field === "Sport") sArray.push(space);
+      if (space.field === "Art") aArray.push(space);
+      if (space.field === "Beauty") bArray.push(space);
+    });
+    this.setState({ sportSpaces: sArray, beautySpaces: bArray,artSpaces:aArray  })
+   
+  }
 //Prices: Avg, Min, Max
   getPrices=()=>{ 
     //init
@@ -234,22 +242,7 @@ this.state.artSpaces.map((space)=>{
 //finish
 this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt})
 }
- //using Axios to add spaces to DB
-//  handlesubmit=  event=>{
-// event.preventDefault();
-
-// const newSpace={
-
  
-// }
-// axios.post(this.SpacesApiUrl,{newSpace})
-// .then(res=>{
-//   console.log(res)
-// }
-
-// )
-//  }
-
 //shows data from DB
   showData = () => {
     console.log(this.state.Spaces);
@@ -275,9 +268,7 @@ this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt
 
       <button onClick={this.getHighRank}>TOP RANKED SPACE</button>        
         
-         <button onClick={this.getPrices}>GET PRICES</button>
       
-         <button onClick={this.getRank}>GET RANK</button>
          
          
          <br/>
@@ -297,6 +288,12 @@ this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt
             <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
               <br/>
             <h4>AVERAGE TOTAL RANK: {this.state.avgRankSpace}</h4> 
+            <br/>
+            <h4>AVERAGE RANK SPORT: {this.state.avgRankSpace}</h4> 
+            <br/>
+            <h4>AVERAGE RANK ART: {this.state.avgRankArt}</h4> 
+            <br/>
+            <h4>AVERAGE RANK BEAUTY: {this.state.avgRankBeauty}</h4> 
             <br/>
               <h4>TOP RATED SPACE BY FIELD</h4>
               <br/>
@@ -339,25 +336,25 @@ this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt
                 </div>
                 <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
                   <div>
-    <h4>AVERAGE TOTAL PRICE: {this.state.spacesPrice}</h4> 
+    <h4>AVERAGE TOTAL PRICE: {this.state.spacesPrice} ₪</h4> 
                     <span/>
-                    <h5>Average price in beauty field: {this.state.beautyPrice}</h5>
+                    <h5>Average price in beauty field: {this.state.beautyPrice} ₪</h5>
                     <span/>
-                    <h5>Max price in beauty field: {this.state.beautyMax}</h5>
+                    <h5>Max price in beauty field: {this.state.beautyMax} ₪</h5>
                     <span/>
-                    <h5>Min price in beauty field: {this.state.beautyMin}</h5>
+                    <h5>Min price in beauty field: {this.state.beautyMin} ₪</h5>
                     <span/>
-                    <h5>Average price in sport field: {this.state.sportPrice}</h5>
+                    <h5>Average price in sport field: {this.state.sportPrice} ₪</h5>
                     <span/>
-                    <h5>Max price in sport field: {this.state.sportMax}</h5>
+                    <h5>Max price in sport field: {this.state.sportMax} ₪</h5>
                     <span/>
-                    <h5>Min price in sport field: {this.state.sportMin}</h5>
+                    <h5>Min price in sport field: {this.state.sportMin} ₪</h5>
                     <span/>
-                    <h5>Average price in art field: {this.state.artPrice}</h5>
+                    <h5>Average price in art field: {this.state.artPrice} ₪</h5>
                     <span/>
-                    <h5>Max price in art field: {this.state.artMax}</h5>
+                    <h5>Max price in art field: {this.state.artMax} ₪</h5>
                     <span/>
-                    <h5>Min price in art field: {this.state.artMin}</h5>
+                    <h5>Min price in art field: {this.state.artMin} ₪</h5>
                     <span/>                 
                   </div>
                 </div>
