@@ -80,7 +80,7 @@ avgRankSpace:null,
 
 
 
-//fetch ובדיקה כמה חללים מכל סוג
+//fetch 
   FetchGetSpaces = () => {
     fetch(this.SpacesApiUrl, {
       method: "GET"
@@ -287,21 +287,21 @@ this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt
           <div className="row">
             <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
               <br/>
-            <h4>AVERAGE TOTAL RANK: {this.state.avgRankSpace}</h4> 
-            <br/>
-            <h4>AVERAGE RANK SPORT: {this.state.avgRankSpace}</h4> 
-            <br/>
-            <h4>AVERAGE RANK ART: {this.state.avgRankArt}</h4> 
-            <br/>
-            <h4>AVERAGE RANK BEAUTY: {this.state.avgRankBeauty}</h4> 
-            <br/>
+             <h5>AVERAGE TOTAL RANK: </h5><h4>  {this.state.avgRankSpace}</h4> 
+             <br/>
+             <h5>AVERAGE RANK SPORT:  </h5><h4> {this.state.avgRankSpace}</h4> 
+             <br/>
+             <h5>AVERAGE RANK ART:  </h5><h4> {this.state.avgRankArt}</h4> 
+             <br/>
+             <h5>AVERAGE RANK BEAUTY: </h5><h4> {this.state.avgRankBeauty}</h4> 
+             <br/>
               <h4>TOP RATED SPACE BY FIELD</h4>
               <br/>
-              <h5>SPORT: {this.state.topRankSport} </h5>
+              <h5>SPORT: </h5> <br/><h4> {this.state.topRankSport}</h4>
               <br/>
-              <h5>ART: {this.state.topRankArt}     </h5>
+              <h5>ART: </h5> <br/><h4> {this.state.topRankArt}</h4>
               <br/>
-              <h5>BEAUTY: {this.state.topRankBeauty}</h5>
+              <h5>BEAUTY: </h5> <br/><h4> {this.state.topRankBeauty}</h4>
               <br/>
             </div>
             <div className="col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
@@ -335,27 +335,27 @@ this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt
                   </div>
                 </div>
                 <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                  <div>
-    <h4>AVERAGE TOTAL PRICE: {this.state.spacesPrice} ₪</h4> 
-                    <span/>
-                    <h5>Average price in beauty field: {this.state.beautyPrice} ₪</h5>
-                    <span/>
-                    <h5>Max price in beauty field: {this.state.beautyMax} ₪</h5>
-                    <span/>
-                    <h5>Min price in beauty field: {this.state.beautyMin} ₪</h5>
-                    <span/>
-                    <h5>Average price in sport field: {this.state.sportPrice} ₪</h5>
-                    <span/>
-                    <h5>Max price in sport field: {this.state.sportMax} ₪</h5>
-                    <span/>
-                    <h5>Min price in sport field: {this.state.sportMin} ₪</h5>
-                    <span/>
-                    <h5>Average price in art field: {this.state.artPrice} ₪</h5>
-                    <span/>
-                    <h5>Max price in art field: {this.state.artMax} ₪</h5>
-                    <span/>
-                    <h5>Min price in art field: {this.state.artMin} ₪</h5>
-                    <span/>                 
+                  <div><br/>
+    <h5>AVERAGE TOTAL PRICE: </h5><h4>  {this.state.spacesPrice} ₪</h4> 
+                    <br/>
+                    <h5>Average price in beauty field:  </h5>   <h4>  {this.state.beautyPrice} ₪</h4>
+                    <br/>
+                    <h5>Max price in beauty field: </h5> <h4>  {this.state.beautyMax} ₪</h4>
+                    <br/>
+                    <h5>Min price in beauty field: </h5><h4>  {this.state.beautyMin} ₪</h4>
+                    <br/>
+                    <h5>Average price in sport field: </h5><h4>  {this.state.sportPrice} ₪</h4>
+                    <br/>
+                    <h5>Max price in sport field: </h5><h4>  {this.state.sportMax} ₪</h4>
+                    <br/>
+                    <h5>Min price in sport field: </h5><h4>  {this.state.sportMin} ₪</h4>
+                    <br/>
+                    <h5>Average price in art field: </h5><h4>  {this.state.artPrice} ₪</h4>
+                    <br/>
+                    <h5>Max price in art field: </h5><h4>  {this.state.artMax} ₪</h4>
+                    <br/>
+                    <h5>Min price in art field: </h5><h4>  {this.state.artMin} ₪</h4>
+                    <br/>                
                   </div>
                 </div>
               </div>

@@ -1,6 +1,7 @@
 import React, {forwardRef, Component } from 'react';
-import MaterialTable from 'material-table';
 
+//Data table icons
+import MaterialTable from 'material-table';
 import AddBox from '@material-ui/icons/AddBox';
 import ArrowDownward from '@material-ui/icons/ArrowDownward';
 import Check from '@material-ui/icons/Check';
@@ -17,6 +18,8 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 
+//class
+import Space from '../Classes/Space'
 
 
 export default class Table extends Component {
@@ -25,28 +28,113 @@ export default class Table extends Component {
     super(props);
     this.state={
       columns: [
+        { title: 'SpaceId', field: 'spaceId', type: 'numeric' },
         { title: 'Name', field: 'name' },
-        { title: 'Surname', field: 'surname' },
-        { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-        {
-          title: 'Birth Place',
-          field: 'birthCity',
-          lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-        },
+        { title: 'Field', field: 'field' },
+        { title: 'Price', field: 'price', type: 'numeric' },
+        { title: 'City', field: 'city' },
+        { title: 'Street', field: 'street' },
+        { title: 'Number', field: 'number', type: 'numeric' },
+        { title: 'Capabillity', field: 'capabillity', type: 'numeric' },
+        { title: 'User Email', field: 'userEmail' },
+        { title: 'Rank', field: 'rank', type: 'numeric' },
+      
       ],
       data: [
-        { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-        {
-          name: 'Zerya Betül',
-          surname: 'Baran',
-          birthYear: 2017,
-          birthCity: 34,
-        },
+        {spaceId:null, name:"" , field:"" , price: null, city:"", street:"", number:null,
+      
+        capabillity:"", userEmail:"", rank:null },
+        
       ],
 
     }
   }
- 
+
+  componentDidMount(){
+    this.SpacesApiUrl =
+    "http://proj.ruppin.ac.il/igroup17/prod/api/space";
+
+    this.FetchGetSpaces();
+
+  }
+
+  FetchGetSpaces = () => {
+    fetch(this.SpacesApiUrl, {
+      method: "GET"
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(
+        result => {
+          this.setState({
+            Spaces: result.map(
+              item =>
+                new Space(
+                  item.SpaceId,
+                  item.Name,
+                  item.Field,
+                  item.Price,
+                  item.City,
+                  item.Street,
+                  item.Number,
+                  item.Capabillity,
+                  item.Bank,
+                  item.Branch,
+                  item.Imageurl1,
+                  item.Imageurl2,
+                  item.Imageurl3,
+                  item.Imageurl4,
+                  item.Imageurl5,
+                  item.AccountNumber,
+                  item.UserEmail,
+                  item.Description,
+                  item.TermsOfUse,
+                  item.Rank,
+                  item.Uploadtime
+                )
+            )
+          }, 
+        ()=> { this.geData();
+            
+           },
+          )},
+        error => { }
+      );
+  };
+
+  geData=()=>{
+    let Array = [];
+    
+    this.state.Spaces.map((space) => {Array.push(space);});
+    this.setState({ data: Array  }) 
+    console.log('this data'+ this.state.data)
+  }
+
+
+  deleteData=(item)=> {
+
+console.log(item)
+
+let spaceDel=[];
+this.state.Spaces.map((space) => {
+  if (space.name === item) {spaceDel.push(space)};
+console.log(this.state.space)
+
+  
+});
+console.log('spaceDel    '+this.state.spaceDel)
+    //return fetch(this.SpacesApiUrl + '/' + item, {
+    //  method: 'delete'
+   // })
+   // .then(response => response.json());
+  }
+
+  showData = () => {
+    console.log(this.state.Spaces);
+  }
+  
+
   render() {
 
     const tableIcons = {
@@ -69,8 +157,12 @@ export default class Table extends Component {
       ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
     };
   return (
-    
-     
+    <div>
+    <br/>
+    <br/>
+    <button onClick={this.showData}>show data</button>
+    <br/>
+    <br/> 
     <MaterialTable  icons={tableIcons}
       title="Editable Example"
       columns={this.state.columns}
@@ -101,18 +193,24 @@ export default class Table extends Component {
             }, 600);
           }),
         onRowDelete: (oldData) =>
+        
           new Promise((resolve) => {
             setTimeout(() => {
               resolve();
               this.setState((prevState) => {
                 const data = [...prevState.data];
                 data.splice(data.indexOf(oldData), 1);
+                this.deleteData(oldData.name)
+                
+               
                 return { ...prevState, data };
               });
             }, 600);
+            
+           
           }),
       }}
     />
-    
+    </div>
   );
 }}
