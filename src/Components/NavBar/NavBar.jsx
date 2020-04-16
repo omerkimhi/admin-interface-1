@@ -4,12 +4,13 @@ import { Navbar, Nav} from 'react-bootstrap';
 
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Details from '../Details/details';
-import Tables from '../Tables/table';
+//import Tables from '../Tables/table';
 import Login from "../../Components/login";
 import Charts from '../Charts/Charts';
 import PieChart from '../Charts/Pie';
 //import { Col } from "react-bootstrap";
-
+import SpaceTable from '../Tables/SpaceTable'
+import UserTable from '../Tables/UserTable'
 
 
 
@@ -23,7 +24,8 @@ function navBar  () {
                <Navbar.Brand >Spazio Admin</Navbar.Brand>
                <Nav className="mr-auto">
                <Nav.Link href="/details">Details</Nav.Link>
-               <Nav.Link href="/Tables">Tables</Nav.Link>
+               <Nav.Link href="/SpaceTable">Spaces</Nav.Link>
+               <Nav.Link href="/UserTable">Users</Nav.Link>
                <Nav.Link href="/Charts">Charts</Nav.Link>
                <Nav.Link href="/Pie">Pie</Nav.Link>
                <Nav.Link className="justify-content-end" href="/">Sign Out</Nav.Link>
@@ -31,7 +33,8 @@ function navBar  () {
                </Navbar>
                 <Switch>
                 <Route path="/details"><Details/></Route>
-                 <Route path="/Tables"><Tables /></Route>
+                 <Route path="/SpaceTable"><SpaceTable /></Route>
+                 <Route path="/UserTable"><UserTable /></Route>
                  <Route path="/Charts"><Charts/></Route>
                  <Route path="/Pie"><PieChart/></Route>
                  <Route exact path="/"><Login/></Route>

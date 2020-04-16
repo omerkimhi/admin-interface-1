@@ -19,7 +19,8 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 
 //class
-import Space from '../Classes/Space'
+import Space from '../Classes/Space';
+
 
 
 export default class Table extends Component {
@@ -27,8 +28,10 @@ export default class Table extends Component {
   constructor(props){
     super(props);
     this.state={
+      
       Spaces:[],
       SpaceDel:[],
+      //Space Data Table
       columns: [
         { title: 'SpaceId', field: 'spaceId', type: 'numeric' },
         { title: 'Name', field: 'name' },
@@ -48,18 +51,19 @@ export default class Table extends Component {
         capabillity:"", userEmail:"", rank:null },
         
       ],
-
+     
     }
   }
 
   componentDidMount(){
     this.SpacesApiUrl =
     "http://proj.ruppin.ac.il/igroup17/prod/api/space";
-
+   
     this.FetchGetSpaces();
-
+    
   }
 
+//sets spaces in Spaces
   FetchGetSpaces = () => {
     fetch(this.SpacesApiUrl, {
       method: "GET"
@@ -97,21 +101,23 @@ export default class Table extends Component {
                 )
             )
           }, 
-        ()=> { this.geData();
+        ()=> { this.getSpaceData();
             
            },
           )},
         error => { }
       );
   };
-
-  geData=()=>{
+//gets data and set state to dataSpaces
+  getSpaceData=()=>{
     let Array = [];
     
     this.state.Spaces.map((space) => {Array.push(space);});
     this.setState({ data: Array  }) 
     //console.log('this data'+ this.state.data)
   }
+  
+
 
 
   deleteData=(item)=> {
@@ -121,24 +127,20 @@ console.log(item)
 let del1=[];
 
 this.state.Spaces.map((space) => {
-  if (space.name === item) del1.push(space); 
+  if (space.name === item) del1.push(space.spaceId); 
 
   console.log('check: '+ space.name+'==='+item)
 });
-
+console.log('del1=  '+del1)
 this.setState({SpaceDel: del1});
-console.log(this.state.SpaceDel)
+console.log('Space del=    '+this.state.SpaceDel[0])
 
-   return fetch(this.SpacesApiUrl + '/' + this.state.SpaceDel.spaceId, {
+  return fetch(this.SpacesApiUrl + '/' + JSON.stringify(del1), {
       method: 'delete'
-   })
-    .then(response => response.json());
-   }
+    })
+     .then(response => response.json());
+    }
 
-  showData = () => {
-    console.log(this.state.Spaces);
-  }
-  
 
   render() {
 
@@ -163,9 +165,6 @@ console.log(this.state.SpaceDel)
     };
   return (
     <div>
-    <br/>
-    <br/>
-    <button onClick={this.showData}>show data</button>
     <br/>
     <br/> 
     <MaterialTable  icons={tableIcons}
@@ -216,6 +215,8 @@ console.log(this.state.SpaceDel)
           }),
       }}
     />
+    <br/>
+    <br/> 
     </div>
   );
 }}

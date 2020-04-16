@@ -6,7 +6,7 @@ import './App.css';
 //import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 // import Login from "./Components/login";
-// import Dashboard from "./Components/dashboard";
+ //import Dashboard from "./Components/dashboard";
 // import Details from "./Components/Details/details";
 // import Tables from "./Components/Tables/table";
 // import Charts from './Components/Charts/Charts';
@@ -17,11 +17,7 @@ import './App.css';
 
 function App() {
   return (
-     //<Dashboard></Dashboard>
-       //<Tables></Tables>
-       //<Charts> </Charts>
-       
-      // <Average/> 
+     
   <div>
   <NavBar></NavBar> 
     

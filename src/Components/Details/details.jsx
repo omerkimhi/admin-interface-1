@@ -21,7 +21,7 @@ import Space from '../Classes/Space';
 //import { Card, Container,Row,Col } from 'react-bootstrap';
 //import NavBar from '../NavBar/NavBar.jsx'
 
-
+import * as moment from 'moment';
 
  class Details extends Component {
 
@@ -64,6 +64,10 @@ avgRankSport:null,
 avgRankArt:null,
 avgRankBeauty:null,
 avgRankSpace:null,
+
+//date
+date:"",
+SpaceInWeek:[],
   }
   }
 
@@ -114,7 +118,7 @@ avgRankSpace:null,
                   item.Description,
                   item.TermsOfUse,
                   item.Rank,
-                  item.Uploadtime
+                  item.uploadDate
                 )
             )
           }, () => {  this.getPrices();
@@ -243,6 +247,33 @@ this.state.artSpaces.map((space)=>{
 this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt})
 }
  
+
+//how many spaces uploaded last week and month
+getUpload=()=>{
+let week=[];
+  let tempDate = new Date();
+  let date = tempDate.getFullYear() + '-' + (tempDate.getMonth()+1) + '-' + tempDate.getDate() +' '+ tempDate.getHours()+':'+ tempDate.getMinutes()+':'+ tempDate.getSeconds();
+  let currDate = date;
+  
+
+  //moment([space.uploadTime]).toNow(true)
+
+  console.log(currDate)
+
+    this.state.Spaces.map((space)=>{
+
+      // var a = moment(space.uploadTime);
+      // var b =moment().calendar(referenceTime);
+      //    console.log(a.diff(b, 'days')) // 1
+      console.log(space)
+         //if( new Date().getTime()- space.uploadDate<=7){week.push(space)};
+                           
+    })
+this.setState({SpaceInWeek:week});
+console.log(this.state.SpaceInWeek)
+}
+
+
 //shows data from DB
   showData = () => {
     console.log(this.state.Spaces);
@@ -266,7 +297,9 @@ this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt
       <br/>
       <button onClick={this.showData}>show data</button>
 
-      <button onClick={this.getHighRank}>TOP RANKED SPACE</button>        
+      <button onClick={this.getHighRank}>TOP RANKED SPACE</button>  
+
+      <button onClick={this.getUpload}>uploaded spaces</button>        
         
       
          
