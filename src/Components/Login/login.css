@@ -1,0 +1,31 @@
+.container {
+    
+    background-color: white;
+    
+    font-weight: bold;
+  }
+  h3,label  {
+    color:rgb(0, 114, 106);
+    font-weight: bold;
+  }
+  h2 {
+    color:rgb(0, 114, 106);
+    font-weight: bold;
+    text-align: center;
+  }
+  .btn-primary {
+    color: #fff;
+    background-color: rgb(0, 114, 106);
+    border-color: rgb(0, 114, 106);
+    transition-duration: 0.4s;
+}
+.btn-primary:hover {
+    background-color: rgb(5, 160, 150); 
+    border-color: rgb(5, 160, 150);
+    color: white;
+  }
+  .form-control{
+    border-color: rgb(0, 114, 106);
+    background-color: rgb(5, 160, 150); 
+  }
+ 

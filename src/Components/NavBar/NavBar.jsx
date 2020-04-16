@@ -5,7 +5,7 @@ import { Navbar, Nav} from 'react-bootstrap';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Details from '../Details/details';
 //import Tables from '../Tables/table';
-import Login from "../../Components/login";
+import Login from "../../Components/Login/login";
 import Charts from '../Charts/Charts';
 import PieChart from '../Charts/Pie';
 import { Col } from "react-bootstrap";

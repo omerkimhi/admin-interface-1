@@ -1,27 +1,17 @@
 import React, { Component } from "react";
-//import {Link} from 'react-router-dom';
-
 import { withRouter} from "react-router-dom";
-
+import './login.css';
 
  class Login extends Component {
-
-  
-    
-   
-//בדיקה
-btnLogin = () => {
-    
-    
-    this.props.history.push({
-        pathname: '/dashboard/' ,
-       
-    });
-}
-//סוף
-    
+     
     render() {
         return (
+            <div>
+            <br/>
+            <br/>
+            <div className="container">
+            <br/>
+            <br/>
             <form>
                 <h2>Admin Interface</h2>
                 <h3>Sign In</h3>
@@ -44,9 +34,12 @@ btnLogin = () => {
                 </div>
 
                 <button type="submit" onClick={this.checkUser} className="btn btn-primary btn-block" >Login</button>
-                <button onClick={this.btnLogin}>to dashboard</button>
-                
+                {/* <button onClick={this.btnLogin}>to dashboard</button> */}
+                <br/>
+                <br/>
             </form>
+            </div>
+            </div>
         );
     }
 }
