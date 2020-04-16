@@ -118,7 +118,7 @@ SpaceInWeek:[],
                   item.Description,
                   item.TermsOfUse,
                   item.Rank,
-                  item.uploadDate
+                  item.Uploadtime
                 )
             )
           }, () => {  this.getPrices();
@@ -262,9 +262,9 @@ let week=[];
 
     this.state.Spaces.map((space)=>{
 
-      // var a = moment(space.uploadTime);
-      // var b =moment().calendar(referenceTime);
-      //    console.log(a.diff(b, 'days')) // 1
+      var a = moment(space.uploadTime);
+       var b =moment().calendar(referenceTime);
+          console.log(a.diff(b, 'days')) // 1
       console.log(space)
          //if( new Date().getTime()- space.uploadDate<=7){week.push(space)};
                            
