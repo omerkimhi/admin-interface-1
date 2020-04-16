@@ -1,7 +1,12 @@
-h1 {
-    color:rgb(63, 81, 181);
+h1,h4 {
+    color:rgb(0, 114, 106);
     font-weight: bold;
   }
+  h5 {
+    color:black;
+    font-weight: bold;
+  }
+
   .buttons-right>button {
     float: right;
     margin: 5px;
@@ -14,12 +19,12 @@ h1 {
   }
   
   .percentage-number {
-    color: rgb(63, 81, 181);
+    color: rgb(0,114,106);
     font-size: 50px;
     font-weight: bold;
   }
   .percentage-sign {
-    color: rgb(63, 81, 181);
+    color: rgb(60, 114, 106);
     font-size: 40px;
   }
   .percentage-container {

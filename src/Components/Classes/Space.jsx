@@ -1,6 +1,6 @@
 class Space{
 
-    constructor(spaceId,name,field,price,city,street,number,capabillity,bank,branch,image1,image2,image3,image4,image5,accountNumber,userEmail){
+    constructor(spaceId,name,field,price,city,street,number,capabillity,bank,branch,image1,image2,image3,image4,image5,accountNumber,userEmail,description, termsOfUse,rank,uploadtime){
         this.spaceId = spaceId;
         this.name = name;
         this.field = field;
@@ -18,6 +18,11 @@ class Space{
         this.image5 = image5;
         this.accountNumber = accountNumber;
         this.userEmail = userEmail;
+        this.description = description;
+        this.termsOfUse = termsOfUse;
+        this.rank = rank;
+        this.uploadtime = uploadtime;
+        
     }
 
 }

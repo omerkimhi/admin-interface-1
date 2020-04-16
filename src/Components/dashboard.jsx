@@ -1,20 +1,23 @@
 import React, { Component } from "react";
 
 //import User from '../Classes/User';
-import {Route, Link, Router,Switch} from 'react-router-dom';
+//import {Route, Link, Router,Switch} from 'react-router-dom';
 
-import Details from './Details/details';
+//import Details from './Details/details';
 import Tables from './Tables/table';
-import Charts from './Charts/Charts';
+//import Charts from './Charts/Charts';
 import NavBar from './NavBar/NavBar';
 
  class Dashboard extends Component {
-  
+
+    
       render() {
         return (
-          
+          <div>
             <NavBar></NavBar>
-           
+           <Tables  />
+
+           </div>
         );
     }
 }
