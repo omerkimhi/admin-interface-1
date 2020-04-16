@@ -249,7 +249,7 @@ this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt
  
 
 //how many spaces uploaded last week and month
-getUpload=()=>{
+/* getUpload=()=>{
 let week=[];
   let tempDate = new Date();
   let date = tempDate.getFullYear() + '-' + (tempDate.getMonth()+1) + '-' + tempDate.getDate() +' '+ tempDate.getHours()+':'+ tempDate.getMinutes()+':'+ tempDate.getSeconds();
@@ -263,7 +263,7 @@ let week=[];
     this.state.Spaces.map((space)=>{
 
       var a = moment(space.uploadTime);
-       var b =moment().calendar(referenceTime);
+       var b =moment().calendar(space.uploadTime);
           console.log(a.diff(b, 'days')) // 1
       console.log(space)
          //if( new Date().getTime()- space.uploadDate<=7){week.push(space)};
@@ -271,7 +271,7 @@ let week=[];
     })
 this.setState({SpaceInWeek:week});
 console.log(this.state.SpaceInWeek)
-}
+} */
 
 
 //shows data from DB
