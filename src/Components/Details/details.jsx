@@ -16,7 +16,7 @@ import '@progress/kendo-theme-material/dist/all.css';
 //import { DonutChartContainer } from '../Charts/DonutChartContainer';
 //import { BarChartContainer } from '../Charts/BarChartContainer';
 //import { GridContainer } from '../Grid/GridContainer';
-
+import {Pie} from 'react-chartjs-2';
 import Space from '../Classes/Space';
 //import { Card, Container,Row,Col } from 'react-bootstrap';
 //import NavBar from '../NavBar/NavBar.jsx'
@@ -261,7 +261,6 @@ var month=[]
       //notice different formats between now and then
       var ms = moment(now,"DD/MM/YYYY HH:mm:ss").diff(moment(then,"MM/DD/YYYY HH:mm:ss"));
       var d = moment.duration(ms);
-        console.log(d.days())
       if ( d.days() <= 7) week.push(space.name);
       if ( d.months() <= 1) month.push(space.name);
        
@@ -286,112 +285,139 @@ this.setState({SpaceInWeek:week, SpaceInMonth:month})
   }
 
   render() {
+
+    const state = {
+      labels: ['Art', 'Beauty', 'Sport'],
+      datasets: [
+        {
+          label: "",
+          backgroundColor: [
+            '#20baaf',
+            '#52ded4',
+            '#1e6b66',
+            '#00736b',
+            '#13423f'
+          ],
+         
+          data: [this.state.artSpaces.length, this.state.beautySpaces.length, this.state.sportSpaces.length]
+        }
+      ]
+    }
+
     return (
-     
       <Ripple>
-          <br/>
+    <div className="app">
+      <br/>
       <br/>
       <button onClick={this.showData}>show data</button>
 
       <button onClick={this.getHighRank}>TOP RANKED SPACE</button>       
          <br/>
       <br/>
-      <div className="bootstrap-wrapper">
-        <div className="app-container container" ref={(el) => this.appContainer = el}>
-          <div className="row">
-            <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
-              <h1>SPACES STATS</h1>
-                 </div>
-                 <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 buttons-right">
-                 <Button primary={true} onClick={this.handleShare}>Share</Button>
-                 <Button onClick={this.handlePDFExport}>Export to PDF</Button>
-                 </div>
-                 </div>
-          <div className="row">
-            <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
-              <br/>
+      <div className="container">
+        <div className="row">
+        <div className="col">
+        
+        <h1>SPACES STATS</h1>
+        
+        </div>  
+        <div className="col">
+        <Button onClick={this.handlePDFExport}>Export to PDF</Button>
+        <Button primary={true} onClick={this.handleShare}>Share</Button>
+        </div>
+        </div>
+        <div className="row">
+        <div className="col">
+        <br/>
+        <h2>Ranks</h2>
+               <br/>
              <h5>AVERAGE TOTAL RANK: </h5><h4>  {this.state.avgRankSpace}</h4> 
-             <br/>
+             
              <h5>AVERAGE RANK SPORT:  </h5><h4> {this.state.avgRankSpace}</h4> 
-             <br/>
+           
              <h5>AVERAGE RANK ART:  </h5><h4> {this.state.avgRankArt}</h4> 
-             <br/>
+             
              <h5>AVERAGE RANK BEAUTY: </h5><h4> {this.state.avgRankBeauty}</h4> 
-             <br/>
+             
               <h4>TOP RATED SPACE BY FIELD</h4>
-              <br/>
+             
               <h5>SPORT: </h5> <br/><h4> {this.state.topRankSport}</h4>
-              <br/>
+              
               <h5>ART: </h5> <br/><h4> {this.state.topRankArt}</h4>
-              <br/>
+             
               <h5>BEAUTY: </h5> <br/><h4> {this.state.topRankBeauty}</h4>
-              <br/>
-            </div>
-            <div className="col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
-              <div className="row">
-                <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
-               <h4>Fields</h4>
+              
+        </div>
+        <div className="col">
+        <br/>
+        <h2>Fields</h2>
                <br/>
-               <h5>SPORT</h5>
+               <h5>SPORT Number of spaces: </h5><h4> {this.state.sportSpaces.length}</h4>
                <br/>
-              <p>Number of spaces: {this.state.sportSpaces.length}</p>
-              <h5>ART</h5>
+               <h5>ART Number of spaces:   </h5><h4> {this.state.artSpaces.length}</h4>
               <br/>
-              <p>Number of spaces: {this.state.artSpaces.length}</p>
-              <h5>Beauty</h5>
-              <br/>
-              <p>Number of spaces: {this.state.beautySpaces.length}</p>
- 
+               <h5>Beauty Number of spaces: </h5><h4> {this.state.beautySpaces.length}</h4>
+              <br/>          
+                 <Pie
+          data={state}
+          options={{
+            title:{
+              display:true,
+              text:"",
+              fontSize:20
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
+        />
 
 
-                </div>
-                <div className="col-xs-6 col-sm-6 col-md-2 col-lg-2 col-xl-2">
-                  <div className="percentage-container">
-                    <span className="percentage-number">94</span>
-                    <span className="percentage-sign">%</span>
-                    <p>Percentage of income compared to last month</p>
-                  </div>
-                  <div className="percentage-container">
-                    <span className="percentage-number">89</span>
-                    <span className="percentage-sign">%</span>
-                    <p>Percentage of income compared to last year</p>
-                  </div>
-                </div>
-                <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
-                  <div><br/>
+        </div>
+        </div>
+       
+        <div className="row">
+        <div className="col">
+        <br/>
+        <h2>Prices</h2>
+               <br/>
     <h5>AVERAGE TOTAL PRICE: </h5><h4>  {this.state.spacesPrice} ₪</h4> 
-                    <br/>
+               
                     <h5>Average price in beauty field:  </h5>   <h4>  {this.state.beautyPrice} ₪</h4>
-                    <br/>
+                    
                     <h5>Max price in beauty field: </h5> <h4>  {this.state.beautyMax} ₪</h4>
-                    <br/>
+                    
                     <h5>Min price in beauty field: </h5><h4>  {this.state.beautyMin} ₪</h4>
-                    <br/>
+                   
                     <h5>Average price in sport field: </h5><h4>  {this.state.sportPrice} ₪</h4>
-                    <br/>
+                  
                     <h5>Max price in sport field: </h5><h4>  {this.state.sportMax} ₪</h4>
-                    <br/>
+                    
                     <h5>Min price in sport field: </h5><h4>  {this.state.sportMin} ₪</h4>
-                    <br/>
+                   
                     <h5>Average price in art field: </h5><h4>  {this.state.artPrice} ₪</h4>
-                    <br/>
+                   
                     <h5>Max price in art field: </h5><h4>  {this.state.artMax} ₪</h4>
-                    <br/>
+                   
                     <h5>Min price in art field: </h5><h4>  {this.state.artMin} ₪</h4>
-                    <br/>                
-                  </div>
-                </div>
-              </div>
-              <div className="row">
-                <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                  <h5>Number of spaces in DB: </h5><h4>  {this.state.Spaces.length}</h4>
+                        
+        </div>
+        <div className="col">
+        <br/>
+        <h2>Data Base</h2>
+               <br/>
+        <h5>Number of spaces in DB: </h5><h4>  {this.state.Spaces.length}</h4>
                 <h5>Number of spaces added in last 7 days: </h5><h4>{this.state.SpaceInWeek.length}</h4>
                 <h5>Number of spaces added in last 30 days: </h5><h4>{this.state.SpaceInMonth.length}</h4>
-                </div>
-              </div>
-            </div>
-          </div>
-          {this.state.showDialog &&
+        </div>
+        </div>
+       
+
+      </div>
+      
+     </div>
+     {this.state.showDialog &&
   <Dialog title={"Share this report"} onClose={this.handleShare}>
     <p>Please enter the email address/es of the recipient/s.</p>
     <Input placeholder="example@progress.com" />
@@ -401,21 +427,147 @@ this.setState({SpaceInWeek:week, SpaceInMonth:month})
     </DialogActionsBar>
   </Dialog>
 }
-        </div>
-      </div>
+</Ripple>
 
 
-      <br/>
-      <br/>
-      <br/>
-     
 
+
+
+    
       
-     
-      </Ripple>
      
     );
   }
 }
 export default Details;
 
+ /* <Ripple>
+       <br/>
+   <br/>
+   <button onClick={this.showData}>show data</button>
+
+   <button onClick={this.getHighRank}>TOP RANKED SPACE</button>       
+      <br/>
+   <br/>
+   <div className="bootstrap-wrapper">
+     <div className="app-container container" ref={(el) => this.appContainer = el}>
+       <div className="row">
+         <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6">
+           <h1>SPACES STATS</h1>
+              </div>
+              <div className="col-xs-6 col-sm-6 col-md-6 col-lg-6 col-xl-6 buttons-right">
+              <Button primary={true} onClick={this.handleShare}>Share</Button>
+              <Button onClick={this.handlePDFExport}>Export to PDF</Button>
+              </div>
+              </div>
+       <div className="row">
+         <div className="col-xs-3 col-sm-3 col-md-3 col-lg-3 col-xl-3">
+           <br/>
+          <h5>AVERAGE TOTAL RANK: </h5><h4>  {this.state.avgRankSpace}</h4> 
+          <br/>
+          <h5>AVERAGE RANK SPORT:  </h5><h4> {this.state.avgRankSpace}</h4> 
+          <br/>
+          <h5>AVERAGE RANK ART:  </h5><h4> {this.state.avgRankArt}</h4> 
+          <br/>
+          <h5>AVERAGE RANK BEAUTY: </h5><h4> {this.state.avgRankBeauty}</h4> 
+          <br/>
+           <h4>TOP RATED SPACE BY FIELD</h4>
+           <br/>
+           <h5>SPORT: </h5> <br/><h4> {this.state.topRankSport}</h4>
+           <br/>
+           <h5>ART: </h5> <br/><h4> {this.state.topRankArt}</h4>
+           <br/>
+           <h5>BEAUTY: </h5> <br/><h4> {this.state.topRankBeauty}</h4>
+           <br/>
+         </div>
+         <div className="col-xs-9 col-sm-9 col-md-9 col-lg-9 col-xl-9">
+           <div className="row">
+             <div className="col-xs-6 col-sm-6 col-md-4 col-lg-4 col-xl-4">
+               <br/>
+            <h5>Fields</h5>
+            <br/>
+            <h5>SPORT Number of spaces: </h5><h4> {this.state.sportSpaces.length}</h4>
+            <br/>
+            <h5>ART Number of spaces:   </h5><h4> {this.state.artSpaces.length}</h4>
+           <br/>
+            <h5>Beauty Number of spaces: </h5><h4> {this.state.beautySpaces.length}</h4>
+           <br/>          
+              <Pie
+       data={state}
+       options={{
+         title:{
+           display:true,
+           text:"",
+           fontSize:20
+         },
+         legend:{
+           display:true,
+           position:'right'
+         }
+       }}
+     />
+
+
+             </div>
+             <div className="col-xs-6 col-sm-6 col-md-2 col-lg-2 col-xl-2">
+               <div className="percentage-container">
+                 <span className="percentage-number">94</span>
+                 <span className="percentage-sign">%</span>
+                 <p>Percentage of income compared to last month</p>
+               </div>
+               <div className="percentage-container">
+                 <span className="percentage-number">89</span>
+                 <span className="percentage-sign">%</span>
+                 <p>Percentage of income compared to last year</p>
+               </div>
+             </div>
+             <div className="col-xs-12 col-sm-12 col-md-6 col-lg-6 col-xl-6">
+               <div><br/>
+ <h5>AVERAGE TOTAL PRICE: </h5><h4>  {this.state.spacesPrice} ₪</h4> 
+                 <br/>
+                 <h5>Average price in beauty field:  </h5>   <h4>  {this.state.beautyPrice} ₪</h4>
+                 <br/>
+                 <h5>Max price in beauty field: </h5> <h4>  {this.state.beautyMax} ₪</h4>
+                 <br/>
+                 <h5>Min price in beauty field: </h5><h4>  {this.state.beautyMin} ₪</h4>
+                 <br/>
+                 <h5>Average price in sport field: </h5><h4>  {this.state.sportPrice} ₪</h4>
+                 <br/>
+                 <h5>Max price in sport field: </h5><h4>  {this.state.sportMax} ₪</h4>
+                 <br/>
+                 <h5>Min price in sport field: </h5><h4>  {this.state.sportMin} ₪</h4>
+                 <br/>
+                 <h5>Average price in art field: </h5><h4>  {this.state.artPrice} ₪</h4>
+                 <br/>
+                 <h5>Max price in art field: </h5><h4>  {this.state.artMax} ₪</h4>
+                 <br/>
+                 <h5>Min price in art field: </h5><h4>  {this.state.artMin} ₪</h4>
+                 <br/>                
+               </div>
+             </div>
+           </div>
+           <div className="row">
+             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
+               <h5>Number of spaces in DB: </h5><h4>  {this.state.Spaces.length}</h4>
+             <h5>Number of spaces added in last 7 days: </h5><h4>{this.state.SpaceInWeek.length}</h4>
+             <h5>Number of spaces added in last 30 days: </h5><h4>{this.state.SpaceInMonth.length}</h4>
+             </div>
+           </div>
+         </div>
+       </div>
+       {this.state.showDialog &&
+<Dialog title={"Share this report"} onClose={this.handleShare}>
+ <p>Please enter the email address/es of the recipient/s.</p>
+ <Input placeholder="example@progress.com" />
+ <DialogActionsBar>
+   <Button primary={true} onClick={this.handleShare}>Share</Button>
+   <Button onClick={this.handleShare}>Cancel</Button>
+ </DialogActionsBar>
+</Dialog>
+}
+     </div>
+   </div>
+   <br/>
+   <br/>
+   <br/>   
+   </Ripple> */
