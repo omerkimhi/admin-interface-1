@@ -66,8 +66,9 @@ avgRankBeauty:null,
 avgRankSpace:null,
 
 //date
-date:"",
+curTime : new Date().toLocaleString(),
 SpaceInWeek:[],
+SpaceInMonth:[],
   }
   }
 
@@ -125,7 +126,7 @@ SpaceInWeek:[],
             this.getRank();
             this.getHighRank();
             this.getNumberOfEachField();
-            
+            this.getUpload();
           },
           )},
         error => { }
@@ -250,27 +251,22 @@ this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt
 
 //how many spaces uploaded last week and month
 getUpload=()=>{
-let week=[];
-  let tempDate = new Date();
-  let date = tempDate.getFullYear() + '-' + (tempDate.getMonth()+1) + '-' + tempDate.getDate() +' '+ tempDate.getHours()+':'+ tempDate.getMinutes()+':'+ tempDate.getSeconds();
-  let currDate = date;
-  
 
-  //moment([space.uploadTime]).toNow(true)
-
-  console.log(currDate)
-
+var week=[]
+var month=[]
     this.state.Spaces.map((space)=>{
-
-      var a = moment(space.uploadTime);
-       var b =moment().calendar(referenceTime);
-          console.log(a.diff(b, 'days')) // 1
-      console.log(space)
-         //if( new Date().getTime()- space.uploadDate<=7){week.push(space)};
-                           
-    })
-this.setState({SpaceInWeek:week});
-console.log(this.state.SpaceInWeek)
+      //times
+      var now  = this.state.curTime;
+      var then = space.uploadtime;
+      //notice different formats between now and then
+      var ms = moment(now,"DD/MM/YYYY HH:mm:ss").diff(moment(then,"MM/DD/YYYY HH:mm:ss"));
+      var d = moment.duration(ms);
+        console.log(d.days())
+      if ( d.days() <= 7) week.push(space.name);
+      if ( d.months() <= 1) month.push(space.name);
+       
+     })
+this.setState({SpaceInWeek:week, SpaceInMonth:month})
 }
 
 
@@ -297,13 +293,7 @@ console.log(this.state.SpaceInWeek)
       <br/>
       <button onClick={this.showData}>show data</button>
 
-      <button onClick={this.getHighRank}>TOP RANKED SPACE</button>  
-
-      <button onClick={this.getUpload}>uploaded spaces</button>        
-        
-      
-         
-         
+      <button onClick={this.getHighRank}>TOP RANKED SPACE</button>       
          <br/>
       <br/>
       <div className="bootstrap-wrapper">
@@ -394,9 +384,9 @@ console.log(this.state.SpaceInWeek)
               </div>
               <div className="row">
                 <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12">
-                  <h4>Number of spaces in DB: {this.state.Spaces.length}</h4>
-                <h4>Number of spaces added last week: </h4>
-                <h4>Number of spaces added last month: </h4>  
+                  <h5>Number of spaces in DB: </h5><h4>  {this.state.Spaces.length}</h4>
+                <h5>Number of spaces added in last 7 days: </h5><h4>{this.state.SpaceInWeek.length}</h4>
+                <h5>Number of spaces added in last 30 days: </h5><h4>{this.state.SpaceInMonth.length}</h4>
                 </div>
               </div>
             </div>
