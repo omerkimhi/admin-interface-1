@@ -19,7 +19,7 @@ import AppData from './Components/data/appData';
 function App() {
   return (
    <div>
-     <AppData/>
+     <NavBar></NavBar>
    </div>
     //<Dashboard></Dashboard>
 //<NavBar></NavBar>

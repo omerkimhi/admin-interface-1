@@ -9,6 +9,7 @@ import Login from "../../Components/login";
 import Charts from '../Charts/Charts';
 import PieChart from '../Charts/Pie';
 import { Col } from "react-bootstrap";
+import AnimatedChart from '../Charts/test';
 
 
 
@@ -32,8 +33,8 @@ function navBar  () {
                 <Switch>
                 <Route path="/details"><Details/></Route>
                  <Route path="/Tables"><Tables /></Route>
-                 <Route path="/Charts"><Charts/></Route>
-                 <Route path="/Pie"><PieChart/></Route>
+                 <Route path="/Charts"><PieChart/></Route>
+                 <Route path="/Pie"><AnimatedChart/></Route>
                  <Route exact path="/"><Login/></Route>
                 </Switch>
         
