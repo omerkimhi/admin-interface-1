@@ -250,7 +250,7 @@ this.setState({topRankSport:topSport, topRankBeauty:topBeauty, topRankArt:topArt
  
 
 //how many spaces uploaded last week and month
-getUpload=()=>{
+ getUpload=()=>{
 
 var week=[]
 var month=[]

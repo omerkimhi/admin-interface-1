@@ -8,6 +8,9 @@ import Details from '../Details/details';
 import Login from "../../Components/login";
 import Charts from '../Charts/Charts';
 import PieChart from '../Charts/Pie';
+import { Col } from "react-bootstrap";
+import AnimatedChart from '../Charts/AnimatedChart';
+
 //import { Col } from "react-bootstrap";
 import SpaceTable from '../Tables/SpaceTable'
 import UserTable from '../Tables/UserTable'
@@ -28,6 +31,8 @@ function navBar  () {
                <Nav.Link href="/UserTable">Users</Nav.Link>
                <Nav.Link href="/Charts">Charts</Nav.Link>
                <Nav.Link href="/Pie">Pie</Nav.Link>
+               <Nav.Link href="/AnimatedChart">AnimatedChart</Nav.Link>
+
                <Nav.Link className="justify-content-end" href="/">Sign Out</Nav.Link>
                </Nav>
                </Navbar>
@@ -37,6 +42,7 @@ function navBar  () {
                  <Route path="/UserTable"><UserTable /></Route>
                  <Route path="/Charts"><Charts/></Route>
                  <Route path="/Pie"><PieChart/></Route>
+                 <Route path="/AnimatedChart"><AnimatedChart/></Route>
                  <Route exact path="/"><Login/></Route>
                 </Switch>
         

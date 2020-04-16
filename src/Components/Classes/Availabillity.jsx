@@ -1,11 +1,6 @@
 class Availabillity{
 
-    constructor(id,sunday,monday,tuesday,wednesday,thursday,friday,saturday,spaceId){
-        this.newMethod(id, sunday, monday, tuesday, wednesday, thursday, friday, saturday, spaceId);
-    }
-
-
-    newMethod(id, sunday, monday, tuesday, wednesday, thursday, friday, saturday, spaceId) {
+    constructor(id, sunday, monday, tuesday, wednesday, thursday, friday, saturday, spaceId) {
         this.id = id;
         this.sunday = sunday;
         this.monday = monday;
