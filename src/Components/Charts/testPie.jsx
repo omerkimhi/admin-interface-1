@@ -1,4 +1,6 @@
-import React, { Component } from 'react';
+import React, { Component } from 'react'
+import {Pie, Doughnut} from 'react-chartjs-2';
+
 //import classes
 import User from "../Classes/User.jsx";
 import Space from "../Classes/Space";
@@ -7,13 +9,10 @@ import Facility from "../Classes/Facility";
 import Availabillity from "../Classes/Availabillity";
 import FieldEq from "../Classes/FieldEq";
 
-import CanvasJSReact from '../../assets/canvasjs.react';
 
-var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
- 
-class AnimatedChart extends Component {
 
+export default class PieChart extends Component {
   constructor(props) {
     super(props);
 
@@ -23,7 +22,8 @@ class AnimatedChart extends Component {
       EquipmentList: [],
       Facilities: [],
       Availablities: [],
-	  FieldsEquipment: [],
+      FieldsEquipment: [],
+    
 	  sportSpaces:[],
 	  beautySpaces:[],
 	  artSpaces:[]
@@ -220,48 +220,64 @@ class AnimatedChart extends Component {
         error => { }
       );
   };
-  showData = () => {
-    console.log(this.state.Users);
-    console.log(this.state.Spaces);
-    console.log(this.state.EquipmentList);
-    console.log(this.state.Facilities);
-    console.log(this.state.Availablities);
-    console.log(this.state.FieldsEquipment);
+  render() {
+    const state = {
+      labels: ['Art', 'Beauty', 'Sport'],
+      datasets: [
+        {
+          label: 'Rainfall',
+          backgroundColor: [
+            '#B21F00',
+            '#C9DE00',
+            '#2FDE00',
+            '#00A6B4',
+            '#6800B4'
+          ],
+          hoverBackgroundColor: [
+          '#501800',
+          '#4B5000',
+          '#175000',
+          '#003350',
+          '#35014F'
+          ],
+          data: [this.state.artSpaces.length, this.state.beautySpaces.length, this.state.sportSpaces.length]
+        }
+      ]
+    }
+
+
+    return (
+      <div>
+        <Pie
+          data={state}
+          options={{
+            title:{
+              display:true,
+              text:'Average Rainfall per month',
+              fontSize:20
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
+        />
+
+        <Doughnut
+          data={state}
+          options={{
+            title:{
+              display:true,
+              text:'Average Rainfall per month',
+              fontSize:20
+            },
+            legend:{
+              display:true,
+              position:'right'
+            }
+          }}
+        />
+      </div>
+    );
   }
-
-	
-	render() {
-    console.log(this.state.Spaces);
-
-		const options = {
-			animationEnabled: true,
-			exportEnabled: true,
-			theme: "dark2", // "light1", "dark1", "dark2"
-			title:{
-				text: "Spaces Fields"
-			},
-			data: [{
-				type: "pie",
-				indexLabel: "{label}: {y}%",		
-				startAngle: -90,
-				dataPoints: [
-					{ y: (this.state.artSpaces.length/this.state.Spaces.length)*100, label: "Art" },
-					{ y: (this.state.beautySpaces.length/this.state.Spaces.length)*100, label: "Beauty" },
-					{ y: (this.state.sportSpaces.length/this.state.Spaces.length)*100, label: "Sport" }
-				]
-			}]
-		}
-		
-		return (
-		<div>
-			<h1>React Chart with Animation</h1>
-			<CanvasJSChart options = {options} 
-				/* onRef={ref => this.chart = ref} */
-			/>
-			{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
-		</div>
-		);
-	}
 }
-
-export default AnimatedChart;                           

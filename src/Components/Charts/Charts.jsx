@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 
 //import NavBar from '../NavBar/NavBar.jsx';
 import Bar from './Bar'
-//import PieChart from './Pie';
+import Pie from './Pie';
 
 
 
@@ -16,11 +16,11 @@ export default class Charts extends Component {
         return (
             <div>
             
-           <br/>
-           <br/>
+          <br/> 
        <Bar/>
-       <br/>
-          
+       <br/> 
+       <br/> 
+       <Pie></Pie>
            </div>
 
         );

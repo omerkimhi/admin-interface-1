@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import ZingChart from 'zingchart-react';
 
+
+
 export default class Bar extends Component {
 
 
@@ -8,17 +10,39 @@ export default class Bar extends Component {
         super(props);
         this.state = {
           config: {
+              text:'Order',
            type: 'bar',
            series: [{
-             values: [4,5,3,4,5,3,5,4,11]
-         }]
+             values: []
+         }],
+         scaleX: {
+            // set scale label
+            label: {
+              text: 'Days'
+            },
+            // convert text on scale indices
+            labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
+          },
+          scaleY: {
+            // scale label with unicode character
+            label: {
+              text: 'Orders'
+            }
+          },
          }
+         
         }
+        
      }
      render() {
         return (
-            <div>
-           <ZingChart data={this.state.config}/>
+            <div className="container">
+                  <br/>
+                <h1>Orders in the last 7 days</h1>
+                
+                <div className="row">
+           <ZingChart  data={this.state.config}/>
+           </div>
            </div>
        
            

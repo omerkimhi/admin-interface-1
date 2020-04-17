@@ -1,4 +1,4 @@
-import React, {forwardRef, Component } from 'react';
+import React, { forwardRef, Component } from 'react';
 
 //Data table icons
 import MaterialTable from 'material-table';
@@ -25,12 +25,12 @@ import Space from '../Classes/Space';
 
 export default class Table extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
-      
-      Spaces:[],
-      SpaceDel:[],
+    this.state = {
+
+      Spaces: [],
+      SpaceDel: [],
       //Space Data Table
       columns: [
         { title: 'SpaceId', field: 'spaceId', type: 'numeric' },
@@ -43,27 +43,29 @@ export default class Table extends Component {
         { title: 'Capabillity', field: 'capabillity', type: 'numeric' },
         { title: 'User Email', field: 'userEmail' },
         { title: 'Rank', field: 'rank', type: 'numeric' },
-      
+
       ],
       data: [
-        {spaceId:null, name:"" , field:"" , price: null, city:"", street:"", number:null,
-      
-        capabillity:"", userEmail:"", rank:null },
-        
+        {
+          spaceId: null, name: "", field: "", price: null, city: "", street: "", number: null,
+
+          capabillity: "", userEmail: "", rank: null
+        },
+
       ],
-     
+
     }
   }
 
-  componentDidMount(){
+  componentDidMount() {
     this.SpacesApiUrl =
-    "http://proj.ruppin.ac.il/igroup17/prod/api/space";
-   
+      "http://proj.ruppin.ac.il/igroup17/prod/api/space";
+
     this.FetchGetSpaces();
-    
+
   }
 
-//sets spaces in Spaces
+  //sets spaces in Spaces
   FetchGetSpaces = () => {
     fetch(this.SpacesApiUrl, {
       method: "GET"
@@ -100,46 +102,36 @@ export default class Table extends Component {
                   item.Uploadtime
                 )
             )
-          }, 
-        ()=> { this.getSpaceData();
-            
-           },
-          )},
+          },
+            () => {
+              this.getSpaceData();
+
+            },
+          )
+        },
         error => { }
       );
   };
-//gets data and set state to dataSpaces
-  getSpaceData=()=>{
+  //gets data and set state to dataSpaces
+  getSpaceData = () => {
     let Array = [];
-    
-    this.state.Spaces.map((space) => {Array.push(space);});
-    this.setState({ data: Array  }) 
+
+    this.state.Spaces.map((space) => { Array.push(space); });
+    this.setState({ data: Array })
     //console.log('this data'+ this.state.data)
   }
-  
 
 
 
-  deleteData=(item)=> {
 
-console.log(item)
+  deleteData = (item) => {
 
-let del1=[];
-
-this.state.Spaces.map((space) => {
-  if (space.name === item) del1.push(space.spaceId); 
-
-  console.log('check: '+ space.name+'==='+item)
-});
-console.log('del1=  '+del1)
-this.setState({SpaceDel: del1});
-console.log('Space del=    '+this.state.SpaceDel[0])
-
-  return fetch(this.SpacesApiUrl + '/' + JSON.stringify(del1), {
+    let str = this.SpacesApiUrl + '/' + (item);
+    fetch(str, {
       method: 'delete'
     })
-     .then(response => response.json());
-    }
+
+  }
 
 
   render() {
@@ -163,60 +155,61 @@ console.log('Space del=    '+this.state.SpaceDel[0])
       ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
       ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
     };
-  return (
-    <div>
-    <br/>
-    <br/> 
-    <MaterialTable  icons={tableIcons}
-      title="SPACES IN SYSTEM"
-      columns={this.state.columns}
-      data={this.state.data}
-      editable={{
-        onRowAdd: (newData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              this.setState((prevState) => {
-                const data = [...prevState.data];
-                data.push(newData);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-        onRowUpdate: (newData, oldData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              if (oldData) {
-                this.setState((prevState) => {
-                  const data = [...prevState.data];
-                  data[data.indexOf(oldData)] = newData;
-                  return { ...prevState, data };
-                });
-              }
-            }, 600);
-          }),
-        onRowDelete: (oldData) =>
-        
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              this.setState((prevState) => {
-                const data = [...prevState.data];
-                data.splice(data.indexOf(oldData), 1);
-                this.deleteData(oldData.name)
-                
-               
-                return { ...prevState, data };
-              });
-            }, 600);
-            
-           
-          }),
-      }}
-    />
-    <br/>
-    <br/> 
-    </div>
-  );
-}}
+    return (
+      <div>
+        <br />
+        <br />
+        <MaterialTable icons={tableIcons}
+          title="SPACES IN SYSTEM"
+          columns={this.state.columns}
+          data={this.state.data}
+          editable={{
+            onRowAdd: (newData) =>
+              new Promise((resolve) => {
+                setTimeout(() => {
+                  resolve();
+                  this.setState((prevState) => {
+                    const data = [...prevState.data];
+                    data.push(newData);
+                    return { ...prevState, data };
+                  });
+                }, 600);
+              }),
+            onRowUpdate: (newData, oldData) =>
+              new Promise((resolve) => {
+                setTimeout(() => {
+                  resolve();
+                  if (oldData) {
+                    this.setState((prevState) => {
+                      const data = [...prevState.data];
+                      data[data.indexOf(oldData)] = newData;
+                      return { ...prevState, data };
+                    });
+                  }
+                }, 600);
+              }),
+            onRowDelete: (oldData) =>
+
+              new Promise((resolve) => {
+                setTimeout(() => {
+                  resolve();
+                  this.setState((prevState) => {
+                    const data = [...prevState.data];
+                    data.splice(data.indexOf(oldData), 1);
+                    this.deleteData(oldData.spaceId)
+
+
+                    return { ...prevState, data };
+                  });
+                }, 600);
+
+
+              }),
+          }}
+        />
+        <br />
+        <br />
+      </div>
+    );
+  }
+}
