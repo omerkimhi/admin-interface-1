@@ -1,26 +1,18 @@
-import React, { Component  } from "react";
+import React, { Component } from "react";
 import ReactDOM from 'react-dom';
-//import axios from 'axios';
 import './details.css';
 import 'bootstrap-4-grid/css/grid.min.css';
 
+//PDF, SHARE,RIPPLE
 import { Dialog, DialogActionsBar } from '@progress/kendo-react-dialogs';
 import { Input } from '@progress/kendo-react-inputs';
 import { Button } from '@progress/kendo-react-buttons';
 import { savePDF } from '@progress/kendo-react-pdf';
 import { Ripple } from '@progress/kendo-react-ripple';
 import '@progress/kendo-theme-material/dist/all.css';
-
-//import { Form,Col } from 'react-bootstrap';
-
-//import { DonutChartContainer } from '../Charts/DonutChartContainer';
-//import { BarChartContainer } from '../Charts/BarChartContainer';
-//import { GridContainer } from '../Grid/GridContainer';
+//PIE CHART -SHOWS NUMBER OF SPACES PER FIELD
 import { Pie } from 'react-chartjs-2';
-import Space from '../Classes/Space';
-//import { Card, Container,Row,Col } from 'react-bootstrap';
-//import NavBar from '../NavBar/NavBar.jsx'
-
+//DATE TIME STUFF
 import * as moment from 'moment';
 
 class Details extends Component {
@@ -56,9 +48,9 @@ class Details extends Component {
       sportMin: null,
 
       //top rated spaces
-      topRankSport:"", 
-      topRankArt:"" ,
-      topRankBeauty:"",
+      topRankSport: "",
+      topRankArt: "",
+      topRankBeauty: "",
       topRankSpace: null,
       avgRankSport: null,
       avgRankArt: null,
@@ -71,24 +63,17 @@ class Details extends Component {
       SpaceInMonth: [],
     }
   }
-
-
-  
-
-
   componentDidMount() {
 
-        this.getPrices();
-        this.getRank();
-        this.getNumberOfEachField();
-       
-         this.getUpload();
-   
-   }
+    this.getPrices();
+    this.getRank();
+    this.getNumberOfEachField();
 
+    this.getUpload();
 
+  }
   //gets number of spaces in each field
-  getNumberOfEachField = () => { 
+  getNumberOfEachField = () => {
     let sArray = [];
     let aArray = [];
     let bArray = [];
@@ -97,9 +82,9 @@ class Details extends Component {
       if (space.field === "Art") aArray.push(space);
       if (space.field === "Beauty") bArray.push(space);
     });
-    this.setState({ sportSpaces: sArray, beautySpaces: bArray, artSpaces: aArray },()=>{this.getHighRank()} )
-    
-  
+    this.setState({ sportSpaces: sArray, beautySpaces: bArray, artSpaces: aArray }, () => { this.getHighRank() })
+
+
   }
   //Prices: Avg, Min, Max
   getPrices = () => {
@@ -180,7 +165,6 @@ class Details extends Component {
     //finish
     this.setState({ avgRankBeauty: avgB, avgRankSport: avgS, avgRankArt: avgA, avgRankSpace: avgSpace })
   }
-
   // top ranked space for every field
   getHighRank = () => {
     //init
@@ -205,8 +189,6 @@ class Details extends Component {
     //finish
     this.setState({ topRankSport: topSport, topRankBeauty: topBeauty, topRankArt: topArt })
   }
-
-
   //how many spaces uploaded last week and month
   getUpload = () => {
 
@@ -226,12 +208,6 @@ class Details extends Component {
     this.setState({ SpaceInWeek: week, SpaceInMonth: month })
   }
 
-
-  //shows data from DB
-  showData = () => {
-    console.log(this.state.Spaces);
-  }
-
   handleShare = () => {
     this.setState({
       showDialog: !this.state.showDialog
@@ -243,9 +219,7 @@ class Details extends Component {
   }
 
   render() {
-    console.log("props:  ",this.props.Spaces)
-
-    
+    //PIE CHART DATA
     const state = {
       labels: ['Art', 'Beauty', 'Sport'],
       datasets: [
@@ -263,141 +237,97 @@ class Details extends Component {
         }
       ]
     }
-    
-      return (
-        <Ripple>
-          <div className="app">
-            <br />
-            <Button onClick={this.handlePDFExport}>Export to PDF</Button>
-            <Button primary={true} onClick={this.handleShare}>Share</Button>
-            <br />
-            <br />
-            <button onClick={this.showData}>show data</button>
-
-            <button onClick={this.getHighRank}>TOP RANKED SPACE</button>
-            <br />
-            <br />
-            <div className="container">
-              <div className="row">
-
-
-                <h1>SPACES STATS</h1>
-
-
-
-              </div>
-              <div className="row">
-                <div className="col">
-                  <br />
-                  <h2>Ranks</h2>
-                  <br />
-                  <h5>AVERAGE TOTAL RANK: </h5><h4>  {this.state.avgRankSpace}</h4>
-
-                  <h5>AVERAGE RANK SPORT:  </h5><h4> {this.state.avgRankSpace}</h4>
-
-                  <h5>AVERAGE RANK ART:  </h5><h4> {this.state.avgRankArt}</h4>
-
-                  <h5>AVERAGE RANK BEAUTY: </h5><h4> {this.state.avgRankBeauty}</h4>
-
-                  <h4>TOP RATED SPACE BY FIELD</h4>
-
-                  <h5>SPORT: </h5> <h4> {this.state.topRankSport}</h4>
-
-                  <h5>ART: </h5> <h4> {this.state.topRankArt}</h4>
-
-                  <h5>BEAUTY: </h5> <h4> {this.state.topRankBeauty}</h4>
-
-                </div>
-                <div className="col">
-                  <br />
-                  <h2>Fields</h2>
-                  <br />
-                  <h5>SPORT Number of spaces: </h5><h4> {this.state.sportSpaces.length}</h4>
-                  <br />
-                  <h5>ART Number of spaces:   </h5><h4> {this.state.artSpaces.length}</h4>
-                  <br />
-                  <h5>Beauty Number of spaces: </h5><h4> {this.state.beautySpaces.length}</h4>
-                  <br />
-                  <Pie
-                    data={state}
-                    options={{
-                      title: {
-                        display: true,
-                        text: "",
-                        fontSize: 20
-                      },
-                      legend: {
-                        display: true,
-                        position: 'right'
-                      }
-                    }}
-                  />
-
-
-                </div>
-              </div>
-
-              <div className="row">
-                <div className="col">
-                  <br />
-                  <h2>Prices</h2>
-                  <br />
-                  <h5>AVERAGE TOTAL PRICE: </h5><h4>  {this.state.spacesPrice} ₪</h4>
-
-                  <h5>Average price in beauty field:  </h5>   <h4>  {this.state.beautyPrice} ₪</h4>
-
-                  <h5>Max price in beauty field: </h5> <h4>  {this.state.beautyMax} ₪</h4>
-
-                  <h5>Min price in beauty field: </h5><h4>  {this.state.beautyMin} ₪</h4>
-
-                  <h5>Average price in sport field: </h5><h4>  {this.state.sportPrice} ₪</h4>
-
-                  <h5>Max price in sport field: </h5><h4>  {this.state.sportMax} ₪</h4>
-
-                  <h5>Min price in sport field: </h5><h4>  {this.state.sportMin} ₪</h4>
-
-                  <h5>Average price in art field: </h5><h4>  {this.state.artPrice} ₪</h4>
-
-                  <h5>Max price in art field: </h5><h4>  {this.state.artMax} ₪</h4>
-
-                  <h5>Min price in art field: </h5><h4>  {this.state.artMin} ₪</h4>
-
-                </div>
-                <div className="col">
-                  <br />
-                  <h2>Data Base</h2>
-                  <br />
-                  <h5>Number of spaces in DB: </h5><h4>  {this.props.Spaces.length}</h4>
-                  <h5>Number of spaces added in last 7 days: </h5><h4>{this.state.SpaceInWeek.length}</h4>
-                  <h5>Number of spaces added in last 30 days: </h5><h4>{this.state.SpaceInMonth.length}</h4>
-                </div>
-              </div>
-
-
+    return (
+      <Ripple>
+        <div className="app">
+          <br />
+          <Button onClick={this.handlePDFExport}>Export to PDF</Button>
+          <Button primary={true} onClick={this.handleShare}>Share</Button>
+          <br />
+          <br />
+          <div className="container">
+            <div className="row">
+              <h1>SPACES STATS</h1>
             </div>
-
+            <div className="row">
+              <div className="col">
+                <br />
+                <h2>Ranks</h2>
+                <br />
+                <h5>AVERAGE TOTAL RANK: </h5><h4>  {this.state.avgRankSpace}</h4>
+               <h5>AVERAGE RANK SPORT:  </h5><h4> {this.state.avgRankSpace}</h4>
+                <h5>AVERAGE RANK ART:  </h5><h4> {this.state.avgRankArt}</h4>
+                <h5>AVERAGE RANK BEAUTY: </h5><h4> {this.state.avgRankBeauty}</h4>
+                <h4>TOP RATED SPACE BY FIELD</h4>
+                <h5>SPORT: </h5> <h4> {this.state.topRankSport}</h4>
+                <h5>ART: </h5> <h4> {this.state.topRankArt}</h4>
+                <h5>BEAUTY: </h5> <h4> {this.state.topRankBeauty}</h4>
+              </div>
+              <div className="col">
+                <br />
+                <h2>Fields</h2>
+                <br />
+                <h5>SPORT Number of spaces: </h5><h4> {this.state.sportSpaces.length}</h4>
+                <br />
+                <h5>ART Number of spaces:   </h5><h4> {this.state.artSpaces.length}</h4>
+                <br />
+                <h5>Beauty Number of spaces: </h5><h4> {this.state.beautySpaces.length}</h4>
+                <br />
+                <Pie
+                  data={state}
+                  options={{
+                    title: {
+                      display: true,
+                      text: "",
+                      fontSize: 20
+                    },
+                    legend: {
+                      display: true,
+                      position: 'right'
+                    }
+                  }}
+                />
+              </div>
+            </div>
+            <div className="row">
+              <div className="col">
+                <br />
+                <h2>Prices</h2>
+                <br />
+                <h5>AVERAGE TOTAL PRICE: </h5><h4>  {this.state.spacesPrice} ₪</h4>
+                <h5>Average price in beauty field:  </h5>   <h4>  {this.state.beautyPrice} ₪</h4>
+                <h5>Max price in beauty field: </h5> <h4>  {this.state.beautyMax} ₪</h4>
+                <h5>Min price in beauty field: </h5><h4>  {this.state.beautyMin} ₪</h4>
+                <h5>Average price in sport field: </h5><h4>  {this.state.sportPrice} ₪</h4>
+                <h5>Max price in sport field: </h5><h4>  {this.state.sportMax} ₪</h4>
+                <h5>Min price in sport field: </h5><h4>  {this.state.sportMin} ₪</h4>
+                <h5>Average price in art field: </h5><h4>  {this.state.artPrice} ₪</h4>
+                <h5>Max price in art field: </h5><h4>  {this.state.artMax} ₪</h4>
+                <h5>Min price in art field: </h5><h4>  {this.state.artMin} ₪</h4>
+              </div>
+              <div className="col">
+                <br />
+                <h2>Data Base</h2>
+                <br />
+                <h5>Number of spaces in DB: </h5><h4>  {this.props.Spaces.length}</h4>
+                <h5>Number of spaces added in last 7 days: </h5><h4>{this.state.SpaceInWeek.length}</h4>
+                <h5>Number of spaces added in last 30 days: </h5><h4>{this.state.SpaceInMonth.length}</h4>
+              </div>
+            </div>
           </div>
-          {this.state.showDialog &&
-            <Dialog title={"Share this report"} onClose={this.handleShare}>
-              <p>Please enter the email address/es of the recipient/s.</p>
-              <Input placeholder="example@progress.com" />
-              <DialogActionsBar>
-                <Button primary={true} onClick={this.handleShare}>Share</Button>
-                <Button onClick={this.handleShare}>Cancel</Button>
-              </DialogActionsBar>
-            </Dialog>
-          }
-        </Ripple>
-
-
-
-
-
-
-
-
-      );
-    
+        </div>
+        {this.state.showDialog &&
+          <Dialog title={"Share this report"} onClose={this.handleShare}>
+            <p>Please enter the email address/es of the recipient/s.</p>
+            <Input placeholder="example@progress.com" />
+            <DialogActionsBar>
+              <Button primary={true} onClick={this.handleShare}>Share</Button>
+              <Button onClick={this.handleShare}>Cancel</Button>
+            </DialogActionsBar>
+          </Dialog>
+        }
+      </Ripple>
+    );
   }
 }
 export default Details;

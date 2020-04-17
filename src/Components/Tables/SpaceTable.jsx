@@ -18,8 +18,7 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 
-//class
-import Space from '../Classes/Space';
+
 
 
 
@@ -29,7 +28,7 @@ export default class Table extends Component {
     super(props);
     this.state = {
 
-      Spaces: [],
+      Spaces: this.props.Spaces,
       SpaceDel: [],
       //Space Data Table
       columns: [
@@ -58,60 +57,11 @@ export default class Table extends Component {
   }
 
   componentDidMount() {
-    this.SpacesApiUrl =
-      "http://proj.ruppin.ac.il/igroup17/prod/api/space";
-
-    this.FetchGetSpaces();
-
+    this.SpacesApiUrl = "http://proj.ruppin.ac.il/igroup17/prod/api/space";
+    this.getSpaceData();
   }
 
-  //sets spaces in Spaces
-  FetchGetSpaces = () => {
-    fetch(this.SpacesApiUrl, {
-      method: "GET"
-    })
-      .then(res => {
-        return res.json();
-      })
-      .then(
-        result => {
-          this.setState({
-            Spaces: result.map(
-              item =>
-                new Space(
-                  item.Id,
-                  item.Name,
-                  item.Field,
-                  item.Price,
-                  item.City,
-                  item.Street,
-                  item.Number,
-                  item.Capabillity,
-                  item.Bank,
-                  item.Branch,
-                  item.Imageurl1,
-                  item.Imageurl2,
-                  item.Imageurl3,
-                  item.Imageurl4,
-                  item.Imageurl5,
-                  item.AccountNumber,
-                  item.UserEmail,
-                  item.Description,
-                  item.TermsOfUse,
-                  item.Rank,
-                  item.Uploadtime
-                )
-            )
-          },
-            () => {
-              this.getSpaceData();
 
-            },
-          )
-        },
-        error => { }
-      );
-  };
   //gets data and set state to dataSpaces
   getSpaceData = () => {
     let Array = [];
@@ -121,9 +71,7 @@ export default class Table extends Component {
     //console.log('this data'+ this.state.data)
   }
 
-
-
-
+//delete space from DB
   deleteData = (item) => {
 
     let str = this.SpacesApiUrl + '/' + (item);
@@ -135,7 +83,6 @@ export default class Table extends Component {
 
 
   render() {
-
     const tableIcons = {
       Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
       Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -155,6 +102,7 @@ export default class Table extends Component {
       ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
       ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
     };
+
     return (
       <div>
         <br />

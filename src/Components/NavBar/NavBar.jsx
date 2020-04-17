@@ -1,22 +1,17 @@
 import React, { Component } from 'react';
 import { Navbar, Nav} from 'react-bootstrap';
-
-
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+
+//COMPONENTS
 import Details from '../Details/details';
-//import Tables from '../Tables/table';
+import SpaceTable from '../Tables/SpaceTable';
+import UserTable from '../Tables/UserTable';
 import Login from "../../Components/Login/login";
 import Charts from '../Charts/Charts';
-import Space from '../Classes/Space'
-//import { Col } from "react-bootstrap";
 
-
-
-import SpaceTable from '../Tables/SpaceTable'
-import UserTable from '../Tables/UserTable'
-
-
-
+//CLASSES
+import Space from '../Classes/Space';
+import Order from '../Classes/Order';
 
 class NavBar extends Component {
 
@@ -24,19 +19,22 @@ class NavBar extends Component {
   super(props);
 this.state={
   Spaces:[],
+  Orders:[],
+  Users:[],
 }; 
   
 } 
    componentDidMount() {
     this.SpacesApiUrl =
       "http://proj.ruppin.ac.il/igroup17/prod/api/space";
+      this.OrdersApiUrl =
+      "http://proj.ruppin.ac.il/igroup17/prod/api/order";
 
     this.FetchGetSpaces();
+    this.FetchGetOrders();
     
-
-
   } 
-
+//SPACES
    FetchGetSpaces = () => {
     fetch(this.SpacesApiUrl, {
       method: "GET"
@@ -83,6 +81,41 @@ this.state={
       );
   }; 
 
+//ORDERS
+  FetchGetOrders = () => {
+    fetch(this.OrdersApiUrl, {
+      method: "GET"
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(
+        result => {
+          this.setState({
+            Orders: result.map(
+              item =>
+                new Order(
+                  item.EndHour,
+                  item.OrderDate,
+                  item.OrderId,
+                  item.Price,
+                  item.ReservationDate,
+                  item.SpaceId,
+                  item.UserId,
+                 
+                )
+            )
+          },() => {
+            console.log(this.state.Orders)
+          },
+          )
+        },
+        error => { }
+        
+      );
+  }; 
+
+
   render() {
 if(this.state.Spaces.length===0){
   return <h1>LOADING</h1>
@@ -100,15 +133,15 @@ else{
                <Nav.Link href="/details">Details</Nav.Link>
                <Nav.Link href="/SpaceTable">Spaces</Nav.Link>
                <Nav.Link href="/UserTable">Users</Nav.Link>
-               <Nav.Link href="/Charts">Charts</Nav.Link>
+               <Nav.Link href="/Charts">Orders</Nav.Link>
                <Nav.Link className="justify-content-end" href="/">Sign Out</Nav.Link>
                </Nav>
                </Navbar>
                 <Switch>
                 <Route path="/details"><Details Spaces={this.state.Spaces}/></Route>   
-                 <Route path="/SpaceTable"><SpaceTable /></Route>
+                 <Route path="/SpaceTable"><SpaceTable Spaces={this.state.Spaces} /></Route>
                  <Route path="/UserTable"><UserTable /></Route>
-                 <Route path="/Charts"><Charts/></Route>
+                 <Route path="/Charts"><Charts  Orders={this.state.Orders}/></Route>
                  <Route exact path="/"><Login/></Route>
                  
                 </Switch>
