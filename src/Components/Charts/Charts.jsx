@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
 import ZingChart from 'zingchart-react';
 
-//import NavBar from '../NavBar/NavBar.jsx';
-
 import Pie from './Pie';
-
-
-
+import * as moment from 'moment';
 
 export default class Charts extends Component {
 
@@ -35,29 +31,62 @@ export default class Charts extends Component {
               }
             },
            }//end of Bar chart
-           
+         
           }
 
     }
 
 
     componentDidMount() {
-       
-      this.OrderBarChart();
+
+     /*    setTimeout(() => {
+            this.setState({
+                Orders:this.props.Orders
+          })
+        }, 3000); */
+        this.setState({Orders:this.props.Orders})
+        console.log('check' ,this.state.Orders);
+        this.OrderBarChart();
       }
 
       OrderBarChart=()=>{
 
-
+        let Array=[];
+        this.state.Orders.map((order) => { 
+             Array.push(order.orderDate)
+        })
+        console.log('map' ,this.state.Array)
       }
 
+    /*   getUpload = () => {
 
+        var week = []
+        var month = []
+        this.state.Spaces.map((space) => {
+          //times
+          var now = this.state.curTime;
+          var then = space.uploadtime;
+          //notice different formats between now and then
+          var ms = moment(now, "DD/MM/YYYY HH:mm:ss").diff(moment(then, "MM/DD/YYYY HH:mm:ss"));
+          var d = moment.duration(ms);
+          if (d.days() <= 7) week.push(space.name);
+          if (d.months() <= 1) month.push(space.name);
+    
+        })
+        this.setState({ SpaceInWeek: week, SpaceInMonth: month })
+      } */
 
 
     render() {
 
-        console.log("props:  ",this.props.Orders)
 
+console.log('Props ',this.state.Orders)
+
+        
+        if(this.state.Orders.length===0){
+           return <h1>LOADING</h1>
+          }
+          else{
         return (
             <div className="app">
                 <br/>
@@ -76,5 +105,5 @@ export default class Charts extends Component {
            </div>
 
         );
-    }
+    }}
 }

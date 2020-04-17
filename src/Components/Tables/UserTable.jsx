@@ -1,4 +1,4 @@
-import React, {forwardRef, Component } from 'react';
+import React, { forwardRef, Component } from 'react';
 
 //Data table icons
 import MaterialTable from 'material-table';
@@ -18,18 +18,13 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 
-//class
-
-import User from '../Classes/User';
-
-
 export default class Table extends Component {
 
-  constructor(props){
+  constructor(props) {
     super(props);
-    this.state={
-      Users:[],
-     
+    this.state = {
+      Users: this.props.Users,
+
       //Users Data Table
       columnsUsers: [
         { title: 'userId', field: 'userId', type: 'numeric' },
@@ -37,68 +32,31 @@ export default class Table extends Component {
         { title: 'password', field: 'password' },
         { title: 'fullName', field: 'fullName' },
         { title: 'phoneNumber', field: 'phoneNumber', type: 'numeric' },
-        
-      
+
+
       ],
       dataUsers: [
-        {userId:null, email:"" , password:"" , fullName:"" , phoneNumber:null },
-        
+        { userId: null, email: "", password: "", fullName: "", phoneNumber: null },
+
       ],
     }
   }
 
-  componentDidMount(){
-    
-    this.UsersApiUrl =
-          "http://proj.ruppin.ac.il/igroup17/Mobile/project/api/User/";
-
-  
-    this.FetchGetUsers();
+  componentDidMount() {
+    this.SpacesApiUrl =
+    "http://proj.ruppin.ac.il/igroup17/prod/api/user";
+    this.getUserData();
   }
-//sets usres in Users
-  FetchGetUsers = () => {
-    fetch(this.UsersApiUrl, {
-      method: "GET"
-    })
-      .then(res => {
-        return res.json();
-      })
-      .then(
-        result => {
-          this.setState({
-            Users: result.map(
-              item =>
-                new User(
-                  item.Id,
-                  item.Email,
-                  item.Password,
-                  item.UserName,
-                  item.PhoneNumber,
-                  item.Photo
-                  )
-                  )
-                }, 
-              ()=> { this.getUsersData();
-                  
-                 },
-                )},
-              error => { }
-            );
-        };
-
 
   //gets data and set state to dataUsers
-  getUsersData=()=>{
+  getUserData = () => {
     let Array = [];
-    
-    this.state.Users.map((user) => {Array.push(user);});
-    this.setState({ dataUsers: Array  }) 
-    //console.log('this data'+ this.state.data)
+    this.state.Users.map((user) => { Array.push(user); });
+    this.setState({ dataUsers: Array })
   }
 
-
   render() {
-
+   
     const tableIcons = {
       Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
       Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -118,58 +76,59 @@ export default class Table extends Component {
       ThirdStateCheck: forwardRef((props, ref) => <Remove {...props} ref={ref} />),
       ViewColumn: forwardRef((props, ref) => <ViewColumn {...props} ref={ref} />)
     };
-  return (
-    <div>
-    <br/>
-    <br/> 
-    <MaterialTable  icons={tableIcons}
-      title="USERS IN SYSTEM"
-      columns={this.state.columnsUsers}
-      data={this.state.dataUsers}
-      editable={{
-        onRowAdd: (newData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              this.setState((prevState) => {
-                const data = [...prevState.data];
-                data.push(newData);
-                return { ...prevState, data };
-              });
-            }, 600);
-          }),
-        onRowUpdate: (newData, oldData) =>
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              if (oldData) {
-                this.setState((prevState) => {
-                  const data = [...prevState.data];
-                  data[data.indexOf(oldData)] = newData;
-                  return { ...prevState, data };
-                });
-              }
-            }, 600);
-          }),
-        onRowDelete: (oldData) =>
-        
-          new Promise((resolve) => {
-            setTimeout(() => {
-              resolve();
-              this.setState((prevState) => {
-                const data = [...prevState.data];
-                data.splice(data.indexOf(oldData), 1);
-                this.deleteData(oldData.name)
-                
-               
-                return { ...prevState, data };
-              });
-            }, 600);
-            
-           
-          }),
-      }}
-    />
-    </div>
-  );
-}}
+    return (
+      <div>
+        <br />
+        <br />
+        <MaterialTable icons={tableIcons}
+          title="USERS IN SYSTEM"
+          columns={this.state.columnsUsers}
+          data={this.state.dataUsers}
+          editable={{
+            onRowAdd: (newData) =>
+              new Promise((resolve) => {
+                setTimeout(() => {
+                  resolve();
+                  this.setState((prevState) => {
+                    const data = [...prevState.data];
+                    data.push(newData);
+                    return { ...prevState, data };
+                  });
+                }, 600);
+              }),
+            onRowUpdate: (newData, oldData) =>
+              new Promise((resolve) => {
+                setTimeout(() => {
+                  resolve();
+                  if (oldData) {
+                    this.setState((prevState) => {
+                      const data = [...prevState.data];
+                      data[data.indexOf(oldData)] = newData;
+                      return { ...prevState, data };
+                    });
+                  }
+                }, 600);
+              }),
+            onRowDelete: (oldData) =>
+
+              new Promise((resolve) => {
+                setTimeout(() => {
+                  resolve();
+                  this.setState((prevState) => {
+                    const data = [...prevState.data];
+                    data.splice(data.indexOf(oldData), 1);
+                    this.deleteData(oldData.userId)
+
+
+                    return { ...prevState, data };
+                  });
+                }, 600);
+
+
+              }),
+          }}
+        />
+      </div>
+    );
+  }
+}

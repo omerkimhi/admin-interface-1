@@ -68,7 +68,6 @@ class Details extends Component {
     this.getPrices();
     this.getRank();
     this.getNumberOfEachField();
-
     this.getUpload();
 
   }
@@ -132,9 +131,9 @@ class Details extends Component {
     this.setState({
       sportPrice: avgSport, sportMax: maxSport, sportMin: minSport, spacesPrice: avgSpace, artPrice: avgArt,
       artMax: maxArt, artMin: minArt, beautyPrice: avgBeauty, beautyMax: maxBeauty, beautyMin: minBeauty
-    })
+    })}
 
-  }
+  
   //Rank 
   getRank = () => {
     //init

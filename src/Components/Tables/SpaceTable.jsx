@@ -18,10 +18,6 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 
-
-
-
-
 export default class Table extends Component {
 
   constructor(props) {
@@ -57,10 +53,10 @@ export default class Table extends Component {
   }
 
   componentDidMount() {
-    this.SpacesApiUrl = "http://proj.ruppin.ac.il/igroup17/prod/api/space";
+    this.SpacesApiUrl =
+      "http://proj.ruppin.ac.il/igroup17/prod/api/space";
     this.getSpaceData();
   }
-
 
   //gets data and set state to dataSpaces
   getSpaceData = () => {
@@ -68,7 +64,7 @@ export default class Table extends Component {
 
     this.state.Spaces.map((space) => { Array.push(space); });
     this.setState({ data: Array })
-    //console.log('this data'+ this.state.data)
+   
   }
 
 //delete space from DB
@@ -145,8 +141,6 @@ export default class Table extends Component {
                     const data = [...prevState.data];
                     data.splice(data.indexOf(oldData), 1);
                     this.deleteData(oldData.spaceId)
-
-
                     return { ...prevState, data };
                   });
                 }, 600);
