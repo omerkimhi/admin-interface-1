@@ -16,7 +16,7 @@ export default class Charts extends Component {
       Spaces: this.props.Spaces,
       pieC: {},
       OrderDays: [],
-      
+
 
       options: {//start of Pie chart
         animationEnabled: true,
@@ -40,10 +40,6 @@ export default class Charts extends Component {
     }
 
   }
-
-
-
-
   componentDidMount() {
 
     this.setState({ Orders: this.props.Orders })
@@ -53,9 +49,8 @@ export default class Charts extends Component {
     this.OrderPieChart();
 
   }
-
+  //bar chart. how many orders in every day in the week
   OrderBarChart = () => {
-
     let daysArray = [];
     let help = [];
     this.state.Orders.map((order) => {
@@ -72,8 +67,8 @@ export default class Charts extends Component {
     help.forEach(el => {
       b[el] = (b[el] || 0) + 1;
     })
-console.log('end  ', Object.keys(b))
-console.log('end  ', b)
+    console.log('end  ', Object.keys(b))
+    console.log('end  ', b)
     console.log('what day  ', help)
     this.setState({
       config: {
@@ -89,29 +84,29 @@ console.log('end  ', b)
             labels: b
           },
           // convert text on scale indices
-         
-        },  
+
+        },
         scaleY: {
           // scale label with unicode character
           label: {
             text: 'Orders'
           },
-        
+
         },
       }
     });
   }
-//pie chart. how many orders for each of the fields
+  //pie chart. how many orders for each of the fields
   OrderPieChart = () => {
     let fieldOrder = [];
     let help = [];
     //all space id of orders
     this.state.Orders.map((order) => { fieldOrder.push(order.spaceId) });
-//comparing with spaces to check which space id match to the field
+    //comparing with spaces to check which space id match to the field
     fieldOrder.forEach(element => {
       this.state.Spaces.map((space) => { if (element === space.spaceId) { help.push(space.field) } })
     })
-//how many spaces in each field 
+    //how many spaces in each field 
     let b = {};
     help.forEach(el => {
       b[el] = (b[el] || 0) + 1;
@@ -139,40 +134,37 @@ console.log('end  ', b)
   }
 
   render() {
-      return (
-        <div className="app">
-          <br />
-          <div className="container">
-            <br />
-
-            <br />
-            <h1>Orders in the last 7 days</h1>
-            <br />
-            <ZingChart data={this.state.config} />
-            <br />
-            <br />
-            <CanvasJSChart options={this.state.options} />
-            <br />
-            <br />
-            <Pie ref={this.chartReference}
-              data={this.state.pieC}
-              options={{
-                title: {
-                  display: true,
-                  text: "",
-                  fontSize: 20
-                },
-                legend: {
-                  display: true,
-                  position: 'right'
-                }
-              }}
-            />
-          </div>
-
-        </div>
-
-      );
     
+    return (
+      <div className="app">
+        <br />
+        <div className="container">
+          <br />
+          <br />
+          <h1>Number of orders per day</h1>
+          <br />
+          <ZingChart data={this.state.config} />
+          <br />
+          <br />
+          <CanvasJSChart options={this.state.options} />
+          <br />
+          <br />
+          <Pie ref={this.chartReference}
+            data={this.state.pieC}
+            options={{
+              title: {
+                display: true,
+                text: "",
+                fontSize: 20
+              },
+              legend: {
+                display: true,
+                position: 'right'
+              }
+            }}
+          />
+        </div>
+      </div>
+    );
   }
 }
