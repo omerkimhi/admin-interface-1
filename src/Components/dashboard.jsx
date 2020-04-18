@@ -69,7 +69,7 @@ class Dashboard extends Component {
 
           )
         },
-        error => { }
+        error => {}
       );
   };
 

@@ -241,9 +241,8 @@ class Details extends Component {
           backgroundColor: [
             '#20baaf',
             '#52ded4',
-            '#1e6b66',
-            '#00736b',
-            '#13423f'
+            '#1e6b88',
+           
           ],
 
           data: [this.state.artSpaces.length, this.state.beautySpaces.length, this.state.sportSpaces.length]
@@ -251,6 +250,7 @@ class Details extends Component {
       ]
     }
     return (
+      //Ripple is for pdf and share
       <Ripple>
         <div className="appContainer" ref={(el) => this.appContainer = el}>
           <br />
