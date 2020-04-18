@@ -100,7 +100,7 @@ export default class Table extends Component {
     };
 
     return (
-      <div>
+      <div className="container">
         <br />
         <br />
         <MaterialTable icons={tableIcons}
@@ -108,7 +108,7 @@ export default class Table extends Component {
           columns={this.state.columns}
           data={this.state.data}
           editable={{
-            onRowAdd: (newData) =>
+           /*  onRowAdd: (newData) =>
               new Promise((resolve) => {
                 setTimeout(() => {
                   resolve();
@@ -131,7 +131,7 @@ export default class Table extends Component {
                     });
                   }
                 }, 600);
-              }),
+              }), */
             onRowDelete: (oldData) =>
 
               new Promise((resolve) => {

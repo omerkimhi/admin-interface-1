@@ -27,7 +27,7 @@ class Details extends Component {
       isLoading: true,
 
       Spaces: this.props.Spaces,
-
+      Users: this.props.Users,
       //array by field
       sportSpaces: [],
       beautySpaces: [],
@@ -61,6 +61,8 @@ class Details extends Component {
       curTime: new Date().toLocaleString(),
       SpaceInWeek: [],
       SpaceInMonth: [],
+      //user type
+      userType: [],
     }
   }
   componentDidMount() {
@@ -69,7 +71,7 @@ class Details extends Component {
     this.getRank();
     this.getNumberOfEachField();
     this.getUpload();
-
+    this.getUserType();
   }
   //gets number of spaces in each field
   getNumberOfEachField = () => {
@@ -131,9 +133,9 @@ class Details extends Component {
     this.setState({
       sportPrice: avgSport, sportMax: maxSport, sportMin: minSport, spacesPrice: avgSpace, artPrice: avgArt,
       artMax: maxArt, artMin: minArt, beautyPrice: avgBeauty, beautyMax: maxBeauty, beautyMin: minBeauty
-    })}
+    })
+  }
 
-  
   //Rank 
   getRank = () => {
     //init
@@ -206,7 +208,18 @@ class Details extends Component {
     })
     this.setState({ SpaceInWeek: week, SpaceInMonth: month })
   }
+  //get tenants
+  getUserType = () => {
 
+    let landLord = [];
+
+    this.props.Users.map((lord) => {
+      if (lord.spaceOwner) {
+        landLord.push(lord);
+      }
+    })
+    this.setState({ userType: landLord })
+  }
   handleShare = () => {
     this.setState({
       showDialog: !this.state.showDialog
@@ -218,6 +231,7 @@ class Details extends Component {
   }
 
   render() {
+
     //PIE CHART DATA
     const state = {
       labels: ['Art', 'Beauty', 'Sport'],
@@ -254,7 +268,7 @@ class Details extends Component {
                 <h2>Ranks</h2>
                 <br />
                 <h5>AVERAGE TOTAL RANK: </h5><h4>  {this.state.avgRankSpace}</h4>
-               <h5>AVERAGE RANK SPORT:  </h5><h4> {this.state.avgRankSpace}</h4>
+                <h5>AVERAGE RANK SPORT:  </h5><h4> {this.state.avgRankSpace}</h4>
                 <h5>AVERAGE RANK ART:  </h5><h4> {this.state.avgRankArt}</h4>
                 <h5>AVERAGE RANK BEAUTY: </h5><h4> {this.state.avgRankBeauty}</h4>
                 <h4>TOP RATED SPACE BY FIELD</h4>
@@ -311,6 +325,10 @@ class Details extends Component {
                 <h5>Number of spaces in DB: </h5><h4>  {this.props.Spaces.length}</h4>
                 <h5>Number of spaces added in last 7 days: </h5><h4>{this.state.SpaceInWeek.length}</h4>
                 <h5>Number of spaces added in last 30 days: </h5><h4>{this.state.SpaceInMonth.length}</h4>
+                <br />
+                <h5>Number of users: </h5><h4>{this.props.Users.length}</h4>
+                <h5>Number of landlords: </h5><h4>{this.state.userType.length}</h4>
+                <h5>Number of tenants: </h5><h4>{this.props.Users.length - this.state.userType.length}</h4>
               </div>
             </div>
           </div>

@@ -59,7 +59,10 @@ class Dashboard extends Component {
                   item.Password,
                   item.UserName,
                   item.PhoneNumber,
-                  item.Photo
+                  item.Photo,
+                  item.SpaceOwner
+                  
+
                 )
             )
           },
@@ -158,7 +161,7 @@ class Dashboard extends Component {
 
 
           <Switch>
-            <Route path="/details"><Details Spaces={this.state.Spaces} /></Route>
+            <Route path="/details"><Details Spaces={this.state.Spaces} Users={this.state.Users}/></Route>
             <Route path="/SpaceTable"><SpaceTable Spaces={this.state.Spaces} /></Route>
             <Route path="/UserTable"><UserTable Users={this.state.Users} /></Route>
             <Route path="/Charts"><Charts Orders={this.state.Orders} Spaces={this.state.Spaces}/></Route>
