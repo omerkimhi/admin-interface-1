@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from './NavBar/NavBar';
 
@@ -126,25 +127,21 @@ class Dashboard extends Component {
         result => {
           this.setState({
             Orders: result.map(
-              item =>
-                new Order(
-                  item.EndHour,
-                  item.OrderDate,
-                  item.OrderId,
-                  item.Price,
-                  item.ReservationDate,
-                  item.SpaceId,
-                  item.UserId,
-
+              item => 
+              new Order(
+                item.OrderId,
+                item.SpaceId,
+                item.UserId,
+                item.ReservationDate,
+                item.StartHour,
+                item.EndHour,
+                item.Price,
+                item.OrderDate
                 )
             )
-          }, () => {
-            console.log(this.state.Orders)
-          },
-          )
+          });
         },
         error => { }
-
       );
   };
 
@@ -164,7 +161,7 @@ class Dashboard extends Component {
             <Route path="/details"><Details Spaces={this.state.Spaces} /></Route>
             <Route path="/SpaceTable"><SpaceTable Spaces={this.state.Spaces} /></Route>
             <Route path="/UserTable"><UserTable Users={this.state.Users} /></Route>
-            <Route path="/Charts"><Charts Orders={this.state.Orders} /></Route>
+            <Route path="/Charts"><Charts Orders={this.state.Orders} Spaces={this.state.Spaces}/></Route>
             <Route exact path="/"><Login /></Route>
           </Switch>
         </Router>

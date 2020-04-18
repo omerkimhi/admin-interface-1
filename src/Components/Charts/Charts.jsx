@@ -1,109 +1,178 @@
 import React, { Component } from 'react'
-import ZingChart from 'zingchart-react';
 
-import Pie from './Pie';
-import * as moment from 'moment';
+//Charts imports
+import { Pie } from 'react-chartjs-2';
+import ZingChart from 'zingchart-react';
+import CanvasJSReact from '../../assets/canvasjs.react';
+var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default class Charts extends Component {
 
-    constructor(props){
-        super(props);
-        this.state = {
-            Orders: this.props.Orders,
-            config: {//start of Bar chart
-                text:'Order',
-             type: 'bar',
-             series: [{
-               values: []
-           }],
-           scaleX: {
-              // set scale label
-              label: {
-                text: 'Days'
-              },
-              // convert text on scale indices
-              labels: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']
-            },
-            scaleY: {
-              // scale label with unicode character
-              label: {
-                text: 'Orders'
-              }
-            },
-           }//end of Bar chart
-         
-          }
+  constructor(props) {
+    super(props);
+    this.chartReference = React.createRef();
+    this.state = {
+      Orders: this.props.Orders,
+      Spaces: this.props.Spaces,
+      pieC: {},
+      OrderDays: [],
+      
+
+      options: {//start of Pie chart
+        animationEnabled: true,
+        exportEnabled: true,
+        theme: "light1",
+        title: {
+          text: "Order Percentage of each field"
+        },
+        data: [{
+          type: "pie",
+          indexLabel: "{label}: {y}%",
+          startAngle: -90,
+          dataPoints: [
+            { y: 6, label: "Art" },
+            { y: 5, label: "Beauty" },
+            { y: 4, label: "Sport" }
+          ]
+        }]
+      },
 
     }
 
-
-    componentDidMount() {
-
-     /*    setTimeout(() => {
-            this.setState({
-                Orders:this.props.Orders
-          })
-        }, 3000); */
-        this.setState({Orders:this.props.Orders})
-        console.log('check' ,this.state.Orders);
-        this.OrderBarChart();
-      }
-
-      OrderBarChart=()=>{
-
-        let Array=[];
-        this.state.Orders.map((order) => { 
-             Array.push(order.orderDate)
-        })
-        console.log('map' ,this.state.Array)
-      }
-
-    /*   getUpload = () => {
-
-        var week = []
-        var month = []
-        this.state.Spaces.map((space) => {
-          //times
-          var now = this.state.curTime;
-          var then = space.uploadtime;
-          //notice different formats between now and then
-          var ms = moment(now, "DD/MM/YYYY HH:mm:ss").diff(moment(then, "MM/DD/YYYY HH:mm:ss"));
-          var d = moment.duration(ms);
-          if (d.days() <= 7) week.push(space.name);
-          if (d.months() <= 1) month.push(space.name);
-    
-        })
-        this.setState({ SpaceInWeek: week, SpaceInMonth: month })
-      } */
+  }
 
 
-    render() {
 
 
-console.log('Props ',this.state.Orders)
+  componentDidMount() {
 
+    this.setState({ Orders: this.props.Orders })
+    console.log('check', this.state.Orders);
+
+    this.OrderBarChart();
+    this.OrderPieChart();
+
+  }
+
+  OrderBarChart = () => {
+
+    let daysArray = [];
+    let help = [];
+    this.state.Orders.map((order) => {
+      daysArray.push(order.orderDate)
+      console.log('im in   ', order.orderDate)
+    })
+    console.log('daysArray: ', daysArray)
+    daysArray.forEach(element => {
+      var d = new Date(element);
+      var n = d.getDay()
+      help.push(n)
+    });
+    let b = {};
+    help.forEach(el => {
+      b[el] = (b[el] || 0) + 1;
+    })
+console.log('end  ', Object.keys(b))
+console.log('end  ', b)
+    console.log('what day  ', help)
+    this.setState({
+      config: {
+        text: 'Order',
+        type: 'bar',
+        series: [{
+          values: Object.values(b)
+        }],
+        scaleX: {
+          // set scale label
+          label: {
+            text: 'Days',
+            labels: b
+          },
+          // convert text on scale indices
+         
+        },  
+        scaleY: {
+          // scale label with unicode character
+          label: {
+            text: 'Orders'
+          },
         
-        if(this.state.Orders.length===0){
-           return <h1>LOADING</h1>
-          }
-          else{
-        return (
-            <div className="app">
-                <br/>
-            <div className="container">
-            <br/>
-            
-               <br/>
-                <h1>Orders in the last 7 days</h1>
-          <br/> 
-          <ZingChart  data={this.state.config}/>
-       <br/> 
-       <br/> 
-       <Pie></Pie>
-           </div>
-           
-           </div>
+        },
+      }
+    });
+  }
+//pie chart. how many orders for each of the fields
+  OrderPieChart = () => {
+    let fieldOrder = [];
+    let help = [];
+    //all space id of orders
+    this.state.Orders.map((order) => { fieldOrder.push(order.spaceId) });
+//comparing with spaces to check which space id match to the field
+    fieldOrder.forEach(element => {
+      this.state.Spaces.map((space) => { if (element === space.spaceId) { help.push(space.field) } })
+    })
+//how many spaces in each field 
+    let b = {};
+    help.forEach(el => {
+      b[el] = (b[el] || 0) + 1;
+    })
 
-        );
-    }}
+    //console.log('gooooood  ;',b);
+    this.setState({
+      pieC: {
+        labels: ['Art', 'Beauty', 'Sport'],
+        datasets: [
+          {
+            label: "",
+            backgroundColor: [
+              '#20baaf',
+              '#52ded4',
+              '#1e6b66',
+              '#00736b',
+              '#13423f'
+            ],
+            data: Object.values(b)
+          }
+        ]
+      }
+    });
+  }
+
+  render() {
+      return (
+        <div className="app">
+          <br />
+          <div className="container">
+            <br />
+
+            <br />
+            <h1>Orders in the last 7 days</h1>
+            <br />
+            <ZingChart data={this.state.config} />
+            <br />
+            <br />
+            <CanvasJSChart options={this.state.options} />
+            <br />
+            <br />
+            <Pie ref={this.chartReference}
+              data={this.state.pieC}
+              options={{
+                title: {
+                  display: true,
+                  text: "",
+                  fontSize: 20
+                },
+                legend: {
+                  display: true,
+                  position: 'right'
+                }
+              }}
+            />
+          </div>
+
+        </div>
+
+      );
+    
+  }
 }
