@@ -238,7 +238,7 @@ class Details extends Component {
     }
     return (
       <Ripple>
-        <div className="app">
+        <div className="appContainer" ref={(el) => this.appContainer = el}>
           <br />
           <Button onClick={this.handlePDFExport}>Export to PDF</Button>
           <Button primary={true} onClick={this.handleShare}>Share</Button>

@@ -18,7 +18,7 @@ export default class Charts extends Component {
       OrderDays: [],
 
 
-      options: {//start of Pie chart
+    /*   options: {//start of Pie chart
         animationEnabled: true,
         exportEnabled: true,
         theme: "light1",
@@ -35,7 +35,7 @@ export default class Charts extends Component {
             { y: 4, label: "Sport" }
           ]
         }]
-      },
+      }, */
 
     }
 
@@ -146,7 +146,7 @@ export default class Charts extends Component {
           <ZingChart data={this.state.config} />
           <br />
           <br />
-          <CanvasJSChart options={this.state.options} />
+          {/* <CanvasJSChart options={this.state.options} /> */}
           <br />
           <br />
           <Pie ref={this.chartReference}
