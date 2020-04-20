@@ -169,6 +169,7 @@ export default class Charts extends Component {
           <h1>Number of orders per field</h1>
           <br />
           <br />
+          <h1>Number of orders per field</h1>
           <Pie ref={this.chartReference}
             data={this.state.pieC}
             options={{

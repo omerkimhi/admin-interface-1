@@ -6,7 +6,7 @@ class NavBar extends Component {
     return ( 
         
                <Navbar bg="dark" variant="dark">
-               <Navbar.Brand >Spazio Admin</Navbar.Brand>
+               <Navbar.Brand > <img style={{height:50 }}  src="https://i.imgur.com/LzYGyMb.png" alt="logoimage"></img> Spazio Admin</Navbar.Brand>
                <Nav className="mr-auto">
                <Nav.Link href="/details">Details</Nav.Link>
                <Nav.Link href="/SpaceTable">Spaces</Nav.Link>
