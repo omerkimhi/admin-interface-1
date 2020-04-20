@@ -166,6 +166,7 @@ export default class Charts extends Component {
           <br />
           <br />
           {/* <CanvasJSChart options={this.state.options} /> */}
+          <h1>Number of orders per field</h1>
           <br />
           <br />
           <Pie ref={this.chartReference}
