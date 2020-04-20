@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import ReactDOM from 'react-dom';
 import './details.css';
+
 import 'bootstrap-4-grid/css/grid.min.css';
 
 //PDF, SHARE,RIPPLE

@@ -4,7 +4,8 @@ import { Navbar, Nav} from 'react-bootstrap';
 class NavBar extends Component {
   render() {
     return ( 
-        
+        <div>
+          <br/>
                <Navbar bg="dark" variant="dark">
                <Navbar.Brand > <img style={{height:50 }}  src="https://i.imgur.com/LzYGyMb.png" alt="logoimage"></img> Spazio Admin</Navbar.Brand>
                <Nav className="mr-auto">
@@ -14,7 +15,8 @@ class NavBar extends Component {
                <Nav.Link href="/Charts">Orders</Nav.Link>
                <Nav.Link className="justify-content-end" href="/">Sign Out</Nav.Link>
                </Nav>
-               </Navbar>      
+               </Navbar>  
+               </div>    
     );}
       
 }

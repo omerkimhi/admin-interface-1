@@ -9,7 +9,7 @@ import './login.css';
             <div>
             <br/>
             <br/>
-            <div className="container">
+            <div className="container login">
             <br/>
             <br/>
             <form>

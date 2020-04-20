@@ -1,7 +1,12 @@
+.login{
+  width: 500px;
+  border-radius: 25px;
+  box-shadow: 5px 10px  #888888;
+}
+
 .container {
     
     background-color: white;
-    
     font-weight: bold;
   }
   h3,label  {
