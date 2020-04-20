@@ -4,9 +4,9 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from './NavBar/NavBar';
 
 //CLASSES
-import User from './Classes/User';
-import Space from './Classes/Space';
-import Order from './Classes/Order';
+import User from '../Classes/User';
+import Space from '../Classes/Space';
+import Order from '../Classes/Order';
 //COMPONENTS
 import Details from '../Components/Details/details';
 import SpaceTable from '../Components/Tables/SpaceTable';
@@ -16,6 +16,7 @@ import Charts from '../Components/Charts/Charts';
 
 
 class Dashboard extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
@@ -148,6 +149,9 @@ class Dashboard extends Component {
       );
   };
 
+
+
+  
   render() {
 
     if (this.state.Spaces.length === 0 || this.state.Orders.length === 0|| this.state.Users.length === 0) {

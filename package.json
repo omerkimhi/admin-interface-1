@@ -36,6 +36,7 @@
     "material-table": "^1.57.2",
     "moment": "^2.24.0",
     "react": "^16.13.1",
+    "react-activity": "^1.2.2",
     "react-bootstrap": "^1.0.0",
     "react-bs-datatable": "^2.1.0",
     "react-chartjs-2": "^2.9.0",
