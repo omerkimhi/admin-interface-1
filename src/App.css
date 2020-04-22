@@ -40,3 +40,8 @@
 .footer{
   text-align: center;
 }
+
+.chart{
+  height: 500px;
+  width: 500px;
+}

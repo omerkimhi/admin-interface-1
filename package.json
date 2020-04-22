@@ -35,6 +35,7 @@
     "igniteui-react-charts": "^16.11.8",
     "igniteui-react-core": "^16.11.8",
     "material-table": "^1.57.2",
+    "mdbreact": "^4.25.6",
     "moment": "^2.24.0",
     "react": "^16.13.1",
     "react-activity": "^1.2.2",
