@@ -25,7 +25,7 @@ state = {
 render() {
     return (
     <MDBContainer>
-      <h3 className="mt-5">Doughnut chart</h3>
+      <h3 className="mt-5">{this.props.headLine}</h3>
       <Doughnut data={this.state.dataDoughnut} options={{ responsive: true }} />
     </MDBContainer>
     );

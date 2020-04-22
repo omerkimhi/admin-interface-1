@@ -31,8 +31,8 @@ export default class Charts extends Component {
         <div className="container">
           <br />
           <div className="row">
-            <div className="col">  <DoughnutChart/></div>
-            <div className="col">  <DoughnutChart/></div>                
+            <div className="col">  <DoughnutChart headLine={'HERE WILL BE A CHART'}/></div>
+            <div className="col">  <DoughnutChart  headLine={'HERE WILL BE A CHART'}/></div>                
           </div>
           <br />
           <br />
@@ -45,7 +45,7 @@ export default class Charts extends Component {
           </div>
           </div>
           <div className="row">
-            <LineChart/>
+            <LineChart  Orders={this.props.Orders} />
             <br/>
             <br/>
           </div>
