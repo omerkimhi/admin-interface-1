@@ -23,13 +23,12 @@ class Dashboard extends Component {
     this.state = {
       //for log in
       isLogged: false,
-      userLogged: null,
+      userLogged: "",
       //for fetch data
       Spaces: [],
       Orders: [],
       Users: [],
     };
-
   }
   componentDidMount() {
     this.SpacesApiUrl =
@@ -44,8 +43,6 @@ class Dashboard extends Component {
     this.FetchGetOrders();
 
   }
-
-
   //sets usres in Users
   FetchGetUsers = () => {
     fetch(this.UsersApiUrl, {
@@ -78,7 +75,6 @@ class Dashboard extends Component {
         error => { }
       );
   };
-
   //SPACES
   FetchGetSpaces = () => {
     fetch(this.SpacesApiUrl, {
@@ -154,7 +150,7 @@ class Dashboard extends Component {
       );
   };
 
- /*  checkLogged = (isLog, user) => {
+  checkLogged = (isLog, user) => {
     if (isLog) {
       this.setState({
         isLogged: true,
@@ -162,22 +158,18 @@ class Dashboard extends Component {
 
       })
     }
-  } */
+  }
 
 
   render() {
+
     //login
- 
-  /*   if (!this.state.isLogged) {
+    if (!this.state.isLogged) {
       return (
-        <Router><Login /></Router>
+        <Router><Login isLogged={this.state.isLogged} checkLogged={this.checkLogged} /></Router>
       );
-    }  */
- 
-
-
-    
-      if (this.state.Spaces.length === 0 || this.state.Orders.length === 0 || this.state.Users.length === 0) {
+    } 
+     if (this.state.Spaces.length === 0 || this.state.Orders.length === 0 || this.state.Users.length === 0) {
         return <h1>LOADING</h1>
       }
       else {
