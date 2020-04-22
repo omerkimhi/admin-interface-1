@@ -39,7 +39,6 @@ class Dashboard extends Component {
     this.UsersApiUrl =
       "http://proj.ruppin.ac.il/igroup17/prod/api/user";
 
-
     this.FetchGetUsers();
     this.FetchGetSpaces();
     this.FetchGetOrders();
@@ -168,13 +167,13 @@ class Dashboard extends Component {
 
   render() {
     //login
-/* 
-    if (!this.state.isLogged) {
+ 
+  /*   if (!this.state.isLogged) {
       return (
         <Router><Login /></Router>
       );
-    } */
-
+    }  */
+ 
 
 
     

@@ -74,7 +74,7 @@ export default class Table extends Component {
     fetch(str, {
       method: 'delete'
     })
-
+console.log('str ',str)
   }
 
 

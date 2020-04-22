@@ -3,6 +3,18 @@ import { withRouter} from "react-router-dom";
 import './login.css';
 
  class Login extends Component {
+
+
+
+componentDidMount(){
+    this.AdminApiUrl=
+"http://proj.ruppin.ac.il/igroup17/prod/api/admin";
+
+}
+
+    checkUser=()=>{
+
+    }
      
     render() {
         return (

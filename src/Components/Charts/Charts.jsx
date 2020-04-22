@@ -49,7 +49,11 @@ export default class Charts extends Component {
             <br/>
             <br/>
           </div>
+          <br/>
+            <br/>
         </div>
+        <br/>
+            <br/>
       </div>
     );
   }
