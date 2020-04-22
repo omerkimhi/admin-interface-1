@@ -1,9 +1,11 @@
 import React, { Component } from 'react'
 
 //Charts imports
+
 import { Pie } from 'react-chartjs-2';
 import ZingChart from 'zingchart-react';
-//import CanvasJSReact from '../../assets/canvasjs.react';
+
+
 //var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
 export default class Charts extends Component {
@@ -160,12 +162,19 @@ export default class Charts extends Component {
         <div className="container">
           <br />
           <br />
+          <br />
+          <br />
+         
+          <br />
+          <br />
+          <br />
+          <br />
           <h1>Number of orders per day</h1>
           <br />
           <ZingChart data={this.state.config} />
           <br />
           <br />
-          {/* <CanvasJSChart options={this.state.options} /> */}
+         
           <h1>Number of orders per field</h1>
           <br />
           <br />

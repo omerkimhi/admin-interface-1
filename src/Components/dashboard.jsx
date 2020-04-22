@@ -13,6 +13,7 @@ import SpaceTable from '../Components/Tables/SpaceTable';
 import UserTable from '../Components/Tables/UserTable';
 import Login from "../Components/Login/login";
 import Charts from '../Components/Charts/Charts';
+import Footer from './Footer';
 
 
 class Dashboard extends Component {
@@ -20,6 +21,10 @@ class Dashboard extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      //for log in
+      isLogged: false,
+      userLogged: null,
+      //for fetch data
       Spaces: [],
       Orders: [],
       Users: [],
@@ -40,6 +45,7 @@ class Dashboard extends Component {
     this.FetchGetOrders();
 
   }
+
 
   //sets usres in Users
   FetchGetUsers = () => {
@@ -62,7 +68,7 @@ class Dashboard extends Component {
                   item.PhoneNumber,
                   item.Photo,
                   item.SpaceOwner
-                  
+
 
                 )
             )
@@ -70,7 +76,7 @@ class Dashboard extends Component {
 
           )
         },
-        error => {}
+        error => { }
       );
   };
 
@@ -131,16 +137,16 @@ class Dashboard extends Component {
         result => {
           this.setState({
             Orders: result.map(
-              item => 
-              new Order(
-                item.OrderId,
-                item.SpaceId,
-                item.UserId,
-                item.ReservationDate,
-                item.StartHour,
-                item.EndHour,
-                item.Price,
-                item.OrderDate
+              item =>
+                new Order(
+                  item.OrderId,
+                  item.SpaceId,
+                  item.UserId,
+                  item.ReservationDate,
+                  item.StartHour,
+                  item.EndHour,
+                  item.Price,
+                  item.OrderDate
                 )
             )
           });
@@ -149,31 +155,52 @@ class Dashboard extends Component {
       );
   };
 
+ /*  checkLogged = (isLog, user) => {
+    if (isLog) {
+      this.setState({
+        isLogged: true,
+        userLogged: user,
 
-
-  
-  render() {
-
-    if (this.state.Spaces.length === 0 || this.state.Orders.length === 0|| this.state.Users.length === 0) {
-      return <h1>LOADING</h1>
+      })
     }
-    else {
+  } */
+
+
+  render() {
+    //login
+/* 
+    if (!this.state.isLogged) {
       return (
-
-        <Router>
-          <div> <NavBar></NavBar></div>
-
-
-          <Switch>
-            <Route path="/details"><Details Spaces={this.state.Spaces} Users={this.state.Users}/></Route>
-            <Route path="/SpaceTable"><SpaceTable Spaces={this.state.Spaces} /></Route>
-            <Route path="/UserTable"><UserTable Users={this.state.Users} /></Route>
-            <Route path="/Charts"><Charts Orders={this.state.Orders} Spaces={this.state.Spaces}/></Route>
-            <Route exact path="/"><Login /></Route>
-          </Switch>
-        </Router>
+        <Router><Login /></Router>
       );
+    } */
+
+
+
+    
+      if (this.state.Spaces.length === 0 || this.state.Orders.length === 0 || this.state.Users.length === 0) {
+        return <h1>LOADING</h1>
+      }
+      else {
+        return (
+
+          <Router>
+            <div> <NavBar></NavBar></div>
+
+
+            <Switch>
+              <Route path="/details"><Details Spaces={this.state.Spaces} Users={this.state.Users} /></Route>
+              <Route path="/SpaceTable"><SpaceTable Spaces={this.state.Spaces} /></Route>
+              <Route path="/UserTable"><UserTable Users={this.state.Users} /></Route>
+              <Route path="/Charts"><Charts Orders={this.state.Orders} Spaces={this.state.Spaces} /></Route>
+              <Route exact path="/"><Login /></Route>
+            </Switch>
+            <Footer></Footer>
+          </Router>
+          
+        );
+      }
     }
   }
-}
+
 export default Dashboard;

@@ -34,7 +34,7 @@ import './login.css';
                 </div>
 
                 <button type="submit" onClick={this.checkUser} className="btn btn-primary btn-block" >Login</button>
-                {/* <button onClick={this.btnLogin}>to dashboard</button> */}
+               
                 <br/>
                 <br/>
             </form>
