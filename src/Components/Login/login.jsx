@@ -26,10 +26,12 @@ class Login extends Component {
             method: "GET"
         })
             .then(res => {
-                return res.json();
+                return  res.json();
             })
             .then(res=>{
-                this.setState({isLogged:res},()=>this.props.checkLogged(this.state.isLogged,this.state.userName))
+                this.setState({isLogged:res},()=>
+            
+                {this.props.checkLogged(this.state.isLogged,this.state.userName)})
                    
                 
             })

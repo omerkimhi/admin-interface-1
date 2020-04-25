@@ -11,6 +11,7 @@ import { Button } from '@progress/kendo-react-buttons';
 import { savePDF } from '@progress/kendo-react-pdf';
 import { Ripple } from '@progress/kendo-react-ripple';
 import '@progress/kendo-theme-material/dist/all.css';
+import Container from '@material-ui/core/Container';
 //PIE CHART -SHOWS NUMBER OF SPACES PER FIELD
 import { Pie } from 'react-chartjs-2';
 //DATE TIME STUFF
@@ -253,7 +254,8 @@ class Details extends Component {
     return (
       //Ripple is for pdf and share
       <Ripple>
-        <div className="appContainer" ref={(el) => this.appContainer = el}>
+        <Container ref={(el) => this.appContainer = el}>
+       
           <br />
           <Button onClick={this.handlePDFExport}>Export to PDF</Button>
           <Button primary={true} onClick={this.handleShare}>Share</Button>
@@ -333,7 +335,8 @@ class Details extends Component {
               </div>
             </div>
           </div>
-        </div>
+        
+        </Container>
         {this.state.showDialog &&
           <Dialog title={"Share this report"} onClose={this.handleShare}>
             <p>Please enter the email address/es of the recipient/s.</p>

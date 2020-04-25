@@ -164,15 +164,15 @@ class Dashboard extends Component {
   render() {
 
     //login
-    if (!this.state.isLogged) {
+    /* if (!this.state.isLogged) {
       return (
         <Router><Login isLogged={this.state.isLogged} checkLogged={this.checkLogged} /></Router>
       );
-    } 
+    }  */
      if (this.state.Spaces.length === 0 || this.state.Orders.length === 0 || this.state.Users.length === 0) {
         return <h1>LOADING</h1>
       }
-      else {
+      else  {
         return (
 
           <Router>
