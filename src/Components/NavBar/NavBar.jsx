@@ -14,7 +14,8 @@ const myStyle = {
 class NavBar extends Component {
   render() {
     return ( 
-        
+        <div>
+          <br/>
                <Navbar bg="dark" variant="dark">
                <Navbar.Brand > <img style={{height:50 }}  src="https://i.imgur.com/LzYGyMb.png" alt="logoimage"></img> Spazio Admin</Navbar.Brand>
                <Nav className="mr-auto">
@@ -24,7 +25,8 @@ class NavBar extends Component {
                <NavLink style={myStyle} activeStyle={{fontWeight:'bold'}} to="/Charts">Orders</NavLink>
                <NavLink style={myStyle} activeStyle={{fontWeight:'bold'}} className="justify-content-end" to="/">Sign Out</NavLink>
                </Nav>
-               </Navbar>      
+               </Navbar>  
+               </div>    
     );}
       
 }

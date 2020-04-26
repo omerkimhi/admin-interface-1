@@ -21,23 +21,6 @@ h1,h4 {
     
   }
   
-  .percentage-number {
-    color: rgb(0,114,106);
-    font-size: 50px;
-    font-weight: bold;
-  }
-  .percentage-sign {
-    color: rgb(60, 114, 106);
-    font-size: 40px;
-  }
-  .percentage-container {
-    text-align: center;
-  }
-  .percentage-container:first-child {
-    padding-bottom: 3em;
-  }
-  .container .row div {
-    outline: solid 1px black;
-  }
-
+  
+  
   

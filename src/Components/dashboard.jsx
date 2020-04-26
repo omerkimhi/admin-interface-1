@@ -4,26 +4,31 @@ import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import NavBar from './NavBar/NavBar';
 
 //CLASSES
-import User from './Classes/User';
-import Space from './Classes/Space';
-import Order from './Classes/Order';
+import User from '../Classes/User';
+import Space from '../Classes/Space';
+import Order from '../Classes/Order';
 //COMPONENTS
 import Details from '../Components/Details/details';
 import SpaceTable from '../Components/Tables/SpaceTable';
 import UserTable from '../Components/Tables/UserTable';
 import Login from "../Components/Login/login";
 import Charts from '../Components/Charts/Charts';
+import Footer from './Footer';
 
 
 class Dashboard extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
+      //for log in
+      isLogged: false,
+      userLogged: "",
+      //for fetch data
       Spaces: [],
       Orders: [],
       Users: [],
     };
-
   }
   componentDidMount() {
     this.SpacesApiUrl =
@@ -33,13 +38,11 @@ class Dashboard extends Component {
     this.UsersApiUrl =
       "https://proj.ruppin.ac.il/igroup17/prod/api/user";
 
-
     this.FetchGetUsers();
     this.FetchGetSpaces();
     this.FetchGetOrders();
 
   }
-
   //sets usres in Users
   FetchGetUsers = () => {
     fetch(this.UsersApiUrl, {
@@ -61,7 +64,7 @@ class Dashboard extends Component {
                   item.PhoneNumber,
                   item.Photo,
                   item.SpaceOwner
-                  
+
 
                 )
             )
@@ -69,10 +72,9 @@ class Dashboard extends Component {
 
           )
         },
-        error => {}
+        error => { }
       );
   };
-
   //SPACES
   FetchGetSpaces = () => {
     fetch(this.SpacesApiUrl, {
@@ -130,16 +132,16 @@ class Dashboard extends Component {
         result => {
           this.setState({
             Orders: result.map(
-              item => 
-              new Order(
-                item.OrderId,
-                item.SpaceId,
-                item.UserId,
-                item.ReservationDate,
-                item.StartHour,
-                item.EndHour,
-                item.Price,
-                item.OrderDate
+              item =>
+                new Order(
+                  item.OrderId,
+                  item.SpaceId,
+                  item.UserId,
+                  item.ReservationDate,
+                  item.StartHour,
+                  item.EndHour,
+                  item.Price,
+                  item.OrderDate
                 )
             )
           });
@@ -148,18 +150,19 @@ class Dashboard extends Component {
       );
   };
 
-  render() {
+  checkLogged = (isLog, user) => {
+    if (isLog) {
+      this.setState({
+        isLogged: true,
+        userLogged: user,
 
-    if (this.state.Spaces.length === 0 || this.state.Orders.length === 0|| this.state.Users.length === 0) {
-      return <h1>LOADING</h1>
+      })
     }
-    else {
-      return (
-
-        <Router>
-          <div> <NavBar></NavBar></div>
+  }
 
 
+  render() {
+<Router>
           <Switch>
             <Route path="/details" exact><Details Spaces={this.state.Spaces} Users={this.state.Users}/></Route>
             <Route path="/SpaceTable" exact><SpaceTable Spaces={this.state.Spaces} /></Route>
@@ -168,8 +171,35 @@ class Dashboard extends Component {
             <Route exact path="/"><Login /></Route>
           </Switch>
         </Router>
+    //login
+    /* if (!this.state.isLogged) {
+      return (
+        <Router><Login isLogged={this.state.isLogged} checkLogged={this.checkLogged} /></Router>
       );
+    }  */
+     if (this.state.Spaces.length === 0 || this.state.Orders.length === 0 || this.state.Users.length === 0) {
+        return <h1>LOADING</h1>
+      }
+      else  {
+        return (
+
+          <Router>
+            <div> <NavBar></NavBar></div>
+
+
+            <Switch>
+              <Route path="/details"><Details Spaces={this.state.Spaces} Users={this.state.Users} /></Route>
+              <Route path="/SpaceTable"><SpaceTable Spaces={this.state.Spaces} /></Route>
+              <Route path="/UserTable"><UserTable Users={this.state.Users} /></Route>
+              <Route path="/Charts"><Charts Orders={this.state.Orders} Spaces={this.state.Spaces} /></Route>
+              <Route exact path="/"><Login /></Route>
+            </Switch>
+            <Footer></Footer>
+          </Router>
+          
+        );
+      }
     }
   }
-}
+
 export default Dashboard;
