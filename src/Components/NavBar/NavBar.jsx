@@ -1,5 +1,15 @@
 import React, { Component } from 'react';
 import { Navbar, Nav} from 'react-bootstrap';
+import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
+
+const myStyle = {
+  marginRight: '2vh',
+  color: 'white',
+  hover: {
+      fontWeight: 'bold'
+  }
+
+}
 
 class NavBar extends Component {
   render() {
@@ -8,11 +18,11 @@ class NavBar extends Component {
                <Navbar bg="dark" variant="dark">
                <Navbar.Brand > <img style={{height:50 }}  src="https://i.imgur.com/LzYGyMb.png" alt="logoimage"></img> Spazio Admin</Navbar.Brand>
                <Nav className="mr-auto">
-               <Nav.Link href="/details">Details</Nav.Link>
-               <Nav.Link href="/SpaceTable">Spaces</Nav.Link>
-               <Nav.Link href="/UserTable">Users</Nav.Link>
-               <Nav.Link href="/Charts">Orders</Nav.Link>
-               <Nav.Link className="justify-content-end" href="/">Sign Out</Nav.Link>
+               <NavLink style={myStyle} activeStyle={{fontWeight:'bold'}} to="/details">Details</NavLink>
+               <NavLink style={myStyle} activeStyle={{fontWeight:'bold'}} to="/SpaceTable">Spaces</NavLink>
+               <NavLink style={myStyle} activeStyle={{fontWeight:'bold'}} to="/UserTable">Users</NavLink>
+               <NavLink style={myStyle} activeStyle={{fontWeight:'bold'}} to="/Charts">Orders</NavLink>
+               <NavLink style={myStyle} activeStyle={{fontWeight:'bold'}} className="justify-content-end" to="/">Sign Out</NavLink>
                </Nav>
                </Navbar>      
     );}

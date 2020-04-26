@@ -15,17 +15,17 @@ class appData extends Component {
 
     componentDidMount() {
         this.UsersApiUrl =
-          "http://proj.ruppin.ac.il/igroup17/prod/api/User/";
+          "https://proj.ruppin.ac.il/igroup17/prod/api/User/";
         this.SpacesApiUrl =
-          "http://proj.ruppin.ac.il/igroup17/prod/api/space";
+          "https://proj.ruppin.ac.il/igroup17/prod/api/space";
         this.EquipmentApiUrl =
-          "http://proj.ruppin.ac.il/igroup17/prod/api/Equipment/";
+          "https://proj.ruppin.ac.il/igroup17/prod/api/Equipment/";
         this.FacilitiesApiUrl =
-          "http://proj.ruppin.ac.il/igroup17/prod/api/Facilities/";
+          "https://proj.ruppin.ac.il/igroup17/prod/api/Facilities/";
         this.AvailabilitiesApiUrl =
-          "http://proj.ruppin.ac.il/igroup17/prod/api/Availability/";
+          "https://proj.ruppin.ac.il/igroup17/prod/api/Availability/";
         this.FieldEqApiUrl =
-          "http://proj.ruppin.ac.il/igroup17/prod/api/FieldEq/";
+          "https://proj.ruppin.ac.il/igroup17/prod/api/FieldEq/";
     
         this.FetchGetUsers();
         this.FetchGetSpaces();

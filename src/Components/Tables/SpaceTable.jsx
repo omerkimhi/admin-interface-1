@@ -54,7 +54,7 @@ export default class Table extends Component {
 
   componentDidMount() {
     this.SpacesApiUrl =
-      "http://proj.ruppin.ac.il/igroup17/prod/api/space";
+      "https://proj.ruppin.ac.il/igroup17/prod/api/space";
     this.getSpaceData();
   }
 

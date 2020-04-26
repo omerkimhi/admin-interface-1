@@ -28,7 +28,7 @@ class Pie extends Component {
 
   componentDidMount() {
     this.SpacesApiUrl =
-      "http://proj.ruppin.ac.il/igroup17/Mobile/project/api/Space/";
+      "https://proj.ruppin.ac.il/igroup17/Mobile/project/api/Space/";
     this.FetchGetSpaces();
   }
 

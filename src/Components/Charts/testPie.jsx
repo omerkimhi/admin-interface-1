@@ -32,17 +32,17 @@ export default class PieChart extends Component {
 
   componentDidMount() {
     this.UsersApiUrl =
-      "http://proj.ruppin.ac.il/igroup17/Mobile/project/api/User/";
+      "https://proj.ruppin.ac.il/igroup17/Mobile/project/api/User/";
     this.SpacesApiUrl =
-      "http://proj.ruppin.ac.il/igroup17/Mobile/project/api/Space/";
+      "https://proj.ruppin.ac.il/igroup17/Mobile/project/api/Space/";
     this.EquipmentApiUrl =
-      "http://proj.ruppin.ac.il/igroup17/Mobile/project/api/Equipment/";
+      "https://proj.ruppin.ac.il/igroup17/Mobile/project/api/Equipment/";
     this.FacilitiesApiUrl =
-      "http://proj.ruppin.ac.il/igroup17/Mobile/project/api/Facilities/";
+      "https://proj.ruppin.ac.il/igroup17/Mobile/project/api/Facilities/";
     this.AvailabilitiesApiUrl =
-      "http://proj.ruppin.ac.il/igroup17/Mobile/project/api/Availability/";
+      "https://proj.ruppin.ac.il/igroup17/Mobile/project/api/Availability/";
     this.FieldEqApiUrl =
-      "http://proj.ruppin.ac.il/igroup17/Mobile/project/api/FieldEq/";
+      "https://proj.ruppin.ac.il/igroup17/Mobile/project/api/FieldEq/";
 
     this.FetchGetUsers();
     this.FetchGetSpaces();

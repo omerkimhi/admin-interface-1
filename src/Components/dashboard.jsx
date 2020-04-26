@@ -27,11 +27,11 @@ class Dashboard extends Component {
   }
   componentDidMount() {
     this.SpacesApiUrl =
-      "http://proj.ruppin.ac.il/igroup17/prod/api/space";
+      "https://proj.ruppin.ac.il/igroup17/prod/api/space";
     this.OrdersApiUrl =
-      "http://proj.ruppin.ac.il/igroup17/prod/api/order";
+      "https://proj.ruppin.ac.il/igroup17/prod/api/order";
     this.UsersApiUrl =
-      "http://proj.ruppin.ac.il/igroup17/prod/api/user";
+      "https://proj.ruppin.ac.il/igroup17/prod/api/user";
 
 
     this.FetchGetUsers();
@@ -161,10 +161,10 @@ class Dashboard extends Component {
 
 
           <Switch>
-            <Route path="/details"><Details Spaces={this.state.Spaces} Users={this.state.Users}/></Route>
-            <Route path="/SpaceTable"><SpaceTable Spaces={this.state.Spaces} /></Route>
-            <Route path="/UserTable"><UserTable Users={this.state.Users} /></Route>
-            <Route path="/Charts"><Charts Orders={this.state.Orders} Spaces={this.state.Spaces}/></Route>
+            <Route path="/details" exact><Details Spaces={this.state.Spaces} Users={this.state.Users}/></Route>
+            <Route path="/SpaceTable" exact><SpaceTable Spaces={this.state.Spaces} /></Route>
+            <Route path="/UserTable" exact strict><UserTable Users={this.state.Users} /></Route>
+            <Route path="/Charts" exact><Charts Orders={this.state.Orders} Spaces={this.state.Spaces}/></Route>
             <Route exact path="/"><Login /></Route>
           </Switch>
         </Router>
