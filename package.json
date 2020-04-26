@@ -1,7 +1,7 @@
 {
   "name": "admin-interface",
   "version": "0.1.0",
-  "homepage": "/igroup17/prod/clientadmin2/",
+  "homepage": "/igroup17/prod/clientadmin/",
   "private": true,
   "dependencies": {
     "@material-ui/core": "^4.9.10",
