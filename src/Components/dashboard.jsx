@@ -162,7 +162,7 @@ class Dashboard extends Component {
 
 
   render() {
-<Router>
+      /*     <Router>
           <Switch>
             <Route path="/details" exact><Details Spaces={this.state.Spaces} Users={this.state.Users}/></Route>
             <Route path="/SpaceTable" exact><SpaceTable Spaces={this.state.Spaces} /></Route>
@@ -170,7 +170,7 @@ class Dashboard extends Component {
             <Route path="/Charts" exact><Charts Orders={this.state.Orders} Spaces={this.state.Spaces}/></Route>
             <Route exact path="/"><Login /></Route>
           </Switch>
-        </Router>
+        </Router> */
     //login
     /* if (!this.state.isLogged) {
       return (
