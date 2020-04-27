@@ -4,6 +4,8 @@ import './details.css';
 
 import 'bootstrap-4-grid/css/grid.min.css';
 
+import Card from '../CCCard'
+
 //PDF, SHARE,RIPPLE
 import { Dialog, DialogActionsBar } from '@progress/kendo-react-dialogs';
 import { Input } from '@progress/kendo-react-inputs';
@@ -269,6 +271,11 @@ class Details extends Component {
               <div className="col">
                 <br />
                 <h2>Ranks</h2>
+                <Card
+                rankSportHead={'AVERAGE SPORT RANK'}
+                rankSportNumber={this.state.avgRankSpace}
+                
+                />
                 <br />
                 <h5>AVERAGE TOTAL RANK: </h5><h4>  {this.state.avgRankSpace}</h4>
                 <h5>AVERAGE RANK SPORT:  </h5><h4> {this.state.avgRankSpace}</h4>
