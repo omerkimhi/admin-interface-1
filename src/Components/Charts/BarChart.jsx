@@ -105,7 +105,7 @@ class BarChart extends React.Component {
     render() {
         return (
             <MDBContainer>
-                <h3 className="mt-5">Number of orders per day</h3>
+                <h3 className="mt-5">Trending renting days</h3>
                 <Bar data={this.state.BarC.dataBar} options={this.state.BarC.barChartOptions} />
             </MDBContainer>
         );

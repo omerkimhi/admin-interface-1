@@ -27,15 +27,7 @@ export default class Charts extends Component {
 
     return (
       <div className="app">
-        <br />
         <div className="container">
-          <br />
-          <div className="row">
-            {/* <div className="col">  <DoughnutChart headLine={'HERE WILL BE A CHART'}/></div>
-            <div className="col">  <DoughnutChart  headLine={'HERE WILL BE A CHART'}/></div>                 */}
-          </div>
-          <br />
-          <br />
           <div className="row">
           <div className="chart col">
          <BarChart Orders={this.props.Orders}/>
@@ -43,6 +35,10 @@ export default class Charts extends Component {
           <div className="chart col">
           <PieChart Spaces={this.props.Spaces} Orders={this.props.Orders}/>
           </div>
+          </div>
+          <div className="row">
+             <div className="col">  <DoughnutChart headLine={'Trending equipments in sport field'}/></div>
+            <div className="col">  <DoughnutChart  headLine={'Trending equipments in art field'}/></div>                 
           </div>
           <div className="row">
             {/* <LineChart  Orders={this.props.Orders} /> */}
