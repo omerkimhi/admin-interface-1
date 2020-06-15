@@ -41,7 +41,7 @@ export default class Charts extends Component {
             <div className="col">  <DoughnutChart  headLine={'Trending equipments in art field'}/></div>                 
           </div>
           <div className="row">
-            {/* <LineChart  Orders={this.props.Orders} /> */}
+             <LineChart  Orders={this.props.Orders} /> 
             <br/>
             <br/>
           </div>

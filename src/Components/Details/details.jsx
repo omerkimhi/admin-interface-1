@@ -4,8 +4,6 @@ import './details.css';
 
 import 'bootstrap-4-grid/css/grid.min.css';
 
-import Card from '../CCCard'
-
 //PDF, SHARE,RIPPLE
 import { Dialog, DialogActionsBar } from '@progress/kendo-react-dialogs';
 import { Input } from '@progress/kendo-react-inputs';
@@ -18,6 +16,10 @@ import Container from '@material-ui/core/Container';
 import { Pie } from 'react-chartjs-2';
 //DATE TIME STUFF
 import * as moment from 'moment';
+
+import Card from '../Details/CCCardStat.jsx';
+
+
 
 class Details extends Component {
 
@@ -270,12 +272,11 @@ class Details extends Component {
             <div className="row">
               <div className="col">
                 <br />
-                <h2>Ranks</h2>
-                <Card
-                rankSportHead={'AVERAGE SPORT RANK'}
-                rankSportNumber={this.state.avgRankSpace}
+                <Card 
                 
-                />
+                >
+                </Card>
+                <h2>Ranks</h2>
                 <br />
                 <h5>AVERAGE TOTAL RANK: </h5><h4>  {this.state.avgRankSpace}</h4>
                 <h5>AVERAGE RANK SPORT:  </h5><h4> {this.state.avgRankSpace}</h4>
