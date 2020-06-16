@@ -273,13 +273,13 @@ class Details extends Component {
               <div className="col">
                 <br />
                 <Card 
-                
+               sportAvg={this.state.avgRankSport}
                 >
                 </Card>
                 <h2>Ranks</h2>
                 <br />
                 <h5>AVERAGE TOTAL RANK: </h5><h4>  {this.state.avgRankSpace}</h4>
-                <h5>AVERAGE RANK SPORT:  </h5><h4> {this.state.avgRankSpace}</h4>
+                <h5>AVERAGE RANK SPORT:  </h5><h4> {this.state.avgRankSport}</h4>
                 <h5>AVERAGE RANK ART:  </h5><h4> {this.state.avgRankArt}</h4>
                 <h5>AVERAGE RANK BEAUTY: </h5><h4> {this.state.avgRankBeauty}</h4>
                 <h4>TOP RATED SPACE BY FIELD</h4>

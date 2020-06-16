@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-
+import ChartComp from './ChartComp'
 //Charts imports
 import LineChart from './LineChart';
 import BarChart from './BarChart';
@@ -16,6 +16,7 @@ export default class Charts extends Component {
       Spaces: this.props.Spaces,
       OrderDays: [],
       pieC:null,   
+      ChartArray:['line','bar','line','bar']
     
     }
   }
@@ -24,11 +25,17 @@ export default class Charts extends Component {
   
 
   render() {
+console.log(this.state.Spaces)
 
     return (
-      <div className="app">
-        <div className="container">
-          <div className="row">
+      <div className="app" style={{}}>
+        
+        <div className="container" style={{display:'flex',flexWrap:'wrap',justifyContent:'space-between',minWidth:'90%'}}>
+{this.state.ChartArray.map((item,index)=>{
+  return <div style={{width:'45%',paddingTop:'5vh'}}> <ChartComp Spaces={this.state.Spaces} height={'40vh'} number={index} type={item}></ChartComp></div>
+})}
+         
+          {/* <div className="row">
           <div className="chart col">
          <BarChart Orders={this.props.Orders}/>
           </div>   
@@ -46,7 +53,7 @@ export default class Charts extends Component {
             <br/>
           </div>
           <br/>
-            <br/>
+            <br/> */}
         </div>
         <br/>
             <br/>
