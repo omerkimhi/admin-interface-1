@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import './details.css';
 
 import 'bootstrap-4-grid/css/grid.min.css';
-
+import { ListGroup } from 'react-bootstrap';
 //PDF, SHARE,RIPPLE
 import { Dialog, DialogActionsBar } from '@progress/kendo-react-dialogs';
 import { Input } from '@progress/kendo-react-inputs';
@@ -238,28 +238,28 @@ class Details extends Component {
 
   render() {
 
-    //PIE CHART DATA
-    const state = {
-      labels: ['Art', 'Beauty', 'Sport'],
-      datasets: [
-        {
-          label: "",
-          backgroundColor: [
-            '#20baaf',
-            '#52ded4',
-            '#1e6b88',
-           
-          ],
-
-          data: [this.state.artSpaces.length, this.state.beautySpaces.length, this.state.sportSpaces.length]
-        }
-      ]
-    }
+    /*  //PIE CHART DATA
+     const state = {
+       labels: ['Art', 'Beauty', 'Sport'],
+       datasets: [
+         {
+           label: "",
+           backgroundColor: [
+             '#20baaf',
+             '#52ded4',
+             '#1e6b88',
+            
+           ],
+ 
+           data: [this.state.artSpaces.length, this.state.beautySpaces.length, this.state.sportSpaces.length]
+         }
+       ]
+     } */
     return (
       //Ripple is for pdf and share
       <Ripple>
         <Container ref={(el) => this.appContainer = el}>
-       
+
           <br />
           <Button onClick={this.handlePDFExport}>Export to PDF</Button>
           <Button primary={true} onClick={this.handleShare}>Share</Button>
@@ -272,78 +272,81 @@ class Details extends Component {
             <div className="row">
               <div className="col">
                 <br />
-                <Card 
-               sportAvg={this.state.avgRankSport}
-                >
-                </Card>
-                <h2>Ranks</h2>
-                <br />
-                <h5>AVERAGE TOTAL RANK: </h5><h4>  {this.state.avgRankSpace}</h4>
-                <h5>AVERAGE RANK SPORT:  </h5><h4> {this.state.avgRankSport}</h4>
-                <h5>AVERAGE RANK ART:  </h5><h4> {this.state.avgRankArt}</h4>
-                <h5>AVERAGE RANK BEAUTY: </h5><h4> {this.state.avgRankBeauty}</h4>
-                <h4>TOP RATED SPACE BY FIELD</h4>
-                <h5>SPORT: </h5> <h4> {this.state.topRankSport}</h4>
-                <h5>ART: </h5> <h4> {this.state.topRankArt}</h4>
-                <h5>BEAUTY: </h5> <h4> {this.state.topRankBeauty}</h4>
+                <Card header={"RANKS"}
+                  sport={"AVERAGE RANK SPORT:"}
+                  dataSport={this.state.avgRankSport}
+                  art={"AVERAGE RANK ART:"}
+                  dataArt={this.state.avgRankArt}
+                  beauty={"AVERAGE RANK BEAUTY:"}
+                  dataBeauty={this.state.avgRankBeauty}
+                />
+                <br/>
+                <Card header={"TOP RATED SPACE BY FIELD"}
+                  sport={"SPORT:"}
+                  dataSport={this.state.topRankSport}
+                  art={"ART:"}
+                  dataArt={this.state.topRankArt}
+                  beauty={"BEAUTY:"}
+                  dataBeauty={this.state.topRankBeauty}
+                />
               </div>
               <div className="col">
                 <br />
-                <h2>Fields</h2>
-                <br />
-                <h5>SPORT Number of spaces: </h5><h4> {this.state.sportSpaces.length}</h4>
-                <br />
-                <h5>ART Number of spaces:   </h5><h4> {this.state.artSpaces.length}</h4>
-                <br />
-                <h5>Beauty Number of spaces: </h5><h4> {this.state.beautySpaces.length}</h4>
-                <br />
-                <Pie
-                  data={state}
-                  options={{
-                    title: {
-                      display: true,
-                      text: "",
-                      fontSize: 20
-                    },
-                    legend: {
-                      display: true,
-                      position: 'right'
-                    }
-                  }}
+                <Card header={"Fields"}
+                  sport={"SPORT Number of spaces:"}
+                  dataSport={this.state.sportSpaces.length}
+                  art={"ART Number of spaces:"}
+                  dataArt={this.state.artSpaces.length}
+                  beauty={"Beauty Number of spaces:"}
+                  dataBeauty={this.state.beautySpaces.length}
+                />
+              </div>
+              <div className="col">
+                 <Card header={"Data Base"}
+                  sport={"Number of spaces in DB:"}
+                  dataSport={this.props.Spaces.length}
+                  art={"Number of spaces added in last 7 days:"}
+                  dataArt={this.state.SpaceInWeek.length}
+                  beauty={"Number of spaces added in last 30 days:"}
+                  dataBeauty={this.state.SpaceInMonth.length}
                 />
               </div>
             </div>
             <div className="row">
               <div className="col">
-                <br />
-                <h2>Prices</h2>
-                <br />
-                <h5>AVERAGE TOTAL PRICE: </h5><h4>  {this.state.spacesPrice} ₪</h4>
-                <h5>Average price in beauty field:  </h5>   <h4>  {this.state.beautyPrice} ₪</h4>
-                <h5>Max price in beauty field: </h5> <h4>  {this.state.beautyMax} ₪</h4>
-                <h5>Min price in beauty field: </h5><h4>  {this.state.beautyMin} ₪</h4>
-                <h5>Average price in sport field: </h5><h4>  {this.state.sportPrice} ₪</h4>
-                <h5>Max price in sport field: </h5><h4>  {this.state.sportMax} ₪</h4>
-                <h5>Min price in sport field: </h5><h4>  {this.state.sportMin} ₪</h4>
-                <h5>Average price in art field: </h5><h4>  {this.state.artPrice} ₪</h4>
-                <h5>Max price in art field: </h5><h4>  {this.state.artMax} ₪</h4>
-                <h5>Min price in art field: </h5><h4>  {this.state.artMin} ₪</h4>
+              <ListGroup variant="flush">
+              <ListGroup.Item><h2>DB STATS</h2></ListGroup.Item>
+                  <ListGroup.Item><h5>Number of spaces in DB: </h5><h4>  {this.props.Spaces.length}</h4></ListGroup.Item>
+                  <ListGroup.Item><h5>Number of spaces added in last 7 days: </h5><h4>{this.state.SpaceInWeek.length}</h4></ListGroup.Item>
+                  <ListGroup.Item><h5>Number of spaces added in last 30 days: </h5><h4>{this.state.SpaceInMonth.length}</h4></ListGroup.Item>
+                  <ListGroup.Item><h5>Number of users: </h5><h4>{this.props.Users.length}</h4></ListGroup.Item>
+                  <ListGroup.Item> <h5>Number of landlords: </h5><h4>{this.state.userType.length}</h4></ListGroup.Item>
+                  <ListGroup.Item>  <h5>Number of tenants: </h5><h4>{this.props.Users.length - this.state.userType.length}</h4></ListGroup.Item>
+                </ListGroup>
+
               </div>
               <div className="col">
                 <br />
-                <h2>Data Base</h2>
-                <br />
-                <h5>Number of spaces in DB: </h5><h4>  {this.props.Spaces.length}</h4>
-                <h5>Number of spaces added in last 7 days: </h5><h4>{this.state.SpaceInWeek.length}</h4>
-                <h5>Number of spaces added in last 30 days: </h5><h4>{this.state.SpaceInMonth.length}</h4>
-                <br />
-                <h5>Number of users: </h5><h4>{this.props.Users.length}</h4>
-                <h5>Number of landlords: </h5><h4>{this.state.userType.length}</h4>
-                <h5>Number of tenants: </h5><h4>{this.props.Users.length - this.state.userType.length}</h4>
+                <ListGroup variant="flush">
+                  <ListGroup.Item><h2>Beauty</h2></ListGroup.Item>
+                  <ListGroup.Item><h5>Average price:</h5><h4>{this.state.beautyPrice} ₪</h4></ListGroup.Item>
+                  <ListGroup.Item> <h5>Max price:</h5><h4>{this.state.beautyMax} ₪</h4></ListGroup.Item>
+                  <ListGroup.Item><h5>Min price:</h5><h4>{this.state.beautyMin} ₪</h4></ListGroup.Item>
+                  <ListGroup.Item><h2>Sport</h2></ListGroup.Item>
+                  <ListGroup.Item><h5>Average price:</h5><h4>{this.state.sportPrice} ₪</h4></ListGroup.Item>
+                  <ListGroup.Item><h5>Max price:</h5><h4>{this.state.sportMax} ₪</h4></ListGroup.Item>
+                  <ListGroup.Item><h5>Min price:</h5><h4>{this.state.sportMin} ₪</h4></ListGroup.Item>
+                  <ListGroup.Item><h2>Art</h2></ListGroup.Item>
+                  <ListGroup.Item><h5>Average price:</h5><h4>{this.state.artPrice} ₪</h4></ListGroup.Item>
+                  <ListGroup.Item><h5>Max price:</h5><h4>{this.state.artMax} ₪</h4></ListGroup.Item>
+                  <ListGroup.Item><h5>Min price:</h5><h4>{this.state.artMin} ₪</h4></ListGroup.Item>
+                </ListGroup>
+
               </div>
+             
             </div>
           </div>
-        
+
         </Container>
         {this.state.showDialog &&
           <Dialog title={"Share this report"} onClose={this.handleShare}>
