@@ -14,6 +14,7 @@ import UserTable from '../Components/Tables/UserTable';
 import Login from "../Components/Login/login";
 import Charts from '../Components/Charts/Charts';
 import Footer from './Footer';
+import Graph from './Graph';
 
 
 class Dashboard extends Component {
@@ -192,7 +193,9 @@ class Dashboard extends Component {
               <Route path="/SpaceTable"><SpaceTable Spaces={this.state.Spaces} /></Route>
               <Route path="/UserTable"><UserTable Users={this.state.Users} /></Route>
               <Route path="/Charts"><Charts Orders={this.state.Orders} Spaces={this.state.Spaces} /></Route>
+
               <Route exact path="/"><Login /></Route>
+              <Route path="/Graph"><Graph></Graph></Route>
             </Switch>
             <Footer></Footer>
           </Router>
