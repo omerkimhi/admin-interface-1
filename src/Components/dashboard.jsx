@@ -13,6 +13,7 @@ import SpaceTable from '../Components/Tables/SpaceTable';
 import UserTable from '../Components/Tables/UserTable';
 import Login from "../Components/Login/login";
 import Charts from '../Components/Charts/Charts';
+import Control from './Control.jsx'
 import Footer from './Footer';
 import Graph from './Graph';
 
@@ -193,7 +194,7 @@ class Dashboard extends Component {
               <Route path="/SpaceTable"><SpaceTable Spaces={this.state.Spaces} /></Route>
               <Route path="/UserTable"><UserTable Users={this.state.Users} /></Route>
               <Route path="/Charts"><Charts Orders={this.state.Orders} Spaces={this.state.Spaces} /></Route>
-
+              <Route path="/Control"><Control/></Route>
               <Route exact path="/"><Login /></Route>
               <Route path="/Graph"><Graph></Graph></Route>
             </Switch>

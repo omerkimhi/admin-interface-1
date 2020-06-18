@@ -23,7 +23,7 @@ class NavBar extends Component {
                <NavLink style={myStyle} activeStyle={{fontWeight:'bold'}} to="/SpaceTable">Spaces</NavLink>
                <NavLink style={myStyle} activeStyle={{fontWeight:'bold'}} to="/UserTable">Users</NavLink>
                <NavLink style={myStyle} activeStyle={{fontWeight:'bold'}} to="/Charts">Orders</NavLink>
-               <NavLink style={myStyle} activeStyle={{fontWeight:'bold'}} className="justify-content-end" to="/Graph">Graph</NavLink>
+               <NavLink style={myStyle} activeStyle={{fontWeight:'bold'}} to="/Control">Control</NavLink>
                <NavLink style={myStyle} activeStyle={{fontWeight:'bold'}} className="justify-content-end" to="/">Sign Out</NavLink>
                </Nav>
                </Navbar>  
