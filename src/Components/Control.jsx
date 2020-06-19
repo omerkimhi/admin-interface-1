@@ -6,9 +6,7 @@ import 'bootstrap-4-grid/css/grid.min.css';
 import LineChart from '../Components/Charts/LineChart.jsx'
 
 export default class Control extends Component {
-    static propTypes = {
-        prop: PropTypes
-    }
+   
 
     render() {
         return (

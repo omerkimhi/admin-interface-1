@@ -26,6 +26,7 @@ class appData extends Component {
           "https://proj.ruppin.ac.il/igroup17/prod/api/Availability/";
         this.FieldEqApiUrl =
           "https://proj.ruppin.ac.il/igroup17/prod/api/FieldEq/";
+
     
         this.FetchGetUsers();
         this.FetchGetSpaces();
@@ -33,8 +34,231 @@ class appData extends Component {
         this.FetchGetFacilities();
         this.FetchGetAvailabilities();
         this.FetchGetFieldsEq();
+        this.FetchGetArtFilters();
+        this.FetchGetArtFiltersData();
+        this.FetchGetBeautyFilter();
+        this.FetchGetBeautyFilterData();
+        this.FetchGetSportFilters();
+        this.FetchGetSportFiltersData();
+        this.FetchGetFavourites();
+        this.FetchGetSpaceVisits();
+        this.FetchGetRatings();
+        this.FetchGetSearches();
+        this.FetchGetSpacesData();
+
     
       }
+
+      FetchGetArtFilters = () => {
+        fetch("https://proj.ruppin.ac.il/igroup17/proj/api/ArtFilter", {
+          method: "GET"
+        })
+          .then(res => {
+            return res.json();
+          })
+          .then(
+            result => {
+              this.setState({
+                ArtFilters: [...result]
+
+              },()=>{console.log("result ArtFilters:",result)});
+            },
+            error => {
+              console.log('Fetch Error :', err);
+             }
+          );
+      };
+      FetchGetArtFiltersData = () => {
+        fetch("https://proj.ruppin.ac.il/igroup17/proj/api/ArtFilter/Data", {
+          method: "GET"
+        })
+          .then(res => {
+            return res.json();
+          })
+          .then(
+            result => {
+              this.setState({
+                ArtFiltersData: [...result]
+
+              },()=>{console.log("result ArtFiltersData:",result)});
+            },
+            error => {
+              console.log('Fetch Error :', err);
+             }
+          );
+      };
+      FetchGetBeautyFilter = () => {
+        fetch("https://proj.ruppin.ac.il/igroup17/proj/api/BeautyFilter", {
+          method: "GET"
+        })
+          .then(res => {
+            return res.json();
+          })
+          .then(
+            result => {
+              this.setState({
+                BeautyFilters: [...result]
+
+              },()=>{console.log("result BeautyFilters:",result)});
+            },
+            error => {
+              console.log('Fetch Error :', err);
+             }
+          );
+      };
+      FetchGetBeautyFilterData = () => {
+        fetch("https://proj.ruppin.ac.il/igroup17/proj/api/api/BeautyFilter/Data", {
+          method: "GET"
+        })
+          .then(res => {
+            return res.json();
+          })
+          .then(
+            result => {
+              this.setState({
+                BeautyFiltersData: [...result]
+
+              },()=>{console.log("result BeautyFiltersData:",result);
+            });
+            },
+            error => {
+              console.log('Fetch Error :', err);
+             }
+          );
+      };
+      FetchGetSportFilters = () => {
+        fetch("https://proj.ruppin.ac.il/igroup17/proj/api/SportFilter", {
+          method: "GET"
+        })
+          .then(res => {
+            return res.json();
+          })
+          .then(
+            result => {
+              this.setState({
+                SportFilters: [...result]
+
+              },()=>{console.log("result ArtFilters:",result)});
+            },
+            error => {
+              console.log('Fetch Error :', err);
+             }
+          );
+      };
+      FetchGetSportFiltersData = () => {
+        fetch("https://proj.ruppin.ac.il/igroup17/proj/api/SportFilter/Data", {
+          method: "GET"
+        })
+          .then(res => {
+            return res.json();
+          })
+          .then(
+            result => {
+              this.setState({
+                SportFiltersData: [...result]
+
+              },()=>{console.log("result SportFiltersData:",result)});
+            },
+            error => {
+              console.log('Fetch Error :', err);
+             }
+          );
+      };
+      FetchGetSpaceVisits = () => {
+        fetch("https://proj.ruppin.ac.il/igroup17/proj/api/SpaceVisit", {
+          method: "GET"
+        })
+          .then(res => {
+            return res.json();
+          })
+          .then(
+            result => {
+              this.setState({
+                SpaceVisits: [...result]
+
+              },()=>{console.log("result SpaceVisit:",result)});
+            },
+            error => {
+              console.log('Fetch Error :', err);
+             }
+          );
+      };
+      FetchGetSearches = () => {
+        fetch("https://proj.ruppin.ac.il/igroup17/proj/api/Search", {
+          method: "GET"
+        })
+          .then(res => {
+            return res.json();
+          })
+          .then(
+            result => {
+              this.setState({
+                SpaceVisits: [...result]
+
+              },()=>{console.log("result Searches:",result)});
+            },
+            error => {
+              console.log('Fetch Error :', err);
+             }
+          );
+      };
+      FetchGetRatings = () => {
+        fetch("https://proj.ruppin.ac.il/igroup17/proj/api/Rating", {
+          method: "GET"
+        })
+          .then(res => {
+            return res.json();
+          })
+          .then(
+            result => {
+              this.setState({
+                SpaceVisits: [...result]
+
+              },()=>{console.log("result Ratings:",result)});
+            },
+            error => {
+              console.log('Fetch Error :', err);
+             }
+          );
+      };
+      FetchGetFavourites = () => {
+        fetch("https://proj.ruppin.ac.il/igroup17/proj/api/Favourite", {
+          method: "GET"
+        })
+          .then(res => {
+            return res.json();
+          })
+          .then(
+            result => {
+              this.setState({
+                Favourites: [...result]
+
+              },()=>{console.log("result Favourites:",result)});
+            },
+            error => {
+              console.log('Fetch Error :', err);
+             }
+          );
+      };
+      FetchGetSpacesData = () => {
+        fetch("https://proj.ruppin.ac.il/igroup17/proj/api/api/SpaceData/AllSpaces", {
+          method: "GET"
+        })
+          .then(res => {
+            return res.json();
+          })
+          .then(
+            result => {
+              this.setState({
+                SpacesData: [...result]
+
+              },()=>{console.log("result SpacesData:",result)});
+            },
+            error => {
+              console.log('Fetch Error :', err);
+             }
+          );
+      };
 
       FetchGetUsers = () => {
         fetch(this.UsersApiUrl, {
@@ -59,7 +283,9 @@ class appData extends Component {
                 )
               });
             },
-            error => { }
+            error => {
+              console.log('Fetch Error :', err);
+             }
           );
       };
     

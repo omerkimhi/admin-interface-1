@@ -32,7 +32,7 @@ console.log(this.state.Spaces)
         
         <div className="container" style={{display:'flex',flexWrap:'wrap',justifyContent:'space-between',minWidth:'90%'}}>
 {this.state.ChartArray.map((item,index)=>{
-  return <div style={{width:'45%',paddingTop:'5vh'}}> <ChartComp Spaces={this.state.Spaces} height={'40vh'} number={index} type={item}></ChartComp></div>
+  return <div key={index} style={{width:'45%',paddingTop:'5vh'}}> <ChartComp key ={index*(1)} Spaces={this.state.Spaces} height={'40vh'} number={index} type={item}></ChartComp></div>
 })}
          
           {/* <div className="row">

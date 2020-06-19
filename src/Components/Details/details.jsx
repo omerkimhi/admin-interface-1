@@ -18,6 +18,7 @@ import { Pie } from 'react-chartjs-2';
 import * as moment from 'moment';
 
 import Card from '../Details/CCCardStat.jsx';
+import BarChart from '../Charts/BarChart';
 
 
 

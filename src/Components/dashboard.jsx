@@ -40,11 +40,309 @@ class Dashboard extends Component {
     this.UsersApiUrl =
       "https://proj.ruppin.ac.il/igroup17/prod/api/user";
 
-    this.FetchGetUsers();
-    this.FetchGetSpaces();
-    this.FetchGetOrders();
+      this.FetchGetUsers();
+      this.FetchGetSpaces();
+      this.FetchGetOrders();
+      //this.FetchGetEquipment();
+      //this.FetchGetFacilities();
+      //this.FetchGetAvailabilities();
+      //this.FetchGetFieldsEq();
+      this.FetchGetArtFilters();
+      this.FetchGetArtFiltersData();
+      this.FetchGetBeautyFilter();
+      this.FetchGetBeautyFilterData();
+      this.FetchGetSportFilters();
+      this.FetchGetSportFiltersData();
+      this.FetchGetFavourites();
+      this.FetchGetSpaceVisits();
+      this.FetchGetRatings();
+      this.FetchGetSearches();
+      this.FetchGetSpacesData();
 
-  }
+  
+    }
+
+    FetchGetArtFilters = () => {
+      fetch("https://proj.ruppin.ac.il/igroup17/proj/api/ArtFilter", {
+        method: "GET"
+      })
+        .then(res => {
+          return res.json();
+        })
+        .then(
+          result => {
+            this.setState({
+              ArtFilters: [...result]
+
+            },()=>{console.log("result ArtFilters:",result)});
+          },
+          error => {
+            console.log('Fetch Error :', error);
+           }
+        );
+    };
+    FetchGetArtFiltersData = () => {
+      fetch("https://proj.ruppin.ac.il/igroup17/proj/api/ArtFilter/Data", {
+        method: "GET"
+      })
+        .then(res => {
+          return res.json();
+        })
+        .then(
+          result => {
+            var temp = [	  {Name:"Counter",Value:result.Counter},
+              {Name:"minCapacityAvg",Value:result.minCapacityAvg},
+              {Name:"maxCapacityAvg",Value:result.maxCapacityAvg},
+              {Name:"minPriceAvg",Value:result.minPriceAvg},
+              {Name:"maxPriceAvg",Value:result.maxPriceAvg},
+              {Name:"MaxDistanceAvg",Value:result.MaxDistanceAvg},
+              {Name:"AvgStartTimeMinutes",Value:result.AvgStartTimeMinutes},
+              {Name:"AvgEndTimeMinutes",Value:result.AvgEndTimeMinutes},
+              {Name:"ToiletCounter",Value:result.ToiletCounter},
+              {Name:"ParkingCounter",Value:result.ParkingCounter},
+              {Name:"KitchenCounter",Value:result.KitchenCounter},
+              {Name:"IntercomCounter",Value:result.IntercomCounter},
+              {Name:"AccessibleCounter",Value:result.AccessibleCounter},
+              {Name:"AirConditionCounter",Value:result.AirConditionCounter},
+              {Name:"WiFiCounter",Value:result.WiFiCounter},
+              {Name:"CanvasCounter",Value:result.CanvasCounter},
+              {Name:"GreenScreenCounter",Value:result.GreenScreenCounter},
+              {Name:"PottersWheelCounter",Value:result.PottersWheelCounter},
+              {Name:"GuitarCounter",Value:result.GuitarCounter},
+              {Name:"DrumCounter",Value:result.DrumCounter},
+              {Name:"SpeakerCounter",Value:result.SpeakerCounter}];
+            this.setState({
+              ArtFiltersData: temp,
+              ArtCounters: [temp[0],temp[8],temp[9],temp[10],temp[11],temp[12],temp[13],temp[14]]
+
+            },()=>{console.log("result ArtFiltersData:",result);console.log("result BeautyFiltersData:",result["Counter"]);console.log("result BeautyFiltersData:",result.Counter);console.log("temp",temp);
+          });
+          },
+          error => {
+            console.log('Fetch Error :', error);
+           }
+        );
+    };
+    FetchGetBeautyFilter = () => {
+      fetch("https://proj.ruppin.ac.il/igroup17/proj/api/BeautyFilter", {
+        method: "GET"
+      })
+        .then(res => {
+          return res.json();
+        })
+        .then(
+          result => {
+            this.setState({
+              BeautyFilters: [...result],
+
+
+            },()=>{console.log("result BeautyFilters:",result)});
+          },
+          error => {
+            console.log('Fetch Error :', error);
+           }
+        );
+    };
+    FetchGetBeautyFilterData = () => {
+      fetch("https://proj.ruppin.ac.il/igroup17/proj/api/BeautyFilter/Data", {
+        method: "GET"
+      })
+        .then(res => {
+          return res.json();
+        })
+        .then(
+          result => {
+            var temp = [	  {Name:"Counter",Value:result.Counter},
+              {Name:"minCapacityAvg",Value:result.minCapacityAvg},
+              {Name:"maxCapacityAvg",Value:result.maxCapacityAvg},
+              {Name:"minPriceAvg",Value:result.minPriceAvg},
+              {Name:"maxPriceAvg",Value:result.maxPriceAvg},
+              {Name:"MaxDistanceAvg",Value:result.MaxDistanceAvg},
+              {Name:"AvgStartTimeMinutes",Value:result.AvgStartTimeMinutes},
+              {Name:"AvgEndTimeMinutes",Value:result.AvgEndTimeMinutes},
+              {Name:"ToiletCounter",Value:result.ToiletCounter},
+              {Name:"ParkingCounter",Value:result.ParkingCounter},
+              {Name:"KitchenCounter",Value:result.KitchenCounter},
+              {Name:"IntercomCounter",Value:result.IntercomCounter},
+              {Name:"AccessibleCounter",Value:result.AccessibleCounter},
+              {Name:"AirConditionCounter",Value:result.AirConditionCounter},
+              {Name:"WiFiCounter",Value:result.WiFiCounter},
+              {Name:"DryersCounter",Value:result.DryersCounter},
+              {Name:"NailPolishRacksCounter",Value:result.NailPolishRacksCounter},
+              {Name:"ReceptionAreaSeatingandDecorCounter",Value:result.ReceptionAreaSeatingandDecorCounter},
+              {Name:"LaserHairRemovalCounter",Value:result.LaserHairRemovalCounter},
+              {Name:"PedicureManicureCounter",Value:result.PedicureManicureCounter},
+              {Name:"HairColoringKitCounter",Value:result.HairColoringKitCounter}];
+            this.setState({
+              BeautyFiltersData: temp,
+              BeautyCounters: [temp[0],temp[8],temp[9],temp[10],temp[11],temp[12],temp[13],temp[14]]
+
+
+            },()=>{console.log("result BeautyFiltersData:",result);console.log("result BeautyFiltersData:",result["Counter"]);console.log("result BeautyFiltersData:",result.Counter);console.log("temp",temp);
+          });
+          },
+          error => {
+            console.log('Fetch Error :', error);
+           }
+        );
+    };
+    FetchGetSportFilters = () => {
+      fetch("https://proj.ruppin.ac.il/igroup17/proj/api/SportFilter", {
+        method: "GET"
+      })
+        .then(res => {
+          return res.json();
+        })
+        .then(
+          result => {
+            this.setState({
+              SportFilters: [...result]
+
+            },()=>{console.log("result ArtFilters:",result)});
+          },
+          error => {
+            console.log('Fetch Error :', error);
+           }
+        );
+    };
+    FetchGetSportFiltersData = () => {
+      fetch("https://proj.ruppin.ac.il/igroup17/proj/api/SportFilter/Data", {
+        method: "GET"
+      })
+        .then(res => {
+          return res.json();
+        })
+        .then(
+          result => {
+            var temp = [	  {Name:"Counter",Value:result.Counter},
+              {Name:"minCapacityAvg",Value:result.minCapacityAvg},
+              {Name:"maxCapacityAvg",Value:result.maxCapacityAvg},
+              {Name:"minPriceAvg",Value:result.minPriceAvg},
+              {Name:"maxPriceAvg",Value:result.maxPriceAvg},
+              {Name:"MaxDistanceAvg",Value:result.MaxDistanceAvg},
+              {Name:"AvgStartTimeMinutes",Value:result.AvgStartTimeMinutes},
+              {Name:"AvgEndTimeMinutes",Value:result.AvgEndTimeMinutes},
+              {Name:"ToiletCounter",Value:result.ToiletCounter},
+              {Name:"ParkingCounter",Value:result.ParkingCounter},
+              {Name:"KitchenCounter",Value:result.KitchenCounter},
+              {Name:"IntercomCounter",Value:result.IntercomCounter},
+              {Name:"AccessibleCounter",Value:result.AccessibleCounter},
+              {Name:"AirConditionCounter",Value:result.AirConditionCounter},
+              {Name:"WiFiCounter",Value:result.WiFiCounter},
+              {Name:"TRXCounter",Value:result.TRXCounter},
+              {Name:"TreadmillCounter",Value:result.TreadmillCounter},
+              {Name:"StationaryBicycleCounter",Value:result.StationaryBicycleCounter},
+              {Name:"BenchCounter",Value:result.BenchCounter},
+              {Name:"DumbellsCounter",Value:result.DumbellsCounter},
+              {Name:"BarbellCounter",Value:result.BarbellCounter}];
+            this.setState({
+              SportFiltersData: temp,
+              SportCounters: [temp[0],temp[8],temp[9],temp[10],temp[11],temp[12],temp[13],temp[14]]
+
+            },()=>{console.log("result SportFiltersData:",result);console.log("result BeautyFiltersData:",result["Counter"]);console.log("result BeautyFiltersData:",result.Counter);console.log("temp",temp);
+          });
+          },
+          error => {
+            console.log('Fetch Error :', error);
+           }
+        );
+    };
+    FetchGetSpaceVisits = () => {
+      fetch("https://proj.ruppin.ac.il/igroup17/proj/api/SpaceVisit", {
+        method: "GET"
+      })
+        .then(res => {
+          return res.json();
+        })
+        .then(
+          result => {
+            this.setState({
+              SpaceVisits: [...result]
+
+            },()=>{console.log("result SpaceVisit:",result)});
+          },
+          error => {
+            console.log('Fetch Error :', error);
+           }
+        );
+    };
+    FetchGetSearches = () => {
+      fetch("https://proj.ruppin.ac.il/igroup17/proj/api/Search", {
+        method: "GET"
+      })
+        .then(res => {
+          return res.json();
+        })
+        .then(
+          result => {
+            this.setState({
+              Searches: [...result]
+              
+
+            },()=>{console.log("result Searches:",result)});
+          },
+          error => {
+            console.log('Fetch Error :', error);
+           }
+        );
+    };
+    FetchGetRatings = () => {
+      fetch("https://proj.ruppin.ac.il/igroup17/proj/api/Rating", {
+        method: "GET"
+      })
+        .then(res => {
+          return res.json();
+        })
+        .then(
+          result => {
+            this.setState({
+              SpaceVisits: [...result]
+
+            },()=>{console.log("result Ratings:",result)});
+          },
+          error => {
+            console.log('Fetch Error :', error);
+           }
+        );
+    };
+    FetchGetFavourites = () => {
+      fetch("https://proj.ruppin.ac.il/igroup17/proj/api/Favourite", {
+        method: "GET"
+      })
+        .then(res => {
+          return res.json();
+        })
+        .then(
+          result => {
+            this.setState({
+              Favourites: [...result]
+
+            },()=>{console.log("result Favourites:",result)});
+          },
+          error => {
+            console.log('Fetch Error :', error);
+           }
+        );
+    };
+    FetchGetSpacesData = () => {
+      fetch("https://proj.ruppin.ac.il/igroup17/proj/api/SpaceData/AllSpaces", {
+        method: "GET"
+      })
+        .then(res => {
+          return res.json();
+        })
+        .then(
+          result => {
+            this.setState({
+              SpacesData: [...result]
+
+            },()=>{console.log("result SpacesData:",result)});
+          },
+          error => {
+            console.log('Fetch Error :', error);
+           }
+        );
+    };
   //sets usres in Users
   FetchGetUsers = () => {
     fetch(this.UsersApiUrl, {
@@ -190,13 +488,13 @@ class Dashboard extends Component {
 
 
             <Switch>
-              <Route path="/details"><Details Spaces={this.state.Spaces} Users={this.state.Users} /></Route>
+              <Route path="/details"><Details Spaces={this.state.Spaces} Users={this.state.Users}  /></Route>
               <Route path="/SpaceTable"><SpaceTable Spaces={this.state.Spaces} /></Route>
               <Route path="/UserTable"><UserTable Users={this.state.Users} /></Route>
               <Route path="/Charts"><Charts Orders={this.state.Orders} Spaces={this.state.Spaces} /></Route>
-              <Route path="/Control"><Control/></Route>
+              <Route path="/Control"><Control /></Route>
               <Route exact path="/"><Login /></Route>
-              <Route path="/Graph"><Graph></Graph></Route>
+              <Route path="/Graph"><Graph ArtFiltersData={this.state.ArtCounters} BeautyFiltersData={this.state.BeautyCounters} SportFiltersData={this.state.SportCounters}></Graph></Route>
             </Switch>
             <Footer></Footer>
           </Router>
