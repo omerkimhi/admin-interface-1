@@ -15,7 +15,7 @@ class Footer extends Component {
     padding: "2rem"
     }}
 >
-  <h4 className="footer"> All rights reserved for SPAZIO Workin' Spaces ltd. </h4> 
+  <h4 className="footer"> All rights reserved for SPAZIO Workin' Spaces ltd. © </h4> 
 </StickyFooter>
         );
     }

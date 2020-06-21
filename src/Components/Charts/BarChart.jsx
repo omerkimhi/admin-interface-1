@@ -21,7 +21,7 @@ class BarChart extends React.Component {
 
         let daysArray = [];
         this.props.Orders.map((order) => {
-            var d = new Date(order.orderDate)
+            var d = new Date(order.reservationDate)
             daysArray.push(d.getDay() + 1);
         })
 
@@ -51,7 +51,7 @@ class BarChart extends React.Component {
                     labels: ["Sunday", "Monday", "Tuesday", "wednesday", "Thursday", "Friday", "Saturday"],
                     datasets: [
                         {
-                            label: "No. of orders",
+                            label: "",
                             data: Object.values(b),
                             backgroundColor: [
                                 "rgba(255, 134,159,0.4)",
@@ -106,7 +106,7 @@ class BarChart extends React.Component {
         return (
             <MDBContainer>
                 <h3 className="mt-5">Trending renting days</h3>
-                <Bar data={this.state.BarC.dataBar} options={this.state.BarC.barChartOptions} />
+                <Bar height={100} data={this.state.BarC.dataBar} options={this.state.BarC.barChartOptions} />
             </MDBContainer>
         );
     }

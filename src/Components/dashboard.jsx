@@ -13,6 +13,8 @@ import SpaceTable from '../Components/Tables/SpaceTable';
 import UserTable from '../Components/Tables/UserTable';
 import Login from "../Components/Login/login";
 import Charts from '../Components/Charts/Charts';
+import Orders from '../Components/Charts/OrdersCharts';
+
 import Control from './Control.jsx'
 import Footer from './Footer';
 import Graph from './Graph';
@@ -98,13 +100,13 @@ class Dashboard extends Component {
               {Name:"MaxDistanceAvg",Value:result.MaxDistanceAvg},
               {Name:"AvgStartTimeMinutes",Value:result.AvgStartTimeMinutes},
               {Name:"AvgEndTimeMinutes",Value:result.AvgEndTimeMinutes},
-              {Name:"ToiletCounter",Value:result.ToiletCounter},
-              {Name:"ParkingCounter",Value:result.ParkingCounter},
-              {Name:"KitchenCounter",Value:result.KitchenCounter},
-              {Name:"IntercomCounter",Value:result.IntercomCounter},
-              {Name:"AccessibleCounter",Value:result.AccessibleCounter},
-              {Name:"AirConditionCounter",Value:result.AirConditionCounter},
-              {Name:"WiFiCounter",Value:result.WiFiCounter},
+              {Name:"Toilet",Value:result.ToiletCounter/result.Counter*100},
+              {Name:"Parking",Value:result.ParkingCounter/result.Counter*100},
+              {Name:"Kitchen",Value:result.KitchenCounter/result.Counter*100},
+              {Name:"Intercom",Value:result.IntercomCounter/result.Counter*100},
+              {Name:"Accessible",Value:result.AccessibleCounter/result.Counter*100},
+              {Name:"AirCondition",Value:result.AirConditionCounter/result.Counter*100},
+              {Name:"WiFi",Value:result.WiFiCounter/result.Counter*100},
               {Name:"CanvasCounter",Value:result.CanvasCounter},
               {Name:"GreenScreenCounter",Value:result.GreenScreenCounter},
               {Name:"PottersWheelCounter",Value:result.PottersWheelCounter},
@@ -113,9 +115,9 @@ class Dashboard extends Component {
               {Name:"SpeakerCounter",Value:result.SpeakerCounter}];
             this.setState({
               ArtFiltersData: temp,
-              ArtCounters: [temp[0],temp[8],temp[9],temp[10],temp[11],temp[12],temp[13],temp[14]]
+              ArtCounters: [temp[8],temp[9],temp[10],temp[11],temp[12],temp[13],temp[14]]
 
-            },()=>{console.log("result ArtFiltersData:",result);console.log("result BeautyFiltersData:",result["Counter"]);console.log("result BeautyFiltersData:",result.Counter);console.log("temp",temp);
+            },()=>{console.log("result ArtFiltersData:",result);console.log("result ArtFiltersData:",result["Counter"]);console.log("result ArtFiltersData:",result.Counter);console.log("temp",temp);
           });
           },
           error => {
@@ -160,13 +162,13 @@ class Dashboard extends Component {
               {Name:"MaxDistanceAvg",Value:result.MaxDistanceAvg},
               {Name:"AvgStartTimeMinutes",Value:result.AvgStartTimeMinutes},
               {Name:"AvgEndTimeMinutes",Value:result.AvgEndTimeMinutes},
-              {Name:"ToiletCounter",Value:result.ToiletCounter},
-              {Name:"ParkingCounter",Value:result.ParkingCounter},
-              {Name:"KitchenCounter",Value:result.KitchenCounter},
-              {Name:"IntercomCounter",Value:result.IntercomCounter},
-              {Name:"AccessibleCounter",Value:result.AccessibleCounter},
-              {Name:"AirConditionCounter",Value:result.AirConditionCounter},
-              {Name:"WiFiCounter",Value:result.WiFiCounter},
+              {Name:"Toilet",Value:result.ToiletCounter/result.Counter*100},
+              {Name:"Parking",Value:result.ParkingCounter/result.Counter*100},
+              {Name:"Kitchen",Value:result.KitchenCounter/result.Counter*100},
+              {Name:"Intercom",Value:result.IntercomCounter/result.Counter*100},
+              {Name:"Accessible",Value:result.AccessibleCounter/result.Counter*100},
+              {Name:"AirCondition",Value:result.AirConditionCounter/result.Counter*100},
+              {Name:"WiFi",Value:result.WiFiCounter/result.Counter*100},
               {Name:"DryersCounter",Value:result.DryersCounter},
               {Name:"NailPolishRacksCounter",Value:result.NailPolishRacksCounter},
               {Name:"ReceptionAreaSeatingandDecorCounter",Value:result.ReceptionAreaSeatingandDecorCounter},
@@ -175,7 +177,7 @@ class Dashboard extends Component {
               {Name:"HairColoringKitCounter",Value:result.HairColoringKitCounter}];
             this.setState({
               BeautyFiltersData: temp,
-              BeautyCounters: [temp[0],temp[8],temp[9],temp[10],temp[11],temp[12],temp[13],temp[14]]
+              BeautyCounters: [temp[8],temp[9],temp[10],temp[11],temp[12],temp[13],temp[14]]
 
 
             },()=>{console.log("result BeautyFiltersData:",result);console.log("result BeautyFiltersData:",result["Counter"]);console.log("result BeautyFiltersData:",result.Counter);console.log("temp",temp);
@@ -222,13 +224,13 @@ class Dashboard extends Component {
               {Name:"MaxDistanceAvg",Value:result.MaxDistanceAvg},
               {Name:"AvgStartTimeMinutes",Value:result.AvgStartTimeMinutes},
               {Name:"AvgEndTimeMinutes",Value:result.AvgEndTimeMinutes},
-              {Name:"ToiletCounter",Value:result.ToiletCounter},
-              {Name:"ParkingCounter",Value:result.ParkingCounter},
-              {Name:"KitchenCounter",Value:result.KitchenCounter},
-              {Name:"IntercomCounter",Value:result.IntercomCounter},
-              {Name:"AccessibleCounter",Value:result.AccessibleCounter},
-              {Name:"AirConditionCounter",Value:result.AirConditionCounter},
-              {Name:"WiFiCounter",Value:result.WiFiCounter},
+              {Name:"Toilet",Value:result.ToiletCounter/result.Counter*100},
+              {Name:"Parking",Value:result.ParkingCounter/result.Counter*100},
+              {Name:"Kitchen",Value:result.KitchenCounter/result.Counter*100},
+              {Name:"Intercom",Value:result.IntercomCounter/result.Counter*100},
+              {Name:"Accessible",Value:result.AccessibleCounter/result.Counter*100},
+              {Name:"AirCondition",Value:result.AirConditionCounter/result.Counter*100},
+              {Name:"WiFi",Value:result.WiFiCounter/result.Counter*100},
               {Name:"TRXCounter",Value:result.TRXCounter},
               {Name:"TreadmillCounter",Value:result.TreadmillCounter},
               {Name:"StationaryBicycleCounter",Value:result.StationaryBicycleCounter},
@@ -237,9 +239,9 @@ class Dashboard extends Component {
               {Name:"BarbellCounter",Value:result.BarbellCounter}];
             this.setState({
               SportFiltersData: temp,
-              SportCounters: [temp[0],temp[8],temp[9],temp[10],temp[11],temp[12],temp[13],temp[14]]
+              SportCounters: [temp[8],temp[9],temp[10],temp[11],temp[12],temp[13],temp[14]]
 
-            },()=>{console.log("result SportFiltersData:",result);console.log("result BeautyFiltersData:",result["Counter"]);console.log("result BeautyFiltersData:",result.Counter);console.log("temp",temp);
+            },()=>{console.log("result SportFiltersData:",result);console.log("result SportFiltersData:",result["Counter"]);console.log("result SportFiltersData:",result.Counter);console.log("temp",temp);
           });
           },
           error => {
@@ -492,6 +494,7 @@ class Dashboard extends Component {
               <Route path="/SpaceTable"><SpaceTable Spaces={this.state.Spaces} /></Route>
               <Route path="/UserTable"><UserTable Users={this.state.Users} /></Route>
               <Route path="/Charts"><Charts Orders={this.state.Orders} Spaces={this.state.Spaces} /></Route>
+              <Route path="/Orders"><Orders Orders={this.state.Orders} Spaces={this.state.Spaces} /></Route>
               <Route path="/Control"><Control /></Route>
               <Route exact path="/"><Login /></Route>
               <Route path="/Graph"><Graph ArtFiltersData={this.state.ArtCounters} BeautyFiltersData={this.state.BeautyCounters} SportFiltersData={this.state.SportCounters}></Graph></Route>

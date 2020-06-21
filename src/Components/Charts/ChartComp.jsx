@@ -31,6 +31,7 @@ export default function ChartComp(props) {
             } break
         }
     }
+    
     var prepData = (props) => {
 
 
@@ -52,11 +53,11 @@ export default function ChartComp(props) {
             return [{
 
                 label: kind,
-                backgroundColor: 'green',
+                backgroundColor:  "RGB(130, 224, 170)",
                 data: Array
             }]
         }
-        if (props.number === 3) {
+        if (props.number === 0) {
             Array = uniqueCity.map(item => {
                 var avg = 0
                 var sum = 0
@@ -71,7 +72,7 @@ export default function ChartComp(props) {
             return [{
 
                 label: kind,
-                backgroundColor: 'green',
+                backgroundColor:  "RGB(205, 92, 92)",
                 data: Array
             }]
         }
@@ -93,18 +94,12 @@ export default function ChartComp(props) {
     if (props.type === 'bar') {
         return (
             <div style={{ position: 'relative' }}>
-                {props.type}
+                {"Average of:"}
                 <RadioButton kind={kind} setKind={setKind}></RadioButton>
-                <Chart height={225} data={data} type={props.type}></Chart>
+                <Chart height={100} data={data} type={props.type}></Chart>
             </div>
         )
     }
     else
-        return (
-            <div style={{ position: 'relative' }}>
-                {props.type}
-
-                <Chart height={225} data={data} type={props.type}></Chart>
-            </div>
-        )
+        return ""
 }
