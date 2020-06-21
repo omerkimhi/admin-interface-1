@@ -401,14 +401,16 @@ class Details extends Component {
         <Container ref={(el) => (this.appContainer = el)}>
           <br />
           <Button onClick={this.handlePDFExport}>Export to PDF</Button>
-          <Button primary={true} onClick={this.handleShare}>
+          {/* <Button primary={true} onClick={this.handleShare}>
             Share
-          </Button>
+          </Button> */}
           <br />
           <br />
           <div className="container">
-            <div className="row">
-              <h1> Spaces Stats</h1>
+          <br />
+            <div style={{justifyContent:"center"}} className="row">
+              <br />
+              <h1 className="headerLine"> Spaces Stats</h1>
             </div>
             <div className="row">
               <div className="col">
@@ -450,24 +452,35 @@ class Details extends Component {
                 <br />
               </div>
             </div>
-            <div className="row">
-              <div className="col">
+            <div style={{paddingLeft:"15%", paddingRight:"15%" }} className="row">
+
+            <div className="col">
                 <br />
-                <Bubble data={bubbleData}></Bubble>
+                <h4>Spaces to Users Ratio </h4>
+                <Doughnut data={doughnutData}></Doughnut>
               </div>
+
+             {/*  <div className="col">
+                <br />
+                <h4>Rating by Field</h4>
+                 <Bubble  data={bubbleData}></Bubble> 
+              </div> */}
               <div className="col">
                 <br />
                 
               </div>
               <div className="col">
                 <br />
+                <h4>Amount of spaces by field</h4>
                 <Pie data={pieData}></Pie>
               </div>
             </div>
-            <div className="row">
+            <br />
+            <div style={{justifyContent:"center"}} className="row">
+            <br />
               <h1> Database Stats</h1>
             </div>
-            <div className="row">
+            <div style={{paddingLeft:"15%" }} className="row">
               <div className="col">
                 <br></br>
                 <ListGroup variant="flush">
@@ -492,10 +505,7 @@ class Details extends Component {
                   </ListGroup.Item>
                 </ListGroup>
               </div>
-              <div className="col">
-                <br />
-                <Doughnut data={doughnutData}></Doughnut>
-              </div>
+              
               <div className="col">
                 <br />
                 <Card
@@ -509,7 +519,7 @@ class Details extends Component {
                 />
               </div>
             </div>
-            <div className="row">
+            <div style={{paddingLeft:"15%", paddingRight:"15%" }} className="row">
               <div className="col">
                 <br />
                 <Line data={lineData}></Line>
@@ -523,7 +533,9 @@ class Details extends Component {
                 <Line data={lineData2}></Line>
               </div>
             </div>
-            <div className="row">
+            <br/>
+            <div  style={{justifyContent:"center"}} className="row">
+            <br/>
               <h1> Spaces stats by field</h1>
             </div>
             <div className="row">
@@ -605,6 +617,7 @@ class Details extends Component {
   }
 }
 export default Details;
+
 
 /* <Ripple>
       <br/>

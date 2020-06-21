@@ -94,7 +94,7 @@ export default function ChartComp(props) {
     if (props.type === 'bar') {
         return (
             <div style={{ position: 'relative' }}>
-                {"Average of:"}
+            {props.number==1?"Field":"City"}    {"- Average of:" }
                 <RadioButton kind={kind} setKind={setKind}></RadioButton>
                 <Chart height={100} data={data} type={props.type}></Chart>
             </div>

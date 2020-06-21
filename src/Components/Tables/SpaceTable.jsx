@@ -108,7 +108,7 @@ console.log('str ',str)
           columns={this.state.columns}
           data={this.state.data}
           editable={{
-           /*  onRowAdd: (newData) =>
+            onRowAdd: (newData) =>
               new Promise((resolve) => {
                 setTimeout(() => {
                   resolve();
@@ -131,7 +131,7 @@ console.log('str ',str)
                     });
                   }
                 }, 600);
-              }), */
+              }), 
             onRowDelete: (oldData) =>
 
               new Promise((resolve) => {

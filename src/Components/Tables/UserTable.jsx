@@ -85,7 +85,7 @@ export default class Table extends Component {
           columns={this.state.columnsUsers}
           data={this.state.dataUsers}
           editable={{
-            /* onRowAdd: (newData) =>
+            onRowAdd: (newData) =>
               new Promise((resolve) => {
                 setTimeout(() => {
                   resolve();
@@ -108,7 +108,7 @@ export default class Table extends Component {
                     });
                   }
                 }, 600);
-              }), */
+              }), 
             onRowDelete: (oldData) =>
 
               new Promise((resolve) => {

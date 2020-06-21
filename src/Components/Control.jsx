@@ -185,6 +185,10 @@ export default class Control extends Component {
       <div className="app">
         <br />
         <div className="container">
+          <div  style={{justifyContent:"center"}} className="row">
+<h1>Smart Sorting</h1>
+          </div>
+     
           <Form>
             <br />
             <Form.Group as={Row} controlId="Price">

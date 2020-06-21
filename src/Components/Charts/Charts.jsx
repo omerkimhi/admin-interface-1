@@ -25,19 +25,27 @@ export default class Charts extends Component {
 
     return (
       <div className="app" style={{}}>
+     
         <div
           className="container"
-          style={{
+         
+        >
+               <div style={{justifyContent:"center"}} className="row"> <h1>Spaces Analytics</h1></div>
+               <div className="row" style={{
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "space-between",
             minWidth: "90%",
-          }}
-        >
+          }}>
+
+                 
+        
           {this.state.ChartArray.map((item, index) => {
             return (
               <div key={index} style={{ width: "45%", paddingTop: "5vh" }}>
+             
                 <ChartComp
+                
                   key={index * 1}
                   Spaces={this.state.Spaces}
                   height={"40vh"}
@@ -47,7 +55,7 @@ export default class Charts extends Component {
               </div>
             );
           })}
-
+  </div>
           {/* <div className="row">
             <BarChart Orders={this.props.Orders} />
           </div>
