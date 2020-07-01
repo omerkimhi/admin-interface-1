@@ -5,16 +5,7 @@ import { MDBContainer } from "mdbreact";
 import RadarChart from "../Components/Charts/RadarChart";
 import DoughnutChart from "../Components/Charts/DoughnutChart";
 
-const pieData = {
-  labels: ["Art", "Beauty", "Sport"],
-  datasets: [
-    {
-      data: [82, 386, 45],
-      backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-      hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-    },
-  ],
-};
+
 const bubbleData = {
   labels: ["January"],
   datasets: [
@@ -70,21 +61,25 @@ const data2 = {
   ],
 };
 
-const polarData = {
-  datasets: [
-    {
-      data: [50, 41, 38],
-      backgroundColor: ["#FF6384", "#4BC0C0", "#FFCE56", "#E7E9ED", "#36A2EB"],
-      label: "My dataset", // for legend
-    },
-  ],
-  labels: ["Art", "Beauty", "Sport"],
-};
+
 
 export default class Graph extends Component {
   constructor(props) {
     super(props);
     this.state = {
+
+      pieData : {
+        labels: ["Art", "Beauty", "Sport"],
+        datasets: [
+          {
+            data: [0,0,0],
+            backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+            hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+          },
+        ],
+      },
+
+
       dataLine: {
         labels: [],
         datasets: [
@@ -154,15 +149,7 @@ export default class Graph extends Component {
         ],
       },
       dataRadar: {
-        labels: [
-          "Eating",
-          "Drinking",
-          "Sleeping",
-          "Designing",
-          "Coding",
-          "Cycling",
-          "Running",
-        ],
+        labels: [],
         datasets: [
           {
             label: "Art",
@@ -203,7 +190,7 @@ export default class Graph extends Component {
     console.log("this.props.ArtFiltersData", this.props.ArtFiltersData);
     console.log("this.props.BeautyFiltersData", this.props.BeautyFiltersData);
     console.log("this.props.SportFiltersData", this.props.SportFiltersData);
-
+   this.getNumberOfSearchInEachField();
     // console.log("this.state.dataLine",this.state.dataLine);
     //     console.log("this.state.dataLine",this.state.dataLine.datasets[0].data);
     var artValues = [];
@@ -244,6 +231,34 @@ export default class Graph extends Component {
       dataLine: temp,
       dataRadar: tempDataRadar,
     });
+    console.log("this.props.ArtEqCounters",this.props.ArtEqCounters);
+
+console.log("this.props.BeautyEqCounters",this.props.BeautyEqCounters);
+console.log("this.props.SportEqCounters",this.props.SportEqCounters);
+
+
+  };
+
+  getNumberOfSearchInEachField = () => {
+    let sArray = [];
+    let aArray = [];
+    let bArray = [];
+    this.props.Searches.map((search) => {
+      if (search.Field === "Sport") sArray.push(search);
+      if (search.Field === "Art") aArray.push(search);
+      if (search.Field === "Beauty") bArray.push(search);
+    });
+    let pieData = {
+      labels: ["Art", "Beauty", "Sport"],
+      datasets: [
+        {
+          data: [aArray.length, bArray.length, sArray.length],
+          backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+          hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        },
+      ],
+    };
+this.setState({pieData:pieData})
   };
   // componentDidMount=()=>{
   //     console.log("this.props.data",this.props.data);
@@ -268,13 +283,35 @@ export default class Graph extends Component {
 
   //}
 
+
   render() {
+    const polarData = {
+      datasets: [
+        {
+          data: [this.props.ArtFilters.length, this.props.BeautyFilters.length, this.props.SportFilters.length],
+          backgroundColor: ["#FF6384", "#4BC0C0", "#FFCE56", "#E7E9ED", "#36A2EB"],
+          label: "My dataset", // for legend
+        },
+      ],
+      labels: ["Art", "Beauty", "Sport"],
+    };
+
+    /* const pieData = {
+      labels: ["Art", "Beauty", "Sport"],
+      datasets: [
+        {
+          data: [82, 386, 45],
+          backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+          hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        },
+      ],
+    }; */
     return (
       <div className="container">
         <div className="row">
           <div className="col">
             <h3 className="mt-5">Searches by Field</h3>
-            <Pie data={pieData}></Pie>
+            <Pie data={this.state.pieData}></Pie>
           </div>
           <div className="col">
             <h3 className="mt-5">Filters by Field</h3>
@@ -282,13 +319,13 @@ export default class Graph extends Component {
           </div>
         </div>
         <div className="row">
-        <div className="col">
+          <div className="col">
 
             <h3 className="mt-5"> Space facilities demands by Field in %</h3>
           </div>
-          </div>
+        </div>
 
-        <div className="row">        
+        <div className="row">
           <div className="col">
             <LineChart2
               ArtFiltersData={this.props.ArtFiltersData}
@@ -304,8 +341,10 @@ export default class Graph extends Component {
         <div className="row">
           <div className="col">
             {" "}
+             
             <DoughnutChart
               field={"art"}
+              ArtEqCounters={this.props.ArtEqCounters}
               headLine={"Trending equipments in art field"}
             />
           </div>
@@ -313,6 +352,7 @@ export default class Graph extends Component {
             {" "}
             <DoughnutChart
               field={"beauty"}
+              BeautyEqCounters={this.props.BeautyEqCounters}
               headLine={"Trending equipments in beauty field"}
             />
           </div>
@@ -320,6 +360,7 @@ export default class Graph extends Component {
             {" "}
             <DoughnutChart
               field={"sport"}
+              SportEqCounters={this.props.SportEqCounters}
               headLine={"Trending equipments in sport field"}
             />
           </div>

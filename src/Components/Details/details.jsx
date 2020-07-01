@@ -21,34 +21,9 @@ import * as moment from "moment";
 import Card from "../Details/CCCardStat.jsx";
 import BarChart from "../Charts/BarChart";
 
-const lineData2 = {
-  labels: ["January", "February", "March", "April", "May", "June", "July","August","September","October","November","December"],
-  datasets: [
-    {
-      label: "New Spaces",
-      fill: false,
-      lineTension: 0.1,
-      backgroundColor: 'rgba(75,192,192,0.4)',
-      borderColor: 'rgba(75,192,192,1)',
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(75,192,192,1)',
-      pointBackgroundColor: '#fff',
-      pointBorderWidth: 3,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-      pointHoverBorderColor: 'rgba(220,220,220,1)',
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10,
-      data: [6, 11, 7, 3, 6, 25, 0,0,0,0,0,0]
-    }
-  ]
-};
+
 const lineData = {
-  labels: ["January", "February", "March", "April", "May", "June", "July","August","September","October","November","December"],
+  labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
   datasets: [
     {
       label: "New Users",
@@ -69,12 +44,12 @@ const lineData = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [10, 21,11, 17, 36, 27, 0,0,0,0,0,0]
+      data: [10, 21, 11, 17, 36, 27, 0, 0, 0, 0, 0, 0]
     }
   ]
 };
 const bubbleData = {
-  labels: ['Ratings','2'],
+  labels: ['Ratings', '2'],
   datasets: [
     {
       label: 'Ratings',
@@ -95,7 +70,7 @@ const bubbleData = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [{x:0,y:0,r:1},{x:1,y:3.64,r:5},{x:2,y:3.31,r:5},{x:3,y:2.06,r:5}]
+      data: [{ x: 0, y: 0, r: 1 }, { x: 1, y: 3.64, r: 5 }, { x: 2, y: 3.31, r: 5 }, { x: 3, y: 2.06, r: 5 }]
     }
   ]
 };
@@ -111,23 +86,23 @@ const pieData = {
   ],
 };
 
-const doughnutData =  {
-	labels: [
-		'Users',
-		'Spaces',
-	],
-	datasets: [{
-		data: [111, 53],
-		backgroundColor: [
-		'RGB(240, 128, 128)',
-		'RGB(40, 180, 99)',
-		],
-		hoverBackgroundColor: [
-      'RGB(240, 128, 128)',
-      'rgb(40, 180, 99)',
-		]
-	}]
-};
+// const doughnutData = {
+//   labels: [
+//     'Users',
+//     'Spaces',
+//   ],
+//   datasets: [{
+//     data: [111, 53],
+//     backgroundColor: [
+//       'RGB(240, 128, 128)',
+//       'RGB(40, 180, 99)',
+//     ],
+//     hoverBackgroundColor: [
+//       'RGB(240, 128, 128)',
+//       'rgb(40, 180, 99)',
+//     ]
+//   }]
+// };
 
 class Details extends Component {
   constructor(props) {
@@ -176,6 +151,90 @@ class Details extends Component {
       SpaceInMonth: [],
       //user type
       userType: [],
+      pieData: {
+        labels: ["Art", "Beauty", "Sport"],
+        datasets: [
+          {
+            data: [0, 0, 0],
+            backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+            hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+          },
+        ],
+      },
+      UsersSpacesDataset: {
+        labels: [
+          'Users',
+          'Spaces',
+        ],
+
+        datasets: [{
+          data: [0, 0],
+          backgroundColor: [
+            'RGB(240, 128, 128)',
+            'RGB(40, 180, 99)',
+          ],
+          hoverBackgroundColor: [
+            'RGB(240, 128, 128)',
+            'rgb(40, 180, 99)',
+          ]
+        }]
+      },
+
+      SpaceByMonth: {
+        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+        datasets: [
+          {
+            label: "New Spaces",
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: 'rgba(75,192,192,0.4)',
+            borderColor: 'rgba(75,192,192,1)',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: 'rgba(75,192,192,1)',
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 3,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [0,0,0,0,0,0,0,0,0,0,0,0]
+          }
+        ]
+      },
+
+      UserByMonth: {
+        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+        datasets: [
+          {
+            label: "New Spaces",
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: 'rgba(75,192,192,0.4)',
+            borderColor: 'rgba(75,192,192,1)',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: 'rgba(75,192,192,1)',
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 3,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: [0,0,0,0,0,0,0,0,0,0,0,0]
+          }
+        ]
+      },
+
+
     };
   }
   componentDidMount() {
@@ -184,6 +243,61 @@ class Details extends Component {
     this.getNumberOfEachField();
     this.getUpload();
     this.getUserType();
+    this.getUploadMonthSpace();
+    this.getUploadMonthUser()
+    this.usersSpacesDataset();
+    //this.fieldsPieDataset();
+  }
+
+  fieldsPieDataset = () => {
+    // let art = 0;
+    // let sport = 0;
+    // let beauty = 0;
+    // this.props.Spaces.map((space) => {
+    //   switch (space.Field) {
+    //     case "Art": art += 1; break;
+    //     case "Sport": sport += 1; break;
+    //     case "Beauty": beauty += 1; break;
+    //   }
+    // });
+    let pieData = {
+      labels: ["Art", "Beauty", "Sport"],
+      datasets: [
+        {
+          data: [this.state.artSpaces.length, this.state.beautySpaces.length, this.state.sportSpaces.length],
+          backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+          hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        },
+      ],
+    }
+    this.setState({ pieData: pieData })
+  }
+
+
+  usersSpacesDataset = () => {
+
+    let spaces = this.props.Spaces.length;
+    let users = this.props.Users.length;
+    let dataSet = {
+      labels: [
+        'Users',
+        'Spaces',
+      ],
+      datasets: [{
+        data: [users, spaces],
+        backgroundColor: [
+          'RGB(240, 128, 128)',
+          'RGB(40, 180, 99)',
+        ],
+        hoverBackgroundColor: [
+          'RGB(240, 128, 128)',
+          'rgb(40, 180, 99)',
+        ]
+      }]
+    }
+    this.setState({
+      usersSpacesDataset: dataSet
+    })
   }
   //gets number of spaces in each field
   getNumberOfEachField = () => {
@@ -195,8 +309,19 @@ class Details extends Component {
       if (space.field === "Art") aArray.push(space);
       if (space.field === "Beauty") bArray.push(space);
     });
+    let pieData = {
+      labels: ["Art", "Beauty", "Sport"],
+      datasets: [
+        {
+          data: [aArray.length, bArray.length, sArray.length],
+          backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+          hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        },
+      ],
+    }
+
     this.setState(
-      { sportSpaces: sArray, beautySpaces: bArray, artSpaces: aArray },
+      { sportSpaces: sArray, beautySpaces: bArray, artSpaces: aArray, pieData: pieData },
       () => {
         this.getHighRank();
       }
@@ -209,13 +334,12 @@ class Details extends Component {
     let sportAvg = [];
     let artAvg = [];
     let beautyAvg = [];
-    console.log(this.state.Spaces);
+
     //total avg
     this.state.Spaces.map((space) => {
       spaceAvg.push(space.price);
-      console.log(space.price);
     });
-    console.log(this.state.spaceAvg);
+
     let sumSpace = spaceAvg.reduce(
       (previous, current) => (current += previous)
     );
@@ -373,6 +497,105 @@ class Details extends Component {
     );
   };
 
+  getUploadMonthUser = () => {
+    let monthData = [0,0,0,0,0,0,0,0,0,0,0,0]
+    this.state.Users.map((user) => {
+      switch (moment(user.uploadtime).month()) {
+        case 1: monthData[0] += 1; break;
+        case 2: monthData[1] += 1; break;
+        case 3: monthData[2] += 1; break;
+        case 4: monthData[3] += 1; break;
+        case 5: monthData[4] += 1; break;
+        case 6: monthData[5] += 1; break;
+        case 7: monthData[6] += 1; break;
+        case 8: monthData[7] += 1; break;
+        case 9: monthData[8] += 1; break;
+        case 10: monthData[9] += 1; break;
+        case 11: monthData[10] += 1; break;
+        case 12: monthData[11] += 1; break;
+      }
+     
+      let UserByMonth= {
+        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+        datasets: [
+          {
+            label: "New Spaces",
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: 'rgba(75,192,192,0.4)',
+            borderColor: 'rgba(75,192,192,1)',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: 'rgba(75,192,192,1)',
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 3,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: monthData
+          }
+        ]
+      }
+
+this.setState({UserByMonth:UserByMonth})
+
+    });
+  }
+
+  getUploadMonthSpace = () => {
+    let monthData = [0,0,0,0,0,0,0,0,0,0,0,0]
+    this.state.Spaces.map((space) => {
+      switch (moment(space.uploadtime).month()) {
+        case 1: monthData[0] += 1; break;
+        case 2: monthData[1] += 1; break;
+        case 3: monthData[2] += 1; break;
+        case 4: monthData[3] += 1; break;
+        case 5: monthData[4] += 1; break;
+        case 6: monthData[5] += 1; break;
+        case 7: monthData[6] += 1; break;
+        case 8: monthData[7] += 1; break;
+        case 9: monthData[8] += 1; break;
+        case 10: monthData[9] += 1; break;
+        case 11: monthData[10] += 1; break;
+        case 12: monthData[11] += 1; break;
+      }
+      let SpaceByMonth= {
+        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+        datasets: [
+          {
+            label: "New Spaces",
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: 'rgba(75,192,192,0.4)',
+            borderColor: 'rgba(75,192,192,1)',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: 'rgba(75,192,192,1)',
+            pointBackgroundColor: '#fff',
+            pointBorderWidth: 3,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+            pointHoverBorderColor: 'rgba(220,220,220,1)',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: monthData
+          }
+        ]
+      }
+
+this.setState({SpaceByMonth:SpaceByMonth})
+
+    });
+  }
+
   handlePDFExport = () => {
     savePDF(ReactDOM.findDOMNode(this.appContainer), { paperSize: "auto" });
   };
@@ -407,8 +630,8 @@ class Details extends Component {
           <br />
           <br />
           <div className="container">
-          <br />
-            <div style={{justifyContent:"center"}} className="row">
+            <br />
+            <div style={{ justifyContent: "center" }} className="row">
               <br />
               <h1 className="headerLine"> Spaces Stats</h1>
             </div>
@@ -452,35 +675,35 @@ class Details extends Component {
                 <br />
               </div>
             </div>
-            <div style={{paddingLeft:"15%", paddingRight:"15%" }} className="row">
+            <div style={{ paddingLeft: "15%", paddingRight: "15%" }} className="row">
 
-            <div className="col">
+              <div className="col">
                 <br />
                 <h4>Spaces to Users Ratio </h4>
-                <Doughnut data={doughnutData}></Doughnut>
+                <Doughnut data={this.state.usersSpacesDataset}></Doughnut>
               </div>
 
-             {/*  <div className="col">
+              {/*  <div className="col">
                 <br />
                 <h4>Rating by Field</h4>
                  <Bubble  data={bubbleData}></Bubble> 
               </div> */}
               <div className="col">
                 <br />
-                
+
               </div>
               <div className="col">
                 <br />
                 <h4>Amount of spaces by field</h4>
-                <Pie data={pieData}></Pie>
+                <Pie data={this.state.pieData}></Pie>
               </div>
             </div>
             <br />
-            <div style={{justifyContent:"center"}} className="row">
-            <br />
+            <div style={{ justifyContent: "center" }} className="row">
+              <br />
               <h1> Database Stats</h1>
             </div>
-            <div style={{paddingLeft:"15%" }} className="row">
+            <div style={{ paddingLeft: "15%" }} className="row">
               <div className="col">
                 <br></br>
                 <ListGroup variant="flush">
@@ -505,7 +728,7 @@ class Details extends Component {
                   </ListGroup.Item>
                 </ListGroup>
               </div>
-              
+
               <div className="col">
                 <br />
                 <Card
@@ -519,23 +742,23 @@ class Details extends Component {
                 />
               </div>
             </div>
-            <div style={{paddingLeft:"15%", paddingRight:"15%" }} className="row">
+            <div style={{ paddingLeft: "15%", paddingRight: "15%" }} className="row">
               <div className="col">
                 <br />
                 <Line data={lineData}></Line>
               </div>
               <div className="col">
                 <br />
-                
+
               </div>
               <div className="col">
                 <br />
-                <Line data={lineData2}></Line>
+                <Line data={this.state.SpaceByMonth}></Line>
               </div>
             </div>
-            <br/>
-            <div  style={{justifyContent:"center"}} className="row">
-            <br/>
+            <br />
+            <div style={{ justifyContent: "center" }} className="row">
+              <br />
               <h1> Spaces stats by field</h1>
             </div>
             <div className="row">

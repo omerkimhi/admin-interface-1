@@ -5,6 +5,7 @@ import LineChart from "./LineChart";
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
 import DoughnutChart from "./DoughnutChart";
+import * as moment from "moment";
 
 export default class OrderCharts extends Component {
   constructor(props) {
@@ -16,8 +17,64 @@ export default class OrderCharts extends Component {
       OrderDays: [],
       pieC: null,
       //ChartArray: ["line", "bar", "line", "bar"], Segal
-      ChartArray: [ "",  "bar",  "",  "bar"],
+      ChartArray: ["", "bar", "", "bar"],
+
+
     };
+  }
+
+  componentDidMount() {
+    this.getOrderMonth();
+  }
+  getOrderMonth = () => {
+
+    let monthData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    let tempSpace = {};
+    let ArtOrders = [];
+    let BeautyOrders = [];
+    let SportOrders = [];
+    //all space id of orders
+    this.state.Orders.map((order) => {
+      tempSpace = this.state.Spaces.find(space => space.Id === order.spaceId)
+console.log("aviv", tempSpace)
+      switch (tempSpace.field) {
+        case "art":
+          ArtOrders.push(order);
+          break;
+        case "beauty":
+          BeautyOrders.push(order);
+
+          break;
+        case "sport":
+          SportOrders.push(order);
+
+
+          break;
+        default:
+          console.log("No field");
+      }
+
+    });
+
+    this.state.Orders.map((order) => {
+      switch (moment(order.ReservationDate).month()) {
+        case 1: monthData[0] += 1; break;
+        case 2: monthData[1] += 1; break;
+        case 3: monthData[2] += 1; break;
+        case 4: monthData[3] += 1; break;
+        case 5: monthData[4] += 1; break;
+        case 6: monthData[5] += 1; break;
+        case 7: monthData[6] += 1; break;
+        case 8: monthData[7] += 1; break;
+        case 9: monthData[8] += 1; break;
+        case 10: monthData[9] += 1; break;
+        case 11: monthData[10] += 1; break;
+        case 12: monthData[11] += 1; break;
+      }
+
+      this.setState({})
+
+    });
   }
 
   render() {
@@ -38,17 +95,17 @@ export default class OrderCharts extends Component {
             <BarChart Orders={this.props.Orders} />
           </div>
           <div className="row">
-              <PieChart Spaces={this.props.Spaces} Orders={this.props.Orders} />
+            <PieChart Spaces={this.props.Spaces} Orders={this.props.Orders} />
           </div>
           <div className="row">
-        <div className="col">
+            <div className="col">
 
-            <h3 className="mt-5"> Space Orders</h3>
+              <h3 className="mt-5"> Space Orders</h3>
 
               <LineChart Orders={this.props.Orders} />{" "}
-            <br />
-            <br />
-          </div>
+              <br />
+              <br />
+            </div>
           </div>
           <br />
           <br />
