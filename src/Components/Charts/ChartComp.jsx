@@ -46,7 +46,7 @@ export default function ChartComp(props) {
                 arrayByField.map(item => {
                     sum = sum + item[kind]
                 })
-                avg = sum / arrayByField.length
+                avg = Math.round(sum / arrayByField.length)
                 return avg
             })
 
@@ -65,7 +65,7 @@ export default function ChartComp(props) {
                 arrayByField.map(item => {
                     sum = sum + item[kind]
                 })
-                avg = sum / arrayByField.length
+                avg =Math.round( sum / arrayByField.length)
                 return avg
             })
 

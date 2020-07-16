@@ -21,7 +21,7 @@ export default class Charts extends Component {
   }
 
   render() {
-    console.log(this.state.Spaces);
+    
 
     return (
       <div className="app" style={{}}>

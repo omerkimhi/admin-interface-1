@@ -35,8 +35,11 @@ export default class OrderCharts extends Component {
     let SportOrders = [];
     //all space id of orders
     this.state.Orders.map((order) => {
-      tempSpace = this.state.Spaces.find(space => space.Id === order.spaceId)
+
+      tempSpace = this.state.Spaces.filter(space => space.Id === order.spaceId)
+
 console.log("aviv", tempSpace)
+
       switch (tempSpace.field) {
         case "art":
           ArtOrders.push(order);
@@ -78,7 +81,7 @@ console.log("aviv", tempSpace)
   }
 
   render() {
-    console.log(this.state.Spaces);
+    console.log(this.state.Orders, this.state.Orders );
 
     return (
       <div className="app" style={{}}>

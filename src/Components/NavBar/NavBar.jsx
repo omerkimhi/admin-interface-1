@@ -64,6 +64,7 @@ class NavBar extends Component {
             <NavDropdown title="Analytics" id="basic-nav-dropdown" style={{padding:0}}>
               <NavDropdown.Item>
                 <NavLink
+                
                   style={myStyle}
                   activeStyle={{ fontWeight: "bold" }}
                   to="/Graph"

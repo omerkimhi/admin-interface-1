@@ -41,9 +41,14 @@ class DoughnutChart extends React.Component {
   }
 
   componentDidMount = () => {
+
     var temp = this.state.dataDoughnut;
-console.log("this.props.ArtEqCounters in Doughnut",this.props.ArtEqCounters);
-this.setState({ArtEqCounters:this.props.ArtEqCounters})
+
+    console.log("giladddddddd", this.props.ArtEqCounters);
+    console.log("omer123456", this.props.BeautyEqCounters);
+
+    this.setState({ ArtEqCounters: this.props.ArtEqCounters })
+
     switch (this.props.field) {
       case "art":
         console.log("art");
@@ -78,7 +83,7 @@ this.setState({ArtEqCounters:this.props.ArtEqCounters})
 
   };
 
- 
+
 
   render() {
     return (

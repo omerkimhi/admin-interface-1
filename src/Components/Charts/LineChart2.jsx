@@ -78,12 +78,7 @@ class LineChart extends React.Component {
   }
 
   componentDidMount = () => {
-    console.log("this.props.ArtFiltersData", this.props.ArtFiltersData);
-    console.log("this.props.BeautyFiltersData", this.props.BeautyFiltersData);
-    console.log("this.props.SportFiltersData", this.props.SportFiltersData);
-
-    // console.log("this.state.dataLine",this.state.dataLine);
-    //     console.log("this.state.dataLine",this.state.dataLine.datasets[0].data);
+    
     var artValues = [];
     var artNames = [];
     var beautyValues = [];
@@ -103,15 +98,14 @@ class LineChart extends React.Component {
       sportValues.push(item.Value);
     });
 
-    console.log("beautyNames", beautyNames);
-    console.log("sportValues", sportValues);
+    
     var temp = this.state.dataLine;
     temp.labels = [...artNames];
     temp.datasets[0].data = artValues;
     temp.datasets[1].data = beautyValues;
     temp.datasets[2].data = sportValues;
 
-    console.log("temp", temp);
+   
 
     this.setState({
       dataLine: temp,

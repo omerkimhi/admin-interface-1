@@ -68,11 +68,11 @@ export default class Graph extends Component {
     super(props);
     this.state = {
 
-      pieData : {
+      pieData: {
         labels: ["Art", "Beauty", "Sport"],
         datasets: [
           {
-            data: [0,0,0],
+            data: [0, 0, 0],
             backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
             hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
           },
@@ -187,33 +187,34 @@ export default class Graph extends Component {
   }
 
   componentDidMount = () => {
-    console.log("this.props.ArtFiltersData", this.props.ArtFiltersData);
-    console.log("this.props.BeautyFiltersData", this.props.BeautyFiltersData);
-    console.log("this.props.SportFiltersData", this.props.SportFiltersData);
-   this.getNumberOfSearchInEachField();
-    // console.log("this.state.dataLine",this.state.dataLine);
-    //     console.log("this.state.dataLine",this.state.dataLine.datasets[0].data);
+
+    this.getNumberOfSearchInEachField();
+
     var artValues = [];
     var artNames = [];
     var beautyValues = [];
     var beautyNames = [];
     var sportValues = [];
     var sportNames = [];
+
     this.props.ArtFiltersData.map((item) => {
       artNames.push(item.Name);
       artValues.push(item.Value.toFixed(2));
     });
+
     this.props.BeautyFiltersData.map((item) => {
       beautyNames.push(item.Name);
       beautyValues.push(item.Value.toFixed(2));
     });
+
     this.props.SportFiltersData.map((item) => {
       sportNames.push(item.Name);
       sportValues.push(item.Value.toFixed(2));
     });
 
-    console.log("beautyNames", beautyNames);
-    console.log("sportValues", sportValues);
+    // console.log("beautyNames", beautyNames);
+    // console.log("sportValues", sportValues);
+
     var temp = this.state.dataLine;
     temp.labels = [...artNames];
     temp.datasets[0].data = artValues;
@@ -225,18 +226,12 @@ export default class Graph extends Component {
     tempDataRadar.datasets[1].data = beautyValues;
     tempDataRadar.datasets[2].data = sportValues;
 
-    console.log("temp", temp);
+    // console.log("temp", temp);
 
     this.setState({
       dataLine: temp,
       dataRadar: tempDataRadar,
     });
-    console.log("this.props.ArtEqCounters",this.props.ArtEqCounters);
-
-console.log("this.props.BeautyEqCounters",this.props.BeautyEqCounters);
-console.log("this.props.SportEqCounters",this.props.SportEqCounters);
-
-
   };
 
   getNumberOfSearchInEachField = () => {
@@ -258,7 +253,8 @@ console.log("this.props.SportEqCounters",this.props.SportEqCounters);
         },
       ],
     };
-this.setState({pieData:pieData})
+
+    this.setState({ pieData: pieData })
   };
   // componentDidMount=()=>{
   //     console.log("this.props.data",this.props.data);
@@ -306,6 +302,7 @@ this.setState({pieData:pieData})
         },
       ],
     }; */
+    
     return (
       <div className="container">
         <div className="row">
@@ -341,7 +338,7 @@ this.setState({pieData:pieData})
         <div className="row">
           <div className="col">
             {" "}
-             
+
             <DoughnutChart
               field={"art"}
               ArtEqCounters={this.props.ArtEqCounters}

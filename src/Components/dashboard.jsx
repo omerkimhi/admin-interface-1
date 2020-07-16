@@ -76,7 +76,7 @@ class Dashboard extends Component {
           this.setState({
             ArtFilters: [...result]
 
-          }, () => { console.log("result ArtFilters:", result) });
+          });
         },
         error => {
           console.log('Fetch Error :', error);
@@ -118,9 +118,8 @@ class Dashboard extends Component {
             ArtCounters: [temp[8], temp[9], temp[10], temp[11], temp[12], temp[13], temp[14]],
             ArtEqCounters:[temp[15].Value, temp[16].Value, temp[17].Value, temp[18].Value, temp[19].Value, temp[20].Value]
 
-          }, () => {
-            console.log("result ArtFiltersData:", result); console.log("result ArtFiltersData:", result["Counter"]); console.log("result ArtFiltersData:", result.Counter); console.log("temp", temp);
-          });
+          }, 
+          );
         },
         error => {
           console.log('Fetch Error :', error);
@@ -140,7 +139,7 @@ class Dashboard extends Component {
             BeautyFilters: [...result],
 
 
-          }, () => { console.log("result BeautyFilters:", result) });
+          });
         },
         error => {
           console.log('Fetch Error :', error);
@@ -183,9 +182,8 @@ class Dashboard extends Component {
             BeautyEqCounters:[temp[15].Value, temp[16].Value, temp[17].Value, temp[18].Value, temp[19].Value, temp[20].Value]
 
 
-          }, () => {
-            console.log("result BeautyFiltersData:", result); console.log("result BeautyFiltersData:", result["Counter"]); console.log("result BeautyFiltersData:", result.Counter); console.log("temp", temp);
-          });
+          }, 
+          );
         },
         error => {
           console.log('Fetch Error :', error);
@@ -204,7 +202,7 @@ class Dashboard extends Component {
           this.setState({
             SportFilters: [...result]
 
-          }, () => { console.log("result ArtFilters:", result) });
+          });
         },
         error => {
           console.log('Fetch Error :', error);
@@ -247,9 +245,8 @@ class Dashboard extends Component {
             SportEqCounters:[temp[15].Value, temp[16].Value, temp[17].Value, temp[18].Value, temp[19].Value, temp[20].Value]//eq = equipment
 
 
-          }, () => {
-            console.log("result SportFiltersData:", result); console.log("result SportFiltersData:", result["Counter"]); console.log("result SportFiltersData:", result.Counter); console.log("temp", temp);
-          });
+          }
+    );
         },
         error => {
           console.log('Fetch Error :', error);
@@ -268,7 +265,7 @@ class Dashboard extends Component {
           this.setState({
             SpaceVisits: [...result]
 
-          }, () => { console.log("result SpaceVisit:", result) });
+          });
         },
         error => {
           console.log('Fetch Error :', error);
@@ -288,7 +285,7 @@ class Dashboard extends Component {
             Searches: [...result]
 
 
-          }, () => { console.log("result Searches:", result) });
+          });
         },
         error => {
           console.log('Fetch Error :', error);
@@ -307,7 +304,7 @@ class Dashboard extends Component {
           this.setState({
             SpaceVisits: [...result]
 
-          }, () => { console.log("result Ratings:", result) });
+          });
         },
         error => {
           console.log('Fetch Error :', error);
@@ -326,7 +323,7 @@ class Dashboard extends Component {
           this.setState({
             Favourites: [...result]
 
-          }, () => { console.log("result Favourites:", result) });
+          });
         },
         error => {
           console.log('Fetch Error :', error);
@@ -345,7 +342,7 @@ class Dashboard extends Component {
           this.setState({
             SpacesData: [...result]
 
-          }, () => { console.log("result SpacesData:", result) });
+          });
         },
         error => {
           console.log('Fetch Error :', error);
