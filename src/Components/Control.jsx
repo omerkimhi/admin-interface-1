@@ -31,7 +31,7 @@ const lineData = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [10, 7, 2, 2, 6, 5, 2, 1, 1, 4, 7, 4],
+      data: [],
     },
     {
       label: "Capacity",
@@ -52,7 +52,7 @@ const lineData = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [7, 4, 8, 1, 2, 6, 5, 2, 1, 1, 3, 4],
+      data: [],
     },
     {
       label: "Facility",
@@ -73,7 +73,7 @@ const lineData = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [5, 1, 1, 4, 8, 1, 2, 6, 1, 8, 4, 6],
+      data: [],
     }, {
       label: "Equipment",
       fill: false,
@@ -93,7 +93,7 @@ const lineData = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [6, 2, 4, 3, 5, 7, 1, 4, 8, 1, 2, 6],
+      data: [],
     }, {
       label: "Rating",
       fill: false,
@@ -113,7 +113,7 @@ const lineData = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [4, 8, 1, 3, 3, 7, 1, 4, 8, 1, 2, 6],
+      data: [],
     }, {
       label: "Premium",
       fill: false,
@@ -133,7 +133,7 @@ const lineData = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [1, 4, 2, 3, 3, 7, 1, 4, 8, 1, 2, 6],
+      data: [],
     }, {
       label: "Order",
       fill: false,
@@ -153,7 +153,7 @@ const lineData = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [2, 10, 1, 4, 8, 1, 2, 6, 9, 1, 3, 5],
+      data: [],
     }, {
       label: "Conversion",
       fill: false,
@@ -173,7 +173,7 @@ const lineData = {
       pointHoverBorderWidth: 2,
       pointRadius: 1,
       pointHitRadius: 10,
-      data: [3, 9, 1, 4, 8, 1, 2, 6, 1, 4, 2, 3],
+      data: [],
     },
   ],
 }
@@ -295,7 +295,10 @@ export default class Control extends Component {
             </Form.Group>
             <br />
           </Form>
+          <div>
+            <h3>Distrubution of grade</h3>
           <Line data={lineData}></Line>
+          </div>
         </div>
       </div>
     );

@@ -363,16 +363,21 @@ class Dashboard extends Component {
             Users: result.map(
               item =>
                 new User(
-                  item.Email,
+                  
                   item.Id,
+                  item.Email,
+                  
                   item.Password,
+                  item.UserName,
                   item.PhoneNumber,
                   item.Photo,
+                  item.SpaceOwner,
+                  item.Visits,
                   item.Rank,
                   item.RegistrationDate,
-                  item.SpaceOwner,
-                  item.UserName,
-                  item.Visits,
+                  
+                  
+                  
                 )
             )
           },
