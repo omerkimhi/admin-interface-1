@@ -42,9 +42,7 @@ export default class Table extends Component {
     }
   }
 
-  componentDidMount() {
-    this.SpacesApiUrl =
-    "https://proj.ruppin.ac.il/igroup17/prod/api/user";
+  componentDidMount() { 
     this.getUserData();
   }
 
@@ -56,7 +54,6 @@ export default class Table extends Component {
   }
 
   render() {
-   
     const tableIcons = {
       Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
       Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -118,13 +115,9 @@ export default class Table extends Component {
                     const data = [...prevState.data];
                     data.splice(data.indexOf(oldData), 1);
                     this.deleteData(oldData.userId)
-
-
                     return { ...prevState, data };
                   });
                 }, 600);
-
-
               }),
           }}
         />

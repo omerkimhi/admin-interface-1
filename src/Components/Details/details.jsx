@@ -3,24 +3,15 @@ import ReactDOM from "react-dom";
 import "./details.css";
 
 import "bootstrap-4-grid/css/grid.min.css";
-import { ListGroup } from "react-bootstrap";
-//PDF, SHARE,RIPPLE
-import { Dialog, DialogActionsBar } from "@progress/kendo-react-dialogs";
-import { Input } from "@progress/kendo-react-inputs";
+import { ListGroup, } from "react-bootstrap";
 import { Button } from "@progress/kendo-react-buttons";
 import { savePDF } from "@progress/kendo-react-pdf";
 import { Ripple } from "@progress/kendo-react-ripple";
 import "@progress/kendo-theme-material/dist/all.css";
 import Container from "@material-ui/core/Container";
-//PIE CHART -SHOWS NUMBER OF SPACES PER FIELD
-import { HorizontalBar, Radar, Polar, Bubble, Pie, Line, Doughnut } from "react-chartjs-2";
-import { MDBContainer } from "mdbreact";
-//DATE TIME STUFF
+import {  Pie, Line, Doughnut } from "react-chartjs-2";
 import * as moment from "moment";
-
 import Card from "../Details/CCCardStat.jsx";
-import BarChart from "../Charts/BarChart";
-
 
 const lineData = {
   labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
@@ -48,32 +39,6 @@ const lineData = {
     }
   ]
 };
-const bubbleData = {
-  labels: ['Ratings', '2'],
-  datasets: [
-    {
-      label: 'Ratings',
-      fill: false,
-      lineTension: 0.1,
-      backgroundColor: 'rgba(75,192,192,0.4)',
-      borderColor: 'rgba(75,192,192,1)',
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(75,192,192,1)',
-      pointBackgroundColor: '#fff',
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-      pointHoverBorderColor: 'rgba(220,220,220,1)',
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10,
-      data: [{ x: 0, y: 0, r: 1 }, { x: 1, y: 3.64, r: 5 }, { x: 2, y: 3.31, r: 5 }, { x: 3, y: 2.06, r: 5 }]
-    }
-  ]
-};
 
 const pieData = {
   labels: ["Art", "Beauty", "Sport"],
@@ -85,24 +50,6 @@ const pieData = {
     },
   ],
 };
-
-// const doughnutData = {
-//   labels: [
-//     'Users',
-//     'Spaces',
-//   ],
-//   datasets: [{
-//     data: [111, 53],
-//     backgroundColor: [
-//       'RGB(240, 128, 128)',
-//       'RGB(40, 180, 99)',
-//     ],
-//     hoverBackgroundColor: [
-//       'RGB(240, 128, 128)',
-//       'rgb(40, 180, 99)',
-//     ]
-//   }]
-// };
 
 class Details extends Component {
   constructor(props) {
@@ -202,7 +149,7 @@ class Details extends Component {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [0,0,0,0,0,0,0,0,0,0,0,0]
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
           }
         ]
       },
@@ -229,7 +176,7 @@ class Details extends Component {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-            data: [0,0,0,0,0,0,0,0,0,0,0,0]
+            data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
           }
         ]
       },
@@ -246,7 +193,6 @@ class Details extends Component {
     this.getUploadMonthSpace();
     this.getUploadMonthUser()
     this.usersSpacesDataset();
-    //this.fieldsPieDataset();
   }
 
   fieldsPieDataset = () => {
@@ -488,17 +434,8 @@ class Details extends Component {
     });
     this.setState({ userType: landLord });
   };
-  handleShare = () => {
-    this.setState(
-      {
-        showDialog: !this.state.showDialog,
-      },
-      () => console.log(this.state)
-    );
-  };
-
   getUploadMonthUser = () => {
-    let monthData = [0,0,0,0,0,0,0,0,0,0,0,0]
+    let monthData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     this.state.Users.map((user) => {
       switch (moment(user.uploadtime).month()) {
         case 1: monthData[0] += 1; break;
@@ -514,8 +451,8 @@ class Details extends Component {
         case 11: monthData[10] += 1; break;
         case 12: monthData[11] += 1; break;
       }
-     
-      let UserByMonth= {
+
+      let UserByMonth = {
         labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
         datasets: [
           {
@@ -542,13 +479,13 @@ class Details extends Component {
         ]
       }
 
-this.setState({UserByMonth:UserByMonth})
+      this.setState({ UserByMonth: UserByMonth })
 
     });
   }
 
   getUploadMonthSpace = () => {
-    let monthData = [0,0,0,0,0,0,0,0,0,0,0,0]
+    let monthData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     this.state.Spaces.map((space) => {
       switch (moment(space.uploadtime).month()) {
         case 1: monthData[0] += 1; break;
@@ -564,7 +501,7 @@ this.setState({UserByMonth:UserByMonth})
         case 11: monthData[10] += 1; break;
         case 12: monthData[11] += 1; break;
       }
-      let SpaceByMonth= {
+      let SpaceByMonth = {
         labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
         datasets: [
           {
@@ -591,7 +528,7 @@ this.setState({UserByMonth:UserByMonth})
         ]
       }
 
-this.setState({SpaceByMonth:SpaceByMonth})
+      this.setState({ SpaceByMonth: SpaceByMonth })
 
     });
   }
@@ -601,32 +538,12 @@ this.setState({SpaceByMonth:SpaceByMonth})
   };
 
   render() {
-    /*  //PIE CHART DATA
-     const state = {
-       labels: ['Art', 'Beauty', 'Sport'],
-       datasets: [
-         {
-           label: "",
-           backgroundColor: [
-             '#20baaf',
-             '#52ded4',
-             '#1e6b88',
-            
-           ],
- 
-           data: [this.state.artSpaces.length, this.state.beautySpaces.length, this.state.sportSpaces.length]
-         }
-       ]
-     } */
     return (
-      //Ripple is for pdf and share
+      
       <Ripple>
         <Container ref={(el) => (this.appContainer = el)}>
           <br />
           <Button onClick={this.handlePDFExport}>Export to PDF</Button>
-          {/* <Button primary={true} onClick={this.handleShare}>
-            Share
-          </Button> */}
           <br />
           <br />
           <div className="container">
@@ -682,17 +599,8 @@ this.setState({SpaceByMonth:SpaceByMonth})
                 <h4>Spaces to Users Ratio </h4>
                 <Doughnut data={this.state.usersSpacesDataset}></Doughnut>
               </div>
-
-              {/*  <div className="col">
-                <br />
-                <h4>Rating by Field</h4>
-                 <Bubble  data={bubbleData}></Bubble> 
-              </div> */}
-              <div className="col">
-                <br />
-
-              </div>
-              <div className="col">
+             
+              <div className="col" style={{ marginLeft: "auto", float:"left" }}>
                 <br />
                 <h4>Amount of spaces by field</h4>
                 <Pie data={this.state.pieData}></Pie>
@@ -742,16 +650,13 @@ this.setState({SpaceByMonth:SpaceByMonth})
                 />
               </div>
             </div>
+
             <div style={{ paddingLeft: "15%", paddingRight: "15%" }} className="row">
               <div className="col">
                 <br />
                 <Line data={lineData}></Line>
               </div>
-              <div className="col">
-                <br />
-
-              </div>
-              <div className="col">
+              <div className="col" style={{ marginLeft: "auto", float:"left" }}>
                 <br />
                 <Line data={this.state.SpaceByMonth}></Line>
               </div>
@@ -823,18 +728,6 @@ this.setState({SpaceByMonth:SpaceByMonth})
             </div>
           </div>
         </Container>
-        {this.state.showDialog && (
-          <Dialog title={"Share this report"} onClose={this.handleShare}>
-            <p>Please enter the email address/es of the recipient/s.</p>
-            <Input placeholder="example@progress.com" />
-            <DialogActionsBar>
-              <Button primary={true} onClick={this.handleShare}>
-                Share
-              </Button>
-              <Button onClick={this.handleShare}>Cancel</Button>
-            </DialogActionsBar>
-          </Dialog>
-        )}
       </Ripple>
     );
   }

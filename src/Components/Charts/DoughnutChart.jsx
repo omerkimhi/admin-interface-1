@@ -43,28 +43,24 @@ class DoughnutChart extends React.Component {
   componentDidMount = () => {
 
     var temp = this.state.dataDoughnut;
-
-    console.log("giladddddddd", this.props.ArtEqCounters);
-    console.log("omer123456", this.props.BeautyEqCounters);
-
     this.setState({ ArtEqCounters: this.props.ArtEqCounters })
 
     switch (this.props.field) {
       case "art":
-        console.log("art");
+        
         temp.datasets[0].data = [...this.props.ArtEqCounters];
         temp.labels = ["Canvas", "Green Screen", "PottersWheel", "Guitar", "Drum", "Speaker"];
 
 
         break;
       case "beauty":
-        console.log("beauty");
+        
         temp.datasets[0].data = [...this.props.BeautyEqCounters];
         temp.labels = ["Dryers", "Nail Polish Racks", "Reception Area", "Laser Hair Removal", "Pedicure & Manicure", "Hair Coloring Kit"];
 
         break;
       case "sport":
-        console.log("sport");
+        
         temp.datasets[0].data = [...this.props.SportEqCounters];
         temp.labels = ["TRX",
           "Treadmill",

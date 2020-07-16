@@ -373,11 +373,6 @@ class Dashboard extends Component {
                   item.SpaceOwner,
                   item.UserName,
                   item.Visits,
-
-
-
-
-
                 )
             )
           },

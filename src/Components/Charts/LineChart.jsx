@@ -76,11 +76,7 @@ class LineChart extends React.Component {
 
 
   render() {
-    var d =new Date("05/06/2020");
-    var d2 = new Date(2020,5,3);
-    console.log("date",d)
-    console.log("date2",d2.getMonth())
-
+    
     return (
       <MDBContainer>
         <h3 className="mt-5">{this.props.header}</h3>

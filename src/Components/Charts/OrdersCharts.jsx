@@ -38,8 +38,6 @@ export default class OrderCharts extends Component {
 
       tempSpace = this.state.Spaces.filter(space => space.Id === order.spaceId)
 
-console.log("aviv", tempSpace)
-
       switch (tempSpace.field) {
         case "art":
           ArtOrders.push(order);
@@ -81,8 +79,7 @@ console.log("aviv", tempSpace)
   }
 
   render() {
-    console.log(this.state.Orders, this.state.Orders );
-
+   
     return (
       <div className="app" style={{}}>
         <div

@@ -7,15 +7,7 @@ import {
   NavLink,
 } from "react-router-dom";
 
-const myStyle = {
-  marginRight: "2vh",
-  color: "rgb(0, 114, 106)",
-  fontWeight: "bold",
-  paddingTop:8,
-  hover: {
-    fontWeight: "bold",
-  },
-};
+
 
 class NavBar extends Component {
   render() {
@@ -41,56 +33,56 @@ class NavBar extends Component {
               General data
             </NavLink>
             <NavDropdown title="Tables" id="basic-nav-dropdown" style={{padding:0}}>
-              <NavDropdown.Item>
-                <NavLink
+              <NavDropdown.Item
+                
                   style={myStyle}
-                  activeStyle={{ fontWeight: "bold" }}
-                  to="/SpaceTable"
+                  activestyle={{ fontWeight: "bold" }}
+                  href="/SpaceTable"
                 >
                   Spaces
-                </NavLink>
+               
               </NavDropdown.Item>
-              <NavDropdown.Item>
-                <NavLink
+              <NavDropdown.Item
+                
                   style={myStyle}
-                  activeStyle={{ fontWeight: "bold" }}
-                  to="/UserTable"
-                  marginTop='5'
+                  activestyle={{ fontWeight: "bold" }}
+                  href="/UserTable"
+                  margintop='5'
                 >
                   Users
-                </NavLink>
+                
               </NavDropdown.Item>
             </NavDropdown>
             <NavDropdown title="Analytics" id="basic-nav-dropdown" style={{padding:0}}>
-              <NavDropdown.Item>
-                <NavLink
+              <NavDropdown.Item
+                
                 
                   style={myStyle}
-                  activeStyle={{ fontWeight: "bold" }}
-                  to="/Graph"
+                  activestyle={{ fontWeight: "bold" }}
+                  href="/Graph"
                 >
                   Searches
-                </NavLink>
+                
               </NavDropdown.Item>
-              <NavDropdown.Item>
-                <NavLink
+              <NavDropdown.Item
+                
                   style={myStyle}
-                  activeStyle={{ fontWeight: "bold" }}
-                  to="/Charts"
-                  marginTop='5'
-                >
+                  activestyle={{ fontWeight: "bold" }}
+                  href="/Charts"
+                  margintop='5'
+>
                   Spaces
-                </NavLink>
+               
               </NavDropdown.Item>
-              <NavDropdown.Item>
-                <NavLink
+              <NavDropdown.Item
+                
                   style={myStyle}
-                  activeStyle={{ fontWeight: "bold" }}
-                  to="/Orders"
-                  marginTop='5'
+                  activestyle={{ fontWeight: "bold" }}
+                  href="/Orders"
+                  margintop='5'
                 >
                   Orders
-                </NavLink>
+              
               </NavDropdown.Item>
             </NavDropdown>
            
@@ -117,3 +109,13 @@ class NavBar extends Component {
   }
 }
 export default NavBar;
+
+const myStyle = {
+  marginRight: "2vh",
+  color: "rgb(0, 114, 106)",
+  fontWeight: "bold",
+  paddingTop:8,
+  hover: {
+    fontWeight: "bold",
+  },
+};

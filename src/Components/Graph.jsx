@@ -212,8 +212,7 @@ export default class Graph extends Component {
       sportValues.push(item.Value.toFixed(2));
     });
 
-    // console.log("beautyNames", beautyNames);
-    // console.log("sportValues", sportValues);
+    
 
     var temp = this.state.dataLine;
     temp.labels = [...artNames];
@@ -226,7 +225,7 @@ export default class Graph extends Component {
     tempDataRadar.datasets[1].data = beautyValues;
     tempDataRadar.datasets[2].data = sportValues;
 
-    // console.log("temp", temp);
+   
 
     this.setState({
       dataLine: temp,
@@ -302,7 +301,7 @@ export default class Graph extends Component {
         },
       ],
     }; */
-    
+
     return (
       <div className="container">
         <div className="row">
