@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import ReactDOM from "react-dom";
 import "./details.css";
-
+import "@progress/kendo-theme-material/dist/all.css";
 import "bootstrap-4-grid/css/grid.min.css";
 import { ListGroup, } from "react-bootstrap";
 import { Button } from "@progress/kendo-react-buttons";
 import { savePDF } from "@progress/kendo-react-pdf";
 import { Ripple } from "@progress/kendo-react-ripple";
-import "@progress/kendo-theme-material/dist/all.css";
 import Container from "@material-ui/core/Container";
 import {  Pie, Line, Doughnut } from "react-chartjs-2";
 import * as moment from "moment";

@@ -4,7 +4,6 @@ import ChartComp from "./ChartComp";
 import LineChart from "./LineChart";
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
-import DoughnutChart from "./DoughnutChart";
 import * as moment from "moment";
 
 export default class OrderCharts extends Component {

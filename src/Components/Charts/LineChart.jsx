@@ -26,7 +26,7 @@ class LineChart extends React.Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data: [0,0,0,0,0,0,1,1,0,3,0,1]
+          data: []
         },
         {
           label: "Beauty",
@@ -47,7 +47,7 @@ class LineChart extends React.Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data: [0,0,0,0,0,0,1,3,0,2,0,2]
+          data: []
         },
         {
           label: "Art",
@@ -68,7 +68,7 @@ class LineChart extends React.Component {
             pointHoverBorderWidth: 2,
             pointRadius: 1,
             pointHitRadius: 10,
-          data: [0,0,0,0,0,0,2,4,0,1,0,3]
+          data: []
         }
       ]
     }
