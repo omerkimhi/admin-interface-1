@@ -7,6 +7,7 @@ import NavBar from './NavBar/NavBar';
 import User from '../Classes/User';
 import Space from '../Classes/Space';
 import Order from '../Classes/Order';
+import Grade from '../Classes/Grade';
 //COMPONENTS
 import Details from '../Components/Details/details';
 import SpaceTable from '../Components/Tables/SpaceTable';
@@ -32,6 +33,7 @@ class Dashboard extends Component {
       Spaces: [],
       Orders: [],
       Users: [],
+      Grade:[],
     };
   }
   componentDidMount() {
@@ -41,6 +43,8 @@ class Dashboard extends Component {
       "https://proj.ruppin.ac.il/igroup17/prod/api/order";
     this.UsersApiUrl =
       "https://proj.ruppin.ac.il/igroup17/prod/api/user";
+      this.GradeApiUrl =
+      "http://proj.ruppin.ac.il/igroup17/proj/api/grade/"
 
     this.FetchGetUsers();
     this.FetchGetSpaces();
@@ -60,6 +64,7 @@ class Dashboard extends Component {
     this.FetchGetRatings();
     this.FetchGetSearches();
     this.FetchGetSpacesData();
+    this.FetchGetGrade();
 
 
   }
@@ -349,7 +354,7 @@ class Dashboard extends Component {
         }
       );
   };
-  //sets usres in Users
+ 
   FetchGetUsers = () => {
     fetch(this.UsersApiUrl, {
       method: "GET"
@@ -387,7 +392,6 @@ class Dashboard extends Component {
         error => { }
       );
   };
-  //SPACES
   FetchGetSpaces = () => {
     fetch(this.SpacesApiUrl, {
       method: "GET"
@@ -432,7 +436,6 @@ class Dashboard extends Component {
       );
   };
 
-  //ORDERS
   FetchGetOrders = () => {
     fetch(this.OrdersApiUrl, {
       method: "GET"
@@ -461,6 +464,36 @@ class Dashboard extends Component {
         error => { }
       );
   };
+  FetchGetGrade = () => {
+    fetch(this.GradeApiUrl, {
+      method: "GET"
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(
+        result => {
+          this.setState({
+            Grade: result.map(
+              item =>
+                new Grade(
+                  item.Capacity,
+                  item.Conversion,
+                  item.Equipment,
+                  item.Facility,
+                  item.GradeId,
+                  item.ModifiedDate,
+                  item.Order,
+                  item.Premium,
+                  item.Price,
+                  item.Rating
+                )
+            )
+          });
+        },
+        error => { }
+      );
+  };
 
   checkLogged = (isLog, user) => {
     if (isLog) {
@@ -471,7 +504,6 @@ class Dashboard extends Component {
       })
     }
   }
-
 
   render() {
     /*     <Router>
@@ -505,7 +537,7 @@ class Dashboard extends Component {
             <Route path="/UserTable"><UserTable Users={this.state.Users} /></Route>
             <Route path="/Charts"><Charts Orders={this.state.Orders} Spaces={this.state.Spaces} /></Route>
             <Route path="/Orders"><Orders Orders={this.state.Orders} Spaces={this.state.Spaces} /></Route>
-            <Route path="/Control"><Control /></Route>
+            <Route path="/Control"><Control Grade={this.state.Grade} /></Route>
             <Route exact path="/"><Login /></Route>
             <Route path="/Graph"><Graph Searches={this.state.Searches} ArtFiltersData={this.state.ArtCounters} BeautyFiltersData={this.state.BeautyCounters} SportFiltersData={this.state.SportCounters}
               ArtFilters={this.state.ArtFilters} BeautyFilters={this.state.BeautyFilters} SportFilters={this.state.SportFilters} ArtEqCounters={this.state.ArtEqCounters} BeautyEqCounters={this.state.BeautyEqCounters} SportEqCounters={this.state.SportEqCounters}></Graph></Route>
