@@ -36,7 +36,14 @@ class DoughnutChart extends React.Component {
             ],
           },
         ],
+      
       },
+      options:{
+        legend: {
+            display: false,
+        },
+        responsive: true,
+    },
     };
   }
 
@@ -79,15 +86,13 @@ class DoughnutChart extends React.Component {
 
   };
 
-
-
   render() {
     return (
       <MDBContainer>
-        <h3 className="mt-5">{this.props.headLine}</h3>
+        <h3 className="mt-5" style={{ textAlign: "center" }}>{this.props.headLine}</h3>
         <Doughnut
           data={this.state.dataDoughnut}
-          options={{ responsive: true }}
+          options={this.state.options}
         />
       </MDBContainer>
     );

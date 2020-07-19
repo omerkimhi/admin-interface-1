@@ -62,6 +62,8 @@ export default class Graph extends Component {
     super(props);
     this.state = {
 
+     
+
       polarData: {
         datasets: [
           {
@@ -217,8 +219,8 @@ export default class Graph extends Component {
     };
 
     this.setState({ pieData: pieData })
-  };
-////לסדר את הגרפים 
+  }; 
+  
   RadarLineCharts = () => {
 
     var artValues = [];
@@ -266,18 +268,18 @@ export default class Graph extends Component {
       <div className="container">
         <div className="row">
           <div className="col">
-            <h3 className="mt-5">Searches by Field</h3>
+            <h3 className="mt-5" style={{ textAlign: "center" }}>Searches by Field</h3>
             <Pie data={this.state.pieData}></Pie>
           </div>
           <div className="col">
-            <h3 className="mt-5">Filters by Field</h3>
+            <h3 className="mt-5" style={{ textAlign: "center" }}>Filters by Field</h3>
             <Polar data={this.state.polarData}></Polar>
           </div>
         </div>
-        <div className="row">
-          <div className="col">
+        <div className="row" >
+          <div className="col" >
 
-            <h3 className="mt-5"> Space facilities demands by Field in %</h3>
+            <h3 className="mt-5" style={{ textAlign: "center" }}> Space facilities demands by Field in %</h3>
           </div>
         </div>
 
@@ -294,29 +296,32 @@ export default class Graph extends Component {
           </div>
         </div>
 
-        <div className="row" tyle={{ paddingLeft: "15%", paddingRight: "15%" }}>
-          <div className="col" style={{ marginLeft: "auto", float: "left" }}>
+        <div className="row" tyle={{paddingLeft: "15%", paddingRight:"15%"}}>
+          <div className="col"  >
             {" "}
             <DoughnutChart
               field={"art"}
               ArtEqCounters={this.props.ArtEqCounters}
               headLine={"Trending equipments in art field"}
+              
             />
           </div>
-          <div className="col" style={{ marginLeft: "auto", float: "left" }}>
+          <div className="col" >
             {" "}
             <DoughnutChart
               field={"beauty"}
               BeautyEqCounters={this.props.BeautyEqCounters}
               headLine={"Trending equipments in beauty field"}
+             
             />
           </div>
-          <div className="col" style={{ marginLeft: "auto", float: "left" }}>
+          <div className="col" >
             {" "}
             <DoughnutChart
               field={"sport"}
               SportEqCounters={this.props.SportEqCounters}
               headLine={"Trending equipments in sport field"}
+             
             />
           </div>
         </div>

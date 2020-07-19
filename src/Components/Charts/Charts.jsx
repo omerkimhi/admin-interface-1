@@ -1,10 +1,5 @@
 import React, { Component } from "react";
 import ChartComp from "./ChartComp";
-//Charts imports
-import LineChart from "./LineChart";
-import BarChart from "./BarChart";
-import PieChart from "./PieChart";
-import DoughnutChart from "./DoughnutChart";
 
 export default class Charts extends Component {
   constructor(props) {
@@ -21,56 +16,33 @@ export default class Charts extends Component {
   }
 
   render() {
-    
-
     return (
       <div className="app" style={{}}>
-     
         <div
-          className="container"
-         
-        >
-               <div style={{justifyContent:"center"}} className="row"> <h1>Spaces Analytics</h1></div>
-               <div className="row" style={{
+          className="container">
+          <div style={{ justifyContent: "center" }} className="row"> <h1>Spaces Analytics</h1></div>
+          <div className="row" style={{
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "space-between",
-            minWidth: "90%",
+            minWidth: "90%"
           }}>
+            {this.state.ChartArray.map((item, index) => {
 
-                 
-        
-          {this.state.ChartArray.map((item, index) => {
-            return (
-              <div key={index} style={{ width: "45%", paddingTop: "5vh" }}>
-             
-                <ChartComp
-                
-                  key={index * 1}
-                  Spaces={this.state.Spaces}
-                  height={"40vh"}
-                  number={index}
-                  type={item}
-                ></ChartComp>
-              </div>
-            );
-          })}
-  </div>
-          {/* <div className="row">
-            <BarChart Orders={this.props.Orders} />
+              return (
+                <div key={index} style={{ width: "45%", paddingTop: "5vh" }}>
+                  <ChartComp
+                    key={index * 1}
+                    Spaces={this.state.Spaces}
+                    Orders={this.state.Orders}
+                    height={"40vh"}
+                    number={index}
+                    type={item}>
+                  </ChartComp>
+                </div>
+              );
+            })}
           </div>
-          <div className="row">
-            <PieChart Spaces={this.props.Spaces} Orders={this.props.Orders} />
-          </div>
-          <div className="row">
-            <div className="col">
-              <h3 className="mt-5"> Space Orders</h3>
-              <LineChart Orders={this.props.Orders} /> <br />
-              <br />
-            </div>
-          </div> 
-          <br />
-          <br />*/}
         </div>
         <br />
         <br />

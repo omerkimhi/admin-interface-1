@@ -10,28 +10,30 @@ export default function ChartComp(props) {
         return self.indexOf(value) === index;
     }
     var getLabel = (props) => {
-        switch (props.type) {
-            case 'bar': {
-                if (props.number === 1) {
-                    var fieldArray = props.Spaces.map(item => {
-                        return item.field
-                    })
-                    uniqueField = fieldArray.filter(getUnique)
-                    return uniqueField
+        
+        if (props.type) {
+           
 
-                }
-                else {
-                    var fieldArray = props.Spaces.map(item => {
-                        return item.city
-                    })
-                    uniqueCity = fieldArray.filter(getUnique)
-                    return uniqueCity
+            if (props.number === 1) {
+                var fieldArray = props.Spaces.map(item => {
+                    return item.field
+                })
+                uniqueField = fieldArray.filter(getUnique)
+                return uniqueField
 
-                }
-            } break
+            }
+            else {
+                var fieldArray = props.Spaces.map(item => {
+                    return item.city
+                })
+                uniqueCity = fieldArray.filter(getUnique)
+                return uniqueCity
+
+            }
+
         }
     }
-    
+
     var prepData = (props) => {
 
 
@@ -53,8 +55,10 @@ export default function ChartComp(props) {
             return [{
 
                 label: kind,
-                backgroundColor:  "RGB(130, 224, 170)",
-                data: Array
+                backgroundColor: "RGB(130, 224, 170)",
+                data: Array,
+
+
             }]
         }
         if (props.number === 0) {
@@ -65,14 +69,14 @@ export default function ChartComp(props) {
                 arrayByField.map(item => {
                     sum = sum + item[kind]
                 })
-                avg =Math.round( sum / arrayByField.length)
+                avg = Math.round(sum / arrayByField.length)
                 return avg
             })
 
             return [{
 
                 label: kind,
-                backgroundColor:  "RGB(205, 92, 92)",
+                backgroundColor: "RGB(205, 92, 92)",
                 data: Array
             }]
         }
@@ -89,14 +93,27 @@ export default function ChartComp(props) {
         borderColor: [
             'rgba(255,99,132,1)',
             'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)']
+            'rgba(255, 206, 86, 1)'],
+
+
     }
+
+    const options = {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+
     if (props.type === 'bar') {
         return (
             <div style={{ position: 'relative' }}>
-            {props.number==1?"Field":"City"}    {"- Average of:" }
+                {props.number == 1 ? "Field" : "City"}    {"- Average of:"}
                 <RadioButton kind={kind} setKind={setKind}></RadioButton>
-                <Chart height={100} data={data} type={props.type}></Chart>
+                <Chart height={100} data={data} type={props.type} options={options}></Chart>
             </div>
         )
     }

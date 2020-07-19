@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import ChartComp from "./ChartComp";
-//Charts imports
 import LineChart from "./LineChart";
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
@@ -47,15 +46,10 @@ export default class OrderCharts extends Component {
           break;
         case "sport":
           SportOrders.push(order);
-
-
           break;
-        default:
-          console.log("No field");
       }
 
     });
-
     this.state.Orders.map((order) => {
       switch (moment(order.ReservationDate).month()) {
         case 1: monthData[0] += 1; break;
@@ -101,7 +95,7 @@ export default class OrderCharts extends Component {
 
               <h3 className="mt-5"> Space Orders</h3>
 
-              <LineChart Orders={this.props.Orders} />{" "}
+              <LineChart Spaces={this.state.Spaces} Orders={this.props.Orders} />{" "}
               <br />
               <br />
             </div>
