@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import LineChart2 from "../Components/Charts/LineChart2";
 import { Radar, Polar, Pie } from "react-chartjs-2";
 import DoughnutChart from "../Components/Charts/DoughnutChart";
+import { Container, Row, Col } from "react-bootstrap";
 
 /* const bubbleData = {
   labels: ["January"],
@@ -62,7 +63,7 @@ export default class Graph extends Component {
     super(props);
     this.state = {
 
-     
+
 
       polarData: {
         datasets: [
@@ -219,8 +220,8 @@ export default class Graph extends Component {
     };
 
     this.setState({ pieData: pieData })
-  }; 
-  
+  };
+
   RadarLineCharts = () => {
 
     var artValues = [];
@@ -265,67 +266,67 @@ export default class Graph extends Component {
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col">
+      <Container>
+        <Row>
+          <Col md={6} sm={12} >
             <h3 className="mt-5" style={{ textAlign: "center" }}>Searches by Field</h3>
             <Pie data={this.state.pieData}></Pie>
-          </div>
-          <div className="col">
+          </Col>
+          <Col md={6} sm={12}>
             <h3 className="mt-5" style={{ textAlign: "center" }}>Filters by Field</h3>
             <Polar data={this.state.polarData}></Polar>
-          </div>
-        </div>
-        <div className="row" >
-          <div className="col" >
+          </Col>
+        </Row>
+        <Row>
+          <Col>
 
             <h3 className="mt-5" style={{ textAlign: "center" }}> Space facilities demands by Field in %</h3>
-          </div>
-        </div>
+          </Col>
+        </Row>
 
-        <div className="row">
-          <div className="col">
+        <Row>
+          <Col md={6} sm={12}>
             <LineChart2
               ArtFiltersData={this.props.ArtFiltersData}
               BeautyFiltersData={this.props.BeautyFiltersData}
               SportFiltersData={this.props.SportFiltersData}
             />
-          </div>
-          <div className="col">
+          </Col>
+          <Col md={6} sm={12}>
             <Radar data={this.state.dataRadar}></Radar>
-          </div>
-        </div>
-
-        <div className="row" tyle={{paddingLeft: "15%", paddingRight:"15%"}}>
-          <div className="col"  >
+          </Col>
+        </Row>
+        
+        <Row>
+          <Col md={4} sm={12} > 
             {" "}
             <DoughnutChart
               field={"art"}
               ArtEqCounters={this.props.ArtEqCounters}
               headLine={"Trending equipments in art field"}
-              
+
             />
-          </div>
-          <div className="col" >
+          </Col>
+          <Col md={4} sm={12}>
             {" "}
             <DoughnutChart
               field={"beauty"}
               BeautyEqCounters={this.props.BeautyEqCounters}
               headLine={"Trending equipments in beauty field"}
-             
+
             />
-          </div>
-          <div className="col" >
+          </Col>
+          <Col md={4} sm={12}>
             {" "}
             <DoughnutChart
               field={"sport"}
               SportEqCounters={this.props.SportEqCounters}
               headLine={"Trending equipments in sport field"}
-             
+
             />
-          </div>
-        </div>
-      </div>
+          </Col>
+        </Row>
+      </Container>
     );
   }
 }

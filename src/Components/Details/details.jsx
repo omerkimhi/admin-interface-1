@@ -3,12 +3,12 @@ import ReactDOM from "react-dom";
 import "./details.css";
 import "@progress/kendo-theme-material/dist/all.css";
 import "bootstrap-4-grid/css/grid.min.css";
-import { ListGroup, } from "react-bootstrap";
+import { ListGroup, Row, Col } from "react-bootstrap";
 import { Button } from "@progress/kendo-react-buttons";
 import { savePDF } from "@progress/kendo-react-pdf";
 import { Ripple } from "@progress/kendo-react-ripple";
 import Container from "@material-ui/core/Container";
-import {  Pie, Line, Doughnut } from "react-chartjs-2";
+import { Pie, Line, Doughnut } from "react-chartjs-2";
 import * as moment from "moment";
 import Card from "../Details/CCCardStat.jsx";
 
@@ -217,7 +217,6 @@ class Details extends Component {
     }
     this.setState({ pieData: pieData })
   }
-
 
   usersSpacesDataset = () => {
 
@@ -538,7 +537,7 @@ class Details extends Component {
 
   render() {
     return (
-      
+
       <Ripple>
         <Container ref={(el) => (this.appContainer = el)}>
           <br />
@@ -547,12 +546,12 @@ class Details extends Component {
           <br />
           <div className="container">
             <br />
-            <div style={{ justifyContent: "center" }} className="row">
+            <Row style={{ justifyContent: "center" }}>
               <br />
               <h1 className="headerLine"> Spaces Stats</h1>
-            </div>
-            <div className="row">
-              <div className="col">
+            </Row>
+            <Row>
+              <Col  md={4} sm={12}>
                 <br />
                 <Card
                   header={"Rank"}
@@ -564,8 +563,8 @@ class Details extends Component {
                   dataBeauty={this.state.avgRankBeauty}
                 />
                 <br />
-              </div>
-              <div className="col">
+              </Col>
+              <Col md={4} sm={12}>
                 <br />
                 <Card
                   header={"TOP rated space"}
@@ -576,8 +575,8 @@ class Details extends Component {
                   beauty={"Beauty:"}
                   dataBeauty={this.state.topRankBeauty}
                 />
-              </div>
-              <div className="col">
+              </Col>
+              <Col md={4} sm={12}>
                 <br />
                 <Card
                   header={"Fields"}
@@ -589,29 +588,30 @@ class Details extends Component {
                   dataBeauty={this.state.beautySpaces.length}
                 />
                 <br />
-              </div>
-            </div>
-            <div style={{ paddingLeft: "15%", paddingRight: "15%" }} className="row">
+              </Col>
+            </Row>
+            <Row style={{ paddingLeft: "15%", paddingRight: "15%" }}>
 
-              <div className="col">
+
+              <Col >
                 <br />
                 <h4>Spaces to Users Ratio </h4>
                 <Doughnut data={this.state.usersSpacesDataset}></Doughnut>
-              </div>
-             
-              <div className="col" style={{ marginLeft: "auto", float:"left" }}>
+              </Col>
+
+              <Col style={{ marginLeft: "auto", float: "left" }}>
                 <br />
                 <h4>Amount of spaces by field</h4>
                 <Pie data={this.state.pieData}></Pie>
-              </div>
-            </div>
+              </Col>
+            </Row>
             <br />
-            <div style={{ justifyContent: "center" }} className="row">
+            <Col style={{ justifyContent: "center" }}>
               <br />
-              <h1> Database Stats</h1>
-            </div>
-            <div style={{ paddingLeft: "15%" }} className="row">
-              <div className="col">
+              <h1 style={{textAlign: "center"}}> Database Stats</h1>
+            </Col>
+            <Row style={{ paddingLeft: "15%" }} >
+              <Col>
                 <br></br>
                 <ListGroup variant="flush">
                   <ListGroup.Item>
@@ -634,9 +634,8 @@ class Details extends Component {
                     </h4>
                   </ListGroup.Item>
                 </ListGroup>
-              </div>
-
-              <div className="col">
+              </Col>
+              <Col>
                 <br />
                 <Card
                   header={"Data Base"}
@@ -647,27 +646,27 @@ class Details extends Component {
                   beauty={"New spaces added in last 30 days:"}
                   dataBeauty={this.state.SpaceInMonth.length}
                 />
-              </div>
-            </div>
+              </Col>
+            </Row>
 
-            <div style={{ paddingLeft: "15%", paddingRight: "15%" }} className="row">
-              <div className="col">
+            <Row style={{ paddingLeft: "15%", paddingRight: "15%" }}>
+              <Col>
                 <br />
                 <Line data={lineData}></Line>
-              </div>
-              <div className="col" style={{ marginLeft: "auto", float:"left" }}>
+              </Col>
+              <Col style={{ marginLeft: "auto", float: "left" }}>
                 <br />
                 <Line data={this.state.SpaceByMonth}></Line>
-              </div>
-            </div>
+              </Col>
+            </Row>
             <br />
-            <div style={{ justifyContent: "center" }} className="row">
+            <Row style={{ justifyContent: "center" }} >
               <br />
               <h1> Spaces stats by field</h1>
-            </div>
-            <div className="row">
+            </Row>
+            <Row>
               <br />
-              <div className="col">
+              <Col>
                 <br />
                 <ListGroup.Item>
                   <h2>Beauty</h2>
@@ -686,8 +685,8 @@ class Details extends Component {
                   <h4>{this.state.beautyMin} ₪</h4>
                 </ListGroup.Item>
                 <br />
-              </div>
-              <div className="col">
+              </Col>
+              <Col>
                 <br />
                 <ListGroup.Item>
                   <h2>Sport</h2>
@@ -704,8 +703,8 @@ class Details extends Component {
                   <h5>Min price:</h5>
                   <h4>{this.state.sportMin} ₪</h4>
                 </ListGroup.Item>
-              </div>
-              <div className="col">
+              </Col>
+              <Col>
                 <br />
                 <ListGroup.Item>
                   <h2>Art</h2>
@@ -723,8 +722,8 @@ class Details extends Component {
                   <h4>{this.state.artMin} ₪</h4>
                 </ListGroup.Item>
                 <br />
-              </div>
-            </div>
+              </Col>
+            </Row>
           </div>
         </Container>
       </Ripple>
