@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import ChartComp from "./ChartComp";
 import LineChart from "./LineChart";
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
-import * as moment from "moment";
+import { Container, Row, Col } from "react-bootstrap";
+import { VerticalAlignment } from "igniteui-react-core";
 
 export default class OrderCharts extends Component {
   constructor(props) {
@@ -12,71 +12,19 @@ export default class OrderCharts extends Component {
     this.state = {
       Orders: this.props.Orders,
       Spaces: this.props.Spaces,
+      ArtOrder: this.props.ArtOrder,
+      BeautyOrder: this.props.BeautyOrder,
+      SportOrder: this.props.SportOrder,
       OrderDays: [],
       pieC: null,
-      //ChartArray: ["line", "bar", "line", "bar"], Segal
-      ChartArray: ["", "bar", "", "bar"],
-
 
     };
   }
 
-  componentDidMount() {
-    this.getOrderMonth();
-  }
-  getOrderMonth = () => {
-
-    let monthData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-    let tempSpace = {};
-    let ArtOrders = [];
-    let BeautyOrders = [];
-    let SportOrders = [];
-    //all space id of orders
-    this.state.Orders.map((order) => {
-
-      tempSpace = this.state.Spaces.filter(space => space.Id === order.spaceId)
-
-      switch (tempSpace.field) {
-        case "art":
-          ArtOrders.push(order);
-          break;
-        case "beauty":
-          BeautyOrders.push(order);
-
-          break;
-        case "sport":
-          SportOrders.push(order);
-          break;
-      }
-
-    });
-    this.state.Orders.map((order) => {
-      switch (moment(order.ReservationDate).month()) {
-        case 1: monthData[0] += 1; break;
-        case 2: monthData[1] += 1; break;
-        case 3: monthData[2] += 1; break;
-        case 4: monthData[3] += 1; break;
-        case 5: monthData[4] += 1; break;
-        case 6: monthData[5] += 1; break;
-        case 7: monthData[6] += 1; break;
-        case 8: monthData[7] += 1; break;
-        case 9: monthData[8] += 1; break;
-        case 10: monthData[9] += 1; break;
-        case 11: monthData[10] += 1; break;
-        case 12: monthData[11] += 1; break;
-      }
-
-      this.setState({})
-
-    });
-  }
-
   render() {
-   
     return (
-      <div className="app" style={{}}>
-        <div
-          className="container"
+      <div className="app">
+        <Container
           style={{
             display: "flex",
             flexWrap: "wrap",
@@ -84,28 +32,34 @@ export default class OrderCharts extends Component {
             minWidth: "90%",
           }}
         >
-          <div className="row">
-            <BarChart Orders={this.props.Orders} />
-          </div>
-          <div className="row">
-            <PieChart Spaces={this.props.Spaces} Orders={this.props.Orders} />
-          </div>
-          <div className="row">
-            <div className="col">
+          <Row>
+            <Col>
+              <BarChart Orders={this.props.Orders} />
+            </Col>
+            <Col>
 
-              <h3 className="mt-5"> Space Orders</h3>
+              <PieChart Spaces={this.props.Spaces} Orders={this.props.Orders} />
+            </Col>
 
-              <LineChart Spaces={this.state.Spaces} Orders={this.props.Orders} />{" "}
-              <br />
-              <br />
-            </div>
-          </div>
-          <br />
-          <br />
-        </div>
+            <Row>
+                <h3 className="mt-5" style={{marginLeft:400}}> Space Orders</h3>
+                <div style={{ paddingLeft:'30px'}}>
+                  <LineChart ArtOrder={this.props.ArtOrder} BeautyOrder={this.props.BeautyOrder} SportOrder={this.props.SportOrder} />{" "}
+                </div>
+              
+            </Row>
+            <br />
+            <br />
+          </Row>
+        </Container>
         <br />
         <br />
       </div>
     );
   }
+}
+
+const textStyle = {
+  textAlign: 'center',
+  
 }

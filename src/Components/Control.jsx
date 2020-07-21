@@ -10,7 +10,7 @@ export default class Control extends Component {
     this.state = {
       Grade: this.props.Grade,
       lineData: {
-        //"Price","Capacity","Facility","Equipment","Rating","Premium","Order","Conversion"
+
         labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
         datasets: [
           {
@@ -505,7 +505,7 @@ export default class Control extends Component {
   };
 
   render() {
-
+console.log('jean', this.props.Grade)
     return (
       <div className="app">
         <br />
@@ -631,4 +631,4 @@ export default class Control extends Component {
   }
 }
 
-const styles = {};
+

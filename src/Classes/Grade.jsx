@@ -1,6 +1,6 @@
 class Grade{
 
-    constructor(capacity, conversion, equipment, facility, gradeId, modifiedDate, order, premium, rating){
+    constructor(capacity, conversion, equipment, facility, gradeId, modifiedDate, order, premium,price, rating){
         this.capacity = capacity;
         this.conversion = conversion;
         this.equipment = equipment;
@@ -9,6 +9,7 @@ class Grade{
         this.modifiedDate = modifiedDate;
         this.order = order;
         this.premium = premium;
+        this.price=price;
         this.rating = rating;
     }
 

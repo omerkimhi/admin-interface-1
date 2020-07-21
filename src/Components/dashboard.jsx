@@ -8,6 +8,9 @@ import User from '../Classes/User';
 import Space from '../Classes/Space';
 import Order from '../Classes/Order';
 import Grade from '../Classes/Grade';
+import ArtOrder from '../Classes/ArtOrder';
+import BeautyOrder from '../Classes/BeautyOrder';
+import SportOrder from '../Classes/SportOrder';
 //COMPONENTS
 import Details from '../Components/Details/details';
 import SpaceTable from '../Components/Tables/SpaceTable';
@@ -15,11 +18,9 @@ import UserTable from '../Components/Tables/UserTable';
 import Login from "../Components/Login/login";
 import Charts from '../Components/Charts/Charts';
 import Orders from '../Components/Charts/OrdersCharts';
-
 import Control from './Control.jsx'
 import Footer from './Footer';
 import Graph from './Graph';
-
 
 class Dashboard extends Component {
 
@@ -34,6 +35,9 @@ class Dashboard extends Component {
       Orders: [],
       Users: [],
       Grade: [],
+      ArtOrder: [],
+      BeautyOrder: [],
+      SportOrder: [],
     };
   }
   componentDidMount() {
@@ -50,15 +54,18 @@ class Dashboard extends Component {
     this.UsersApiUrl =
       "https://proj.ruppin.ac.il/igroup17/prod/api/user";
     this.GradeApiUrl =
-      "http://proj.ruppin.ac.il/igroup17/proj/api/grade/"
+      "http://proj.ruppin.ac.il/igroup17/proj/api/grade/";
+    this.ArtOrdersUrl =
+      "https://proj.ruppin.ac.il/igroup17/proj/api/order/Art"
+    this.BeautyOrdersUrl =
+      "https://proj.ruppin.ac.il/igroup17/proj/api/order/Beauty"
+    this.SportOrdersUrl =
+      "https://proj.ruppin.ac.il/igroup17/proj/api/order/Sport"
+
 
     this.FetchGetUsers();
     this.FetchGetSpaces();
     this.FetchGetOrders();
-    //this.FetchGetEquipment();
-    //this.FetchGetFacilities();
-    //this.FetchGetAvailabilities();
-    //this.FetchGetFieldsEq();
     this.FetchGetArtFilters();
     this.FetchGetArtFiltersData();
     this.FetchGetBeautyFilter();
@@ -71,7 +78,9 @@ class Dashboard extends Component {
     this.FetchGetSearches();
     this.FetchGetSpacesData();
     this.FetchGetGrade();
-
+    this.fetchGetArtOrders();
+    this.fetchGetBeautyOrders();
+    this.fetchGetSportOrders();
 
   }
 
@@ -500,6 +509,92 @@ class Dashboard extends Component {
         error => { }
       );
   };
+  fetchGetArtOrders = () => {
+    fetch(this.ArtOrdersUrl, {
+      method: "GET"
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(
+        result => {
+          this.setState({
+            ArtOrder: result.map(
+              item =>
+                new ArtOrder(
+                  item.EndHour,
+                  item.OrderDate,
+                  item.OrderId,
+                  item.Price,
+                  item.ReservationDate,
+                  item.SpaceId,
+                  item.StartHour,
+                  item.UserId,
+                )
+            )
+          });
+        },
+        error => { }
+      );
+  };
+  fetchGetBeautyOrders = () => {
+    fetch(this.BeautyOrdersUrl, {
+      method: "GET"
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(
+        result => {
+          this.setState({
+            BeautyOrder: result.map(
+              item =>
+                new BeautyOrder(
+                  item.EndHour,
+                  item.OrderDate,
+                  item.OrderId,
+                  item.Price,
+                  item.ReservationDate,
+                  item.SpaceId,
+                  item.StartHour,
+                  item.UserId,
+                )
+            )
+          });
+        },
+        error => { }
+      );
+  };
+  fetchGetSportOrders = () => {
+    fetch(this.SportOrdersUrl, {
+      method: "GET"
+    })
+      .then(res => {
+        return res.json();
+      })
+      .then(
+        result => {
+          this.setState({
+            SportOrder: result.map(
+              item =>
+                new SportOrder(
+                  item.EndHour,
+                  item.OrderDate,
+                  item.OrderId,
+                  item.Price,
+                  item.ReservationDate,
+                  item.SpaceId,
+                  item.StartHour,
+                  item.UserId,
+                )
+            )
+          });
+        },
+        error => { }
+      );
+  };
+
+
 
   checkLogged = (isLog, user) => {
 
@@ -510,24 +605,7 @@ class Dashboard extends Component {
     })
 
   }
-
   render() {
-
-    /*     <Router>
-        <Switch>
-          <Route path="/details" exact><Details Spaces={this.state.Spaces} Users={this.state.Users}/></Route>
-          <Route path="/SpaceTable" exact><SpaceTable Spaces={this.state.Spaces} /></Route>
-          <Route path="/UserTable" exact strict><UserTable Users={this.state.Users} /></Route>
-          <Route path="/Charts" exact><Charts Orders={this.state.Orders} Spaces={this.state.Spaces}/></Route>
-          <Route exact path="/"><Login /></Route>
-        </Switch>
-      </Router> */
-    //login
-    /* if (!this.state.isLogged) {
-      return (
-        <Router><Login isLogged={this.state.isLogged} checkLogged={this.checkLogged} /></Router>
-      );
-    }  */
     if (this.state.Spaces.length === 0 || this.state.Orders.length === 0 || this.state.Users.length === 0) {
       return <h1>LOADING</h1>
     }
@@ -535,13 +613,8 @@ class Dashboard extends Component {
       if (!this.state.isLogged) {
         return (
           <Router>
-
-
-
             <Switch>
-
               <Route exact path="/"><Login checkLogged={this.checkLogged} /></Route>
-
             </Switch>
           </Router>
         )
@@ -550,27 +623,20 @@ class Dashboard extends Component {
 
         <Router>
           <div> <NavBar isLogged={this.state.isLogged} userLogged={this.state.userLogged} checkLogged={this.checkLogged}></NavBar></div>
-
-
           <Switch>
             <Route exact path="/"><Details Spaces={this.state.Spaces} Users={this.state.Users} /></Route>
             <Route path="/SpaceTable"><SpaceTable Spaces={this.state.Spaces} /></Route>
             <Route path="/UserTable"><UserTable Users={this.state.Users} /></Route>
             <Route path="/Charts"><Charts Orders={this.state.Orders} Spaces={this.state.Spaces} /></Route>
-            <Route path="/Orders"><Orders Orders={this.state.Orders} Spaces={this.state.Spaces} /></Route>
+            <Route path="/Orders"><Orders Orders={this.state.Orders} Spaces={this.state.Spaces} ArtOrder={this.state.ArtOrder} BeautyOrder={this.state.BeautyOrder} SportOrder={this.state.SportOrder} /></Route>
             <Route path="/Control"><Control Grade={this.state.Grade} /></Route>
-
             <Route path="/Graph"><Graph Searches={this.state.Searches} ArtFiltersData={this.state.ArtCounters} BeautyFiltersData={this.state.BeautyCounters} SportFiltersData={this.state.SportCounters}
               ArtFilters={this.state.ArtFilters} BeautyFilters={this.state.BeautyFilters} SportFilters={this.state.SportFilters} ArtEqCounters={this.state.ArtEqCounters} BeautyEqCounters={this.state.BeautyEqCounters} SportEqCounters={this.state.SportEqCounters}></Graph></Route>
           </Switch>
           <Footer></Footer>
         </Router>
-
       );
     }
-
-
   }
 }
-
 export default Dashboard;

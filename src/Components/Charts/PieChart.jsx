@@ -50,7 +50,7 @@ class PieChart extends React.Component {
 
     return (
       <MDBContainer>
-        <h3 className="mt-5">Orders Amount by Field</h3>
+        <h3  style={textStyle} className="mt-5">Orders Amount by Field</h3>
         <Pie data={this.state.pieC.dataPie} options={{ responsive: true }} />
       </MDBContainer>
     );
@@ -59,3 +59,7 @@ class PieChart extends React.Component {
 }
 
 export default PieChart;
+
+const textStyle={
+  textAlign:'center'
+}

@@ -105,7 +105,7 @@ class BarChart extends React.Component {
     render() {
         return (
             <MDBContainer>
-                <h3 className="mt-5">Trending renting days</h3>
+                <h3  style={textStyle} className="mt-5">Trending renting days</h3>
                 <div>
                 <Bar height={300} data={this.state.BarC.dataBar} options={this.state.BarC.barChartOptions} />
                 </div>
@@ -115,3 +115,6 @@ class BarChart extends React.Component {
 }
 
 export default BarChart;
+const textStyle={
+    textAlign:'center'
+  }
