@@ -50,8 +50,11 @@ class PieChart extends React.Component {
 
     return (
       <MDBContainer>
+         
         <h3  style={textStyle} className="mt-5">Orders Amount by Field</h3>
-        <Pie data={this.state.pieC.dataPie} options={{ responsive: true }} />
+        <div style={{height: this.props.height, width: this.props.width}} >
+        <Pie data={this.state.pieC.dataPie}  options={{ responsive: true }} />
+        </div>
       </MDBContainer>
     );
   }

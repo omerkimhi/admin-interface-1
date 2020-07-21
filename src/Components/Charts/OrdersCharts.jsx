@@ -3,7 +3,6 @@ import LineChart from "./LineChart";
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
 import { Container, Row, Col } from "react-bootstrap";
-import { VerticalAlignment } from "igniteui-react-core";
 
 export default class OrderCharts extends Component {
   constructor(props) {
@@ -24,32 +23,27 @@ export default class OrderCharts extends Component {
   render() {
     return (
       <div className="app">
-        <Container
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            minWidth: "90%",
-          }}
-        >
+        <Container style={containerStyle}>
           <Row>
-            <Col>
-              <BarChart Orders={this.props.Orders} />
-            </Col>
-            <Col>
-
-              <PieChart Spaces={this.props.Spaces} Orders={this.props.Orders} />
-            </Col>
-
-            <Row>
-                <h3 className="mt-5" style={{marginLeft:400}}> Space Orders</h3>
-                <div style={{ paddingLeft:'30px'}}>
-                  <LineChart ArtOrder={this.props.ArtOrder} BeautyOrder={this.props.BeautyOrder} SportOrder={this.props.SportOrder} />{" "}
-                </div>
+            <Col md={6} sm={12}>
               
-            </Row>
-            <br />
-            <br />
+              <BarChart height={'100vh'} width={'100vh'} Orders={this.props.Orders} />
+            
+            </Col>
+            <Col md={6} sm={12}>
+              <div>
+              <PieChart  height={'100vh'} width={'80vh'} Spaces={this.props.Spaces} Orders={this.props.Orders} />
+              </div>
+              
+             
+            
+              
+            </Col>
+          </Row>
+          <Row>
+          <div style={{ paddingLeft:30}}>
+                  <LineChart  height={'100%'} width={'100%'} header={"Space Orders"} ArtOrder={this.props.ArtOrder} BeautyOrder={this.props.BeautyOrder} SportOrder={this.props.SportOrder} />{" "}
+                </div> 
           </Row>
         </Container>
         <br />
@@ -58,8 +52,9 @@ export default class OrderCharts extends Component {
     );
   }
 }
-
-const textStyle = {
-  textAlign: 'center',
-  
+const containerStyle={
+  display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "space-between",
+            minWidth: "90%",
 }

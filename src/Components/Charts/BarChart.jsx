@@ -8,7 +8,11 @@ class BarChart extends React.Component {
         this.state = {
             Orders: this.props.Orders,
             BarC: {},
-            data: {},
+           
+
+
+
+
         }
     }
     componentDidMount() {
@@ -106,8 +110,8 @@ class BarChart extends React.Component {
         return (
             <MDBContainer>
                 <h3  style={textStyle} className="mt-5">Trending renting days</h3>
-                <div>
-                <Bar height={300} data={this.state.BarC.dataBar} options={this.state.BarC.barChartOptions} />
+                <div style={{height: this.props.height, width: this.props.width}}>
+                <Bar  data={this.state.BarC.dataBar} options={this.state.BarC.barChartOptions} />
                 </div>
             </MDBContainer>
         );
