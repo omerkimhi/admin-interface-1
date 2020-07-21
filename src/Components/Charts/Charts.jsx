@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import ChartComp from "./ChartComp";
+import { Container, Row, Col } from "react-bootstrap";
 
 export default class Charts extends Component {
   constructor(props) {
@@ -17,11 +18,10 @@ export default class Charts extends Component {
 
   render() {
     return (
-      <div className="app" style={{}}>
-        <div
-          className="container">
-          <div style={{ justifyContent: "center" }} className="row"> <h1>Spaces Analytics</h1></div>
-          <div className="row" style={{
+      <div className="app">
+       < Container>
+         <Row style={{ justifyContent: "center" }} > <h1>Spaces Analytics</h1></Row>
+          <Row style={{
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "space-between",
@@ -42,8 +42,8 @@ export default class Charts extends Component {
                 </div>
               );
             })}
-          </div>
-        </div>
+          </Row>
+          </Container>
         <br />
         <br />
       </div>

@@ -13,6 +13,8 @@
   }
 }
 
+
+
 .App-header {
   background-color: #282c34;
   min-height: 100vh;
@@ -44,4 +46,10 @@
 .chart{
   height: 500px;
   width: 500px;
+}
+
+
+.nav{
+  background-color: rgb(178, 199, 187);
+  color:'red';
 }

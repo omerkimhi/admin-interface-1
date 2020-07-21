@@ -551,7 +551,7 @@ class Details extends Component {
               <h1 className="headerLine"> Spaces Stats</h1>
             </Row>
             <Row>
-              <Col  md={4} sm={12}>
+              <Col  lg={4} md={12}>
                 <br />
                 <Card
                   header={"Rank"}

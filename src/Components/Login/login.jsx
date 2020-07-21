@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Button } from "react";
 import { withRouter } from "react-router-dom";
 import './login.css';
 
@@ -8,7 +8,8 @@ class Login extends Component {
         this.state = {
             userName: "",
             password: "",
-            isLogged:this.props.isLogged,
+            isLogged: this.props.isLogged,
+            rememberMe: false
         }
     }
 
@@ -22,19 +23,34 @@ class Login extends Component {
     checkUser = () => { this.FetchGetAdmin(); }
 
     FetchGetAdmin = () => {
+
+        console.log("url", this.AdminApiUrl + '/?username=' + this.state.userName + '&adminpassword=' + this.state.password)
         fetch(this.AdminApiUrl + '/?username=' + this.state.userName + '&adminpassword=' + this.state.password, {
             method: "GET"
         })
             .then(res => {
-                return  res.json();
+
+
+                return res.json();
             })
-            .then(res=>{
-                this.setState({isLogged:res},()=>
-            
-                {this.props.checkLogged(this.state.isLogged,this.state.userName)})
-                   
-                
+            .then(res => {
+
+                console.log("res", res)
+                if (this.state.rememberMe) {
+                    localStorage.setItem("user", this.state.userName)
+                }
+                this.props.checkLogged(res, this.state.userName)
+
+
             })
+    }
+
+    handleInputChange = (event) => {
+        const target = event.target;
+        const value = target.checked;
+
+        this.setState({ rememberMe: value }, () => { console.log("checkbox", this.state.rememberMe) })
+
     }
 
 
@@ -62,16 +78,18 @@ class Login extends Component {
 
                         <div className="form-group">
                             <div className="custom-control custom-checkbox">
-                                <input type="checkbox" className="custom-control-input" id="customCheck1" />
+                                <input type="checkbox" className="custom-control-input" id="customCheck1" onChange={this.handleInputChange} />
                                 <label className="custom-control-label" htmlFor="customCheck1">Remember me</label>
                             </div>
                         </div>
 
-                        <button type="submit" onClick={this.checkUser} className="btn btn-primary btn-block" >Login</button>
+
 
                         <br />
                         <br />
+
                     </form>
+                    <button onClick={this.checkUser} className="btn btn-primary btn-block" >Login</button>
                 </div>
             </div>
         );

@@ -1,28 +1,39 @@
 import React, { Component } from "react";
-import { Navbar, Nav, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav, NavDropdown ,Button,Row} from "react-bootstrap";
 import {
   BrowserRouter as Router,
   Switch,
   Route,
   NavLink,
 } from "react-router-dom";
-
+import './../../App.css';
 
 
 class NavBar extends Component {
   render() {
+if(!this.props.isLogged){
+  return( <NavLink
+    style={myStyle}
+    activeStyle={{ fontWeight: "bold" }}
+    className="justify-content-end"
+    to="/"
+  >
+    Sign In
+  </NavLink>)
+}
+else
     return (
       <div>
         <br />
-        <Navbar bg="dark" variant="dark" expand="lg">
-          <Navbar.Brand>
+        <Navbar bg="red" variant="dark" expand="lg" className="nav">
+          <Navbar.Brand  className="nav">
             {" "}
             <img
               style={{ height: 50 }}
               src="https://i.imgur.com/LzYGyMb.png"
               alt="logoimage"
             ></img>{" "}
-            Spazio Admin
+            Spazio Admin - {String(this.props.userLogged).toUpperCase()}
           </Navbar.Brand>
           <Nav className="mr-auto">
             <NavLink
@@ -94,15 +105,14 @@ class NavBar extends Component {
               Control
             </NavLink>
             
-            <NavLink
-              style={myStyle}
-              activeStyle={{ fontWeight: "bold" }}
-              className="justify-content-end"
-              to="/"
-            >
-              Sign Out
-            </NavLink>
           </Nav>
+          <Row style={{  Right:0, marginRight:15, alignItems:'center' }}>
+          
+    {/* <h4  style={{ textTransform: 'capitalize', color:'white',}}>Hi {this.props.userLogged}</h4> */}
+    <div style={{marginLeft:10,  }}>
+    <Button onClick={()=>{localStorage.clear(); this.props.checkLogged(false, "")}}>sign out</Button>
+    </div>
+    </Row>
         </Navbar>
       </div>
     );
@@ -119,3 +129,4 @@ const myStyle = {
     fontWeight: "bold",
   },
 };
+

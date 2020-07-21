@@ -33,17 +33,23 @@ class Dashboard extends Component {
       Spaces: [],
       Orders: [],
       Users: [],
-      Grade:[],
+      Grade: [],
     };
   }
   componentDidMount() {
+    if (localStorage.getItem('user')) {
+      this.setState({
+        isLogged: true,
+        userLogged: localStorage.getItem('user'),
+      })
+    }
     this.SpacesApiUrl =
       "https://proj.ruppin.ac.il/igroup17/prod/api/space";
     this.OrdersApiUrl =
       "https://proj.ruppin.ac.il/igroup17/prod/api/order";
     this.UsersApiUrl =
       "https://proj.ruppin.ac.il/igroup17/prod/api/user";
-      this.GradeApiUrl =
+    this.GradeApiUrl =
       "http://proj.ruppin.ac.il/igroup17/proj/api/grade/"
 
     this.FetchGetUsers();
@@ -121,9 +127,9 @@ class Dashboard extends Component {
           this.setState({
             ArtFiltersData: temp,
             ArtCounters: [temp[8], temp[9], temp[10], temp[11], temp[12], temp[13], temp[14]],
-            ArtEqCounters:[temp[15].Value, temp[16].Value, temp[17].Value, temp[18].Value, temp[19].Value, temp[20].Value]
+            ArtEqCounters: [temp[15].Value, temp[16].Value, temp[17].Value, temp[18].Value, temp[19].Value, temp[20].Value]
 
-          }, 
+          },
           );
         },
         error => {
@@ -184,10 +190,10 @@ class Dashboard extends Component {
           this.setState({
             BeautyFiltersData: temp,
             BeautyCounters: [temp[8], temp[9], temp[10], temp[11], temp[12], temp[13], temp[14]],
-            BeautyEqCounters:[temp[15].Value, temp[16].Value, temp[17].Value, temp[18].Value, temp[19].Value, temp[20].Value]
+            BeautyEqCounters: [temp[15].Value, temp[16].Value, temp[17].Value, temp[18].Value, temp[19].Value, temp[20].Value]
 
 
-          }, 
+          },
           );
         },
         error => {
@@ -247,11 +253,11 @@ class Dashboard extends Component {
           this.setState({
             SportFiltersData: temp,
             SportCounters: [temp[8], temp[9], temp[10], temp[11], temp[12], temp[13], temp[14]],
-            SportEqCounters:[temp[15].Value, temp[16].Value, temp[17].Value, temp[18].Value, temp[19].Value, temp[20].Value]//eq = equipment
+            SportEqCounters: [temp[15].Value, temp[16].Value, temp[17].Value, temp[18].Value, temp[19].Value, temp[20].Value]//eq = equipment
 
 
           }
-    );
+          );
         },
         error => {
           console.log('Fetch Error :', error);
@@ -354,7 +360,7 @@ class Dashboard extends Component {
         }
       );
   };
- 
+
   FetchGetUsers = () => {
     fetch(this.UsersApiUrl, {
       method: "GET"
@@ -368,10 +374,10 @@ class Dashboard extends Component {
             Users: result.map(
               item =>
                 new User(
-                  
+
                   item.Id,
                   item.Email,
-                  
+
                   item.Password,
                   item.UserName,
                   item.PhoneNumber,
@@ -380,9 +386,9 @@ class Dashboard extends Component {
                   item.Visits,
                   item.Rank,
                   item.RegistrationDate,
-                  
-                  
-                  
+
+
+
                 )
             )
           },
@@ -496,16 +502,17 @@ class Dashboard extends Component {
   };
 
   checkLogged = (isLog, user) => {
-    if (isLog) {
-      this.setState({
-        isLogged: true,
-        userLogged: user,
 
-      })
-    }
+    this.setState({
+      isLogged: isLog,
+      userLogged: user,
+
+    })
+
   }
 
   render() {
+
     /*     <Router>
         <Switch>
           <Route path="/details" exact><Details Spaces={this.state.Spaces} Users={this.state.Users}/></Route>
@@ -525,20 +532,34 @@ class Dashboard extends Component {
       return <h1>LOADING</h1>
     }
     else {
-      return (
+      if (!this.state.isLogged) {
+        return (
+          <Router>
+
+
+
+            <Switch>
+
+              <Route exact path="/"><Login checkLogged={this.checkLogged} /></Route>
+
+            </Switch>
+          </Router>
+        )
+      }
+      else return (
 
         <Router>
-          <div> <NavBar></NavBar></div>
+          <div> <NavBar isLogged={this.state.isLogged} userLogged={this.state.userLogged} checkLogged={this.checkLogged}></NavBar></div>
 
 
           <Switch>
-            <Route path="/details"><Details Spaces={this.state.Spaces} Users={this.state.Users} /></Route>
+            <Route exact path="/"><Details Spaces={this.state.Spaces} Users={this.state.Users} /></Route>
             <Route path="/SpaceTable"><SpaceTable Spaces={this.state.Spaces} /></Route>
             <Route path="/UserTable"><UserTable Users={this.state.Users} /></Route>
             <Route path="/Charts"><Charts Orders={this.state.Orders} Spaces={this.state.Spaces} /></Route>
             <Route path="/Orders"><Orders Orders={this.state.Orders} Spaces={this.state.Spaces} /></Route>
             <Route path="/Control"><Control Grade={this.state.Grade} /></Route>
-            <Route exact path="/"><Login /></Route>
+
             <Route path="/Graph"><Graph Searches={this.state.Searches} ArtFiltersData={this.state.ArtCounters} BeautyFiltersData={this.state.BeautyCounters} SportFiltersData={this.state.SportCounters}
               ArtFilters={this.state.ArtFilters} BeautyFilters={this.state.BeautyFilters} SportFilters={this.state.SportFilters} ArtEqCounters={this.state.ArtEqCounters} BeautyEqCounters={this.state.BeautyEqCounters} SportEqCounters={this.state.SportEqCounters}></Graph></Route>
           </Switch>
@@ -547,6 +568,8 @@ class Dashboard extends Component {
 
       );
     }
+
+
   }
 }
 
