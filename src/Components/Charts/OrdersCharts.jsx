@@ -34,10 +34,6 @@ export default class OrderCharts extends Component {
               <div>
               <PieChart  height={'100vh'} width={'80vh'} Spaces={this.props.Spaces} Orders={this.props.Orders} />
               </div>
-              
-             
-            
-              
             </Col>
           </Row>
           <Row>
