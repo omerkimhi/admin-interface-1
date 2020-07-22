@@ -1,6 +1,6 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
-import { MDBContainer } from "mdbreact";
+
 
 class PieChart extends React.Component {
 
@@ -49,13 +49,13 @@ class PieChart extends React.Component {
   render() {
 
     return (
-      <MDBContainer>
+      <div>
          
         <h3  style={textStyle} className="mt-5">Orders Amount by Field</h3>
         <div style={{height: this.props.height, width: this.props.width}} >
         <Pie data={this.state.pieC.dataPie}  options={{ responsive: true }} />
         </div>
-      </MDBContainer>
+        </div>
     );
   }
 

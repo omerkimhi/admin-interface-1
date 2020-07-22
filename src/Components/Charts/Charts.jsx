@@ -27,10 +27,11 @@ export default class Charts extends Component {
             justifyContent: "space-between",
             minWidth: "90%"
           }}>
+
             {this.state.ChartArray.map((item, index) => {
 
               return (
-                <div key={index} style={{ width: "45%", paddingTop: "5vh" }}>
+                <Col lg={6} xs={12} key={index} style={{ width: "45%", paddingTop: "5vh" }}>
                   <ChartComp
                     key={index * 1}
                     Spaces={this.state.Spaces}
@@ -39,7 +40,7 @@ export default class Charts extends Component {
                     number={index}
                     type={item}>
                   </ChartComp>
-                </div>
+                </Col>
               );
             })}
           </Row>

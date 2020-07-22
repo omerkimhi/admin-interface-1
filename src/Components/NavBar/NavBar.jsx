@@ -41,6 +41,7 @@ class NavBar extends Component {
                 to="/">
                 General data
             </NavLink>
+            
               <NavDropdown
                 title={<span style={dropStyle} >Tables</span>}>
                 <NavDropdown.Item

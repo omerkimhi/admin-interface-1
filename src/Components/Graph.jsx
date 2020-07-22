@@ -4,73 +4,17 @@ import { Radar, Polar, Pie } from "react-chartjs-2";
 import DoughnutChart from "../Components/Charts/DoughnutChart";
 import { Container, Row, Col } from "react-bootstrap";
 
-/* const bubbleData = {
-  labels: ["January"],
-  datasets: [
-    {
-      label: "My First dataset",
-      fill: false,
-      lineTension: 0.1,
-      backgroundColor: "rgba(75,192,192,0.4)",
-      borderColor: "rgba(75,192,192,1)",
-      borderCapStyle: "butt",
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: "miter",
-      pointBorderColor: "rgba(75,192,192,1)",
-      pointBackgroundColor: "#fff",
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: "rgba(75,192,192,1)",
-      pointHoverBorderColor: "rgba(220,220,220,1)",
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10,
-      data: [
-        { x: 0, y: 0, r: 1 },
-        { x: 1, y: 19, r: 5 },
-        { x: 2, y: 20, r: 5 },
-        { x: 3, y: 18, r: 5 },
-        { x: 4, y: 17, r: 5 },
-        { x: 5, y: 16, r: 5 },
-        { x: 6, y: 20, r: 5 },
-        { x: 7, y: 20, r: 5 },
-        { x: 8, y: 20, r: 5 },
-        { x: 9, y: 20, r: 5 },
-        { x: 10, y: 20, r: 5 },
-        { x: 11, y: 20, r: 5 },
-        { x: 12, y: 20, r: 5 },
-      ],
-    },
-  ],
-};
-const data2 = {
-  labels: ["January", "February", "March", "April", "May", "June", "July"],
-  datasets: [
-    {
-      label: "My First dataset",
-      backgroundColor: "rgba(255,99,132,0.2)",
-      borderColor: "rgba(255,99,132,1)",
-      borderWidth: 1,
-      hoverBackgroundColor: "rgba(255,99,132,0.4)",
-      hoverBorderColor: "rgba(255,99,132,1)",
-      data: [65, 59, 80, 81, 56, 55, 40],
-    },
-  ],
-}; */
+
 export default class Graph extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
-
-
       polarData: {
         datasets: [
           {
             data: [this.props.ArtFilters.length, this.props.BeautyFilters.length, this.props.SportFilters.length],
             backgroundColor: ["#FF6384", "#4BC0C0", "#FFCE56", "#E7E9ED", "#36A2EB"],
-            label: "My dataset", // for legend
+            label: "My dataset", 
           },
         ],
         labels: ["Art", "Beauty", "Sport"],
@@ -329,4 +273,7 @@ export default class Graph extends Component {
       </Container>
     );
   }
+}
+const textCenter={
+  textAlign: "center" 
 }

@@ -48,19 +48,19 @@ class Dashboard extends Component {
       })
     }
     this.SpacesApiUrl =
-      "https://proj.ruppin.ac.il/igroup17/prod/api/space";
+      "http://proj.ruppin.ac.il/igroup17/prod/api/space";
     this.OrdersApiUrl =
-      "https://proj.ruppin.ac.il/igroup17/prod/api/order";
+      "http://proj.ruppin.ac.il/igroup17/prod/api/order";
     this.UsersApiUrl =
-      "https://proj.ruppin.ac.il/igroup17/prod/api/user";
+      "http://proj.ruppin.ac.il/igroup17/prod/api/user";
     this.GradeApiUrl =
       "http://proj.ruppin.ac.il/igroup17/proj/api/grade/";
     this.ArtOrdersUrl =
-      "https://proj.ruppin.ac.il/igroup17/proj/api/order/Art"
+      "http://proj.ruppin.ac.il/igroup17/proj/api/order/Art"
     this.BeautyOrdersUrl =
-      "https://proj.ruppin.ac.il/igroup17/proj/api/order/Beauty"
+      "http://proj.ruppin.ac.il/igroup17/proj/api/order/Beauty"
     this.SportOrdersUrl =
-      "https://proj.ruppin.ac.il/igroup17/proj/api/order/Sport"
+      "http://proj.ruppin.ac.il/igroup17/proj/api/order/Sport"
 
 
     this.FetchGetUsers();
@@ -85,7 +85,7 @@ class Dashboard extends Component {
   }
 
   FetchGetArtFilters = () => {
-    fetch("https://proj.ruppin.ac.il/igroup17/proj/api/ArtFilter", {
+    fetch("http://proj.ruppin.ac.il/igroup17/proj/api/ArtFilter", {
       method: "GET"
     })
       .then(res => {
@@ -104,7 +104,7 @@ class Dashboard extends Component {
       );
   };
   FetchGetArtFiltersData = () => {
-    fetch("https://proj.ruppin.ac.il/igroup17/proj/api/ArtFilter/Data", {
+    fetch("http://proj.ruppin.ac.il/igroup17/proj/api/ArtFilter/Data", {
       method: "GET"
     })
       .then(res => {
@@ -147,7 +147,7 @@ class Dashboard extends Component {
       );
   };
   FetchGetBeautyFilter = () => {
-    fetch("https://proj.ruppin.ac.il/igroup17/proj/api/BeautyFilter", {
+    fetch("http://proj.ruppin.ac.il/igroup17/proj/api/BeautyFilter", {
       method: "GET"
     })
       .then(res => {
@@ -167,7 +167,7 @@ class Dashboard extends Component {
       );
   };
   FetchGetBeautyFilterData = () => {
-    fetch("https://proj.ruppin.ac.il/igroup17/proj/api/BeautyFilter/Data", {
+    fetch("http://proj.ruppin.ac.il/igroup17/proj/api/BeautyFilter/Data", {
       method: "GET"
     })
       .then(res => {
@@ -211,7 +211,7 @@ class Dashboard extends Component {
       );
   };
   FetchGetSportFilters = () => {
-    fetch("https://proj.ruppin.ac.il/igroup17/proj/api/SportFilter", {
+    fetch("http://proj.ruppin.ac.il/igroup17/proj/api/SportFilter", {
       method: "GET"
     })
       .then(res => {
@@ -230,7 +230,7 @@ class Dashboard extends Component {
       );
   };
   FetchGetSportFiltersData = () => {
-    fetch("https://proj.ruppin.ac.il/igroup17/proj/api/SportFilter/Data", {
+    fetch("http://proj.ruppin.ac.il/igroup17/proj/api/SportFilter/Data", {
       method: "GET"
     })
       .then(res => {
@@ -274,7 +274,7 @@ class Dashboard extends Component {
       );
   };
   FetchGetSpaceVisits = () => {
-    fetch("https://proj.ruppin.ac.il/igroup17/proj/api/SpaceVisit", {
+    fetch("http://proj.ruppin.ac.il/igroup17/proj/api/SpaceVisit", {
       method: "GET"
     })
       .then(res => {
@@ -293,7 +293,7 @@ class Dashboard extends Component {
       );
   };
   FetchGetSearches = () => {
-    fetch("https://proj.ruppin.ac.il/igroup17/proj/api/Search", {
+    fetch("http://proj.ruppin.ac.il/igroup17/proj/api/Search", {
       method: "GET"
     })
       .then(res => {
@@ -313,7 +313,7 @@ class Dashboard extends Component {
       );
   };
   FetchGetRatings = () => {
-    fetch("https://proj.ruppin.ac.il/igroup17/proj/api/Rating", {
+    fetch("http://proj.ruppin.ac.il/igroup17/proj/api/Rating", {
       method: "GET"
     })
       .then(res => {
@@ -332,7 +332,7 @@ class Dashboard extends Component {
       );
   };
   FetchGetFavourites = () => {
-    fetch("https://proj.ruppin.ac.il/igroup17/proj/api/Favourite", {
+    fetch("http://proj.ruppin.ac.il/igroup17/proj/api/Favourite", {
       method: "GET"
     })
       .then(res => {
@@ -351,7 +351,7 @@ class Dashboard extends Component {
       );
   };
   FetchGetSpacesData = () => {
-    fetch("https://proj.ruppin.ac.il/igroup17/proj/api/SpaceData/AllSpaces", {
+    fetch("http://proj.ruppin.ac.il/igroup17/proj/api/SpaceData/AllSpaces", {
       method: "GET"
     })
       .then(res => {

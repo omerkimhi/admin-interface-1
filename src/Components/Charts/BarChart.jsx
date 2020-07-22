@@ -1,6 +1,6 @@
 import React from "react";
 import { Bar } from "react-chartjs-2";
-import { MDBContainer } from "mdbreact";
+
 
 class BarChart extends React.Component {
     constructor(props) {
@@ -108,12 +108,12 @@ class BarChart extends React.Component {
     }
     render() {
         return (
-            <MDBContainer>
+<div>
                 <h3  style={textStyle} className="mt-5">Trending renting days</h3>
                 <div style={{height: this.props.height, width: this.props.width}}>
                 <Bar  data={this.state.BarC.dataBar} options={this.state.BarC.barChartOptions} />
                 </div>
-            </MDBContainer>
+                </div>
         );
     }
 }
