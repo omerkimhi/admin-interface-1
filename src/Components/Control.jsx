@@ -505,7 +505,7 @@ export default class Control extends Component {
   };
 
   render() {
-console.log('jean', this.props.Grade)
+
     return (
       <div className="app">
         <br />

@@ -9,7 +9,16 @@ class PieChart extends React.Component {
     this.state = {
       Orders: this.props.Orders,
       Spaces: this.props.Spaces,
-      pieC: {},
+      pieC:  {
+        dataPie: {
+          labels: ["Sport", "Beauty", "Art"],
+          datasets: [{
+            data: null,
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870"]
+          }]
+        }
+      },
     }
   }
 
@@ -49,8 +58,7 @@ class PieChart extends React.Component {
   render() {
 
     return (
-      <div>
-         
+      <div>     
         <h3  style={textStyle} className="mt-5">Orders Amount by Field</h3>
         <div style={{height: this.props.height, width: this.props.width}} >
         <Pie data={this.state.pieC.dataPie}  options={{ responsive: true }} />

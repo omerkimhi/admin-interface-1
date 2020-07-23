@@ -112,9 +112,8 @@ class Details extends Component {
           'Users',
           'Spaces',
         ],
-
         datasets: [{
-          data: [0, 0],
+          data: null,
           backgroundColor: [
             'RGB(240, 128, 128)',
             'RGB(40, 180, 99)',
@@ -195,16 +194,6 @@ class Details extends Component {
   }
 
   fieldsPieDataset = () => {
-    // let art = 0;
-    // let sport = 0;
-    // let beauty = 0;
-    // this.props.Spaces.map((space) => {
-    //   switch (space.Field) {
-    //     case "Art": art += 1; break;
-    //     case "Sport": sport += 1; break;
-    //     case "Beauty": beauty += 1; break;
-    //   }
-    // });
     let pieData = {
       labels: ["Art", "Beauty", "Sport"],
       datasets: [
@@ -240,7 +229,7 @@ class Details extends Component {
       }]
     }
     this.setState({
-      usersSpacesDataset: dataSet
+      UsersSpacesDataset: dataSet
     })
   }
   //gets number of spaces in each field
@@ -355,7 +344,7 @@ class Details extends Component {
 
     //Average space rank
     this.state.Spaces.map((space) => {
-      if (space.rank !== 0 || space.rank !== null) spaceAvg.push(space.rank);
+      if (space.rank !==0 || space.rank !== null) spaceAvg.push(space.rank);
     });
     let sumSpace = spaceAvg.reduce(
       (previous, current) => (current += previous)
@@ -590,16 +579,18 @@ class Details extends Component {
                 <br />
               </Col>
             </Row>
-            <Row style={{ paddingLeft: "15%", paddingRight: "15%" }}>
+            <Row style={ rowStyle}>
 
 
-              <Col >
+              <Col lg={6} md={12} sm={12} xs={12} >
                 <br />
                 <h4>Spaces to Users Ratio </h4>
-                <Doughnut data={this.state.usersSpacesDataset}></Doughnut>
+                
+                <Doughnut data={this.state.UsersSpacesDataset}></Doughnut>
+                
               </Col>
 
-              <Col style={{ marginLeft: "auto", float: "left" }}>
+              <Col lg={6} md={12} sm={12} xs={12} style={leftColStyle}>
                 <br />
                 <h4>Amount of spaces by field</h4>
                 <Pie data={this.state.pieData}></Pie>
@@ -649,12 +640,12 @@ class Details extends Component {
               </Col>
             </Row>
 
-            <Row style={{ paddingLeft: "15%", paddingRight: "15%" }}>
-              <Col>
+            <Row style={ rowStyle}>
+              <Col lg={6} md={12} sm={12} xs={12}>
                 <br />
                 <Line data={lineData}></Line>
               </Col>
-              <Col style={{ marginLeft: "auto", float: "left" }}>
+              <Col lg={6} md={12} sm={12} xs={12} style={leftColStyle}>
                 <br />
                 <Line data={this.state.SpaceByMonth}></Line>
               </Col>
@@ -732,3 +723,11 @@ class Details extends Component {
 }
 export default Details;
 
+const leftColStyle={
+  marginLeft: "auto", 
+  float: "left" 
+}
+const rowStyle={
+  paddingLeft: "15%", 
+  paddingRight: "15%" 
+}
