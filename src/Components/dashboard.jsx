@@ -52,7 +52,7 @@ class Dashboard extends Component {
     this.OrdersApiUrl =
       "http://proj.ruppin.ac.il/igroup17/prod/api/order";
     this.UsersApiUrl =
-      "http://proj.ruppin.ac.il/igroup17/prod/api/user";
+      "http://proj.ruppin.ac.il/igroup17/proj/api/user";
     this.GradeApiUrl =
       "http://proj.ruppin.ac.il/igroup17/proj/api/grade/";
     this.ArtOrdersUrl =
@@ -369,7 +369,6 @@ class Dashboard extends Component {
         }
       );
   };
-
   FetchGetUsers = () => {
     fetch(this.UsersApiUrl, {
       method: "GET"
@@ -386,11 +385,11 @@ class Dashboard extends Component {
 
                   item.Id,
                   item.Email,
-
                   item.Password,
                   item.UserName,
                   item.PhoneNumber,
                   item.Photo,
+                  item.Premium,
                   item.SpaceOwner,
                   item.Visits,
                   item.Rank,
@@ -594,15 +593,14 @@ class Dashboard extends Component {
       );
   };
 
-
-
   checkLogged = (isLog, user) => {
 
     this.setState({
       isLogged: isLog,
       userLogged: user,
-
     })
+
+
 
   }
   render() {
@@ -614,7 +612,7 @@ class Dashboard extends Component {
         return (
           <Router>
             <Switch>
-              <Route exact path="/"><Login checkLogged={this.checkLogged} /></Route>
+              <Route  path="/"><Login checkLogged={this.checkLogged} /></Route>
             </Switch>
           </Router>
         )
@@ -625,6 +623,7 @@ class Dashboard extends Component {
           <div> <NavBar isLogged={this.state.isLogged} userLogged={this.state.userLogged} checkLogged={this.checkLogged}></NavBar></div>
           <Switch>
             <Route exact path="/"><Details Spaces={this.state.Spaces} Users={this.state.Users} /></Route>
+
             <Route path="/SpaceTable"><SpaceTable Spaces={this.state.Spaces} /></Route>
             <Route path="/UserTable"><UserTable Users={this.state.Users} /></Route>
             <Route path="/Charts"><Charts Orders={this.state.Orders} Spaces={this.state.Spaces} /></Route>

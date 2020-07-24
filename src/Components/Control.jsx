@@ -124,11 +124,12 @@ export default class Control extends Component {
             pointRadius: 1,
             pointHitRadius: 10,
             data: [],
-          }, 
+          },
         ],
       }
     };
   }
+
   componentDidMount() {
     this.GraphLine();
   };
@@ -183,7 +184,7 @@ export default class Control extends Component {
           (item.Bench ? item.Bench * 1 : 0) + (item.Dumbells ? item.Dumbells * 1 : 0) + (item.Barbell ? item.Barbell * 1 : 0);
       }
     });
-    
+
     RatingCountArr.map((item, index) => {
       item != 0 ? RatingArr[index] = (RatingArr[index] / item) : RatingArr[index] = RatingArr[index]
     })
@@ -335,13 +336,12 @@ export default class Control extends Component {
   }
 
   changeValue = (e, name) => {
-    // console.log("target", e.target.value)
     this.setState({
       [name]: e.target.value
     }, () => { console.log("target", this.state[name]) })
   }
+
   render() {
-    //console.log(this.props.ArtFilters)
     return (
       <div className="app">
         <br />
@@ -349,9 +349,13 @@ export default class Control extends Component {
           <div style={{ justifyContent: "center" }} className="row">
             <h1>Smart Sorting</h1>
           </div>
-
+          <div className="row" style={{marginLeft:6}}>
+          <p>Here you can control the sort of the Recommended spaces in the search result feed,  
+            by changing the weights of each parameter. </p>
+          </div>
           <Form>
             <br />
+            
             <Form.Group as={Row} controlId="Price">
               <Form.Label column sm={2}>
                 Price
@@ -359,34 +363,32 @@ export default class Control extends Component {
               <Col sm={10}>
                 <Form.Control
                   onChange={(e) => this.changeValue(e, "price")}
-                  style={{ width: "10%" }}
+                  style={inputStyle}
                   type="number"
                   defaultValue={this.state.price}
                 />
               </Col>
             </Form.Group>
-
             <Form.Group as={Row} controlId="Capacity">
               <Form.Label column sm={2}>
                 Capacity
               </Form.Label>
               <Col sm={10}>
                 <Form.Control
-                  style={{ width: "10%" }}
+                  style={inputStyle}
                   type="number"
                   defaultValue={this.state.capacity}
                   onChange={(e) => this.changeValue(e, "capacity")}
                 />
               </Col>
             </Form.Group>
-
             <Form.Group as={Row} controlId="Facilities">
               <Form.Label column sm={2}>
                 Facility
               </Form.Label>
               <Col sm={10}>
                 <Form.Control
-                  style={{ width: "10%" }}
+                  style={inputStyle}
                   type="number"
                   defaultValue={this.state.facility}
                   onChange={(e) => this.changeValue(e, "facility")}
@@ -399,34 +401,33 @@ export default class Control extends Component {
               </Form.Label>
               <Col sm={10}>
                 <Form.Control
-                  style={{ width: "10%" }}
+                  style={inputStyle}
                   type="number"
                   defaultValue={this.state.equipment}
                   onChange={(e) => this.changeValue(e, "equipment")}
                 />
               </Col>
-            </Form.Group>
+            </Form.Group>            
             <Form.Group as={Row} controlId="rating">
               <Form.Label column sm={2}>
                 Rating
               </Form.Label>
               <Col sm={10}>
                 <Form.Control
-                  style={{ width: "10%" }}
+                  style={inputStyle}
                   type="number"
                   defaultValue={this.state.rating}
                   onChange={(e) => this.changeValue(e, "rating")}
                 />
               </Col>
             </Form.Group>
-
             <Form.Group as={Row} controlId="order">
               <Form.Label column sm={2}>
                 Orders
               </Form.Label>
               <Col sm={10}>
                 <Form.Control
-                  style={{ width: "10%" }}
+                  style={inputStyle}
                   type="number"
                   defaultValue={this.state.order}
                   onChange={(e) => this.changeValue(e, "order")}
@@ -439,7 +440,7 @@ export default class Control extends Component {
               </Form.Label>
               <Col sm={10}>
                 <Form.Control
-                  style={{ width: "10%" }}
+                  style={inputStyle}
                   type="number"
                   defaultValue={this.state.premium}
                   onChange={(e) => this.changeValue(e, "premium")}
@@ -452,7 +453,7 @@ export default class Control extends Component {
               </Form.Label>
               <Col sm={10}>
                 <Form.Control
-                  style={{ width: "10%" }}
+                  style={inputStyle }
                   type="number"
                   defaultValue={this.state.conversion}
                   onChange={(e) => this.changeValue(e, "conversion")}
@@ -475,5 +476,9 @@ export default class Control extends Component {
     );
   }
 }
-
-
+const inputStyle={ 
+  width: "10%" ,
+ backgroundColor:'#B2C7BB',
+ fontWeight:'bold',
+ 
+ }

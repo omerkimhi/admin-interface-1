@@ -23,7 +23,6 @@ export default class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
       Spaces: this.props.Spaces,
       SpaceDel: [],
       //Space Data Table
@@ -48,7 +47,6 @@ export default class Table extends Component {
         },
 
       ],
-
     }
   }
 
@@ -76,7 +74,6 @@ export default class Table extends Component {
     })
 console.log('str ',str)
   }
-
 
   render() {
     const tableIcons = {
@@ -109,7 +106,6 @@ console.log('str ',str)
           data={this.state.data}
           editable={{
             onRowDelete: (oldData) =>
-
               new Promise((resolve) => {
                 setTimeout(() => {
                   resolve();
@@ -120,8 +116,6 @@ console.log('str ',str)
                     return { ...prevState, data };
                   });
                 }, 600);
-
-
               }),
           }}
         />

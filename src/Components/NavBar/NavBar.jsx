@@ -8,7 +8,6 @@ import {
 } from "react-router-dom";
 import './../../App.css';
 
-
 class NavBar extends Component {
   render() {
     if (!this.props.isLogged) {
@@ -109,7 +108,6 @@ const myStyle = {
     fontWeight: "bold",
   },
 };
-
 const dropStyle = {
   color: "rgb(0, 114, 106)",
   padding: 0,

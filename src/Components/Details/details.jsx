@@ -38,7 +38,6 @@ const lineData = {
     }
   ]
 };
-
 const pieData = {
   labels: ["Art", "Beauty", "Sport"],
   datasets: [
@@ -53,26 +52,21 @@ const pieData = {
 class Details extends Component {
   constructor(props) {
     super(props);
-
     this.appContainer = React.createRef();
-
     this.state = {
       showDialog: false,
       isLoading: true,
-
       Spaces: this.props.Spaces,
       Users: this.props.Users,
       //array by field
       sportSpaces: [],
       beautySpaces: [],
       artSpaces: [],
-
       //Average prices by field
       sportPrice: null,
       artPrice: null,
       beautyPrice: null,
       spacesPrice: null,
-
       //Prices By field MIN/MAX
       artMax: null,
       artMin: null,
@@ -80,7 +74,6 @@ class Details extends Component {
       beautyMin: null,
       sportMax: null,
       sportMin: null,
-
       //top rated spaces
       topRankSport: "",
       topRankArt: "",
@@ -90,7 +83,6 @@ class Details extends Component {
       avgRankArt: null,
       avgRankBeauty: null,
       avgRankSpace: null,
-
       //date
       curTime: new Date().toLocaleString(),
       SpaceInWeek: [],
@@ -104,6 +96,16 @@ class Details extends Component {
             data: [0, 0, 0],
             backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
             hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+          },
+        ],
+      },
+      PremiumRegularData: {
+        labels: ["Premium", "Regular"],
+        datasets: [
+          {
+            data: [0, 0],
+            backgroundColor: ["#FF6384", "#36A2EB"],
+            hoverBackgroundColor: ["#FF6384", "#36A2EB"],
           },
         ],
       },
@@ -124,7 +126,23 @@ class Details extends Component {
           ]
         }]
       },
-
+      LandlordsTenantsDataset: {
+        labels: [
+          'Landlords',
+          'Tenants',
+        ],
+        datasets: [{
+          data: null,
+          backgroundColor: [
+            'RGB(240, 128, 128)',
+            'RGB(40, 180, 99)',
+          ],
+          hoverBackgroundColor: [
+            'RGB(240, 128, 128)',
+            'rgb(40, 180, 99)',
+          ]
+        }]
+      },
       SpaceByMonth: {
         labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
         datasets: [
@@ -151,7 +169,6 @@ class Details extends Component {
           }
         ]
       },
-
       UserByMonth: {
         labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
         datasets: [
@@ -178,8 +195,6 @@ class Details extends Component {
           }
         ]
       },
-
-
     };
   }
   componentDidMount() {
@@ -191,8 +206,52 @@ class Details extends Component {
     this.getUploadMonthSpace();
     this.getUploadMonthUser()
     this.usersSpacesDataset();
+    this.LandlordsTenantsDataset();
   }
-
+  LandlordsTenantsDataset = () => {
+    let landlords = 0;
+    let tenants = 0;
+    let premiums = 0;
+    let regulars = 0;
+    this.props.Users.map((user) => {
+      if (user.spaceOwner) {
+        landlords += 1
+        user.premium ? premiums += 1 : regulars += 1
+      }
+      else { tenants += 1 }
+    });
+    let dataSet = {
+      labels: [
+        'Landlords',
+        'Tenants',
+      ],
+      datasets: [{
+        data: [landlords, tenants],
+        backgroundColor: [
+          'RGB(240, 128, 128)',
+          'RGB(40, 180, 99)',
+        ],
+        hoverBackgroundColor: [
+          'RGB(240, 128, 128)',
+          'rgb(40, 180, 99)',
+        ]
+      }]
+    }
+    let PremiumRegularData = {
+      labels: ["Premium", "Regular"],
+      datasets: [
+        {
+          data: [premiums, regulars],
+          backgroundColor: ["#FF6384", "#36A2EB"],
+          hoverBackgroundColor: ["#FF6384", "#36A2EB"],
+        },
+      ],
+    }
+    this.setState({
+      LandlordsTenantsDataset: dataSet,
+      PremiumRegularData: PremiumRegularData
+    })
+  }
   fieldsPieDataset = () => {
     let pieData = {
       labels: ["Art", "Beauty", "Sport"],
@@ -206,9 +265,7 @@ class Details extends Component {
     }
     this.setState({ pieData: pieData })
   }
-
   usersSpacesDataset = () => {
-
     let spaces = this.props.Spaces.length;
     let users = this.props.Users.length;
     let dataSet = {
@@ -252,7 +309,6 @@ class Details extends Component {
         },
       ],
     }
-
     this.setState(
       { sportSpaces: sArray, beautySpaces: bArray, artSpaces: aArray, pieData: pieData },
       () => {
@@ -320,7 +376,6 @@ class Details extends Component {
       beautyMin: minBeauty,
     });
   };
-
   //Rank
   getRank = () => {
     //init
@@ -344,7 +399,7 @@ class Details extends Component {
 
     //Average space rank
     this.state.Spaces.map((space) => {
-      if (space.rank !==0 || space.rank !== null) spaceAvg.push(space.rank);
+      if (space.rank !== 0 || space.rank !== null) spaceAvg.push(space.rank);
     });
     let sumSpace = spaceAvg.reduce(
       (previous, current) => (current += previous)
@@ -540,7 +595,7 @@ class Details extends Component {
               <h1 className="headerLine"> Spaces Stats</h1>
             </Row>
             <Row>
-              <Col  lg={4} md={12}>
+              <Col lg={4} md={12}>
                 <br />
                 <Card
                   header={"Rank"}
@@ -579,27 +634,22 @@ class Details extends Component {
                 <br />
               </Col>
             </Row>
-            <Row style={ rowStyle}>
-
-
+            <Row style={rowStyle}>
               <Col lg={6} md={12} sm={12} xs={12} >
                 <br />
-                <h4>Spaces to Users Ratio </h4>
-                
-                <Doughnut data={this.state.UsersSpacesDataset}></Doughnut>
-                
+                <h4 style={{ textAlign: 'center' }}>Spaces to Users Ratio </h4>
+                <Doughnut data={this.state.UsersSpacesDataset} ></Doughnut>
               </Col>
-
               <Col lg={6} md={12} sm={12} xs={12} style={leftColStyle}>
                 <br />
-                <h4>Amount of spaces by field</h4>
+                <h4 style={{ textAlign: 'center' }}>Amount of spaces by field</h4>
                 <Pie data={this.state.pieData}></Pie>
               </Col>
             </Row>
             <br />
             <Col style={{ justifyContent: "center" }}>
               <br />
-              <h1 style={{textAlign: "center"}}> Database Stats</h1>
+              <h1 style={{ textAlign: "center" }}> Database Stats</h1>
             </Col>
             <Row style={{ paddingLeft: "15%" }} >
               <Col>
@@ -639,8 +689,7 @@ class Details extends Component {
                 />
               </Col>
             </Row>
-
-            <Row style={ rowStyle}>
+            <Row style={rowStyle}>
               <Col lg={6} md={12} sm={12} xs={12}>
                 <br />
                 <Line data={lineData}></Line>
@@ -715,6 +764,21 @@ class Details extends Component {
                 <br />
               </Col>
             </Row>
+            <Row style={rowStyle}>
+              <Col lg={6} md={12} sm={12} xs={12} >
+                <br />
+                <br />
+                <h4 style={{ textAlign: 'center' }} >Landloards to Tenants Ratio </h4>
+                <Doughnut data={this.state.LandlordsTenantsDataset}></Doughnut>
+              </Col>
+              <Col lg={6} md={12} sm={12} xs={12} style={leftColStyle}>
+                <br />
+                <h4 style={{ textAlign: 'center' }}>Premium to Regular Lanloards Ratio</h4>
+                <Pie data={this.state.PremiumRegularData}></Pie>
+              </Col>
+            </Row>
+            <br />
+            <br />
           </div>
         </Container>
       </Ripple>
@@ -723,11 +787,11 @@ class Details extends Component {
 }
 export default Details;
 
-const leftColStyle={
-  marginLeft: "auto", 
-  float: "left" 
+const leftColStyle = {
+  marginLeft: "auto",
+  float: "left"
 }
-const rowStyle={
-  paddingLeft: "15%", 
-  paddingRight: "15%" 
+const rowStyle = {
+  paddingLeft: "15%",
+  paddingRight: "15%"
 }

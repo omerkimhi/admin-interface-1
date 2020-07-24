@@ -24,8 +24,6 @@ export default class Table extends Component {
     super(props);
     this.state = {
       Users: this.props.Users,
-
-      //Users Data Table
       columnsUsers: [
         { title: 'userId', field: 'userId', type: 'numeric' },
         { title: 'email', field: 'email' },
@@ -33,10 +31,10 @@ export default class Table extends Component {
         { title: 'fullName', field: 'fullName' },
         { title: 'phoneNumber', field: 'phoneNumber', type: 'numeric' },
         { title: 'landLord', field: 'spaceOwner', type: 'boolean' },
-
+        { title: 'premium', field: 'premium', type: 'boolean' },
       ],
       dataUsers: [
-        { userId: null, email: "", password: "", fullName: "", phoneNumber: null ,spaceOwner:null},
+        { userId: null,  email: "", password: "", fullName: "", phoneNumber: null ,spaceOwner:null, premium:null},
 
       ],
     }
@@ -45,7 +43,6 @@ export default class Table extends Component {
   componentDidMount() { 
     this.getUserData();
   }
-
   //gets data and set state to dataUsers
   getUserData = () => {
     let Array = [];
@@ -54,6 +51,7 @@ export default class Table extends Component {
   }
 
   render() {
+ 
     const tableIcons = {
       Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
       Check: forwardRef((props, ref) => <Check {...props} ref={ref} />),
@@ -81,21 +79,6 @@ export default class Table extends Component {
           title="USERS IN SYSTEM"
           columns={this.state.columnsUsers}
           data={this.state.dataUsers}
-          editable={{
-            onRowDelete: (oldData) =>
-
-              new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                  this.setState((prevState) => {
-                    const data = [...prevState.data];
-                    data.splice(data.indexOf(oldData), 1);
-                    this.deleteData(oldData.userId)
-                    return { ...prevState, data };
-                  });
-                }, 600);
-              }),
-          }}
         />
       </div>
     );
