@@ -629,7 +629,7 @@ class Dashboard extends Component {
             <Route path="/UserTable"><UserTable Users={this.state.Users} /></Route>
             <Route path="/Charts"><Charts Orders={this.state.Orders} Spaces={this.state.Spaces} /></Route>
             <Route path="/Orders"><Orders Orders={this.state.Orders} Spaces={this.state.Spaces} ArtOrder={this.state.ArtOrder} BeautyOrder={this.state.BeautyOrder} SportOrder={this.state.SportOrder} /></Route>
-            <Route path="/Control"><Control Grade={this.state.Grade} /></Route>
+            <Route path="/Control"><Control Grade={this.state.Grade} ArtFilters={this.state.ArtFilters} BeautyFilters={this.state.BeautyFilters} SportFilters={this.state.SportFilters} /></Route>
             <Route path="/Graph"><Graph Searches={this.state.Searches} ArtFiltersData={this.state.ArtCounters} BeautyFiltersData={this.state.BeautyCounters} SportFiltersData={this.state.SportCounters}
               ArtFilters={this.state.ArtFilters} BeautyFilters={this.state.BeautyFilters} SportFilters={this.state.SportFilters} ArtEqCounters={this.state.ArtEqCounters} BeautyEqCounters={this.state.BeautyEqCounters} SportEqCounters={this.state.SportEqCounters}></Graph></Route>
           </Switch>
