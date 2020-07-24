@@ -11,7 +11,6 @@ export default class Charts extends Component {
       Spaces: this.props.Spaces,
       OrderDays: [],
       pieC: null,
-      //ChartArray: ["line", "bar", "line", "bar"], Segal
       ChartArray: ["bar", "bar"],
     };
   }
@@ -27,9 +26,7 @@ export default class Charts extends Component {
             justifyContent: "space-between",
             minWidth: "90%"
           }}>
-
             {this.state.ChartArray.map((item, index) => {
-
               return (
                 <Col lg={6} xs={12} key={index} style={{ width: "45%", paddingTop: "5vh" }}>
                   <ChartComp

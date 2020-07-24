@@ -12,43 +12,6 @@ import { Pie, Line, Doughnut } from "react-chartjs-2";
 import * as moment from "moment";
 import Card from "../Details/CCCardStat.jsx";
 
-const lineData = {
-  labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-  datasets: [
-    {
-      label: "New Users",
-      fill: false,
-      lineTension: 0.1,
-      backgroundColor: 'rgba(75,192,192,0.4)',
-      borderColor: 'rgba(171, 135, 255,1)',
-      borderCapStyle: 'butt',
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: 'miter',
-      pointBorderColor: 'rgba(171, 135, 255,1)',
-      pointBackgroundColor: '#fff',
-      pointBorderWidth: 3,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-      pointHoverBorderColor: 'rgba(220,220,220,1)',
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10,
-      data: [10, 21, 11, 17, 36, 27, 0, 0, 0, 0, 0, 0]
-    }
-  ]
-};
-const pieData = {
-  labels: ["Art", "Beauty", "Sport"],
-  datasets: [
-    {
-      data: [82, 386, 45],
-      backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-      hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-    },
-  ],
-};
-
 class Details extends Component {
   constructor(props) {
     super(props);
@@ -477,73 +440,52 @@ class Details extends Component {
     this.setState({ userType: landLord });
   };
   getUploadMonthUser = () => {
+
     let monthData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
     this.state.Users.map((user) => {
-      switch (moment(user.uploadtime).month()) {
-        case 1: monthData[0] += 1; break;
-        case 2: monthData[1] += 1; break;
-        case 3: monthData[2] += 1; break;
-        case 4: monthData[3] += 1; break;
-        case 5: monthData[4] += 1; break;
-        case 6: monthData[5] += 1; break;
-        case 7: monthData[6] += 1; break;
-        case 8: monthData[7] += 1; break;
-        case 9: monthData[8] += 1; break;
-        case 10: monthData[9] += 1; break;
-        case 11: monthData[10] += 1; break;
-        case 12: monthData[11] += 1; break;
-      }
-
-      let UserByMonth = {
-        labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-        datasets: [
-          {
-            label: "New Spaces",
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: 'rgba(75,192,192,0.4)',
-            borderColor: 'rgba(75,192,192,1)',
-            borderCapStyle: 'butt',
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: 'miter',
-            pointBorderColor: 'rgba(75,192,192,1)',
-            pointBackgroundColor: '#fff',
-            pointBorderWidth: 3,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: 'rgba(75,192,192,1)',
-            pointHoverBorderColor: 'rgba(220,220,220,1)',
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: monthData
-          }
-        ]
-      }
-
-      this.setState({ UserByMonth: UserByMonth })
-
+      monthData[moment(user.registrationDate).month()] = monthData[moment(user.registrationDate).month()] + 1;
     });
+    
+    this.setState({ 
+      UserByMonth:{
+      labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
+      datasets: [
+        {
+          label: "New Users",
+          fill: false,
+          lineTension: 0.1,
+          backgroundColor: 'rgba(75,192,192,0.4)',
+          borderColor: 'rgba(75,192,192,1)',
+          borderCapStyle: 'butt',
+          borderDash: [],
+          borderDashOffset: 0.0,
+          borderJoinStyle: 'miter',
+          pointBorderColor: 'rgba(75,192,192,1)',
+          pointBackgroundColor: '#fff',
+          pointBorderWidth: 3,
+          pointHoverRadius: 5,
+          pointHoverBackgroundColor: 'rgba(75,192,192,1)',
+          pointHoverBorderColor: 'rgba(220,220,220,1)',
+          pointHoverBorderWidth: 2,
+          pointRadius: 1,
+          pointHitRadius: 10,
+          data: monthData
+        }
+      ]
+    } })
   }
 
   getUploadMonthSpace = () => {
+
     let monthData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
     this.state.Spaces.map((space) => {
-      switch (moment(space.uploadtime).month()) {
-        case 1: monthData[0] += 1; break;
-        case 2: monthData[1] += 1; break;
-        case 3: monthData[2] += 1; break;
-        case 4: monthData[3] += 1; break;
-        case 5: monthData[4] += 1; break;
-        case 6: monthData[5] += 1; break;
-        case 7: monthData[6] += 1; break;
-        case 8: monthData[7] += 1; break;
-        case 9: monthData[8] += 1; break;
-        case 10: monthData[9] += 1; break;
-        case 11: monthData[10] += 1; break;
-        case 12: monthData[11] += 1; break;
-      }
-      let SpaceByMonth = {
+      monthData[moment(space.uploadtime).month()] = monthData[moment(space.uploadtime).month()] + 1;
+    });
+     
+    this.setState({ 
+      SpaceByMonth : {
         labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
         datasets: [
           {
@@ -569,10 +511,7 @@ class Details extends Component {
           }
         ]
       }
-
-      this.setState({ SpaceByMonth: SpaceByMonth })
-
-    });
+    })
   }
 
   handlePDFExport = () => {
@@ -692,7 +631,7 @@ class Details extends Component {
             <Row style={rowStyle}>
               <Col lg={6} md={12} sm={12} xs={12}>
                 <br />
-                <Line data={lineData}></Line>
+                <Line data={this.state.UserByMonth}></Line>
               </Col>
               <Col lg={6} md={12} sm={12} xs={12} style={leftColStyle}>
                 <br />

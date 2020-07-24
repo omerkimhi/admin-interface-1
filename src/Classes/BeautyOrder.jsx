@@ -1,5 +1,4 @@
 class BeautyOrder{
-
     constructor(endHour,orderDate,orderId,price,reservationDate,spaceId,startHour,userId){
         this.endHour = endHour;
         this.orderDate = orderDate;

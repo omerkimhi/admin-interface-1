@@ -97,27 +97,21 @@ class LineChart extends React.Component {
       sportNames.push(item.Name);
       sportValues.push(item.Value);
     });
-
-    
     var temp = this.state.dataLine;
     temp.labels = [...artNames];
     temp.datasets[0].data = artValues;
     temp.datasets[1].data = beautyValues;
     temp.datasets[2].data = sportValues;
 
-   
-
     this.setState({
       dataLine: temp,
     });
   };
 
-  render() {
-    
+  render() {  
     return (
       <MDBContainer>
         <Line data={this.state.dataLine} options={{ responsive: true }} />
-        
       </MDBContainer>
     );
   }

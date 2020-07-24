@@ -1,5 +1,4 @@
 class User {
-
     constructor(userId, email, password, fullName, phoneNumber, photo,premium,  spaceOwner, visits, rank, registrationDate) {
         this.email = email;
         this.userId = userId;
@@ -12,8 +11,6 @@ class User {
         this.spaceOwner = spaceOwner;
         this.fullName = fullName;
         this.visits = visits;
-        
-      
     }
 }
 export default User;

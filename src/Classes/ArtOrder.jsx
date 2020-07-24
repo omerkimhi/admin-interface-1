@@ -1,5 +1,4 @@
 class ArtOrder{
-
     constructor(endHour,orderDate,orderId,price,reservationDate,spaceId,startHour,userId){
         this.endHour = endHour;
         this.orderDate = orderDate;

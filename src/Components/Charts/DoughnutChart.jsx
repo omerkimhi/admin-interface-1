@@ -46,7 +46,6 @@ class DoughnutChart extends React.Component {
     },
     };
   }
-
   componentDidMount = () => {
 
     var temp = this.state.dataDoughnut;
@@ -85,7 +84,6 @@ class DoughnutChart extends React.Component {
     })
 
   };
-
   render() {
     return (
       <MDBContainer>

@@ -1,5 +1,4 @@
 class Grade{
-
     constructor(capacity, conversion, equipment, facility, gradeId, modifiedDate, order, premium,price, rating){
         this.capacity = capacity;
         this.conversion = conversion;
@@ -12,6 +11,5 @@ class Grade{
         this.price=price;
         this.rating = rating;
     }
-
 }
 export default Grade;

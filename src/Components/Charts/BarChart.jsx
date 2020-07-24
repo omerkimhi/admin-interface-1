@@ -69,13 +69,11 @@ class BarChart extends React.Component {
     }
 
     OrderBarChart = () => {
-
         let daysArray = [];
         this.props.Orders.map((order) => {
             var d = new Date(order.reservationDate)
             daysArray.push(d.getDay() + 1);
         })
-
         let b = {
             0: 0,
             1: 0,
@@ -153,6 +151,7 @@ class BarChart extends React.Component {
             }
         });
     }
+    
     render() {
         return (
             <div>
@@ -164,8 +163,8 @@ class BarChart extends React.Component {
         );
     }
 }
-
 export default BarChart;
+
 const textStyle = {
     textAlign: 'center'
 }

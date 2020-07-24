@@ -4,7 +4,6 @@ import BarChart from "./BarChart";
 import PieChart from "./PieChart";
 import { Container, Row, Col } from "react-bootstrap";
 
-
 export default class OrderCharts extends Component {
   constructor(props) {
     super(props);
@@ -17,10 +16,8 @@ export default class OrderCharts extends Component {
       SportOrder: this.props.SportOrder,
       OrderDays: [],
       pieC: null,
-
     };
   }
-
   render() {
     return (
       <div className="app">
@@ -31,7 +28,6 @@ export default class OrderCharts extends Component {
               <PieChart height={'50vh'} width={'30vw'} Spaces={this.props.Spaces} Orders={this.props.Orders} />
             </div>
             </Col>
-
             <Col lg={6} md={6} sm={10}  xs={10} >
             <div style={{marginLeft:100, position:'relative'}}>
               <BarChart height={'50vh'} width={'46vw'} Orders={this.props.Orders} />
@@ -62,13 +58,10 @@ const containerStyle = {
   minWidth: "90%",
   width:'100%'
 }
-
 const centerGraph={
 height: '100%',
 width: '90%',
 display: 'flex',
-//justifyContent: 'center',
-//alignItems: 'center'
 }
 
 

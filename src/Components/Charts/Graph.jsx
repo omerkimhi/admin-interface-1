@@ -4,7 +4,6 @@ import { Radar, Polar, Pie } from "react-chartjs-2";
 import DoughnutChart from "./DoughnutChart";
 import { Container, Row, Col } from "react-bootstrap";
 
-
 export default class Graph extends Component {
   constructor(props) {
     super(props);
@@ -19,7 +18,6 @@ export default class Graph extends Component {
         ],
         labels: ["Art", "Beauty", "Sport"],
       },
-
       pieData: {
         labels: ["Art", "Beauty", "Sport"],
         datasets: [
@@ -30,8 +28,6 @@ export default class Graph extends Component {
           },
         ],
       },
-
-
       dataLine: {
         labels: [],
         datasets: [
@@ -138,10 +134,8 @@ export default class Graph extends Component {
     };
   }
   componentDidMount = () => {
-
     this.getNumberOfSearchInEachField();
     this.RadarLineCharts();
-
   };
   getNumberOfSearchInEachField = () => {
     let sArray = [];
@@ -162,7 +156,6 @@ export default class Graph extends Component {
         },
       ],
     };
-
     this.setState({ pieData: pieData })
   };
 
@@ -223,11 +216,9 @@ export default class Graph extends Component {
         </Row>
         <Row>
           <Col>
-
             <h3 className="mt-5" style={{ textAlign: "center" }}> Space facilities demands by Field in %</h3>
           </Col>
         </Row>
-
         <Row>
           <Col md={6} sm={12}>
             <LineChart2
@@ -240,7 +231,6 @@ export default class Graph extends Component {
             <Radar data={this.state.dataRadar}></Radar>
           </Col>
         </Row>
-        
         <Row>
           <Col md={4} sm={12} > 
             {" "}
@@ -273,7 +263,4 @@ export default class Graph extends Component {
       </Container>
     );
   }
-}
-const textCenter={
-  textAlign: "center" 
 }

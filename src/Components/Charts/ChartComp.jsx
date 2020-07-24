@@ -10,17 +10,13 @@ export default function ChartComp(props) {
         return self.indexOf(value) === index;
     }
     var getLabel = (props) => {
-
         if (props.type) {
-
-
             if (props.number === 1) {
                 var fieldArray = props.Spaces.map(item => {
                     return item.field
                 })
                 uniqueField = fieldArray.filter(getUnique)
                 return uniqueField
-
             }
             else {
                 var fieldArray = props.Spaces.map(item => {
@@ -28,18 +24,14 @@ export default function ChartComp(props) {
                 })
                 uniqueCity = fieldArray.filter(getUnique)
                 return uniqueCity
-
             }
-
         }
     }
     var prepData = (props) => {
-
         var Array = []
         var orderId = [];
         var FilterArr = [];
         orderId = props.Orders.map(item => item.spaceId)
-
         props.Spaces.map((space) => {
             orderId.map((id) => {
                 if (id == space.spaceId)
@@ -47,7 +39,6 @@ export default function ChartComp(props) {
             })
         });
         if (props.number === 1) {
-
             Array = uniqueField.map(item => {
                 var avg = 0
                 var sum = 0
@@ -66,7 +57,6 @@ export default function ChartComp(props) {
                     return avg
                 }
             })
-
             return [{
 
                 label: kind,
@@ -74,7 +64,6 @@ export default function ChartComp(props) {
                 data: Array,
             }]
         }
-
         if (props.number === 0) {
             Array = uniqueCity.map(item => {
                 var avg = 0
@@ -101,8 +90,6 @@ export default function ChartComp(props) {
                 data: Array
             }]
         }
-
-
     }
     const data = {
         labels: getLabel(props),
@@ -118,7 +105,6 @@ export default function ChartComp(props) {
 
 
     }
-
     const options = {
         scales: {
             yAxes: [{
@@ -128,7 +114,6 @@ export default function ChartComp(props) {
             }]
         }
     }
-
     if (props.type === 'bar') {
         return (
             <div style={{ position: 'relative' }}>

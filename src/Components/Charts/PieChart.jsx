@@ -1,7 +1,6 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
 
-
 class PieChart extends React.Component {
 
   constructor(props) {
@@ -21,7 +20,6 @@ class PieChart extends React.Component {
       },
     }
   }
-
   componentDidMount() {
     this.OrderPieChart();
   }
