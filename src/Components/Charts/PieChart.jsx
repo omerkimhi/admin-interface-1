@@ -60,8 +60,8 @@ class PieChart extends React.Component {
     return (
       <div>     
         <h3  style={textStyle} className="mt-5">Orders Amount by Field</h3>
-        <div style={{height: this.props.height, width: this.props.width}} >
-        <Pie data={this.state.pieC.dataPie}  options={{ responsive: true }} />
+        <div style={{height: this.props.height, width: this.props.width, position:'relative'}} >
+        <Pie data={this.state.pieC.dataPie}  options={{ responsive: true,  maintainAspectRatio: false }} />
         </div>
         </div>
     );

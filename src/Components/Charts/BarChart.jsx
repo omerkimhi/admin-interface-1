@@ -155,17 +155,17 @@ class BarChart extends React.Component {
     }
     render() {
         return (
-<div>
-                <h3  style={textStyle} className="mt-5">Trending renting days</h3>
-                <div style={{height: this.props.height, width: this.props.width}}>
-                <Bar  data={this.state.BarC.dataBar} options={this.state.BarC.barChartOptions} />
+            <div>
+                <h3 style={textStyle} className="mt-5">Trending renting days</h3>
+                <div style={{ height: this.props.height, width: this.props.width, position:'relative' }}>
+                    <Bar data={this.state.BarC.dataBar} options={this.state.BarC.barChartOptions, {responsive: true,  maintainAspectRatio: false}} />
                 </div>
-                </div>
+            </div>
         );
     }
 }
 
 export default BarChart;
-const textStyle={
-    textAlign:'center'
-  }
+const textStyle = {
+    textAlign: 'center'
+}

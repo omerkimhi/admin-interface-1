@@ -20,7 +20,7 @@ import Charts from '../Components/Charts/Charts';
 import Orders from '../Components/Charts/OrdersCharts';
 import Control from './Control.jsx'
 import Footer from './Footer';
-import Graph from './Graph';
+import Graph from '../Components/Charts/Graph';
 
 class Dashboard extends Component {
 

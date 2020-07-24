@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import LineChart2 from "../Components/Charts/LineChart2";
+import LineChart2 from "./LineChart2";
 import { Radar, Polar, Pie } from "react-chartjs-2";
-import DoughnutChart from "../Components/Charts/DoughnutChart";
+import DoughnutChart from "./DoughnutChart";
 import { Container, Row, Col } from "react-bootstrap";
 
 

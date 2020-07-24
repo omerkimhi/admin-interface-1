@@ -9,6 +9,14 @@ export default class Control extends Component {
     super(props);
     this.state = {
       Grade: this.props.Grade,
+      capacity: this.props.Grade[0].capacity,
+      conversion: this.props.Grade[0].conversion,
+      equipment: this.props.Grade[0].equipment,
+      facility: this.props.Grade[0].facility,
+      order: this.props.Grade[0].order,
+      premium: this.props.Grade[0].premium,
+      price: this.props.Grade[0].price,
+      rating: this.props.Grade[0].rating,
       lineData: {
 
         labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
@@ -182,9 +190,10 @@ export default class Control extends Component {
   }
 
   componentDidMount() {
-    this.GraphLine()
-  };
+    this.GraphLine();
 
+
+  };
   GraphLine = () => {
 
     let capacity = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -504,8 +513,99 @@ export default class Control extends Component {
 
   };
 
-  render() {
+  /* setLastValue=()=>{
+  let temp2=""
+    let temp= new Date(Math.max.apply(null, this.props.Grade.map(function(e) {
+     
+      return (new Date(e.modifiedDate));
+    })));
+  console.log('ff', temp2)
+  };
+   */
 
+
+
+  /*  changeDetails = () => {
+ 
+ 
+     var user = { id: this.props.user.userId, email: this.state.Email, password: this.state.Password, phoneNumber: this.state.PhoneNumber, photo: this.state.Photo };
+ 
+ 
+     "http://proj.ruppin.ac.il/igroup17/proj/api/grade/";
+ 
+ 
+     var url = "https://proj.ruppin.ac.il/igroup17/proj/api/user/?id=" + this.props.user.userId;
+ 
+     fetch(url, {
+       method: "PUT",
+       body: JSON.stringify(user),
+       headers: new Headers({
+         "Content-type": "application/json; charset=UTF-8",
+         //very important to add the 'charset=UTF-8'!!!!
+       }),
+     })
+       .then((res) => {
+ 
+         this.props.updatedUserDetails(user);
+         console.log("res?")
+       })
+       .then(
+         (result) => {
+ 
+           console.log("succees");
+         },
+         (error) => {
+ 
+           console.log("error", error);
+ 
+         }
+       );
+ 
+   } */
+
+  sendGrades = () => {
+
+
+    var grade = { capacity: this.state.capacity, conversion: this.state.conversion, equipment: this.state.equipment, facility: this.state.facility, order: this.state.order, premium: this.state.premium, price: this.state.price, rating: this.state.rating };
+
+
+    var url = "http://proj.ruppin.ac.il/igroup17/proj/api/grade/" + grade;
+
+    fetch(url, {
+      method: "PUT",
+      body: JSON.stringify(grade),
+      headers: new Headers({
+        "Content-type": "application/json; charset=UTF-8",
+        //very important to add the 'charset=UTF-8'!!!!
+      }),
+    })
+      .then((res) => {
+
+        console.log("res?")
+      })
+      .then(
+        (result) => {
+
+          console.log("succees");
+        },
+        (error) => {
+
+          console.log("error", error);
+
+        }
+      );
+  }
+
+  changeValue = (e, name) => {
+    // console.log("target", e.target.value)
+    this.setState({
+      [name]: e.target.value
+    }, () => { console.log("target", this.state[name]) })
+  }
+
+
+  render() {
+    // console.log(this.props.Grade)
     return (
       <div className="app">
         <br />
@@ -522,9 +622,12 @@ export default class Control extends Component {
               </Form.Label>
               <Col sm={10}>
                 <Form.Control
+                  onChange={(e) => this.changeValue(e, "price")}
+                  // value={this.state.price}
                   style={{ width: "10%" }}
                   type="number"
-                  defaultValue={5}
+
+                  defaultValue={this.state.price}
                 />
               </Col>
             </Form.Group>
@@ -538,7 +641,8 @@ export default class Control extends Component {
                 <Form.Control
                   style={{ width: "10%" }}
                   type="number"
-                  defaultValue={5}
+                  defaultValue={this.state.capacity}
+                  onChange={(e) => this.changeValue(e, "capacity")}
                 />
               </Col>
             </Form.Group>
@@ -550,7 +654,8 @@ export default class Control extends Component {
                 <Form.Control
                   style={{ width: "10%" }}
                   type="number"
-                  defaultValue={5}
+                  defaultValue={this.state.facility}
+                  onChange={(e) => this.changeValue(e, "facility")}
                 />
               </Col>
             </Form.Group>
@@ -562,7 +667,8 @@ export default class Control extends Component {
                 <Form.Control
                   style={{ width: "10%" }}
                   type="number"
-                  defaultValue={5}
+                  defaultValue={this.state.equipment}
+                  onChange={(e) => this.changeValue(e, "equipment")}
                 />
               </Col>
             </Form.Group>
@@ -574,7 +680,8 @@ export default class Control extends Component {
                 <Form.Control
                   style={{ width: "10%" }}
                   type="number"
-                  defaultValue={5}
+                  defaultValue={this.state.rating}
+                  onChange={(e) => this.changeValue(e, "rating")}
                 />
               </Col>
             </Form.Group>
@@ -586,7 +693,8 @@ export default class Control extends Component {
                 <Form.Control
                   style={{ width: "10%" }}
                   type="number"
-                  defaultValue={5}
+                  defaultValue={this.state.order}
+                  onChange={(e) => this.changeValue(e, "order")}
                 />
               </Col>
             </Form.Group>
@@ -598,7 +706,8 @@ export default class Control extends Component {
                 <Form.Control
                   style={{ width: "10%" }}
                   type="number"
-                  defaultValue={5}
+                  defaultValue={this.state.premium}
+                  onChange={(e) => this.changeValue(e, "premium")}
                 />
               </Col>
             </Form.Group>
@@ -610,13 +719,14 @@ export default class Control extends Component {
                 <Form.Control
                   style={{ width: "10%" }}
                   type="number"
-                  defaultValue={5}
+                  defaultValue={this.state.conversion}
+                  onChange={(e) => this.changeValue(e, "conversion")}
                 />
               </Col>
             </Form.Group>
             <Form.Group as={Row}>
               <Col sm={{ span: 10, offset: 2 }}>
-                <Button type="submit">Apply</Button>
+                <Button onSubmit={this.sendGrades()} type="submit">Apply</Button>
               </Col>
             </Form.Group>
             <br />

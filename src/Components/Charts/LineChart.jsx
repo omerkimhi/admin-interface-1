@@ -173,16 +173,16 @@ class LineChart extends React.Component {
     return (
       <MDBContainer>
 
-        <h3  style={textStyle} className="mt-5">{this.props.header}</h3>
-        <div style={{height: this.props.height, width: this.props.width}} >
-        <Line data={this.state.dataLine} width={1000} height={400} options={{ responsive: true }} />
-    </div>
+        <h3 style={textStyle} className="mt-5">{this.props.header}</h3>
+        <div style={{ height: this.props.height, width: this.props.width }} >
+          <Line data={this.state.dataLine} options={{ responsive: true, maintainAspectRatio: false }} />
+        </div>
       </MDBContainer >
     );
   }
 }
 export default LineChart;
 
-const textStyle={
-  textAlign:'center'
+const textStyle = {
+  textAlign: 'center'
 }
