@@ -56,7 +56,6 @@ class PieChart extends React.Component {
   }
 
   render() {
-
     return (
       <div>     
         <h3  style={textStyle} className="mt-5">Orders Amount by Field</h3>
@@ -66,9 +65,7 @@ class PieChart extends React.Component {
         </div>
     );
   }
-
 }
-
 export default PieChart;
 
 const textStyle={

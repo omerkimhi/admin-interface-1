@@ -1,25 +1,19 @@
 h1,h4 {
     color:rgb(0, 114, 106);
     font-weight: bold;
-    
-    
   }
-  
   h5 {
     color:black;
     font-weight: bold;
     text-decoration-line: underline;
   }
-
   .buttons-right>button {
     float: right;
     margin: 5px;
   }
   .app-container {
     padding: 25px;
-    background-color:white;
-    
-    
+    background-color:white;  
   }
 
   

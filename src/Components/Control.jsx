@@ -8,6 +8,7 @@ export default class Control extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      ArtFilters: this.props.ArtFilters,
       Grade: this.props.Grade,
       capacity: this.props.Grade[0].capacity,
       conversion: this.props.Grade[0].conversion,
@@ -123,67 +124,7 @@ export default class Control extends Component {
             pointRadius: 1,
             pointHitRadius: 10,
             data: [],
-          }, {
-            label: "Premium",
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: "rgba(184, 185, 210, .3)",
-            borderColor: "rgb(45,194,189)",
-            borderCapStyle: "butt",
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: "miter",
-            pointBorderColor: "rgb(45,194,189)",
-            pointBackgroundColor: "rgb(112, 161, 215)",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgb(244, 124, 124)",
-            pointHoverBorderColor: "rgba(220, 220, 220, 1)",
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [],
-          }, {
-            label: "Order",
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: "rgba(184, 185, 210, .3)",
-            borderColor: "rgb(122, 130, 171)",
-            borderCapStyle: "butt",
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: "miter",
-            pointBorderColor: "rgb(122, 130, 171)",
-            pointBackgroundColor: "rgb(112, 161, 215)",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgb(244, 124, 124)",
-            pointHoverBorderColor: "rgba(220, 220, 220, 1)",
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [],
-          }, {
-            label: "Conversion",
-            fill: false,
-            lineTension: 0.1,
-            backgroundColor: "rgba(184, 185, 210, .3)",
-            borderColor: "rgb(0,188,138)",
-            borderCapStyle: "butt",
-            borderDash: [],
-            borderDashOffset: 0.0,
-            borderJoinStyle: "miter",
-            pointBorderColor: "rgb(0,188,138)",
-            pointBackgroundColor: "rgb(112, 161, 215)",
-            pointBorderWidth: 1,
-            pointHoverRadius: 5,
-            pointHoverBackgroundColor: "rgb(244, 124, 124)",
-            pointHoverBorderColor: "rgba(220, 220, 220, 1)",
-            pointHoverBorderWidth: 2,
-            pointRadius: 1,
-            pointHitRadius: 10,
-            data: [],
-          },
+          }, 
         ],
       }
     };
@@ -194,151 +135,71 @@ export default class Control extends Component {
 
   GraphLine = () => {
 
-    let capacity = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let conversion = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let equipment = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let facility = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let order = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let premium = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let price = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let rating = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let mergedFilterArray = [...this.props.ArtFilters, ...this.props.SportFilters, ... this.props.BeautyFilters];
 
-    this.props.Grade.map((grade) => {
+    let RatingArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let RatingCountArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let PriceArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let PriceCountArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let CapacityArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let CapacityCountArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let FacilitiesArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let FacilitiesCountArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let EquipmentArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    let EquipmentCountArr = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
 
-      switch (moment(grade.modifiedDate).month()) {
-
-        case 0: capacity[0] = grade.capacity;
-          conversion[0] = grade.conversion;
-          equipment[0] = grade.equipment;
-          facility[0] = grade.facility;
-          order[0] = grade.order;
-          premium[0] = grade.premium;
-          price[0] = grade.price;
-          rating[0] = grade.rating;
-          break;
-
-        case 1:
-          capacity[1] = grade.capacity;
-          conversion[1] = grade.conversion;
-          equipment[1] = grade.equipment;
-          facility[1] = grade.facility;
-          order[1] = grade.order;
-          premium[1] = grade.premium;
-          price[1] = grade.price;
-          rating[1] = grade.rating;
-          break;
-
-        case 2:
-          capacity[2] = grade.capacity;
-          conversion[2] = grade.conversion;
-          equipment[2] = grade.equipment;
-          facility[2] = grade.facility;
-          order[2] = grade.order;
-          premium[2] = grade.premium;
-          price[2] = grade.price;
-          rating[2] = grade.rating;
-          ; break;
-
-        case 3:
-          capacity[3] = grade.capacity;
-          conversion[3] = grade.conversion;
-          equipment[3] = grade.equipment;
-          facility[3] = grade.facility;
-          order[3] = grade.order;
-          premium[3] = grade.premium;
-          price[3] = grade.price;
-          rating[3] = grade.rating;
-          break;
-
-        case 4:
-          capacity[4] = grade.capacity;
-          conversion[4] = grade.conversion;
-          equipment[4] = grade.equipment;
-          facility[4] = grade.facility;
-          order[4] = grade.order;
-          premium[4] = grade.premium;
-          price[4] = grade.price;
-          rating[4] = grade.rating;
-          break;
-
-        case 5:
-          capacity[5] = grade.capacity;
-          conversion[5] = grade.conversion;
-          equipment[5] = grade.equipment;
-          facility[5] = grade.facility;
-          order[5] = grade.order;
-          premium[5] = grade.premium;
-          price[5] = grade.price;
-          rating[5] = grade.rating;
-          break;
-
-        case 6:
-          capacity[6] = grade.capacity;
-          conversion[6] = grade.conversion;
-          equipment[6] = grade.equipment;
-          facility[6] = grade.facility;
-          order[6] = grade.order;
-          premium[6] = grade.premium;
-          price[6] = grade.price;
-          rating[6] = grade.rating;
-          break;
-
-        case 7:
-          capacity[7] = grade.capacity;
-          conversion[7] = grade.conversion;
-          equipment[7] = grade.equipment;
-          facility[7] = grade.facility;
-          order[7] = grade.order;
-          premium[7] = grade.premium;
-          price[7] = grade.price;
-          rating[7] = grade.rating;
-          break;
-
-        case 8:
-          capacity[8] = grade.capacity;
-          conversion[8] = grade.conversion;
-          equipment[8] = grade.equipment;
-          facility[8] = grade.facility;
-          order[8] = grade.order;
-          premium[8] = grade.premium;
-          price[8] = grade.price;
-          rating[8] = grade.rating;
-          break;
-
-        case 9:
-          capacity[9] = grade.capacity;
-          conversion[9] = grade.conversion;
-          equipment[9] = grade.equipment;
-          facility[9] = grade.facility;
-          order[9] = grade.order;
-          premium[9] = grade.premium;
-          price[9] = grade.price;
-          rating[9] = grade.rating;
-          break;
-
-        case 10:
-          capacity[10] = grade.capacity;
-          conversion[10] = grade.conversion;
-          equipment[10] = grade.equipment;
-          facility[10] = grade.facility;
-          order[10] = grade.order;
-          premium[10] = grade.premium;
-          price[10] = grade.price;
-          rating[10] = grade.rating;
-          break;
-
-        case 11:
-          capacity[11] = grade.capacity;
-          conversion[11] = grade.conversion;
-          equipment[11] = grade.equipment;
-          facility[11] = grade.facility;
-          order[11] = grade.order;
-          premium[11] = grade.premium;
-          price[11] = grade.price;
-          rating[11] = grade.rating;
-          break;
+    mergedFilterArray.map((item) => {
+      //price
+      let avgPrice = (item.MinPrice + item.MaxPrice) / 2
+      PriceArr[moment(item.Date).month()] += avgPrice
+      PriceCountArr[moment(item.Date).month()] += 1
+      //capacity
+      let avgCapacity = (item.MinCapacity + item.MaxCapacity) / 2
+      CapacityArr[moment(item.Date).month()] += avgCapacity
+      CapacityCountArr[moment(item.Date).month()] += 1
+      //rating
+      if (item.Rating != 0) {
+        RatingArr[moment(item.Date).month()] += item.Rating
+        RatingCountArr[moment(item.Date).month()] += 1
       }
+      //facilities
+      if (item.Toilet || item.Parking || item.Kitchen || item.Intercom
+        || item.Accessible || item.AirCondition || item.WiFi) {
+        FacilitiesCountArr[moment(item.Date).month()] += 1;
+        FacilitiesArr[moment(item.Date).month()] += item.Toilet * 1 + item.Parking * 1 + item.Kitchen * 1
+          + item.Intercom * 1 + item.Accessible * 1 + item.AirCondition * 1 + item.WiFi * 1;
+      }
+      //equipment
+      if (item.Canvas || item.GreenScreen || item.PottersWheel || item.Guitar || item.Drum || item.Speaker ||
+        item.Dryers || item.NailPolishRacks || item.ReceptionAreaSeatingandDecor || item.LaserHairRemoval || item.PedicureManicure || item.HairColoringKit ||
+        item.TRX || item.Treadmill || item.StationaryBicycle || item.Bench || item.Dumbells || item.Barbell) {
+        EquipmentCountArr[moment(item.Date).month()] += 1;
+        EquipmentArr[moment(item.Date).month()] += (item.Canvas ? item.Canvas * 1 : 0) + (item.GreenScreen ? item.GreenScreen * 1 : 0)
+          + (item.PottersWheel ? item.PottersWheel * 1 : 0) + (item.Guitar ? item.Guitar * 1 : 0) + (item.Drum ? item.Drum * 1 : 0)
+          + (item.Speaker ? item.Speaker * 1 : 0) + (item.Dryers ? item.Dryers * 1 : 0) + (item.NailPolishRacks ? item.NailPolishRacks * 1 : 0)
+          + (item.ReceptionAreaSeatingandDecor ? item.ReceptionAreaSeatingandDecor * 1 : 0) + (item.LaserHairRemoval ? item.LaserHairRemoval * 1 : 0)
+          + (item.PedicureManicure ? item.PedicureManicure * 1 : 0) + (item.HairColoringKit ? item.HairColoringKit * 1 : 0) +
+          (item.TRX ? item.TRX * 1 : 0) + (item.Treadmill ? item.Treadmill * 1 : 0) + (item.StationaryBicycle ? item.StationaryBicycle * 1 : 0) +
+          (item.Bench ? item.Bench * 1 : 0) + (item.Dumbells ? item.Dumbells * 1 : 0) + (item.Barbell ? item.Barbell * 1 : 0);
+      }
+    });
+    
+    RatingCountArr.map((item, index) => {
+      item != 0 ? RatingArr[index] = (RatingArr[index] / item) : RatingArr[index] = RatingArr[index]
     })
+    PriceCountArr.map((item, index) => {
+      item != 0 ? PriceArr[index] = (PriceArr[index] / item) : PriceArr[index] = PriceArr[index]
+    })
+    CapacityCountArr.map((item, index) => {
+      item != 0 ? CapacityArr[index] = (CapacityArr[index] / item) : CapacityArr[index] = CapacityArr[index]
+    })
+    FacilitiesCountArr.map((item, index) => {
+      item != 0 ? FacilitiesArr[index] = (FacilitiesArr[index] / item) : FacilitiesArr[index] = FacilitiesArr[index]
+    })
+    EquipmentCountArr.map((item, index) => {
+      item != 0 ? EquipmentArr[index] = (EquipmentArr[index] / item) : EquipmentArr[index] = EquipmentArr[index]
+    })
+
     let lineData1 = {
       labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
       datasets: [
@@ -361,7 +222,7 @@ export default class Control extends Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data: price,
+          data: PriceArr,
         },
         {
           label: "Capacity",
@@ -382,7 +243,7 @@ export default class Control extends Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data: capacity,
+          data: CapacityArr,
         },
         {
           label: "Facility",
@@ -403,7 +264,7 @@ export default class Control extends Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data: facility,
+          data: FacilitiesArr,
         }, {
           label: "Equipment",
           fill: false,
@@ -423,7 +284,7 @@ export default class Control extends Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data: equipment,
+          data: EquipmentArr,
         }, {
           label: "Rating",
           fill: false,
@@ -443,400 +304,18 @@ export default class Control extends Component {
           pointHoverBorderWidth: 2,
           pointRadius: 1,
           pointHitRadius: 10,
-          data: rating,
-        }, {
-          label: "Premium",
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: "rgba(184, 185, 210, .3)",
-          borderColor: "rgb(45,194,189)",
-          borderCapStyle: "butt",
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: "miter",
-          pointBorderColor: "rgb(45,194,189)",
-          pointBackgroundColor: "rgb(112, 161, 215)",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "rgb(244, 124, 124)",
-          pointHoverBorderColor: "rgba(220, 220, 220, 1)",
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: premium,
-        }, {
-          label: "Order",
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: "rgba(184, 185, 210, .3)",
-          borderColor: "rgb(122, 130, 171)",
-          borderCapStyle: "butt",
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: "miter",
-          pointBorderColor: "rgb(122, 130, 171)",
-          pointBackgroundColor: "rgb(112, 161, 215)",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "rgb(244, 124, 124)",
-          pointHoverBorderColor: "rgba(220, 220, 220, 1)",
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: order,
-        }, {
-          label: "Conversion",
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: "rgba(184, 185, 210, .3)",
-          borderColor: "rgb(0,188,138)",
-          borderCapStyle: "butt",
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: "miter",
-          pointBorderColor: "rgb(0,188,138)",
-          pointBackgroundColor: "rgb(112, 161, 215)",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "rgb(244, 124, 124)",
-          pointHoverBorderColor: "rgba(220, 220, 220, 1)",
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: conversion,
+          data: RatingArr,
         },
       ],
     };
     this.setState({ lineData: lineData1 })
-
   };
-
-
-
- /*  GraphLine = () => {
-
-    let capacity = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let conversion = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let equipment = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let facility = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let order = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let premium = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let price = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-    let rating = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
-
-    this.props.Grade.map((grade) => {
-
-      switch (moment(grade.modifiedDate).month()) {
-
-        case 0: capacity[0] = grade.capacity;
-          conversion[0] = grade.conversion;
-          equipment[0] = grade.equipment;
-          facility[0] = grade.facility;
-          order[0] = grade.order;
-          premium[0] = grade.premium;
-          price[0] = grade.price;
-          rating[0] = grade.rating;
-          break;
-
-        case 1:
-          capacity[1] = grade.capacity;
-          conversion[1] = grade.conversion;
-          equipment[1] = grade.equipment;
-          facility[1] = grade.facility;
-          order[1] = grade.order;
-          premium[1] = grade.premium;
-          price[1] = grade.price;
-          rating[1] = grade.rating;
-          break;
-
-        case 2:
-          capacity[2] = grade.capacity;
-          conversion[2] = grade.conversion;
-          equipment[2] = grade.equipment;
-          facility[2] = grade.facility;
-          order[2] = grade.order;
-          premium[2] = grade.premium;
-          price[2] = grade.price;
-          rating[2] = grade.rating;
-          ; break;
-
-        case 3:
-          capacity[3] = grade.capacity;
-          conversion[3] = grade.conversion;
-          equipment[3] = grade.equipment;
-          facility[3] = grade.facility;
-          order[3] = grade.order;
-          premium[3] = grade.premium;
-          price[3] = grade.price;
-          rating[3] = grade.rating;
-          break;
-
-        case 4:
-          capacity[4] = grade.capacity;
-          conversion[4] = grade.conversion;
-          equipment[4] = grade.equipment;
-          facility[4] = grade.facility;
-          order[4] = grade.order;
-          premium[4] = grade.premium;
-          price[4] = grade.price;
-          rating[4] = grade.rating;
-          break;
-
-        case 5:
-          capacity[5] = grade.capacity;
-          conversion[5] = grade.conversion;
-          equipment[5] = grade.equipment;
-          facility[5] = grade.facility;
-          order[5] = grade.order;
-          premium[5] = grade.premium;
-          price[5] = grade.price;
-          rating[5] = grade.rating;
-          break;
-
-        case 6:
-          capacity[6] = grade.capacity;
-          conversion[6] = grade.conversion;
-          equipment[6] = grade.equipment;
-          facility[6] = grade.facility;
-          order[6] = grade.order;
-          premium[6] = grade.premium;
-          price[6] = grade.price;
-          rating[6] = grade.rating;
-          break;
-
-        case 7:
-          capacity[7] = grade.capacity;
-          conversion[7] = grade.conversion;
-          equipment[7] = grade.equipment;
-          facility[7] = grade.facility;
-          order[7] = grade.order;
-          premium[7] = grade.premium;
-          price[7] = grade.price;
-          rating[7] = grade.rating;
-          break;
-
-        case 8:
-          capacity[8] = grade.capacity;
-          conversion[8] = grade.conversion;
-          equipment[8] = grade.equipment;
-          facility[8] = grade.facility;
-          order[8] = grade.order;
-          premium[8] = grade.premium;
-          price[8] = grade.price;
-          rating[8] = grade.rating;
-          break;
-
-        case 9:
-          capacity[9] = grade.capacity;
-          conversion[9] = grade.conversion;
-          equipment[9] = grade.equipment;
-          facility[9] = grade.facility;
-          order[9] = grade.order;
-          premium[9] = grade.premium;
-          price[9] = grade.price;
-          rating[9] = grade.rating;
-          break;
-
-        case 10:
-          capacity[10] = grade.capacity;
-          conversion[10] = grade.conversion;
-          equipment[10] = grade.equipment;
-          facility[10] = grade.facility;
-          order[10] = grade.order;
-          premium[10] = grade.premium;
-          price[10] = grade.price;
-          rating[10] = grade.rating;
-          break;
-
-        case 11:
-          capacity[11] = grade.capacity;
-          conversion[11] = grade.conversion;
-          equipment[11] = grade.equipment;
-          facility[11] = grade.facility;
-          order[11] = grade.order;
-          premium[11] = grade.premium;
-          price[11] = grade.price;
-          rating[11] = grade.rating;
-          break;
-      }
-    })
-    let lineData1 = {
-      labels: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
-      datasets: [
-        {
-          label: "Price",
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: "rgba(75,192,192,0.4)",
-          borderColor: "rgba(161, 222, 147,1)",
-          borderCapStyle: "butt",
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: "miter",
-          pointBorderColor: "rgba(161, 222, 147,1)",
-          pointBackgroundColor: "#fff",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "rgba(161, 222, 147,1)",
-          pointHoverBorderColor: "rgba(220,220,220,1)",
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: price,
-        },
-        {
-          label: "Capacity",
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: "rgba(225, 204,230, .3)",
-          borderColor: "rgb(112, 161, 215)",
-          borderCapStyle: "butt",
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: "miter",
-          pointBorderColor: "rgb(112, 161, 215)",
-          pointBackgroundColor: "rgb(255, 255, 255)",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "rgb(112, 161, 215)",
-          pointHoverBorderColor: "rgba(220, 220, 220,1)",
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: capacity,
-        },
-        {
-          label: "Facility",
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: "rgba(184, 185, 210, .3)",
-          borderColor: "rgb(244, 124, 124)",
-          borderCapStyle: "butt",
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: "miter",
-          pointBorderColor: "rgb(244, 124, 124)",
-          pointBackgroundColor: "rgb(112, 161, 215)",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "rgb(244, 124, 124)",
-          pointHoverBorderColor: "rgba(220, 220, 220, 1)",
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: facility,
-        }, {
-          label: "Equipment",
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: "rgba(184, 185, 210, .3)",
-          borderColor: "rgb(9,18,138)",
-          borderCapStyle: "butt",
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: "miter",
-          pointBorderColor: "rgb(9,18,138)",
-          pointBackgroundColor: "rgb(112, 161, 215)",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "rgb(244, 124, 124)",
-          pointHoverBorderColor: "rgba(220, 220, 220, 1)",
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: equipment,
-        }, {
-          label: "Rating",
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: "rgba(184, 185, 210, .3)",
-          borderColor: "rgb(80,137,245)",
-          borderCapStyle: "butt",
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: "miter",
-          pointBorderColor: "rgb(80,137,245)",
-          pointBackgroundColor: "rgb(112, 161, 215)",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "rgb(244, 124, 124)",
-          pointHoverBorderColor: "rgba(220, 220, 220, 1)",
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: rating,
-        }, {
-          label: "Premium",
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: "rgba(184, 185, 210, .3)",
-          borderColor: "rgb(45,194,189)",
-          borderCapStyle: "butt",
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: "miter",
-          pointBorderColor: "rgb(45,194,189)",
-          pointBackgroundColor: "rgb(112, 161, 215)",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "rgb(244, 124, 124)",
-          pointHoverBorderColor: "rgba(220, 220, 220, 1)",
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: premium,
-        }, {
-          label: "Order",
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: "rgba(184, 185, 210, .3)",
-          borderColor: "rgb(122, 130, 171)",
-          borderCapStyle: "butt",
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: "miter",
-          pointBorderColor: "rgb(122, 130, 171)",
-          pointBackgroundColor: "rgb(112, 161, 215)",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "rgb(244, 124, 124)",
-          pointHoverBorderColor: "rgba(220, 220, 220, 1)",
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: order,
-        }, {
-          label: "Conversion",
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: "rgba(184, 185, 210, .3)",
-          borderColor: "rgb(0,188,138)",
-          borderCapStyle: "butt",
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: "miter",
-          pointBorderColor: "rgb(0,188,138)",
-          pointBackgroundColor: "rgb(112, 161, 215)",
-          pointBorderWidth: 1,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: "rgb(244, 124, 124)",
-          pointHoverBorderColor: "rgba(220, 220, 220, 1)",
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: conversion,
-        },
-      ],
-    };
-    this.setState({ lineData: lineData1 })
-
-  }; */
 
   sendGrades = () => {
 
     var grade = { capacity: this.state.capacity, conversion: this.state.conversion, equipment: this.state.equipment, facility: this.state.facility, order: this.state.order, premium: this.state.premium, price: this.state.price, rating: this.state.rating };
 
-    var url = "http://proj.ruppin.ac.il/igroup17/proj/api/grade/" ;
+    var url = "http://proj.ruppin.ac.il/igroup17/proj/api/grade/";
 
     fetch(url, {
       method: "PUT",
@@ -861,10 +340,8 @@ export default class Control extends Component {
       [name]: e.target.value
     }, () => { console.log("target", this.state[name]) })
   }
-
-
   render() {
-    // console.log(this.props.Grade)
+    //console.log(this.props.ArtFilters)
     return (
       <div className="app">
         <br />
@@ -882,15 +359,12 @@ export default class Control extends Component {
               <Col sm={10}>
                 <Form.Control
                   onChange={(e) => this.changeValue(e, "price")}
-                  // value={this.state.price}
                   style={{ width: "10%" }}
                   type="number"
-
                   defaultValue={this.state.price}
                 />
               </Col>
             </Form.Group>
-
 
             <Form.Group as={Row} controlId="Capacity">
               <Form.Label column sm={2}>
@@ -905,6 +379,7 @@ export default class Control extends Component {
                 />
               </Col>
             </Form.Group>
+
             <Form.Group as={Row} controlId="Facilities">
               <Form.Label column sm={2}>
                 Facility
@@ -931,7 +406,7 @@ export default class Control extends Component {
                 />
               </Col>
             </Form.Group>
-            <Form.Group as={Row} controlId="Equipments">
+            <Form.Group as={Row} controlId="rating">
               <Form.Label column sm={2}>
                 Rating
               </Form.Label>
@@ -944,7 +419,8 @@ export default class Control extends Component {
                 />
               </Col>
             </Form.Group>
-            <Form.Group as={Row} controlId="Equipments">
+
+            <Form.Group as={Row} controlId="order">
               <Form.Label column sm={2}>
                 Orders
               </Form.Label>
@@ -957,7 +433,7 @@ export default class Control extends Component {
                 />
               </Col>
             </Form.Group>
-            <Form.Group as={Row} controlId="Equipments">
+            <Form.Group as={Row} controlId="premium">
               <Form.Label column sm={2}>
                 Premium
               </Form.Label>
@@ -970,7 +446,7 @@ export default class Control extends Component {
                 />
               </Col>
             </Form.Group>
-            <Form.Group as={Row} controlId="Equipments">
+            <Form.Group as={Row} controlId="conversion">
               <Form.Label column sm={2}>
                 Conversion
               </Form.Label>
