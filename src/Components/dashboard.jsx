@@ -39,6 +39,18 @@ class Dashboard extends Component {
       BeautyOrder: [],
       SportOrder: [],
       Searches:[],
+      ArtFilters:[],
+      ArtFiltersData: [],
+      BeautyFilters:[],
+      BeautyFiltersData:[],
+      SportFilters:[],
+      SportFiltersData:[],
+      SpaceVisits:[],
+      SpacesData:[],
+
+
+
+
 
     };
   }
@@ -605,10 +617,17 @@ class Dashboard extends Component {
 
   }
   render() {
-    if (this.state.Spaces.length === 0 || this.state.Orders.length === 0 || this.state.Users.length === 0 || this.state.Grade.length===0|| 
-      this.state.Searches.length===0 ) {
+  
+    if (this.state.Spaces.length === 0 || this.state.Orders.length === 0 || 
+      this.state.Users.length === 0 || this.state.Grade.length===0|| 
+      this.state.Searches.length===0 || this.state.SpaceVisits.length===0|| 
+      this.state.SportFiltersData.length===0 || this.state.SportFilters.length===0 ||
+      this.state.BeautyFilters.length===0 || this.state.BeautyFiltersData.length===0 ||
+      this.state.ArtFilters.length===0 || this.state.ArtFiltersData.length===0 ||
+      this.state.ArtOrder.length===0 || this.state.BeautyOrder.length===0 || this.state.SportOrder.length===0) {
       return <h1>LOADING</h1>
     }
+
     else {
       if (!this.state.isLogged) {
         return (
@@ -619,13 +638,12 @@ class Dashboard extends Component {
           </Router>
         )
       }
-      else return (
-
+      else {
+        return (
         <Router>
           <div> <NavBar isLogged={this.state.isLogged} userLogged={this.state.userLogged} checkLogged={this.checkLogged}></NavBar></div>
           <Switch>
             <Route exact path="/"><Details Spaces={this.state.Spaces} Users={this.state.Users} /></Route>
-
             <Route path="/SpaceTable"><SpaceTable Spaces={this.state.Spaces} /></Route>
             <Route path="/UserTable"><UserTable Users={this.state.Users} /></Route>
             <Route path="/Charts"><Charts Orders={this.state.Orders} Spaces={this.state.Spaces} /></Route>
@@ -636,7 +654,7 @@ class Dashboard extends Component {
           </Switch>
           <Footer></Footer>
         </Router>
-      );
+      );}
     }
   }
 }
