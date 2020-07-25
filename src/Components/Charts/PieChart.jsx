@@ -1,6 +1,5 @@
 import React from "react";
 import { Pie } from "react-chartjs-2";
-import { MDBContainer } from "mdbreact";
 
 class PieChart extends React.Component {
 
@@ -9,10 +8,18 @@ class PieChart extends React.Component {
     this.state = {
       Orders: this.props.Orders,
       Spaces: this.props.Spaces,
-      pieC: {},
+      pieC:  {
+        dataPie: {
+          labels: ["Sport", "Beauty", "Art"],
+          datasets: [{
+            data: null,
+            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+            hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870"]
+          }]
+        }
+      },
     }
   }
-
   componentDidMount() {
     this.OrderPieChart();
   }
@@ -47,15 +54,19 @@ class PieChart extends React.Component {
   }
 
   render() {
-
     return (
-      <MDBContainer>
-        <h3 className="mt-5">Orders Amount by Field</h3>
-        <Pie data={this.state.pieC.dataPie} options={{ responsive: true }} />
-      </MDBContainer>
+      <div>     
+        <h3  style={textStyle} className="mt-5">{this.props.header}</h3>
+        <p style={textStyle}>{this.props.description}</p>
+        <div style={{height: this.props.height, width: this.props.width, position:'relative'}} >
+        <Pie data={this.state.pieC.dataPie}  options={{ responsive: true,  maintainAspectRatio: false }} />
+        </div>
+        </div>
     );
   }
-
 }
-
 export default PieChart;
+
+const textStyle={
+  textAlign:'center'
+}

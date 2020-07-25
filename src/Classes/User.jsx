@@ -1,15 +1,16 @@
 class User {
-
-    constructor(userId, email, password, fullName, phoneNumber, photo, spaceOwner, visits, rank) {
-        this.userId = userId;
+    constructor(userId, email, password, fullName, phoneNumber, photo,premium,  spaceOwner, visits, rank, registrationDate) {
         this.email = email;
+        this.userId = userId;
         this.password = password;
-        this.fullName = fullName;
         this.phoneNumber = phoneNumber;
         this.photo = photo;
-        this.spaceOwner = spaceOwner;
-        this.visits = visits
+        this.premium=premium;
         this.rank = rank;
+        this.registrationDate=registrationDate;
+        this.spaceOwner = spaceOwner;
+        this.fullName = fullName;
+        this.visits = visits;
     }
 }
 export default User;

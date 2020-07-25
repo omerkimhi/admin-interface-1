@@ -1,10 +1,8 @@
 import React, { Component } from "react";
-import ChartComp from "./ChartComp";
-//Charts imports
 import LineChart from "./LineChart";
 import BarChart from "./BarChart";
 import PieChart from "./PieChart";
-import DoughnutChart from "./DoughnutChart";
+import { Container, Row, Col } from "react-bootstrap";
 
 export default class OrderCharts extends Component {
   constructor(props) {
@@ -13,49 +11,56 @@ export default class OrderCharts extends Component {
     this.state = {
       Orders: this.props.Orders,
       Spaces: this.props.Spaces,
+      ArtOrder: this.props.ArtOrder,
+      BeautyOrder: this.props.BeautyOrder,
+      SportOrder: this.props.SportOrder,
       OrderDays: [],
       pieC: null,
-      //ChartArray: ["line", "bar", "line", "bar"], Segal
-      ChartArray: [ "",  "bar",  "",  "bar"],
     };
   }
-
   render() {
-    console.log(this.state.Spaces);
-
     return (
-      <div className="app" style={{}}>
-        <div
-          className="container"
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            justifyContent: "space-between",
-            minWidth: "90%",
-          }}
-        >
-          <div className="row">
-            <BarChart Orders={this.props.Orders} />
-          </div>
-          <div className="row">
-              <PieChart Spaces={this.props.Spaces} Orders={this.props.Orders} />
-          </div>
-          <div className="row">
-        <div className="col">
-
-            <h3 className="mt-5"> Space Orders</h3>
-
-              <LineChart Orders={this.props.Orders} />{" "}
-            <br />
-            <br />
-          </div>
-          </div>
-          <br />
-          <br />
-        </div>
+      <div className="app">
+        <Container style={containerStyle}>
+          <Row>
+          <Col lg={4} md={4} sm={10} xs={10}>
+              <div>
+              <PieChart height={'50vh'} width={'30vw'} Spaces={this.props.Spaces} Orders={this.props.Orders} header={"Orders per field"} description={"According to the past two weeks"} />
+            </div>
+            </Col>
+            <Col lg={6} md={6} sm={10}  xs={10} >
+            <div style={{marginLeft:100, position:'relative'}}>
+              <BarChart height={'50vh'} width={'46vw'} Orders={this.props.Orders} header={"Orders per day"} description={"Order per days of the week according to the past two weeks"} />
+              </div>
+              </Col>
+              <Col lg={2} xs={12}>
+              </Col>          
+          </Row> 
+          <Row> 
+          <Col lg={10} md={10} sm={10} xs={10}>
+            <div style={{position:'relative'}}>
+              <LineChart height={'70vh'} width={'74vw'} header={"Orders per month"} ArtOrder={this.props.ArtOrder} BeautyOrder={this.props.BeautyOrder} SportOrder={this.props.SportOrder} />{" "}
+            </div>
+            </Col>
+          </Row>
+        </Container>
         <br />
         <br />
       </div>
     );
   }
 }
+const containerStyle = {
+  display: "flex",
+  flexWrap: "wrap",
+  justifyContent: "center",
+  minWidth: "90%",
+  width:'100%'
+}
+const centerGraph={
+height: '100%',
+width: '90%',
+display: 'flex',
+}
+
+

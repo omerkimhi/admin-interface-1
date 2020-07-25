@@ -1,20 +1,14 @@
 import React, { Component } from 'react';
-
-//import classes
 import Space from "../Classes/Space";
-
 import CanvasJSReact from '../../assets/canvasjs.react';
 
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 
- 
 class Pie extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
-      
       Spaces: [],
       EquipmentList: [],
       Facilities: [],
@@ -80,12 +74,7 @@ class Pie extends Component {
       );
   };
   
-  
-
-	
 	render() {
-    
-
 		const options = {
 			animationEnabled: true,
 			exportEnabled: true,
@@ -108,11 +97,9 @@ class Pie extends Component {
 		return (
 		<div className="container">
 			<h1>Orders</h1>
-			<CanvasJSChart options = {options} /* onRef={ref => this.chart = ref} *//>
-			{/*You can get reference to the chart instance as shown above using onRef. This allows you to access all chart properties and methods*/}
+			<CanvasJSChart options = {options} />
 		</div>
 		);
 	}
 }
-
 export default Pie;                           

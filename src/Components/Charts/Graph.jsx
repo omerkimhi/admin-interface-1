@@ -1,90 +1,33 @@
 import React, { Component } from "react";
-import LineChart2 from "../Components/Charts/LineChart2";
-import { HorizontalBar, Radar, Polar, Bubble, Pie } from "react-chartjs-2";
-import { MDBContainer } from "mdbreact";
-import RadarChart from "../Components/Charts/RadarChart";
-import DoughnutChart from "../Components/Charts/DoughnutChart";
-
-const pieData = {
-  labels: ["Art", "Beauty", "Sport"],
-  datasets: [
-    {
-      data: [82, 386, 45],
-      backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-      hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
-    },
-  ],
-};
-const bubbleData = {
-  labels: ["January"],
-  datasets: [
-    {
-      label: "My First dataset",
-      fill: false,
-      lineTension: 0.1,
-      backgroundColor: "rgba(75,192,192,0.4)",
-      borderColor: "rgba(75,192,192,1)",
-      borderCapStyle: "butt",
-      borderDash: [],
-      borderDashOffset: 0.0,
-      borderJoinStyle: "miter",
-      pointBorderColor: "rgba(75,192,192,1)",
-      pointBackgroundColor: "#fff",
-      pointBorderWidth: 1,
-      pointHoverRadius: 5,
-      pointHoverBackgroundColor: "rgba(75,192,192,1)",
-      pointHoverBorderColor: "rgba(220,220,220,1)",
-      pointHoverBorderWidth: 2,
-      pointRadius: 1,
-      pointHitRadius: 10,
-      data: [
-        { x: 0, y: 0, r: 1 },
-        { x: 1, y: 19, r: 5 },
-        { x: 2, y: 20, r: 5 },
-        { x: 3, y: 18, r: 5 },
-        { x: 4, y: 17, r: 5 },
-        { x: 5, y: 16, r: 5 },
-        { x: 6, y: 20, r: 5 },
-        { x: 7, y: 20, r: 5 },
-        { x: 8, y: 20, r: 5 },
-        { x: 9, y: 20, r: 5 },
-        { x: 10, y: 20, r: 5 },
-        { x: 11, y: 20, r: 5 },
-        { x: 12, y: 20, r: 5 },
-      ],
-    },
-  ],
-};
-const data2 = {
-  labels: ["January", "February", "March", "April", "May", "June", "July"],
-  datasets: [
-    {
-      label: "My First dataset",
-      backgroundColor: "rgba(255,99,132,0.2)",
-      borderColor: "rgba(255,99,132,1)",
-      borderWidth: 1,
-      hoverBackgroundColor: "rgba(255,99,132,0.4)",
-      hoverBorderColor: "rgba(255,99,132,1)",
-      data: [65, 59, 80, 81, 56, 55, 40],
-    },
-  ],
-};
-
-const polarData = {
-  datasets: [
-    {
-      data: [50, 41, 38],
-      backgroundColor: ["#FF6384", "#4BC0C0", "#FFCE56", "#E7E9ED", "#36A2EB"],
-      label: "My dataset", // for legend
-    },
-  ],
-  labels: ["Art", "Beauty", "Sport"],
-};
+import LineChart2 from "./LineChart2";
+import { Radar, Polar, Pie } from "react-chartjs-2";
+import DoughnutChart from "./DoughnutChart";
+import { Container, Row, Col } from "react-bootstrap";
 
 export default class Graph extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      polarData: {
+        datasets: [
+          {
+            data: [this.props.ArtFilters.length, this.props.BeautyFilters.length, this.props.SportFilters.length],
+            backgroundColor: ["#FF6384", "#4BC0C0", "#FFCE56", "#E7E9ED", "#36A2EB"],
+            label: "My dataset", 
+          },
+        ],
+        labels: ["Art", "Beauty", "Sport"],
+      },
+      pieData: {
+        labels: ["Art", "Beauty", "Sport"],
+        datasets: [
+          {
+            data: [0, 0, 0],
+            backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+            hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+          },
+        ],
+      },
       dataLine: {
         labels: [],
         datasets: [
@@ -154,15 +97,7 @@ export default class Graph extends Component {
         ],
       },
       dataRadar: {
-        labels: [
-          "Eating",
-          "Drinking",
-          "Sleeping",
-          "Designing",
-          "Coding",
-          "Cycling",
-          "Running",
-        ],
+        labels: [],
         datasets: [
           {
             label: "Art",
@@ -198,35 +133,56 @@ export default class Graph extends Component {
       },
     };
   }
-
   componentDidMount = () => {
-    console.log("this.props.ArtFiltersData", this.props.ArtFiltersData);
-    console.log("this.props.BeautyFiltersData", this.props.BeautyFiltersData);
-    console.log("this.props.SportFiltersData", this.props.SportFiltersData);
+    this.getNumberOfSearchInEachField();
+    this.RadarLineCharts();
+  };
+  getNumberOfSearchInEachField = () => {
+    let sArray = [];
+    let aArray = [];
+    let bArray = [];
+    this.props.Searches.map((search) => {
+      if (search.Field === "Sport") sArray.push(search);
+      if (search.Field === "Art") aArray.push(search);
+      if (search.Field === "Beauty") bArray.push(search);
+    });
+    let pieData = {
+      labels: ["Art", "Beauty", "Sport"],
+      datasets: [
+        {
+          data: [aArray.length, bArray.length, sArray.length],
+          backgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+          hoverBackgroundColor: ["#FF6384", "#36A2EB", "#FFCE56"],
+        },
+      ],
+    };
+    this.setState({ pieData: pieData })
+  };
 
-    // console.log("this.state.dataLine",this.state.dataLine);
-    //     console.log("this.state.dataLine",this.state.dataLine.datasets[0].data);
+  RadarLineCharts = () => {
+
     var artValues = [];
     var artNames = [];
     var beautyValues = [];
     var beautyNames = [];
     var sportValues = [];
     var sportNames = [];
+
     this.props.ArtFiltersData.map((item) => {
       artNames.push(item.Name);
       artValues.push(item.Value.toFixed(2));
     });
+
     this.props.BeautyFiltersData.map((item) => {
       beautyNames.push(item.Name);
       beautyValues.push(item.Value.toFixed(2));
     });
+
     this.props.SportFiltersData.map((item) => {
       sportNames.push(item.Name);
       sportValues.push(item.Value.toFixed(2));
     });
 
-    console.log("beautyNames", beautyNames);
-    console.log("sportValues", sportValues);
     var temp = this.state.dataLine;
     temp.labels = [...artNames];
     temp.datasets[0].data = artValues;
@@ -238,99 +194,91 @@ export default class Graph extends Component {
     tempDataRadar.datasets[1].data = beautyValues;
     tempDataRadar.datasets[2].data = sportValues;
 
-    console.log("temp", temp);
-
     this.setState({
       dataLine: temp,
       dataRadar: tempDataRadar,
     });
+
   };
-  // componentDidMount=()=>{
-  //     console.log("this.props.data",this.props.data);
-  //    // console.log("this.state.dataLine",this.state.dataLine);
-  //    //     console.log("this.state.dataLine",this.state.dataLine.datasets[0].data);
-  //         var values=[];
-  //         var names=[];
-  //         this.props.data.map((item)=>{
-  //          names.push(item.Name);
-  //           values.push(item.Value);
-
-  //       });
-  // console.log("names",names);
-  // console.log("values",values);
-  // var temp = this.state.dataLine;
-  // temp.labels = names;
-  // temp.datasets[0].data = values;
-
-  // this.setState({
-  //  dataLine:temp
-  // });
-
-  //}
 
   render() {
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col">
-            <h3 className="mt-5">Searches by Field</h3>
-            <Pie data={pieData}></Pie>
-          </div>
-          <div className="col">
-            <h3 className="mt-5">Filters by Field</h3>
-            <Polar data={polarData}></Polar>
-          </div>
-        </div>
-        <div className="row">
-        <div className="col">
-
-            <h3 className="mt-5"> Space facilities demands by Field in %</h3>
-          </div>
-          </div>
-
-        <div className="row">        
-          <div className="col">
+      <Container>
+        <Row>
+          <Col md={6} sm={12} >
+            <h3 className="mt-5" style={{ textAlign: "center" }}>Searches per Field</h3>
+            <p style={centerdText}>Amount of searches by users per field</p>
+            <Pie data={this.state.pieData}></Pie>
+          </Col>
+          <Col md={6} sm={12}>
+            <h3 className="mt-5" style={centerdText}>Filters per Field</h3>
+            <p style={centerdText}>Amount of search result filters by the users per field.</p>
+            <Polar data={this.state.polarData}></Polar>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <h3 className="mt-5" style={centerdText}> Space facilities demands by Field in %</h3>
+            <p style={centerdText}>Data based on the past two weeks</p>
+          </Col>
+        </Row>
+        <Row>
+          <Col md={6} sm={12}>
             <LineChart2
               ArtFiltersData={this.props.ArtFiltersData}
               BeautyFiltersData={this.props.BeautyFiltersData}
               SportFiltersData={this.props.SportFiltersData}
             />
-          </div>
-          <div className="col">
+          </Col>
+          <Col md={6} sm={12}>
             <Radar data={this.state.dataRadar}></Radar>
-          </div>
-        </div>
-
-        <div className="row">
-          <div className="col">
+          </Col>
+        </Row>
+        <Row>
+          <Col xs={12} >
+            <br/>
+            <br/>      
+          <h3 style={centerdText}>Most demanded equpiment</h3>
+          <p style={centerdText}>Data based on the past two weeks</p>
+          </Col>
+          </Row>
+        <Row>
+          <Col md={4} sm={12} > 
             {" "}
             <DoughnutChart
               field={"art"}
+              ArtEqCounters={this.props.ArtEqCounters}
               headLine={"Trending equipments in art field"}
+
             />
-          </div>
-          <div className="col">
+             <br/>
+          </Col>
+          <Col md={4} sm={12}>
             {" "}
             <DoughnutChart
               field={"beauty"}
+              BeautyEqCounters={this.props.BeautyEqCounters}
               headLine={"Trending equipments in beauty field"}
+
             />
-          </div>
-          <div className="col">
+             <br/>
+          </Col>
+          <Col md={4} sm={12}>
             {" "}
             <DoughnutChart
               field={"sport"}
+              SportEqCounters={this.props.SportEqCounters}
               headLine={"Trending equipments in sport field"}
-            />
-          </div>
-        </div>
-        {/* <MDBContainer>
-          <HorizontalBar data={data2} options={{ responsive: true }} />
 
-          <Bubble data={bubbleData}></Bubble>
-          <Pie data={pieData}></Pie>
-        </MDBContainer> */}
-      </div>
+            />
+             <br/>
+          </Col>   
+        </Row>   
+      </Container>
     );
   }
+}
+
+const centerdText={
+  textAlign: "center"
 }

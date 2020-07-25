@@ -1,5 +1,4 @@
 class Order{
-
     constructor(orderId,spaceId,userId,reservationDate,startHour,endHour,price,orderDate)
     {
         this.orderId = orderId;
@@ -9,9 +8,7 @@ class Order{
         this.startHour = startHour;
         this.endHour = endHour;
         this.price = price;
-        this.orderDate = orderDate;
-        
+        this.orderDate = orderDate;   
     }
-
 }
 export default Order;

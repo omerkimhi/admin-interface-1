@@ -10,75 +10,87 @@ export default function ChartComp(props) {
         return self.indexOf(value) === index;
     }
     var getLabel = (props) => {
-        switch (props.type) {
-            case 'bar': {
-                if (props.number === 1) {
-                    var fieldArray = props.Spaces.map(item => {
-                        return item.field
-                    })
-                    uniqueField = fieldArray.filter(getUnique)
-                    return uniqueField
-
-                }
-                else {
-                    var fieldArray = props.Spaces.map(item => {
-                        return item.city
-                    })
-                    uniqueCity = fieldArray.filter(getUnique)
-                    return uniqueCity
-
-                }
-            } break
+        if (props.type) {
+            if (props.number === 1) {
+                var fieldArray = props.Spaces.map(item => {
+                    return item.field
+                })
+                uniqueField = fieldArray.filter(getUnique)
+                return uniqueField
+            }
+            else {
+                var fieldArray = props.Spaces.map(item => {
+                    return item.city
+                })
+                uniqueCity = fieldArray.filter(getUnique)
+                return uniqueCity
+            }
         }
     }
-    
     var prepData = (props) => {
-
-
         var Array = []
+        var orderId = [];
+        var FilterArr = [];
+        orderId = props.Orders.map(item => item.spaceId)
+        props.Spaces.map((space) => {
+            orderId.map((id) => {
+                if (id == space.spaceId)
+                    FilterArr.push(space);
+            })
+        });
         if (props.number === 1) {
-
             Array = uniqueField.map(item => {
                 var avg = 0
                 var sum = 0
-                var arrayByField = props.Spaces.filter(space => space.field === item)
-                console.log(arrayByField)
-                arrayByField.map(item => {
-                    sum = sum + item[kind]
-                })
-                avg = sum / arrayByField.length
-                return avg
+                if (kind == "reservation") {
+                    var arrayByField = FilterArr.filter(space => space.field === item)
+                    arrayByField.map(item => {
+                        sum += 1
+                    })
+                    return sum
+                } else {
+                    var arrayByField = props.Spaces.filter(space => space.field === item)
+                    arrayByField.map(item => {
+                        sum = sum + item[kind]
+                    })
+                    avg = Math.round(sum / arrayByField.length)
+                    return avg
+                }
             })
-
             return [{
 
                 label: kind,
-                backgroundColor:  "RGB(130, 224, 170)",
-                data: Array
+                backgroundColor: "RGB(130, 224, 170)",
+                data: Array,
             }]
         }
         if (props.number === 0) {
             Array = uniqueCity.map(item => {
                 var avg = 0
                 var sum = 0
-                var arrayByField = props.Spaces.filter(space => space.city === item)
-                arrayByField.map(item => {
-                    sum = sum + item[kind]
-                })
-                avg = sum / arrayByField.length
-                return avg
+                if (kind == "reservation") {
+                    var arrayByField = FilterArr.filter(space => space.city === item)
+                    arrayByField.map(item => {
+                        sum += 1
+                    })
+                    return sum
+                } else {
+                    var arrayByField = props.Spaces.filter(space => space.city === item)
+                    arrayByField.map(item => {
+                        sum = sum + item[kind]
+                    })
+                    avg = Math.round(sum / arrayByField.length)
+                    return avg
+                }
             })
-
             return [{
 
                 label: kind,
-                backgroundColor:  "RGB(205, 92, 92)",
+                backgroundColor: "RGB(205, 92, 92)",
                 data: Array
             }]
         }
-
     }
-
     const data = {
         labels: getLabel(props),
         datasets: prepData(props),
@@ -89,14 +101,25 @@ export default function ChartComp(props) {
         borderColor: [
             'rgba(255,99,132,1)',
             'rgba(54, 162, 235, 1)',
-            'rgba(255, 206, 86, 1)']
+            'rgba(255, 206, 86, 1)'],
+
+
+    }
+    const options = {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
     }
     if (props.type === 'bar') {
         return (
             <div style={{ position: 'relative' }}>
-            {props.number==1?"Field":"City"}    {"- Average of:" }
+                {props.number == 1 ? "Field" : "City"}    {kind == "reservation" ? "- Number of:" : "- Average of:"}
                 <RadioButton kind={kind} setKind={setKind}></RadioButton>
-                <Chart height={100} data={data} type={props.type}></Chart>
+                <Chart height={200} data={data} type={props.type} options={options}></Chart>
             </div>
         )
     }

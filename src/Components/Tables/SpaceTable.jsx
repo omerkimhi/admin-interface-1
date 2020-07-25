@@ -23,7 +23,6 @@ export default class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
-
       Spaces: this.props.Spaces,
       SpaceDel: [],
       //Space Data Table
@@ -48,7 +47,6 @@ export default class Table extends Component {
         },
 
       ],
-
     }
   }
 
@@ -76,7 +74,6 @@ export default class Table extends Component {
     })
 console.log('str ',str)
   }
-
 
   render() {
     const tableIcons = {
@@ -108,32 +105,7 @@ console.log('str ',str)
           columns={this.state.columns}
           data={this.state.data}
           editable={{
-            onRowAdd: (newData) =>
-              new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                  this.setState((prevState) => {
-                    const data = [...prevState.data];
-                    data.push(newData);
-                    return { ...prevState, data };
-                  });
-                }, 600);
-              }),
-            onRowUpdate: (newData, oldData) =>
-              new Promise((resolve) => {
-                setTimeout(() => {
-                  resolve();
-                  if (oldData) {
-                    this.setState((prevState) => {
-                      const data = [...prevState.data];
-                      data[data.indexOf(oldData)] = newData;
-                      return { ...prevState, data };
-                    });
-                  }
-                }, 600);
-              }), 
             onRowDelete: (oldData) =>
-
               new Promise((resolve) => {
                 setTimeout(() => {
                   resolve();
@@ -144,8 +116,6 @@ console.log('str ',str)
                     return { ...prevState, data };
                   });
                 }, 600);
-
-
               }),
           }}
         />

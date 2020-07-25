@@ -17,7 +17,7 @@ class DoughnutChart extends React.Component {
         ],
         datasets: [
           {
-            data: [6, 3, 6, 5, 5, 1],
+            data: [],
             backgroundColor: [
               "#F7464A",
               "#46BFBD",
@@ -36,37 +36,45 @@ class DoughnutChart extends React.Component {
             ],
           },
         ],
+      
       },
+      options:{
+        legend: {
+            display: false,
+        },
+        responsive: true,
+    },
     };
   }
-
   componentDidMount = () => {
+
     var temp = this.state.dataDoughnut;
+    this.setState({ ArtEqCounters: this.props.ArtEqCounters })
 
     switch (this.props.field) {
       case "art":
-        console.log("art");
-        temp.datasets[0].data = [4,0,4,6,4,4];
-        temp.labels = ["Canvas","Green Screen","PottersWheel","Guitar","Drum","Speaker"];
+        
+        temp.datasets[0].data = [...this.props.ArtEqCounters];
+        temp.labels = ["Canvas", "Green Screen", "PottersWheel", "Guitar", "Drum", "Speaker"];
 
 
         break;
       case "beauty":
-        console.log("beauty");
-        temp.datasets[0].data = [4,0,4,6,4,4];
-        temp.labels = ["Dryers","Nail Polish Racks","Reception Area","Laser Hair Removal","Pedicure & Manicure","Hair Coloring Kit"];
+        
+        temp.datasets[0].data = [...this.props.BeautyEqCounters];
+        temp.labels = ["Dryers", "Nail Polish Racks", "Reception Area", "Laser Hair Removal", "Pedicure & Manicure", "Hair Coloring Kit"];
 
         break;
       case "sport":
-        console.log("sport");
-        temp.datasets[0].data = [6, 3, 6, 5, 5, 1];
-        temp.labels = ["TRX",
-        "Treadmill",
-        "Stationary Bicycle",
-        "BenchCounter",
-        "Dumbells",
-        "Barbell",];
         
+        temp.datasets[0].data = [...this.props.SportEqCounters];
+        temp.labels = ["TRX",
+          "Treadmill",
+          "Stationary Bicycle",
+          "BenchCounter",
+          "Dumbells",
+          "Barbell",];
+
         break;
       default:
         console.log("No field");
@@ -76,14 +84,13 @@ class DoughnutChart extends React.Component {
     })
 
   };
-
   render() {
     return (
       <MDBContainer>
-        <h3 className="mt-5">{this.props.headLine}</h3>
+        <h3 className="mt-5" style={{ textAlign: "center" }}>{this.props.headLine}</h3>
         <Doughnut
           data={this.state.dataDoughnut}
-          options={{ responsive: true }}
+          options={this.state.options}
         />
       </MDBContainer>
     );
