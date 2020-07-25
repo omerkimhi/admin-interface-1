@@ -39,6 +39,18 @@ class Dashboard extends Component {
       BeautyOrder: [],
       SportOrder: [],
       Searches:[],
+      ArtFilters:[],
+      ArtFiltersData: [],
+      BeautyFilters:[],
+      BeautyFiltersData:[],
+      SportFilters:[],
+      SportFiltersData:[],
+      SpaceVisits:[],
+      SpacesData:[],
+
+
+
+
 
     };
   }
@@ -605,8 +617,11 @@ class Dashboard extends Component {
 
   }
   render() {
-    if (this.state.Spaces.length === 0 || this.state.Orders.length === 0 || this.state.Users.length === 0 || this.state.Grade.length===0|| 
-      this.state.Searches.length===0 ) {
+    if (this.state.Spaces.length === 0 || this.state.Orders.length === 0 || 
+      this.state.Users.length === 0 || this.state.Grade.length===0|| 
+      this.state.Searches.length===0 || this.state.SpaceVisits.length===0|| 
+      this.state.SportFiltersData.length===0 || this.state.SportFilters===0 ||
+      this.state.BeautyFilters===0 || this.state.BeautyFiltersData===) {
       return <h1>LOADING</h1>
     }
     else {
