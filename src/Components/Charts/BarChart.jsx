@@ -155,7 +155,8 @@ class BarChart extends React.Component {
     render() {
         return (
             <div>
-                <h3 style={textStyle} className="mt-5">Trending renting days</h3>
+                <h3 style={textStyle} className="mt-5">{this.props.header}</h3>
+                <p style={textStyle}> {this.props.description}</p>
                 <div style={{ height: this.props.height, width: this.props.width, position:'relative' }}>
                     <Bar data={this.state.BarC.dataBar} options={this.state.BarC.barChartOptions, {responsive: true,  maintainAspectRatio: false}} />
                 </div>

@@ -38,6 +38,8 @@ class Dashboard extends Component {
       ArtOrder: [],
       BeautyOrder: [],
       SportOrder: [],
+      Searches:[],
+
     };
   }
   componentDidMount() {
@@ -449,7 +451,6 @@ class Dashboard extends Component {
 
       );
   };
-
   FetchGetOrders = () => {
     fetch(this.OrdersApiUrl, {
       method: "GET"
@@ -604,7 +605,8 @@ class Dashboard extends Component {
 
   }
   render() {
-    if (this.state.Spaces.length === 0 || this.state.Orders.length === 0 || this.state.Users.length === 0) {
+    if (this.state.Spaces.length === 0 || this.state.Orders.length === 0 || this.state.Users.length === 0 || this.state.Grade.length===0|| 
+      this.state.Searches.length===0 ) {
       return <h1>LOADING</h1>
     }
     else {

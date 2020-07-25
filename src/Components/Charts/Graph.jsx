@@ -206,17 +206,20 @@ export default class Graph extends Component {
       <Container>
         <Row>
           <Col md={6} sm={12} >
-            <h3 className="mt-5" style={{ textAlign: "center" }}>Searches by Field</h3>
+            <h3 className="mt-5" style={{ textAlign: "center" }}>Searches per Field</h3>
+            <p style={centerdText}>Amount of searches by users per field</p>
             <Pie data={this.state.pieData}></Pie>
           </Col>
           <Col md={6} sm={12}>
-            <h3 className="mt-5" style={{ textAlign: "center" }}>Filters by Field</h3>
+            <h3 className="mt-5" style={centerdText}>Filters per Field</h3>
+            <p style={centerdText}>Amount of search result filters by the users per field.</p>
             <Polar data={this.state.polarData}></Polar>
           </Col>
         </Row>
         <Row>
           <Col>
-            <h3 className="mt-5" style={{ textAlign: "center" }}> Space facilities demands by Field in %</h3>
+            <h3 className="mt-5" style={centerdText}> Space facilities demands by Field in %</h3>
+            <p style={centerdText}>Data based on the past two weeks</p>
           </Col>
         </Row>
         <Row>
@@ -232,6 +235,14 @@ export default class Graph extends Component {
           </Col>
         </Row>
         <Row>
+          <Col xs={12} >
+            <br/>
+            <br/>      
+          <h3 style={centerdText}>Most demanded equpiment</h3>
+          <p style={centerdText}>Data based on the past two weeks</p>
+          </Col>
+          </Row>
+        <Row>
           <Col md={4} sm={12} > 
             {" "}
             <DoughnutChart
@@ -240,6 +251,7 @@ export default class Graph extends Component {
               headLine={"Trending equipments in art field"}
 
             />
+             <br/>
           </Col>
           <Col md={4} sm={12}>
             {" "}
@@ -249,6 +261,7 @@ export default class Graph extends Component {
               headLine={"Trending equipments in beauty field"}
 
             />
+             <br/>
           </Col>
           <Col md={4} sm={12}>
             {" "}
@@ -258,9 +271,14 @@ export default class Graph extends Component {
               headLine={"Trending equipments in sport field"}
 
             />
-          </Col>
-        </Row>
+             <br/>
+          </Col>   
+        </Row>   
       </Container>
     );
   }
+}
+
+const centerdText={
+  textAlign: "center"
 }

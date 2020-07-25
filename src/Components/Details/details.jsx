@@ -630,10 +630,14 @@ class Details extends Component {
             </Row>
             <Row style={rowStyle}>
               <Col lg={6} md={12} sm={12} xs={12}>
+              <br/>
+                <h3 style={{textStyle}}>New users registered by month</h3>
                 <br />
                 <Line data={this.state.UserByMonth}></Line>
               </Col>
               <Col lg={6} md={12} sm={12} xs={12} style={leftColStyle}>
+              <br/>
+              <h3 style={{textStyle}}>New spaces uploaded by month</h3>
                 <br />
                 <Line data={this.state.SpaceByMonth}></Line>
               </Col>
@@ -733,4 +737,7 @@ const leftColStyle = {
 const rowStyle = {
   paddingLeft: "15%",
   paddingRight: "15%"
+}
+const textStyle={
+  textAlign:'center'
 }
