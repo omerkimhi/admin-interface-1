@@ -11,7 +11,7 @@ export default class Graph extends Component {
       polarData: {
         datasets: [
           {
-            data: [this.props.ArtFilters.length, this.props.BeautyFilters.length, this.props.SportFilters.length],
+            data: [this.props.ArtFilters?this.props.ArtFilters.length:0, this.props.BeautyFilters?this.props.BeautyFilters.length:0, this.props.SportFilters?this.props.SportFilters.length:0],
             backgroundColor: ["#FF6384", "#4BC0C0", "#FFCE56", "#E7E9ED", "#36A2EB"],
             label: "My dataset", 
           },
