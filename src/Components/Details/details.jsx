@@ -318,7 +318,7 @@ class Details extends Component {
     let minArt = Number(Math.min.apply(null, artAvg)).toFixed(2);
     //beauty avg min max
     this.state.Spaces.map((space) => {
-      if (space.field === "Art") beautyAvg.push(space.price);
+      if (space.field === "Beauty") beautyAvg.push(space.price);
     });
     let sumBeauty = beautyAvg.reduce(
       (previous, current) => (current += previous)
