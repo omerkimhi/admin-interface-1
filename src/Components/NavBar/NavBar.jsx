@@ -1,25 +1,26 @@
 import React, { Component } from "react";
 import { Navbar, Nav, NavDropdown, Button, Row } from "react-bootstrap";
-import {
-  BrowserRouter as 
-  Switch,
-  Route,
-  NavLink,
-} from "react-router-dom";
-import './../../App.css';
+import { BrowserRouter as Switch, Route, NavLink } from "react-router-dom";
+import "./../../App.css";
+
+
+const url="/igroup17/prod/Admin";
 
 class NavBar extends Component {
+
   render() {
     if (!this.props.isLogged) {
-      return (<NavLink
-        style={myStyle}
-        activeStyle={{ fontWeight: "bold" }}
-        className="justify-content-end"
-        to="/">
-        Sign In
-      </NavLink>)
-    }
-    else
+      return (
+        <NavLink
+          style={myStyle}
+          activeStyle={{ fontWeight: "bold" }}
+          className="justify-content-end"
+          to="/"
+        >
+          Sign In
+        </NavLink>
+      );
+    } else
       return (
         <div>
           <br />
@@ -29,67 +30,83 @@ class NavBar extends Component {
               <img
                 style={{ height: 50 }}
                 src="https://i.imgur.com/LzYGyMb.png"
-                alt="logoimage">
-                  </img>{" "}
-            Spazio Admin - {String(this.props.userLogged).toUpperCase()}
+                alt="logoimage"
+              ></img>{" "}
+              Spazio Admin - {String(this.props.userLogged).toUpperCase()}
             </Navbar.Brand>
             <Nav className="mr-auto">
               <NavLink
                 style={myStyle}
                 activeStyle={{ fontWeight: "bold" }}
-                to="/">
+                to="/"
+              >
                 General data
-            </NavLink>
-            
-              <NavDropdown
-                title={<span style={dropStyle} >Tables</span>}>
+              </NavLink>
+
+              <NavDropdown title={<span style={dropStyle}>Tables</span>}>
                 <NavDropdown.Item
                   style={myStyle}
                   activestyle={{ fontWeight: "bold" }}
-                  href="/SpaceTable">
-                  Spaces
-              </NavDropdown.Item>
+                  href={`${url}/SpaceTable`}
+
+                >
+         Spaces
+                </NavDropdown.Item>
                 <NavDropdown.Item
                   style={myStyle}
                   activestyle={{ fontWeight: "bold" }}
-                  href="/UserTable"
-                  margintop='5'>
-                  Users
-              </NavDropdown.Item>
+                  margintop="5"
+                  href={`${url}/UserTable`}
+                >Users
+                  
+                </NavDropdown.Item>
               </NavDropdown>
-              <NavDropdown title={
-                <span style={dropStyle} >Analytics</span>}>
+              <NavDropdown title={<span style={dropStyle}>Analytics</span>}>
                 <NavDropdown.Item
                   style={myStyle}
                   activestyle={{ fontWeight: "bold" }}
-                  href="/Graph">
-                  Searches
-              </NavDropdown.Item>
+                  href={`${url}/Searches`}
+
+                >Searches
+                  
+                </NavDropdown.Item>
                 <NavDropdown.Item
                   style={myStyle}
                   activestyle={{ fontWeight: "bold" }}
-                  href="/Charts"
-                  margintop='5'>
-                  Spaces
-              </NavDropdown.Item>
+                  margintop="5"
+                  href={`${url}/Spaces`}
+
+                >Spaces
+                 
+                </NavDropdown.Item>
                 <NavDropdown.Item
                   style={myStyle}
                   activestyle={{ fontWeight: "bold" }}
-                  href="/Orders"
-                  margintop='5'>
-                  Orders
-              </NavDropdown.Item>
+                  margintop="5"
+                  href={`${url}/Orders`}
+
+                >Orders
+                 
+                </NavDropdown.Item>
               </NavDropdown>
               <NavLink
                 style={myStyle}
                 activeStyle={{ fontWeight: "bold" }}
-                to="/Control">
+                to="/Control"
+                >
                 Control
-            </NavLink>
+              </NavLink>
             </Nav>
-            <Row style={{ Right: 0, marginRight: 15, alignItems: 'center' }}>
+            <Row style={{ Right: 0, marginRight: 15, alignItems: "center" }}>
               <div style={{ marginLeft: 10 }}>
-                <Button onClick={() => { localStorage.clear(); this.props.checkLogged(false, "") }}>sign out</Button>
+                <Button
+                  onClick={() => {
+                    localStorage.clear();
+                    this.props.checkLogged(false, "");
+                  }}
+                >
+                  sign out
+                </Button>
               </div>
             </Row>
           </Navbar>
@@ -115,4 +132,4 @@ const dropStyle = {
     fontWeight: "bold",
   },
   fontWeight: "bold",
-}
+};

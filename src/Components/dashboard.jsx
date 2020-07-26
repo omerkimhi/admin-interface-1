@@ -62,7 +62,7 @@ class Dashboard extends Component {
       })
     }
     this.SpacesApiUrl =
-      "http://proj.ruppin.ac.il/igroup17/prod/api/space";
+      "http://proj.ruppin.ac.il/igroup17/proj/api/SpaceData/AllSpaces";
     this.OrdersApiUrl =
       "http://proj.ruppin.ac.il/igroup17/prod/api/order";
     this.UsersApiUrl =
@@ -433,27 +433,27 @@ class Dashboard extends Component {
             Spaces: result.map(
               item =>
                 new Space(
-                  item.Id,
-                  item.Name,
-                  item.Field,
-                  item.Price,
-                  item.City,
-                  item.Street,
-                  item.Number,
-                  item.Capabillity,
-                  item.Bank,
-                  item.Branch,
-                  item.Imageurl1,
-                  item.Imageurl2,
-                  item.Imageurl3,
-                  item.Imageurl4,
-                  item.Imageurl5,
-                  item.AccountNumber,
-                  item.UserEmail,
-                  item.Description,
-                  item.TermsOfUse,
-                  item.Rank,
-                  item.Uploadtime
+                  item.Space.Id,
+                  item.Space.Name,
+                  item.Space.Field,
+                  item.Space.Price,
+                  item.Space.City,
+                  item.Space.Street,
+                  item.Space.Number,
+                  item.Space.Capabillity,
+                  item.Space.Bank,
+                  item.Space.Branch,
+                  item.Space.Imageurl1,
+                  item.Space.Imageurl2,
+                  item.Space.Imageurl3,
+                  item.Space.Imageurl4,
+                  item.Space.Imageurl5,
+                  item.Space.AccountNumber,
+                  item.Space.UserEmail,
+                  item.Space.Description,
+                  item.Space.TermsOfUse,
+                  item.Space.Rank,
+                  item.Space.Uploadtime
                 )
             )
           },
@@ -631,7 +631,7 @@ class Dashboard extends Component {
     else {
       if (!this.state.isLogged) {
         return (
-          <Router>
+          <Router basename="/igroup17/prod/Admin">
             <Switch>
               <Route  path="/"><Login checkLogged={this.checkLogged} /></Route>
             </Switch>
@@ -640,16 +640,16 @@ class Dashboard extends Component {
       }
       else {
         return (
-        <Router>
+        <Router basename="/igroup17/prod/Admin">
           <div> <NavBar isLogged={this.state.isLogged} userLogged={this.state.userLogged} checkLogged={this.checkLogged}></NavBar></div>
           <Switch>
             <Route exact path="/"><Details Spaces={this.state.Spaces} Users={this.state.Users} /></Route>
             <Route path="/SpaceTable"><SpaceTable Spaces={this.state.Spaces} /></Route>
             <Route path="/UserTable"><UserTable Users={this.state.Users} /></Route>
-            <Route path="/Charts"><Charts Orders={this.state.Orders} Spaces={this.state.Spaces} /></Route>
+            <Route path="/Spaces"><Charts Orders={this.state.Orders} Spaces={this.state.Spaces} /></Route>
             <Route path="/Orders"><Orders Orders={this.state.Orders} Spaces={this.state.Spaces} ArtOrder={this.state.ArtOrder} BeautyOrder={this.state.BeautyOrder} SportOrder={this.state.SportOrder} /></Route>
             <Route path="/Control"><Control Grade={this.state.Grade} ArtFilters={this.state.ArtFilters} BeautyFilters={this.state.BeautyFilters} SportFilters={this.state.SportFilters} /></Route>
-            <Route path="/Graph"><Graph Searches={this.state.Searches} ArtFiltersData={this.state.ArtCounters} BeautyFiltersData={this.state.BeautyCounters} SportFiltersData={this.state.SportCounters}
+            <Route path="/Searches"><Graph Searches={this.state.Searches} ArtFiltersData={this.state.ArtCounters} BeautyFiltersData={this.state.BeautyCounters} SportFiltersData={this.state.SportCounters}
               ArtFilters={this.state.ArtFilters} BeautyFilters={this.state.BeautyFilters} SportFilters={this.state.SportFilters} ArtEqCounters={this.state.ArtEqCounters} BeautyEqCounters={this.state.BeautyEqCounters} SportEqCounters={this.state.SportEqCounters}></Graph></Route>
           </Switch>
           <Footer></Footer>

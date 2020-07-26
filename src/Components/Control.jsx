@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Line } from "react-chartjs-2";
-import { Form, Col, Row, Button, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Col, Row, Container } from "react-bootstrap";
 import "bootstrap-4-grid/css/grid.min.css";
 import * as moment from "moment";
 
@@ -328,6 +328,7 @@ export default class Control extends Component {
       .then(
         (result) => {
           console.log("succees");
+          alert("Grades has been updated");
         },
         (error) => {
           console.log("error", error);
@@ -349,140 +350,17 @@ export default class Control extends Component {
       return (
         <div className="app">
           <br />
-          <div className="container" >
+          <Container>
             <div style={{ justifyContent: "center" }} className="row">
               <h1>Smart Sorting</h1>
             </div>
-
             <Row>
-              <Col>
-                <Form >
-                  <br />
-                  <Form.Group as={Row} controlId="Price">
-                    <Form.Label column sm={2}>
-                      Price
-              </Form.Label>
-                    <Col sm={7} >
-                      <Form.Control
-                        onChange={(e) => this.changeValue(e, "price")}
-                        style={inputStyle}
-                        type="number"
-                        defaultValue={this.state.price}
-                      />
-                    </Col>
-                  </Form.Group>
 
-                  <Form.Group as={Row} controlId="Capacity">
-                    <Form.Label column sm={2}>
-                      Capacity
-              </Form.Label>
-                    <Col sm={7}>
-                      <Form.Control
-                        style={inputStyle}
-                        type="number"
-                        defaultValue={this.state.capacity}
-                        onChange={(e) => this.changeValue(e, "capacity")}
-                      />
-                    </Col>
-                  </Form.Group>
-
-                  <Form.Group as={Row} controlId="Facilities">
-                    <Form.Label column sm={2}>
-                      Facility
-              </Form.Label>
-                    <Col sm={7}>
-                      <Form.Control
-                        style={inputStyle}
-                        type="number"
-                        defaultValue={this.state.facility}
-                        onChange={(e) => this.changeValue(e, "facility")}
-                      />
-                    </Col>
-                  </Form.Group>
-
-                  <Form.Group as={Row} controlId="Equipments">
-                    <Form.Label column sm={2}>
-                      Equipment
-              </Form.Label>
-                    <Col sm={7}>
-                      <Form.Control
-                        style={inputStyle}
-                        type="number"
-                        defaultValue={this.state.equipment}
-                        onChange={(e) => this.changeValue(e, "equipment")}
-                      />
-                    </Col>
-                  </Form.Group>
-
-                  <Form.Group as={Row} controlId="rating">
-                    <Form.Label column sm={2}>
-                      Rating
-              </Form.Label>
-                    <Col sm={7}>
-                      <Form.Control
-                        style={inputStyle}
-                        type="number"
-                        defaultValue={this.state.rating}
-                        onChange={(e) => this.changeValue(e, "rating")}
-                      />
-                    </Col>
-                  </Form.Group>
-
-                  <Form.Group as={Row} controlId="order">
-                    <Form.Label column sm={2}>
-                      Orders
-              </Form.Label>
-                    <Col sm={7}>
-                      <Form.Control
-                        style={inputStyle}
-                        type="number"
-                        defaultValue={this.state.order}
-                        onChange={(e) => this.changeValue(e, "order")}
-                      />
-                    </Col>
-                  </Form.Group>
-
-                  <Form.Group as={Row} controlId="premium">
-                    <Form.Label column sm={2}>
-                      Premium
-              </Form.Label>
-                    <Col sm={7}>
-                      <Form.Control
-                        style={inputStyle}
-                        type="number"
-                        defaultValue={this.state.premium}
-                        onChange={(e) => this.changeValue(e, "premium")}
-                      />
-                    </Col>
-                  </Form.Group>
-
-                  <Form.Group as={Row} controlId="conversion">
-                    <Form.Label column sm={2}>
-                      Conversion
-              </Form.Label>
-                    <Col sm={7}>
-                      <Form.Control
-                        style={inputStyle}
-                        type="number"
-                        defaultValue={this.state.conversion}
-                        onChange={(e) => this.changeValue(e, "conversion")}
-                      />
-                    </Col>
-                  </Form.Group>
-
-                  <Form.Group as={Row}>
-                    <Col sm={{ span: 10, offset: 2 }}>
-                      <Button onSubmit={this.sendGrades()} type="submit">Apply</Button>
-                    </Col>
-                  </Form.Group>
-                  <br />
-                </Form>
-              </Col>
               <Col >
-                <div style={{ height: '90%', paddingLeft: 5, border: '3px solid #056B60' }}>
+                <div>
                   <p>Here you can control the sort of the Recommended spaces in the search result feed,
-            by changing the weights of each parameter.</p>
-                  <div style={{ fontSize: '12px' }}>
+                      by changing the weights of each parameter.</p>
+                  <div>
                     <p>Price- +/- Points per 10 NIS/Hr above/below the average pricing filter trend. </p>
                     <p>Capacity/Facility/Equipment/Rating- Points will be added to the spaces which have more Capacity/Facility/Equipment/Rating than the average filter trend.</p>
                     <p>Orders- Points will be added to spaces according to the ammount of orders.</p>
@@ -492,19 +370,115 @@ export default class Control extends Component {
                 </div>
               </Col>
             </Row>
+            <Row>
+              <div>
+                <table>
+                  <tbody>
+                    <tr>
+
+                      <th style={cellStyle}>
+                        <label>
+                          Price:{" "} 
+    <input type="number" defaultValue={this.state.price} onChange={(e) => this.changeValue(e, "price")} style={inputStyle} />
+                        </label>
+                      </th>
+
+                      <th style={cellStyle}>
+                        <label>
+                          Capacity:{" "} 
+    <input type="number" defaultValue={this.state.capacity} onChange={(e) => this.changeValue(e, "capacity")} style={inputStyle} />
+                        </label>
+                      </th>
+
+                      <th style={cellStyle}>
+                        <label>
+                          Facilities:{" "} 
+    <input type="number" defaultValue={this.state.facility} onChange={(e) => this.changeValue(e, "facility")} style={inputStyle} />
+                        </label>
+                      </th>
+
+                      <th style={cellStyle}>
+                        <label>
+                          Equipment:{" "}
+    <input type="number" defaultValue={this.state.equipment} onChange={(e) => this.changeValue(e, "equipment")} style={inputStyle} />
+                        </label>
+                      </th>
+
+                    </tr>
+                    {/* second row */}
+                    <tr>
+                      
+                      <th>
+                        <label>
+                          Rating:{" "} 
+    <input type="number" defaultValue={this.state.rating} onChange={(e) => this.changeValue(e, "rating")} style={inputStyle} />
+                        </label>
+                      </th>
+
+                      <th style={cellStyle}>
+                        <label>
+                          Orders:{" "} 
+    <input type="number" defaultValue={this.state.order} onChange={(e) => this.changeValue(e, "order")} style={inputStyle} />
+                        </label>
+                      </th>
+
+                      <th style={cellStyle}>
+                        <label>
+                          Premium:{" "} 
+    <input type="number" defaultValue={this.state.premium} onChange={(e) => this.changeValue(e, "premium")} style={inputStyle} />
+                        </label>
+                      </th>
+
+                      <th style={cellStyle}>
+                        <label>
+                          Conversion:{" "} 
+    <input type="number" defaultValue={this.state.conversion} onChange={(e) => this.changeValue(e, "conversion")} style={inputStyle} />
+                        </label>
+                      </th>
+
+                    </tr>
+
+                    <tr>
+                      <th></th>
+                      <th></th>
+                      <th></th>
+                      <th>
+                        <button onClick={this.sendGrades} style={submitStyle}>Apply</button>
+                      </th>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <br />
+            </Row>
+
             <div>
+              <br/>
               <h3>Trends according to searches and filters made by the users</h3>
               <Line data={this.state.lineData}></Line>
             </div>
-          </div>
-        </div>
+          </Container >
+        </div >
       );
     }
   }
 }
 const inputStyle = {
-  width: "20%",
+  width: '30%',
   backgroundColor: '#B2C7BB',
   fontWeight: 'bold',
+  fontSize:'11px',
+  paddingLeft:'5px'
+  
 
+
+}
+const submitStyle = {
+  backgroundColor: 'rgb(0,114,106)',
+  color: 'white',
+  width:'65%'
+
+}
+const cellStyle = {
+  padding: '4px',
 }
