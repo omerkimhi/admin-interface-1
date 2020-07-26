@@ -25,12 +25,12 @@ export default class OrderCharts extends Component {
           <Row>
           <Col lg={4} md={4} sm={10} xs={10}>
               <div>
-              <PieChart height={'50vh'} width={'30vw'} Spaces={this.props.Spaces} Orders={this.props.Orders} header={"Orders per field"} description={"According to the past two weeks"} />
+              <PieChart height={'50vh'} width={'30vw'} Spaces={this.props.Spaces} Orders={this.props.Orders} header={"Orders per Field"} description={"Data based on the past two weeks"} />
             </div>
             </Col>
             <Col lg={6} md={6} sm={10}  xs={10} >
             <div style={{marginLeft:100, position:'relative'}}>
-              <BarChart height={'50vh'} width={'46vw'} Orders={this.props.Orders} header={"Orders per day"} description={"Order per days of the week according to the past two weeks"} />
+              <BarChart height={'50vh'} width={'46vw'} Orders={this.props.Orders} header={"Orders per Day"} description={"Data based on the past two weeks"} />
               </div>
               </Col>
               <Col lg={2} xs={12}>
@@ -39,7 +39,7 @@ export default class OrderCharts extends Component {
           <Row> 
           <Col lg={10} md={10} sm={10} xs={10}>
             <div style={{position:'relative'}}>
-              <LineChart height={'70vh'} width={'74vw'} header={"Orders per month"} ArtOrder={this.props.ArtOrder} BeautyOrder={this.props.BeautyOrder} SportOrder={this.props.SportOrder} />{" "}
+              <LineChart height={'70vh'} width={'74vw'} header={"Orders per Month"} ArtOrder={this.props.ArtOrder} BeautyOrder={this.props.BeautyOrder} SportOrder={this.props.SportOrder} />{" "}
             </div>
             </Col>
           </Row>

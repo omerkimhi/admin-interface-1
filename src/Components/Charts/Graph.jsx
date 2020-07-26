@@ -218,7 +218,7 @@ export default class Graph extends Component {
         </Row>
         <Row>
           <Col>
-            <h3 className="mt-5" style={centerdText}> Space facilities demands by Field in %</h3>
+            <h3 className="mt-5" style={centerdText}> Space Facility Demand By Field In %</h3>
             <p style={centerdText}>Data based on the past two weeks</p>
           </Col>
         </Row>
@@ -248,7 +248,7 @@ export default class Graph extends Component {
             <DoughnutChart
               field={"art"}
               ArtEqCounters={this.props.ArtEqCounters}
-              headLine={"Trending equipments in art field"}
+              headLine={"Trending Equipments In Art Field"}
 
             />
              <br/>
@@ -258,7 +258,7 @@ export default class Graph extends Component {
             <DoughnutChart
               field={"beauty"}
               BeautyEqCounters={this.props.BeautyEqCounters}
-              headLine={"Trending equipments in beauty field"}
+              headLine={"Trending Equipments In Beauty Field"}
 
             />
              <br/>
@@ -268,7 +268,7 @@ export default class Graph extends Component {
             <DoughnutChart
               field={"sport"}
               SportEqCounters={this.props.SportEqCounters}
-              headLine={"Trending equipments in sport field"}
+              headLine={"Trending Equipments In Sport Field"}
 
             />
              <br/>

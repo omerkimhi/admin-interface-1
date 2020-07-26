@@ -87,7 +87,7 @@ class DoughnutChart extends React.Component {
   render() {
     return (
       <MDBContainer>
-        <h3 className="mt-5" style={{ textAlign: "center" }}>{this.props.headLine}</h3>
+        <h4 className="mt-5" style={{ textAlign: "center" }}>{this.props.headLine}</h4>
         <Doughnut
           data={this.state.dataDoughnut}
           options={this.state.options}

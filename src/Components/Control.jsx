@@ -357,14 +357,14 @@ export default class Control extends Component {
 
               <Col >
                 <div>
-                  <p>Here you can control the sort of the Recommended spaces in the search result feed,
-                      by changing the weights of each parameter.</p>
+                     <p> In this screen you can control the sorting of the system's recommended workspaces in the search results.</p>
                   <div>
-                    <p>Price- +/- Points per 10 NIS/Hr above/below the average pricing filter trend. </p>
-                    <p>Capacity/Facility/Equipment/Rating- Points will be added to the spaces which have more Capacity/Facility/Equipment/Rating than the average filter trend.</p>
-                    <p>Orders- Points will be added to spaces according to the ammount of orders.</p>
-                    <p>Premium- Premiums users get extra points.</p>
-                    <p>Conversion- Points will be added according to the ratio of page vists to orders.</p>
+                    <p> • Price: Points are added\deducted for every 10 NIS/hr that are above\below the average pricing, based on the current filter trend.</p>
+                    <p> • Capacity\Facility\Equipment: Points are added to the spaces which have more Capacity\Facility\Equipment\Rating than the average filter trend.</p>
+                    <p> • Rating: Points are added\deducted according to the space rating, based on the current filter trend</p>
+                    <p> • Orders: Points are added to spaces according to the ammount of orders.</p>
+                    <p> • Premium: Premiums users get extra points.</p>
+                    <p> • Conversion: Points are added according to the ratio of page vists to orders.</p>
                   </div>
                 </div>
               </Col>

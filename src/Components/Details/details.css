@@ -5,7 +5,6 @@ h1,h4 {
   h5 {
     color:black;
     font-weight: bold;
-    text-decoration-line: underline;
   }
   .buttons-right>button {
     float: right;
