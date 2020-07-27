@@ -47,11 +47,6 @@ class Dashboard extends Component {
       SportFiltersData:[],
       SpaceVisits:[],
       SpacesData:[],
-
-
-
-
-
     };
   }
   componentDidMount() {
@@ -62,7 +57,7 @@ class Dashboard extends Component {
       })
     }
     this.SpacesApiUrl =
-      "http://proj.ruppin.ac.il/igroup17/proj/api/SpaceData/AllSpaces";//or http://proj.ruppin.ac.il/igroup17/proj/api/Space/
+      "http://proj.ruppin.ac.il/igroup17/proj/api/SpaceData/AllSpaces";
     this.OrdersApiUrl =
       "http://proj.ruppin.ac.il/igroup17/prod/api/order";
     this.UsersApiUrl =

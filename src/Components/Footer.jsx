@@ -9,10 +9,12 @@ class Footer extends Component {
     normalStyles={{
     backgroundColor: "#999999",
     padding: '1rem',
+    
     }}
     stickyStyles={{
     backgroundColor: "rgba(255,255,255,.8)",
-    padding: "2rem"
+    padding: "2rem",
+   
     }}
 >
   <h4 className="footer"> All rights reserved for SPAZIO Workin' Spaces ltd. © </h4> 

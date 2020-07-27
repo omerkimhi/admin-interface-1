@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Navbar, Nav, NavDropdown, Button, Row } from "react-bootstrap";
+import { Navbar, Nav, Button, Row } from "react-bootstrap";
 import { BrowserRouter as Switch, Route, NavLink } from "react-router-dom";
 import "./../../App.css";
 
@@ -25,6 +25,7 @@ class NavBar extends Component {
         <div>
           <br />
           <Navbar bg="red" variant="dark" expand="lg" className="nav">
+            
             <Navbar.Brand className="nav">
               {" "}
               <img
@@ -34,46 +35,34 @@ class NavBar extends Component {
               ></img>{" "}
               Spazio Admin - {String(this.props.userLogged).toUpperCase()}
             </Navbar.Brand>
+
             <Nav className="mr-auto">
+
               <NavLink
                 style={myStyle}
                 activeStyle={{ fontWeight: "bold" }}
                 to="/"
               >
-                General data
+             Stats
               </NavLink>
-
-              <NavDropdown title={<span style={dropStyle}>Tables</span>}>
-                <NavDropdown.Item
-                  style={myStyle}
-                  activestyle={{ fontWeight: "bold" }}
-                >
+     
          <NavLink
                 style={myStyle}
                 activeStyle={{ fontWeight: "bold" }}
                 to="/SpaceTable"
                 >
-                Spaces
+                Spaces Table
               </NavLink>
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  style={myStyle}
-                  activestyle={{ fontWeight: "bold" }}
-                  margintop="5"
-                ><NavLink
+               
+               <NavLink
                 style={myStyle}
                 activeStyle={{ fontWeight: "bold" }}
                 to="/UserTable"
                 >
-                Users
+                Users Table
               </NavLink>
-                </NavDropdown.Item>
-              </NavDropdown>
-              <NavDropdown title={<span style={dropStyle}>Analytics</span>}>
-                <NavDropdown.Item
-                  style={myStyle}
-                  activestyle={{ fontWeight: "bold" }}
-                ><NavLink
+              
+              <NavLink
                 style={myStyle}
                 activeStyle={{ fontWeight: "bold" }}
                 to="/Searches"
@@ -81,12 +70,7 @@ class NavBar extends Component {
                 Searches
               </NavLink>
                   
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  style={myStyle}
-                  activestyle={{ fontWeight: "bold" }}
-                  margintop="5"
-                ><NavLink
+                <NavLink
                 style={myStyle}
                 activeStyle={{ fontWeight: "bold" }}
                 to="/Spaces"
@@ -94,12 +78,7 @@ class NavBar extends Component {
                 Spaces
               </NavLink>
                  
-                </NavDropdown.Item>
-                <NavDropdown.Item
-                  style={myStyle}
-                  activestyle={{ fontWeight: "bold" }}
-                  margintop="5"
-                ><NavLink
+                <NavLink
                 style={myStyle}
                 activeStyle={{ fontWeight: "bold" }}
                 to="/Orders"
@@ -107,8 +86,6 @@ class NavBar extends Component {
                 Orders
               </NavLink>
                  
-                </NavDropdown.Item>
-              </NavDropdown>
               <NavLink
                 style={myStyle}
                 activeStyle={{ fontWeight: "bold" }}
@@ -140,16 +117,10 @@ const myStyle = {
   marginRight: "2vh",
   color: "rgb(0, 114, 106)",
   fontWeight: "bold",
-  paddingTop: 8,
+  paddingTop:0,
   hover: {
     fontWeight: "bold",
   },
 };
-const dropStyle = {
-  color: "rgb(0, 114, 106)",
-  padding: 0,
-  hover: {
-    fontWeight: "bold",
-  },
-  fontWeight: "bold",
-};
+
+
