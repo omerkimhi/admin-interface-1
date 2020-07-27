@@ -87,15 +87,15 @@ class LineChart extends React.Component {
     var sportNames = [];
     this.props.ArtFiltersData.map((item) => {
       artNames.push(item.Name);
-      artValues.push(item.Value);
+      artValues.push(Number(item.Value).toFixed(2));
     });
     this.props.BeautyFiltersData.map((item) => {
       beautyNames.push(item.Name);
-      beautyValues.push(item.Value);
+      beautyValues.push(Number(item.Value).toFixed(2));
     });
     this.props.SportFiltersData.map((item) => {
       sportNames.push(item.Name);
-      sportValues.push(item.Value);
+      sportValues.push(Number(item.Value).toFixed(2));
     });
     var temp = this.state.dataLine;
     temp.labels = [...artNames];
