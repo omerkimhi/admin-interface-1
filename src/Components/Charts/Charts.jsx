@@ -19,7 +19,7 @@ export default class Charts extends Component {
     return (
       <div className="app">
        < Container>
-         <Row style={{ justifyContent: "center" }} > <h1>Spaces Analytics</h1></Row>
+         <Row style={{ justifyContent: "center" }} > <br/><h1>Spaces Analytics</h1></Row>
           <Row style={{
             display: "flex",
             flexWrap: "wrap",

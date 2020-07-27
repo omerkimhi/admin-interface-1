@@ -51,6 +51,7 @@ class Details extends Component {
       SpaceInWeek: [],
       SpaceInMonth: [],
       //user type
+      tenants: null,
       userType: [],
       pieData: {
         labels: ["Art", "Beauty", "Sport"],
@@ -182,6 +183,7 @@ class Details extends Component {
     this.getUploadMonthUser();
     this.usersSpacesDataset();
     this.LandlordsTenantsDataset();
+
   }
   LandlordsTenantsDataset = () => {
     let landlords = 0;
@@ -324,7 +326,7 @@ class Details extends Component {
     let minArt = Number(Math.min.apply(null, artAvg)).toFixed(2);
     //beauty avg min max
     this.state.Spaces.map((space) => {
-      if (space.field === "Art") beautyAvg.push(space.price);
+      if (space.field === "Beauty") beautyAvg.push(space.price);
     });
     let sumBeauty = beautyAvg.reduce(
       (previous, current) => (current += previous)
@@ -469,7 +471,8 @@ class Details extends Component {
         landLord.push(lord);
       }
     });
-    this.setState({ userType: landLord });
+    let tempTenants = this.props.Users.length -landLord.length;
+    this.setState({ userType: landLord , tenants: tempTenants});
   };
   getUploadMonthUser = () => {
     let monthData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -589,13 +592,16 @@ class Details extends Component {
             <br />
             <Row style={{ justifyContent: "center" }}>
               <br />
-              <h1 className="headerLine"> Spaces Stats</h1>
+              <h1 className="headerLine">Spaces Stats</h1>
+            </Row>
+            <Row style={{ justifyContent: "center" }}>
+              <p>Here you will find statistics to help you manage and maintain the system </p>
             </Row>
             <Row>
               <Col lg={4} md={12}>
                 <br />
                 <Card
-                  header={"Rank"}
+                  header={"By Rank"}
                   sport={"Average rank in sport:"}
                   dataSport={this.state.avgRankSport}
                   art={"Average rank  in art:"}
@@ -608,7 +614,7 @@ class Details extends Component {
               <Col md={4} sm={12}>
                 <br />
                 <Card
-                  header={"TOP rated space"}
+                  header={"Top Rated"}
                   sport={"Sport:"}
                   dataSport={this.state.topRankSport}
                   art={"Art:"}
@@ -620,7 +626,7 @@ class Details extends Component {
               <Col md={4} sm={12}>
                 <br />
                 <Card
-                  header={"Fields"}
+                  header={"By Fields"}
                   sport={"Sport Spaces:"}
                   dataSport={this.state.sportSpaces.length}
                   art={"Art Spaces:"}
@@ -631,8 +637,8 @@ class Details extends Component {
                 <br />
               </Col>
             </Row>
-            <Row style={rowStyle}>
-              <Col lg={6} md={12} sm={12} xs={12}>
+            <Row style={rowStyle, { borderBottom: '3px solid #00726a' }}>
+              <Col lg={6} md={12} sm={12} xs={12} >
                 <br />
                 <h4 style={{ textAlign: "center" }}>Spaces to Users Ratio </h4>
                 <Doughnut data={this.state.UsersSpacesDataset}></Doughnut>
@@ -643,52 +649,41 @@ class Details extends Component {
                   Amount of spaces by field
                 </h4>
                 <Pie data={this.state.pieData}></Pie>
+                <br />
               </Col>
             </Row>
             <br />
             <Col style={{ justifyContent: "center" }}>
               <br />
-              <h1 style={{ textAlign: "center" }}> Database Stats</h1>
+              <h2 style={{ textAlign: "center" }}>Database Stats</h2>
             </Col>
             <Row style={{ paddingLeft: "15%" }}>
               <Col>
                 <br></br>
-                <ListGroup variant="flush">
-                  <ListGroup.Item>
-                    <h2>Users STATS</h2>
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    <h5>Number of users: </h5>
-                    <h4>{this.props.Users.length}</h4>
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    {" "}
-                    <h5>Number of landlords: </h5>
-                    <h4>{this.state.userType.length}</h4>
-                  </ListGroup.Item>
-                  <ListGroup.Item>
-                    {" "}
-                    <h5>Number of tenants: </h5>
-                    <h4>
-                      {this.props.Users.length - this.state.userType.length}
-                    </h4>
-                  </ListGroup.Item>
-                </ListGroup>
+                <Card
+                  header={"Users Stats"}
+                  sport={"Number of users:"}
+                  dataSport={this.props.Users.length}
+                  art={"Number of landlords:"}
+                  dataArt={this.state.userType.length}
+                  beauty={"Number of tenants:"}
+                  dataBeauty={this.state.tenants}
+                />
               </Col>
               <Col>
-                <br />
+                <br /> 
                 <Card
                   header={"Data Base"}
                   sport={"Spaces in DB:"}
                   dataSport={this.props.Spaces.length}
-                  art={"New spaces added in last 7 days:"}
+                  art={"Spaces added in the past 7 days:"}
                   dataArt={this.state.SpaceInWeek.length}
-                  beauty={"New spaces added in last 30 days:"}
+                  beauty={"Spaces added in the past 30 days:"}
                   dataBeauty={this.state.SpaceInMonth.length}
                 />
               </Col>
             </Row>
-            <Row style={rowStyle}>
+            <Row style={rowStyle, {borderBottom: '3px solid #00726a' }}>
               <Col lg={6} md={12} sm={12} xs={12}>
                 <br />
                 <h3 style={{ textStyle }}>New users registered by month</h3>
@@ -700,12 +695,14 @@ class Details extends Component {
                 <h3 style={{ textStyle }}>New spaces uploaded by month</h3>
                 <br />
                 <Line data={this.state.SpaceByMonth}></Line>
+                <br />
+                <br />
               </Col>
             </Row>
             <br />
             <Row style={{ justifyContent: "center" }}>
               <br />
-              <h1> Spaces stats by field</h1>
+              <h2> Spaces stats by field</h2>
             </Row>
             <Row>
               <br />
@@ -770,17 +767,14 @@ class Details extends Component {
             <Row style={rowStyle}>
               <Col lg={6} md={12} sm={12} xs={12}>
                 <br />
-                <br />
-                <h4 style={{ textAlign: "center" }}>
-                  Landloards to Tenants Ratio{" "}
-                </h4>
+                <h4 style={{ textAlign: 'center' }} >Free Users: </h4>
+                <h4 style={{ textAlign: 'center' }} >Landlords to Tenants Ratio </h4>
                 <Doughnut data={this.state.LandlordsTenantsDataset}></Doughnut>
               </Col>
               <Col lg={6} md={12} sm={12} xs={12} style={leftColStyle}>
                 <br />
-                <h4 style={{ textAlign: "center" }}>
-                  Premium to Regular Lanloards Ratio
-                </h4>
+                <h4 style={{ textAlign: 'center' }}>Premium Users:</h4>
+                <h4 style={{ textAlign: 'center' }}>Landlords to Tenants Ratio</h4>
                 <Pie data={this.state.PremiumRegularData}></Pie>
               </Col>
             </Row>
