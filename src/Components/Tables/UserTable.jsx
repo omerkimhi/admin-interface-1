@@ -80,6 +80,10 @@ export default class Table extends Component {
           columns={this.state.columnsUsers}
           data={this.state.dataUsers}
         />
+         <br />
+        <br />
+        <br />
+        <br />
       </div>
     );
   }
