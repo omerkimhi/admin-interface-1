@@ -22,7 +22,6 @@ export default class Table extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      Spaces: this.props.Spaces,
       SpaceDel: [],
       //Space Data Table
       columns: [
@@ -35,43 +34,15 @@ export default class Table extends Component {
         { title: "Number", field: "number", type: "numeric" },
         { title: "Capabillity", field: "capabillity", type: "numeric" },
         { title: "User Email", field: "userEmail" },
-        { title: "Rank", field: "rank" },
+       
       ],
-      data: [
-        {
-          spaceId: null,
-          name: "",
-          field: "",
-          price: null,
-          city: "",
-          street: "",
-          number: null,
-
-          capabillity: "",
-          userEmail: "",
-          rank: 0,
-        },
-      ],
+      data: this.props.Spaces,
     };
   }
 
   componentDidMount() {
     this.SpacesApiUrl = "https://proj.ruppin.ac.il/igroup17/prod/api/space";
-    this.getSpaceData();
   }
-
-  //gets data and set state to dataSpaces
-  getSpaceData = () => {
-    let Array = [];
-
-    this.state.Spaces.map((space) => {
-      let temp = space;
-      temp.rank = space.rank == 3.499 ? "-" : Number(space.rank).toFixed(2);
-      Array.push(temp);
-    });
-
-    this.setState({ data: Array });
-  };
 
   //delete space from DB
   deleteData = (item) => {

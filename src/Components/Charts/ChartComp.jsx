@@ -50,15 +50,15 @@ export default function ChartComp(props) {
           var arrayByField = props.Spaces.filter(
             (space) => space.field === item
           );
-          let counter=0;
-          sum=0;
+          let counter = 0;
+          sum = 0;
           arrayByField.map((item) => {
-            if(item[kind]!=3.499)
-            {
-                counter++;
-                sum = sum + item[kind];
+            if (Number(item[kind]) != 3.499 && item[kind] != "-"&&item[kind] !=NaN) {
+              
+              counter++;
+              sum = sum + Number(item[kind]);
+              console.log(sum);
             }
-
           });
           avg = Number(sum / counter).toFixed(2);
           return avg;
@@ -92,17 +92,16 @@ export default function ChartComp(props) {
           var arrayByField = props.Spaces.filter(
             (space) => space.city === item
           );
-          let counter=0;
-          sum=0;
-        
+          let counter = 0;
+          sum = 0;
+
           arrayByField.map((item) => {
-              if(item[kind]!=3.499)
-              {
-                counter++;
-                sum = sum + item[kind];
-              }
+            if (Number(item[kind]) != 3.499 && item[kind] != "-"&&item[kind] !=NaN) {
+              counter++;
+              sum = sum + Number(item[kind]);
+            }
           });
-          avg =  Number(sum / counter).toFixed(2);
+          avg = Number(sum / counter).toFixed(2);
           return avg;
         }
       });

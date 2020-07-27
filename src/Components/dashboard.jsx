@@ -55,7 +55,6 @@ class Dashboard extends Component {
     };
   }
   componentDidMount() {
-    console.log("componentdidmount in dashboard' in time:",new Date().toLocaleString());
     if (localStorage.getItem('user')) {
       this.setState({
         isLogged: true,
@@ -632,7 +631,7 @@ class Dashboard extends Component {
     else {
       if (!this.state.isLogged) {
         return (
-          <HashRouter forceRefresh={true} hashType={"noslash"}>
+          <HashRouter hashType={"noslash"}>
             <Switch>
               <Route  path="/"><Login checkLogged={this.checkLogged} /></Route>
             </Switch>
@@ -641,11 +640,11 @@ class Dashboard extends Component {
       }
       else {
         return (
-        <HashRouter forceRefresh={true} hashType={"noslash"}>
+        <HashRouter hashType={"slash"}>
           <div> <NavBar isLogged={this.state.isLogged} userLogged={this.state.userLogged} checkLogged={this.checkLogged}></NavBar></div>
           <Switch>
-            <Route exact path="/"><Details Spaces={this.state.Spaces} Users={this.state.Users} /></Route>
-            <Route path="/SpaceTable"><SpaceTable Spaces={this.state.Spaces} /></Route>
+            <Route exact strict path="/"><Details Spaces={this.state.Spaces} Users={this.state.Users} /></Route>
+            <Route exact path="/SpaceTable"><SpaceTable Spaces={this.state.Spaces} /></Route>
             <Route path="/UserTable"><UserTable Users={this.state.Users} /></Route>
             <Route path="/Spaces"><Charts Orders={this.state.Orders} Spaces={this.state.Spaces} /></Route>
             <Route path="/Orders"><Orders Orders={this.state.Orders} Spaces={this.state.Spaces} ArtOrder={this.state.ArtOrder} BeautyOrder={this.state.BeautyOrder} SportOrder={this.state.SportOrder} /></Route>

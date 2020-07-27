@@ -173,10 +173,7 @@ class Details extends Component {
       },
     };
   }
-  componentDidMount() {
-
-
-
+   componentDidMount() {
     this.getPrices();
     this.getRank();
     this.getNumberOfEachField();
@@ -187,22 +184,7 @@ class Details extends Component {
     this.usersSpacesDataset();
     this.LandlordsTenantsDataset();
 
-    console.log("componentDidMount Details  in time:",new Date().toLocaleString());
     
-    console.log("this.state.spaces",this.state.Spaces);
-
-    console.log("this.props.Spaces",this.props.Spaces);
-
-    console.log("avgRankBeauty",this.state.avgRankBeauty);
-
-        console.log("avgRankSport",this.state.avgRankSport);
-
-        console.log("avgRankArt",this.state.avgRankArt);
-
-    console.log("avgRankSpace",this.state.avgRankSpace);
-
-    
-
   }
   LandlordsTenantsDataset = () => {
     let landlords = 0;
@@ -371,7 +353,6 @@ class Details extends Component {
   //Rank
   getRank = () => {
     //init
-    console.log("calccccc rank ")
     let spaceAvg = [];
     let beautyAvg = [];
     let artAvg = [];
@@ -385,25 +366,24 @@ class Details extends Component {
     //Average Rank per field
     this.state.Spaces.map((space) => {
       if (space.field === "Sport") {
-        if (space.rank !== 3.499) {
-          sportAvg.push(space.rank);
+        if (space.rank != 3.499 && space.rank != "-") {
+          sportAvg.push(Number(space.rank));
           sportRatingCounter++;
           sumS = sportAvg.reduce((previous, current) => (current += previous));
-         
         }
       }
 
       if (space.field === "Art") {
-        if (space.rank !== 3.499) {
-          artAvg.push(space.rank);
+        if (space.rank != 3.499 && space.rank != "-") {
+          artAvg.push(Number(space.rank));
           artRatingCounter++;
           sumA = artAvg.reduce((previous, current) => (current += previous));
         }
       }
 
       if (space.field === "Beauty") {
-        if (space.rank !== 3.499) {
-          beautyAvg.push(space.rank);
+        if (space.rank != 3.499 && space.rank != "-") {
+          beautyAvg.push(Number(space.rank));
           beautyRatingCounter++;
           sumB = beautyAvg.reduce((previous, current) => (current += previous));
         }
@@ -415,8 +395,8 @@ class Details extends Component {
 
     //Average space rank
     this.state.Spaces.map((space) => {
-      if (space.rank !== 0 || space.rank !== null || space.rank !== 3.499)
-        spaceAvg.push(space.rank);
+      if (space.rank !== null && space.rank !== 3.499 && space.rank !== "-")
+        spaceAvg.push(Number(space.rank));
     });
     let sumSpace = spaceAvg.reduce(
       (previous, current) => (current += previous)
@@ -440,20 +420,26 @@ class Details extends Component {
 
     //get top rank
     this.state.sportSpaces.map((space) => {
-      help = space.rank;
-      if (help === Math.max(...this.state.sportSpaces.map((s) => s.rank))) {
+      help = (space.rank==3.499||space.rank=="-")?0:Number(space.rank);
+      
+      if (help === Math.max(...this.state.sportSpaces.map((s) => (s.rank!="-"&&s.rank!=3.499)?s.rank:Number(0) ))) {
+        
         topSport = space.name;
       }
     });
     this.state.beautySpaces.map((space) => {
-      help = space.rank;
-      if (help === Math.max(...this.state.beautySpaces.map((s) => s.rank))) {
+      help =  (space.rank==3.49||space.rank=="-")?0:Number(space.rank);
+       
+      if (help === Math.max(...this.state.beautySpaces.map((s) => (s.rank!="-"&&s.rank!=3.499)?s.rank:Number(0) ))) {
+       
         topBeauty = space.name;
       }
     });
     this.state.artSpaces.map((space) => {
-      help = space.rank;
-      if (help === Math.max(...this.state.artSpaces.map((s) => s.rank))) {
+      help = (space.rank==3.499||space.rank=="-")?0:Number(space.rank);
+     
+      if (help === Math.max(...this.state.artSpaces.map((s) => (s.rank!="-"&&s.rank!=3.499)?s.rank:Number(0) ))) {
+        
         topArt = space.name;
       }
     });
@@ -491,8 +477,8 @@ class Details extends Component {
         landLord.push(lord);
       }
     });
-    let tempTenants = this.props.Users.length -landLord.length;
-    this.setState({ userType: landLord , tenants: tempTenants});
+    let tempTenants = this.props.Users.length - landLord.length;
+    this.setState({ userType: landLord, tenants: tempTenants });
   };
   getUploadMonthUser = () => {
     let monthData = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -601,223 +587,226 @@ class Details extends Component {
   };
 
   render() {
-    console.log("avgRankBeauty",this.state.avgRankBeauty);
-
-    console.log("avgRankSport",this.state.avgRankSport);
-
-    console.log("avgRankArt",this.state.avgRankArt);
-
-console.log("avgRankSpace",this.state.avgRankSpace);
-    if (this.state.Spaces.length === 0) {
-      return <h1>LOADING</h1>
-    }
-    else{
-
    
-    return (
-      <Ripple>
-        <Container ref={(el) => (this.appContainer = el)}>
-          <br />
-          <Button onClick={this.handlePDFExport}>Export to PDF</Button>
-          <br />
-          <br />
-          <div className="container">
+    if (this.state.Spaces.length === 0) {
+      return <h1>LOADING</h1>;
+    } else {
+      return (
+        <Ripple>
+          <Container ref={(el) => (this.appContainer = el)}>
             <br />
-            <Row style={{ justifyContent: "center" }}>
+            <Button onClick={this.handlePDFExport}>Export to PDF</Button>
+            <br />
+            <br />
+            <div className="container">
               <br />
-              <h1 className="headerLine">Spaces Stats</h1>
-            </Row>
-            <Row style={{ justifyContent: "center" }}>
-              <p>Here you will find statistics to help you manage and maintain the system </p>
-            </Row>
-            <Row>
-              <Col lg={4} md={12}>
+              <Row style={{ justifyContent: "center" }}>
                 <br />
-                <Card
-                  header={"By Rank"}
-                  sport={"Average rank in sport:"}
-                  dataSport={this.state.avgRankSport}
-                  art={"Average rank  in art:"}
-                  dataArt={this.state.avgRankArt}
-                  beauty={"Average rank in beauty:"}
-                  dataBeauty={this.state.avgRankBeauty}
-                />
-                <br />
-              </Col>
-              <Col md={4} sm={12}>
-                <br />
-                <Card
-                  header={"Top Rated"}
-                  sport={"Sport:"}
-                  dataSport={this.state.topRankSport}
-                  art={"Art:"}
-                  dataArt={this.state.topRankArt}
-                  beauty={"Beauty:"}
-                  dataBeauty={this.state.topRankBeauty}
-                />
-              </Col>
-              <Col md={4} sm={12}>
-                <br />
-                <Card
-                  header={"By Fields"}
-                  sport={"Sport Spaces:"}
-                  dataSport={this.state.sportSpaces.length}
-                  art={"Art Spaces:"}
-                  dataArt={this.state.artSpaces.length}
-                  beauty={"Beauty Spaces:"}
-                  dataBeauty={this.state.beautySpaces.length}
-                />
-                <br />
-              </Col>
-            </Row>
-            <Row style={rowStyle, { borderBottom: '3px solid #00726a' }}>
-              <Col lg={6} md={12} sm={12} xs={12} >
-                <br />
-                <h4 style={{ textAlign: "center" }}>Spaces to Users Ratio </h4>
-                <Doughnut data={this.state.UsersSpacesDataset}></Doughnut>
-              </Col>
-              <Col lg={6} md={12} sm={12} xs={12} style={leftColStyle}>
-                <br />
-                <h4 style={{ textAlign: "center" }}>
-                  Amount of spaces by field
-                </h4>
-                <Pie data={this.state.pieData}></Pie>
-                <br />
-              </Col>
-            </Row>
-            <br />
-            <Col style={{ justifyContent: "center" }}>
+                <h1 className="headerLine">Spaces Stats</h1>
+              </Row>
+              <Row style={{ justifyContent: "center" }}>
+                <p>
+                  Here you will find statistics to help you manage and maintain
+                  the system{" "}
+                </p>
+              </Row>
+              <Row>
+                <Col lg={4} md={12}>
+                  <br />
+                  <Card
+                    header={"By Rank"}
+                    sport={"Average rank in sport:"}
+                    dataSport={this.state.avgRankSport}
+                    art={"Average rank  in art:"}
+                    dataArt={this.state.avgRankArt}
+                    beauty={"Average rank in beauty:"}
+                    dataBeauty={this.state.avgRankBeauty}
+                  />
+                  <br />
+                </Col>
+                <Col md={4} sm={12}>
+                  <br />
+                  <Card
+                    header={"Top Rated"}
+                    sport={"Sport:"}
+                    dataSport={this.state.topRankSport}
+                    art={"Art:"}
+                    dataArt={this.state.topRankArt}
+                    beauty={"Beauty:"}
+                    dataBeauty={this.state.topRankBeauty}
+                  />
+                </Col>
+                <Col md={4} sm={12}>
+                  <br />
+                  <Card
+                    header={"By Fields"}
+                    sport={"Sport Spaces:"}
+                    dataSport={this.state.sportSpaces.length}
+                    art={"Art Spaces:"}
+                    dataArt={this.state.artSpaces.length}
+                    beauty={"Beauty Spaces:"}
+                    dataBeauty={this.state.beautySpaces.length}
+                  />
+                  <br />
+                </Col>
+              </Row>
+              <Row style={(rowStyle, { borderBottom: "3px solid #00726a" })}>
+                <Col lg={6} md={12} sm={12} xs={12}>
+                  <br />
+                  <h4 style={{ textAlign: "center" }}>
+                    Spaces to Users Ratio{" "}
+                  </h4>
+                  <Doughnut data={this.state.UsersSpacesDataset}></Doughnut>
+                </Col>
+                <Col lg={6} md={12} sm={12} xs={12} style={leftColStyle}>
+                  <br />
+                  <h4 style={{ textAlign: "center" }}>
+                    Amount of spaces by field
+                  </h4>
+                  <Pie data={this.state.pieData}></Pie>
+                  <br />
+                </Col>
+              </Row>
               <br />
-              <h2 style={{ textAlign: "center" }}>Database Stats</h2>
-            </Col>
-            <Row style={{ paddingLeft: "15%" }}>
-              <Col>
-                <br></br>
-                <Card
-                  header={"Users Stats"}
-                  sport={"Number of users:"}
-                  dataSport={this.props.Users.length}
-                  art={"Number of landlords:"}
-                  dataArt={this.state.userType.length}
-                  beauty={"Number of tenants:"}
-                  dataBeauty={this.state.tenants}
-                />
+              <Col style={{ justifyContent: "center" }}>
+                <br />
+                <h2 style={{ textAlign: "center" }}>Database Stats</h2>
               </Col>
-              <Col>
-                <br /> 
-                <Card
-                  header={"Data Base"}
-                  sport={"Spaces in DB:"}
-                  dataSport={this.props.Spaces.length}
-                  art={"Spaces added in the past 7 days:"}
-                  dataArt={this.state.SpaceInWeek.length}
-                  beauty={"Spaces added in the past 30 days:"}
-                  dataBeauty={this.state.SpaceInMonth.length}
-                />
-              </Col>
-            </Row>
-            <Row style={rowStyle, {borderBottom: '3px solid #00726a' }}>
-              <Col lg={6} md={12} sm={12} xs={12}>
-                <br />
-                <h3 style={{ textStyle }}>New users registered by month</h3>
-                <br />
-                <Line data={this.state.UserByMonth}></Line>
-              </Col>
-              <Col lg={6} md={12} sm={12} xs={12} style={leftColStyle}>
-                <br />
-                <h3 style={{ textStyle }}>New spaces uploaded by month</h3>
-                <br />
-                <Line data={this.state.SpaceByMonth}></Line>
-                <br />
-                <br />
-              </Col>
-            </Row>
-            <br />
-            <Row style={{ justifyContent: "center" }}>
+              <Row style={{ paddingLeft: "15%" }}>
+                <Col>
+                  <br></br>
+                  <Card
+                    header={"Users Stats"}
+                    sport={"Number of users:"}
+                    dataSport={this.props.Users.length}
+                    art={"Number of landlords:"}
+                    dataArt={this.state.userType.length}
+                    beauty={"Number of tenants:"}
+                    dataBeauty={this.state.tenants}
+                  />
+                </Col>
+                <Col>
+                  <br />
+                  <Card
+                    header={"Data Base"}
+                    sport={"Spaces in DB:"}
+                    dataSport={this.props.Spaces.length}
+                    art={"Spaces added in the past 7 days:"}
+                    dataArt={this.state.SpaceInWeek.length}
+                    beauty={"Spaces added in the past 30 days:"}
+                    dataBeauty={this.state.SpaceInMonth.length}
+                  />
+                </Col>
+              </Row>
+              <Row style={(rowStyle, { borderBottom: "3px solid #00726a" })}>
+                <Col lg={6} md={12} sm={12} xs={12}>
+                  <br />
+                  <h3 style={{ textStyle }}>New users registered by month</h3>
+                  <br />
+                  <Line data={this.state.UserByMonth}></Line>
+                </Col>
+                <Col lg={6} md={12} sm={12} xs={12} style={leftColStyle}>
+                  <br />
+                  <h3 style={{ textStyle }}>New spaces uploaded by month</h3>
+                  <br />
+                  <Line data={this.state.SpaceByMonth}></Line>
+                  <br />
+                  <br />
+                </Col>
+              </Row>
               <br />
-              <h2> Spaces stats by field</h2>
-            </Row>
-            <Row>
+              <Row style={{ justifyContent: "center" }}>
+                <br />
+                <h2> Spaces stats by field</h2>
+              </Row>
+              <Row>
+                <br />
+                <Col>
+                  <br />
+                  <ListGroup.Item>
+                    <h2>Beauty</h2>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <h5>Average price:</h5>
+                    <h4>{this.state.beautyPrice} ₪</h4>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    {" "}
+                    <h5>Max price:</h5>
+                    <h4>{this.state.beautyMax} ₪</h4>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <h5>Min price:</h5>
+                    <h4>{this.state.beautyMin} ₪</h4>
+                  </ListGroup.Item>
+                  <br />
+                </Col>
+                <Col>
+                  <br />
+                  <ListGroup.Item>
+                    <h2>Sport</h2>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <h5>Average price:</h5>
+                    <h4>{this.state.sportPrice} ₪</h4>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <h5>Max price:</h5>
+                    <h4>{this.state.sportMax} ₪</h4>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <h5>Min price:</h5>
+                    <h4>{this.state.sportMin} ₪</h4>
+                  </ListGroup.Item>
+                </Col>
+                <Col>
+                  <br />
+                  <ListGroup.Item>
+                    <h2>Art</h2>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <h5>Average price:</h5>
+                    <h4>{this.state.artPrice} ₪</h4>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <h5>Max price:</h5>
+                    <h4>{this.state.artMax} ₪</h4>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <h5>Min price:</h5>
+                    <h4>{this.state.artMin} ₪</h4>
+                  </ListGroup.Item>
+                  <br />
+                </Col>
+              </Row>
+              <Row style={rowStyle}>
+                <Col lg={6} md={12} sm={12} xs={12}>
+                  <br />
+                  <h4 style={{ textAlign: "center" }}>Free Users: </h4>
+                  <h4 style={{ textAlign: "center" }}>
+                    Landlords to Tenants Ratio{" "}
+                  </h4>
+                  <Doughnut
+                    data={this.state.LandlordsTenantsDataset}
+                  ></Doughnut>
+                </Col>
+                <Col lg={6} md={12} sm={12} xs={12} style={leftColStyle}>
+                  <br />
+                  <h4 style={{ textAlign: "center" }}>Premium Users:</h4>
+                  <h4 style={{ textAlign: "center" }}>
+                    Landlords to Tenants Ratio
+                  </h4>
+                  <Pie data={this.state.PremiumRegularData}></Pie>
+                </Col>
+              </Row>
               <br />
-              <Col>
-                <br />
-                <ListGroup.Item>
-                  <h2>Beauty</h2>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <h5>Average price:</h5>
-                  <h4>{this.state.beautyPrice} ₪</h4>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  {" "}
-                  <h5>Max price:</h5>
-                  <h4>{this.state.beautyMax} ₪</h4>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <h5>Min price:</h5>
-                  <h4>{this.state.beautyMin} ₪</h4>
-                </ListGroup.Item>
-                <br />
-              </Col>
-              <Col>
-                <br />
-                <ListGroup.Item>
-                  <h2>Sport</h2>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <h5>Average price:</h5>
-                  <h4>{this.state.sportPrice} ₪</h4>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <h5>Max price:</h5>
-                  <h4>{this.state.sportMax} ₪</h4>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <h5>Min price:</h5>
-                  <h4>{this.state.sportMin} ₪</h4>
-                </ListGroup.Item>
-              </Col>
-              <Col>
-                <br />
-                <ListGroup.Item>
-                  <h2>Art</h2>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <h5>Average price:</h5>
-                  <h4>{this.state.artPrice} ₪</h4>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <h5>Max price:</h5>
-                  <h4>{this.state.artMax} ₪</h4>
-                </ListGroup.Item>
-                <ListGroup.Item>
-                  <h5>Min price:</h5>
-                  <h4>{this.state.artMin} ₪</h4>
-                </ListGroup.Item>
-                <br />
-              </Col>
-            </Row>
-            <Row style={rowStyle}>
-              <Col lg={6} md={12} sm={12} xs={12}>
-                <br />
-                <h4 style={{ textAlign: 'center' }} >Free Users: </h4>
-                <h4 style={{ textAlign: 'center' }} >Landlords to Tenants Ratio </h4>
-                <Doughnut data={this.state.LandlordsTenantsDataset}></Doughnut>
-              </Col>
-              <Col lg={6} md={12} sm={12} xs={12} style={leftColStyle}>
-                <br />
-                <h4 style={{ textAlign: 'center' }}>Premium Users:</h4>
-                <h4 style={{ textAlign: 'center' }}>Landlords to Tenants Ratio</h4>
-                <Pie data={this.state.PremiumRegularData}></Pie>
-              </Col>
-            </Row>
-            <br />
-            <br />
-          </div>
-        </Container>
-      </Ripple>
-    );
-  } }
+              <br />
+            </div>
+          </Container>
+        </Ripple>
+      );
+    }
+  }
 }
 export default Details;
 
