@@ -49,7 +49,7 @@ export default class Table extends Component {
 
           capabillity: "",
           userEmail: "",
-          rank: null,
+          rank: 0,
         },
       ],
     };

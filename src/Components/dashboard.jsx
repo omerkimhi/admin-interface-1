@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { BrowserRouter as Router, HashRouter, Switch, Route } from "react-router-dom";
 import NavBar from './NavBar/NavBar';
 
 //CLASSES
@@ -55,6 +55,7 @@ class Dashboard extends Component {
     };
   }
   componentDidMount() {
+    console.log("componentdidmount in dashboard' in time:",new Date().toLocaleString());
     if (localStorage.getItem('user')) {
       this.setState({
         isLogged: true,
@@ -62,7 +63,7 @@ class Dashboard extends Component {
       })
     }
     this.SpacesApiUrl =
-      "http://proj.ruppin.ac.il/igroup17/proj/api/SpaceData/AllSpaces";
+      "http://proj.ruppin.ac.il/igroup17/proj/api/SpaceData/AllSpaces";//or http://proj.ruppin.ac.il/igroup17/proj/api/Space/
     this.OrdersApiUrl =
       "http://proj.ruppin.ac.il/igroup17/prod/api/order";
     this.UsersApiUrl =
@@ -631,16 +632,16 @@ class Dashboard extends Component {
     else {
       if (!this.state.isLogged) {
         return (
-          <Router basename="/igroup17/prod/Admin">
+          <HashRouter forceRefresh={true} hashType={"noslash"}>
             <Switch>
               <Route  path="/"><Login checkLogged={this.checkLogged} /></Route>
             </Switch>
-          </Router>
+          </HashRouter>
         )
       }
       else {
         return (
-        <Router basename="/igroup17/prod/Admin">
+        <HashRouter forceRefresh={true} hashType={"noslash"}>
           <div> <NavBar isLogged={this.state.isLogged} userLogged={this.state.userLogged} checkLogged={this.checkLogged}></NavBar></div>
           <Switch>
             <Route exact path="/"><Details Spaces={this.state.Spaces} Users={this.state.Users} /></Route>
@@ -653,7 +654,7 @@ class Dashboard extends Component {
               ArtFilters={this.state.ArtFilters} BeautyFilters={this.state.BeautyFilters} SportFilters={this.state.SportFilters} ArtEqCounters={this.state.ArtEqCounters} BeautyEqCounters={this.state.BeautyEqCounters} SportEqCounters={this.state.SportEqCounters}></Graph></Route>
           </Switch>
           <Footer></Footer>
-        </Router>
+        </HashRouter>
       );}
     }
   }

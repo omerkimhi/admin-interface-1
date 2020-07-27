@@ -42,10 +42,10 @@ class Details extends Component {
       topRankArt: "",
       topRankBeauty: "",
       topRankSpace: null,
-      avgRankSport: null,
-      avgRankArt: null,
-      avgRankBeauty: null,
-      avgRankSpace: null,
+      avgRankSport: 0,
+      avgRankArt: 0,
+      avgRankBeauty: 0,
+      avgRankSpace: 0,
       //date
       curTime: new Date().toLocaleString(),
       SpaceInWeek: [],
@@ -174,6 +174,9 @@ class Details extends Component {
     };
   }
   componentDidMount() {
+
+
+
     this.getPrices();
     this.getRank();
     this.getNumberOfEachField();
@@ -183,6 +186,22 @@ class Details extends Component {
     this.getUploadMonthUser();
     this.usersSpacesDataset();
     this.LandlordsTenantsDataset();
+
+    console.log("componentDidMount Details  in time:",new Date().toLocaleString());
+    
+    console.log("this.state.spaces",this.state.Spaces);
+
+    console.log("this.props.Spaces",this.props.Spaces);
+
+    console.log("avgRankBeauty",this.state.avgRankBeauty);
+
+        console.log("avgRankSport",this.state.avgRankSport);
+
+        console.log("avgRankArt",this.state.avgRankArt);
+
+    console.log("avgRankSpace",this.state.avgRankSpace);
+
+    
 
   }
   LandlordsTenantsDataset = () => {
@@ -352,6 +371,7 @@ class Details extends Component {
   //Rank
   getRank = () => {
     //init
+    console.log("calccccc rank ")
     let spaceAvg = [];
     let beautyAvg = [];
     let artAvg = [];
@@ -581,6 +601,19 @@ class Details extends Component {
   };
 
   render() {
+    console.log("avgRankBeauty",this.state.avgRankBeauty);
+
+    console.log("avgRankSport",this.state.avgRankSport);
+
+    console.log("avgRankArt",this.state.avgRankArt);
+
+console.log("avgRankSpace",this.state.avgRankSpace);
+    if (this.state.Spaces.length === 0) {
+      return <h1>LOADING</h1>
+    }
+    else{
+
+   
     return (
       <Ripple>
         <Container ref={(el) => (this.appContainer = el)}>
@@ -784,7 +817,7 @@ class Details extends Component {
         </Container>
       </Ripple>
     );
-  }
+  } }
 }
 export default Details;
 
