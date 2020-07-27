@@ -47,45 +47,65 @@ class NavBar extends Component {
                 <NavDropdown.Item
                   style={myStyle}
                   activestyle={{ fontWeight: "bold" }}
-                  href={`${url}/SpaceTable`}
-
                 >
-         Spaces
+         <NavLink
+                style={myStyle}
+                activeStyle={{ fontWeight: "bold" }}
+                to="/SpaceTable"
+                >
+                Spaces
+              </NavLink>
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   style={myStyle}
                   activestyle={{ fontWeight: "bold" }}
                   margintop="5"
-                  href={`${url}/UserTable`}
-                >Users
-                  
+                ><NavLink
+                style={myStyle}
+                activeStyle={{ fontWeight: "bold" }}
+                to="/UserTable"
+                >
+                Users
+              </NavLink>
                 </NavDropdown.Item>
               </NavDropdown>
               <NavDropdown title={<span style={dropStyle}>Analytics</span>}>
                 <NavDropdown.Item
                   style={myStyle}
                   activestyle={{ fontWeight: "bold" }}
-                  href={`${url}/Searches`}
-
-                >Searches
+                ><NavLink
+                style={myStyle}
+                activeStyle={{ fontWeight: "bold" }}
+                to="/Searches"
+                >
+                Searches
+              </NavLink>
                   
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   style={myStyle}
                   activestyle={{ fontWeight: "bold" }}
                   margintop="5"
-                  href={`${url}/Spaces`}
-
-                >Spaces
+                ><NavLink
+                style={myStyle}
+                activeStyle={{ fontWeight: "bold" }}
+                to="/Spaces"
+                >
+                Spaces
+              </NavLink>
                  
                 </NavDropdown.Item>
                 <NavDropdown.Item
                   style={myStyle}
                   activestyle={{ fontWeight: "bold" }}
                   margintop="5"
-                  href={`${url}/Orders`}
-
-                >Orders
+                ><NavLink
+                style={myStyle}
+                activeStyle={{ fontWeight: "bold" }}
+                to="/Orders"
+                >
+                Orders
+              </NavLink>
                  
                 </NavDropdown.Item>
               </NavDropdown>

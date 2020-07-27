@@ -22,7 +22,6 @@ class Login extends Component {
 
     FetchGetAdmin = () => {
 
-        console.log("url", this.AdminApiUrl + '/?username=' + this.state.userName + '&adminpassword=' + this.state.password)
         fetch(this.AdminApiUrl + '/?username=' + this.state.userName + '&adminpassword=' + this.state.password, {
             method: "GET"
         })

@@ -60,8 +60,6 @@ export default function ChartComp(props) {
             }
 
           });
-          console.log("counter",counter);
-
           avg = Number(sum / counter).toFixed(2);
           return avg;
         }

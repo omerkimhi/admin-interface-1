@@ -66,7 +66,7 @@ export default class Table extends Component {
 
     this.state.Spaces.map((space) => {
       let temp = space;
-      temp.rank = space.rank == 3.499 ? "-" : space.rank;
+      temp.rank = space.rank == 3.499 ? "-" : Number(space.rank).toFixed(2);
       Array.push(temp);
     });
 
@@ -79,7 +79,6 @@ export default class Table extends Component {
     fetch(str, {
       method: "delete",
     });
-    console.log("str ", str);
   };
 
   render() {

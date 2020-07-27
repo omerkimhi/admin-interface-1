@@ -77,7 +77,7 @@ class DoughnutChart extends React.Component {
 
         break;
       default:
-        console.log("No field");
+        break;
     }
     this.setState({
       dataDoughnut: temp

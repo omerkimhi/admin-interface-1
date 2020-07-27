@@ -462,7 +462,6 @@ export default class Control extends Component {
       }),
     }).then(
       (result) => {
-        console.log("succees");
         alert("Grades has been updated");
       },
       (error) => {
@@ -475,9 +474,6 @@ export default class Control extends Component {
     this.setState(
       {
         [name]: e.target.value,
-      },
-      () => {
-        console.log("target", this.state[name]);
       }
     );
   };
