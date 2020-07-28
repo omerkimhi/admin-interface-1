@@ -471,17 +471,12 @@ export default class Control extends Component {
   };
 
   changeValue = (e, name) => {
-    this.setState(
-      {
-        [name]: e.target.value,
-      }
-    );
+    this.setState({
+      [name]: e.target.value,
+    });
   };
 
   render() {
-    if (this.state.capacity.length === 0) {
-      return <h1>LOADING</h1>;
-    } else {
       return (
         <div className="app">
           <br />
@@ -527,109 +522,108 @@ export default class Control extends Component {
                   <tbody>
                     <tr>
                       <th style={cellStyle}>
-                        <label>
-                          Price:{" "}
+                        <label >Price: </label>
+                        <div style={{ justifyContent: "flex-end" }}>
                           <input
                             type="number"
                             defaultValue={this.state.price}
                             onChange={(e) => this.changeValue(e, "price")}
                             style={inputStyle}
                           />
-                        </label>
+                        </div>
                       </th>
 
                       <th style={cellStyle}>
-                        <label>
-                          Capacity:{" "}
+                        <label>Capacity: </label>
+                        <div style={{ justifyContent: "flex-end" }}>
                           <input
                             type="number"
                             defaultValue={this.state.capacity}
                             onChange={(e) => this.changeValue(e, "capacity")}
                             style={inputStyle}
                           />
-                        </label>
+                        </div>
                       </th>
 
                       <th style={cellStyle}>
-                        <label>
-                          Facilities:{" "}
+                        <label>Facilities: </label>
+                        <div style={{ justifyContent: "flex-end" }}>
                           <input
                             type="number"
                             defaultValue={this.state.facility}
                             onChange={(e) => this.changeValue(e, "facility")}
                             style={inputStyle}
                           />
-                        </label>
+                        </div>
                       </th>
-
+                    </tr>
+                    {/* second row */}
+                    <tr>
                       <th style={cellStyle}>
-                        <label>
-                          Equipment:{" "}
+                        <label>Equipment: </label>
+                        <div style={{ justifyContent: "flex-end" }}>
                           <input
                             type="number"
                             defaultValue={this.state.equipment}
                             onChange={(e) => this.changeValue(e, "equipment")}
                             style={inputStyle}
                           />
-                        </label>
+                        </div>
                       </th>
-                    </tr>
-                    {/* second row */}
-                    <tr>
-                      <th>
-                        <label>
-                          Rating:{" "}
+
+                      <th style={cellStyle}>
+                        <label >Rating: </label>
+                        <div style={{ justifyContent: "flex-end" }}>
                           <input
                             type="number"
                             defaultValue={this.state.rating}
                             onChange={(e) => this.changeValue(e, "rating")}
                             style={inputStyle}
                           />
-                        </label>
+                        </div>
                       </th>
 
                       <th style={cellStyle}>
-                        <label>
-                          Orders:{" "}
+                        <label >Orders: </label>
+                        <div style={{ justifyContent: "flex-end" }}>
                           <input
                             type="number"
                             defaultValue={this.state.order}
                             onChange={(e) => this.changeValue(e, "order")}
                             style={inputStyle}
                           />
-                        </label>
+                        </div>
                       </th>
+                    </tr>
 
+                    {/* third row */}
+                    <tr>
                       <th style={cellStyle}>
-                        <label>
-                          Premium:{" "}
+                        <label>Premium: </label>
+                        <div style={{ justifyContent: "flex-end" }}>
                           <input
                             type="number"
                             defaultValue={this.state.premium}
                             onChange={(e) => this.changeValue(e, "premium")}
                             style={inputStyle}
                           />
-                        </label>
+                        </div>
                       </th>
 
                       <th style={cellStyle}>
-                        <label>
-                          Conversion:{" "}
+                        <label >Conversion: </label>
+                        <div style={{ justifyContent: "flex-end" }}>
                           <input
                             type="number"
                             defaultValue={this.state.conversion}
                             onChange={(e) => this.changeValue(e, "conversion")}
                             style={inputStyle}
                           />
-                        </label>
+                        </div>
                       </th>
-                    </tr>
 
-                    <tr>
-                      <th></th>
-                      <th></th>
-                      <th></th>
-                      <th>
+                      <th  style={cellStyle}>
+                        
                         <button onClick={this.sendGrades} style={submitStyle}>
                           Apply
                         </button>
@@ -641,7 +635,9 @@ export default class Control extends Component {
               </div>
             </Row>
             <div style={{ justifyContent: "center" }} className="row">
-              <h3>Trends according to searches and filters made by the users</h3>
+              <h3>
+                Trends according to searches and filters made by the users
+              </h3>
             </div>
             <Row>
               <Col lg={6} md={6} sm={12}>
@@ -659,7 +655,7 @@ export default class Control extends Component {
       );
     }
   }
-}
+
 const inputStyle = {
   width: "30%",
   backgroundColor: "#B2C7BB",
@@ -671,7 +667,9 @@ const submitStyle = {
   backgroundColor: "rgb(0,114,106)",
   color: "white",
   width: "65%",
+  marginTop:30,
 };
 const cellStyle = {
   padding: "4px",
 };
+

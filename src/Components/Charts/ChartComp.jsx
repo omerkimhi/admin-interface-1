@@ -57,7 +57,7 @@ export default function ChartComp(props) {
               
               counter++;
               sum = sum + Number(item[kind]);
-              console.log(sum);
+             
             }
           });
           avg = Number(sum / counter).toFixed(2);

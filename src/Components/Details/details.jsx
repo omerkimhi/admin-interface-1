@@ -672,8 +672,8 @@ class Details extends Component {
                 <br />
                 <h2 style={{ textAlign: "center" }}>Database Stats</h2>
               </Col>
-              <Row style={{ paddingLeft: "15%" }}>
-                <Col>
+              <Row>
+                <Col style={{ justifyContent: "center" }}>
                   <br></br>
                   <Card
                     header={"Users Stats"}
@@ -685,7 +685,7 @@ class Details extends Component {
                     dataBeauty={this.state.tenants}
                   />
                 </Col>
-                <Col>
+                <Col style={{ justifyContent: "center" }}>
                   <br />
                   <Card
                     header={"Data Base"}
@@ -715,7 +715,7 @@ class Details extends Component {
                 </Col>
               </Row>
               <br />
-              <Row style={{ justifyContent: "center" }}>
+              <Row style={(rowStyle)}>
                 <br />
                 <h2> Spaces stats by field</h2>
               </Row>
@@ -779,7 +779,7 @@ class Details extends Component {
                   <br />
                 </Col>
               </Row>
-              <Row style={rowStyle}>
+              <Row style={(rowStyle, {justifyContent: "center"  })} >
                 <Col lg={6} md={12} sm={12} xs={12}>
                   <br />
                   <h4 style={{ textAlign: "center" }}>Free Users: </h4>
